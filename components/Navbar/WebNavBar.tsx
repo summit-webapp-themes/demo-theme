@@ -9,7 +9,7 @@ import logo from '../../public/assets/images/logo.png';
 import stylesNavbar from '../../styles/components/navbar.module.scss';
 import ProductCatagoriesNavbar from './ProductCatagoriesNavbar';
 
-function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, multiLanguagesData }: any) {
+function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, multiLanguagesData, selectedLang, handleLanguageChange }: any) {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -138,6 +138,8 @@ function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue,
         errorMessage={errorMessage}
         selectedCurrencyValue={selectedCurrencyValue}
         multiLanguagesData={multiLanguagesData}
+        selectedLang={selectedLang}
+        handleLanguageChange={handleLanguageChange}
       />
     </>
   );

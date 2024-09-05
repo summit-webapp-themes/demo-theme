@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Overlay, Placeholder, Popover } from 'react-bootstrap';
 import stylesHeader from '../../styles/components/header.module.scss';
 
-function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLanguagesData }: any) {
+function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLanguagesData, selectedLang, handleLanguageChange }: any) {
   const [showPopoverIndex, setShowPopoverIndex] = useState<number | null>(null);
   const [target, setTarget] = useState<HTMLElement | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -69,68 +69,51 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
     if (navbarData?.length > 0) {
       return (
         <nav ref={ref}>
-          <div className={`${stylesHeader.heading_container} py-2 row`} onMouseLeave={handleMouseLeave}>
-            <div className='col-2 col-lg-2'></div>
-            <div className='col-8 col-lg-8 d-flex justify-content-start'>
+          <div className={`${stylesHeader.heading_container} py-2 d-flex`} onMouseLeave={handleMouseLeave}>
+            <div className='flex-grow-1'>
+              <div className='d-flex justfy-content-start'>
 
-              {navbarData?.length > 0 &&
-                navbarData.map((item: any, index: number) => (
-                  <div key={index} className={`${stylesHeader.header_category_container}`}>
-                    {navbarData === null ? (
-                      <Placeholder xs={6} bg="dark" />
-                    ) : (
-                      <div
-                        className={`heading-category-l1 ${showPopoverIndex === index && 'theme-gold'}`}
-                        onMouseEnter={(e) => handleMouseEnter(e, index)}
+                {navbarData?.length > 0 &&
+                  navbarData.map((item: any, index: number) => (
+                    <div key={index} className={`${stylesHeader.header_category_container}`}>
+                      {navbarData === null ? (
+                        <Placeholder xs={6} bg="dark" />
+                      ) : (
+                        <div
+                          className={`heading-category-l1 ${showPopoverIndex === index && 'theme-gold'}`}
+                          onMouseEnter={(e) => handleMouseEnter(e, index)}
+                        >
+                          {item.label}
+                        </div>
+                      )}
+                      <Overlay
+                        show={showPopoverIndex === index && item?.values?.length > 0}
+                        target={target}
+                        placement="bottom"
+                        container={ref.current}
+                        containerPadding={20}
                       >
-                        {item.label}
-                      </div>
-                    )}
-                    <Overlay
-                      show={showPopoverIndex === index && item?.values?.length > 0}
-                      // show={true}
-                      target={target}
-                      placement="bottom"
-                      container={ref.current}
-                      containerPadding={20}
-                    >
-                      {popoverBottom(item)}
-                    </Overlay>
-                  </div>
-                ))}
-            </div>
-            <div className='col-2'>
-              <div className='row'>
-
-                <div className="col-6 ">
-                  <select
-                    // value={selectedLang}
-                    // onChange={(e) => handleLanguageChange(e?.target?.value)}
-                    className="select-field cursor_pointer"
-                  >
-                    {multiLanguagesData?.length > 0 &&
-                      multiLanguagesData !== null &&
-                      multiLanguagesData?.map((lang: any) => {
-                        return <option value={lang?.lang_code}>{lang?.lang_name}</option>;
-                      })}
-                  </select>
-                </div>
-                <div className="col-6 ">
-                  <select
-                    className="select-field cursor_pointer"
-                  // onChange={(e) => handleCurrencyValueChange(e.target.value)}
-                  >
-                    <option value="INR" className="price_font_family">
-                      ₹
-                    </option>
-                    <option value="USD">$</option>
-                    <option value="EUR">€</option>
-                  </select>
-                </div>
+                        {popoverBottom(item)}
+                      </Overlay>
+                    </div>
+                  ))}
               </div>
             </div>
+            <div >
+              <select
+                value={selectedLang}
+                onChange={(e) => handleLanguageChange(e?.target?.value)}
+                className="select-field cursor_pointer"
+              >
+                {multiLanguagesData?.length > 0 &&
+                  multiLanguagesData !== null &&
+                  multiLanguagesData?.map((lang: any) => {
+                    return <option value={lang?.lang_code}>{lang?.lang_name}</option>;
+                  })}
+              </select>
+            </div>
           </div>
-        </nav>
+        </nav >
       );
     }
     // if (errorMessage !== '' && navbarData?.length <= 0 && isLoading === false) {
