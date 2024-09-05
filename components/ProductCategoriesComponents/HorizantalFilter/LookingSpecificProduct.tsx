@@ -1,13 +1,13 @@
 import React from 'react';
 import { CONSTANTS } from '../../../services/config/app-config';
 import MissingPartModal from './MissingPartModal';
-import useMissingPartModalHook from '../../../hooks/ProductListPageHooks/useMissingPartModalHook';
+// import useMissingPartModalHook from '../../../hooks/ProductListPageHooks/useMissingPartModalHook';
 
 function LookingSpecificProduct({ productListingData, multiLanguagesData }: any) {
-  const { handleSubmit, handleMissingPartsModalClose, showMissingPartsModal, setShowMissingPartsModal } = useMissingPartModalHook();
+  // const { handleSubmit, handleMissingPartsModalClose, showMissingPartsModal, setShowMissingPartsModal } = useMissingPartModalHook();
   return (
     <>
-      <div className="row">
+      {/* <div className="row">
         <div className="col-lg-12">
           <div className="total_result">
             <p className="mb-0 pt-0 text-color-black product-font-family">
@@ -35,7 +35,7 @@ function LookingSpecificProduct({ productListingData, multiLanguagesData }: any)
         setShowMissingPartsModal={setShowMissingPartsModal}
         multiLanguagesData={multiLanguagesData}
         handleSubmit={handleSubmit}
-      />
+      /> */}
     </>
   );
 }

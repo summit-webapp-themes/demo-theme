@@ -1,4 +1,3 @@
-import React from 'react';
 import useNavbar from '../../hooks/GeneralHooks/useNavbar';
 import WebNavBar from './WebNavBar';
 import useMultilangHook from '../../hooks/LanguageHook/Multilanguages-hook';
