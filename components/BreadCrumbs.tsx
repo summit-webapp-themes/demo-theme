@@ -5,7 +5,7 @@ import UseBreadCrumbsHook from '../hooks/GeneralHooks/useBreadcrumbs';
 function BreadCrumbs() {
   const { breadCrumbData, isLoading, errorMessage } = UseBreadCrumbsHook();
   return (
-    <section className="breadcrumb_section pt-5 product-font-family ">
+    <section className="breadcrumb_section product-font-family ">
       <div className="container pt-0">
         <div className="row">
           <div className="col-lg-9">

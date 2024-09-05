@@ -1,8 +1,10 @@
 import React from 'react';
 import useProductListingFilterHook from '../../../hooks/ProductListPageHooks/useProductListFilterHook';
+import { Accordion } from 'react-bootstrap';
 
 function WebFilter() {
   const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters } = useProductListingFilterHook();
+  console.log(filtersData, 'filtersData');
   return (
     <div className="filter_section">
       <div className="filter_block">
@@ -18,33 +20,13 @@ function WebFilter() {
                 </>
               ))}
             </div>
-          ) : filtersData?.length > 0 ? (
-            filtersData?.map((filter: any, index: any) => {
+          ) : filtersData?.filters?.length > 0 ? (
+            filtersData?.filters?.map((filter: any, index: any) => {
               return (
-                <div className="accordion-item accordion_item_custom" key={index}>
-                  <h2 className="accordion-header bold filter_heading pe-3" id={'heading' + index}>
-                    <button
-                      type="button"
-                      className="text-uppercase accordion-button bold accordion_btn_custom"
-                      data-bs-toggle="collapse"
-                      data-bs-target={'#collapse' + index}
-                      aria-expanded={index === 0 ? 'true' : 'false'}
-                      aria-controls={'collapse' + index}
-                    >
-                      {filter?.section}
-                    </button>
-                  </h2>
-
-                  <div
-                    id={'collapse' + index}
-                    className={
-                      index === 0
-                        ? 'accordion-collapse collapse custom_collapse_css show '
-                        : 'accordion-collapse custom_collapse_css collapsed'
-                    }
-                    aria-labelledby={'heading' + index}
-                  >
-                    <div className="card-body p-0 checkbox-wrapper product-font-family">
+                <Accordion defaultActiveKey="0">
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>{filter?.section}</Accordion.Header>
+                    <Accordion.Body>
                       {filter.values.map((filterValue: any, innerIndex: any) => (
                         <div className="form_check_filter checkbox-line-height d-flex align-items-center" key={innerIndex}>
                           <input
@@ -61,9 +43,9 @@ function WebFilter() {
                           </label>
                         </div>
                       ))}
-                    </div>
-                  </div>
-                </div>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
               );
             })
           ) : (

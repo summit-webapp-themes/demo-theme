@@ -61,8 +61,8 @@ const ProductCard = ({ data, handleShow, wishlistData, btnAction, cartData }: an
         {handleRenderIcon()}
         <Link href={`${data?.url}`} target="_blank" className="text-decoration-none text-dark">
           <Image
-            loader={data.image !== null ? imageLoader : undefined}
-            src={data.image !== null ? data.image : noImage}
+            loader={data.image ? imageLoader : undefined}
+            src={data.image ? data.image : noImage}
             width={1200}
             height={900}
             alt="Item Image"
@@ -79,12 +79,9 @@ const ProductCard = ({ data, handleShow, wishlistData, btnAction, cartData }: an
           </Link>
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              {data?.bom_factory_code ? (
-                <Card.Text className={`my-0 ${ProductCardStyles.product_card_text}`}>{data?.bom_factory_code}</Card.Text>
-              ) : null}
-
-              <Card.Text className={`my-0 py-0 fw-bold ${ProductCardStyles.product_card_text} `}>Price: {data.price}</Card.Text>
-              <Card.Text className={`my-0 py-0 fw-bold ${ProductCardStyles.product_card_text} `}>Brand: {data.brand}</Card.Text>
+              <Card.Text className={`my-0 py-0 fw-bold ${ProductCardStyles.product_card_text} `}>
+                Price: {data.price} <span className="text-decoration-line-through">{data.mrp_price}</span>
+              </Card.Text>
             </div>
             <div>{handleRenderAddToCartBtn()}</div>
           </div>

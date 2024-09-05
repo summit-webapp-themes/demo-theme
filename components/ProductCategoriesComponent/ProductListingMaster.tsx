@@ -31,27 +31,31 @@ function ProductListingMaster() {
   const router = useRouter();
   const pathname = router.asPath;
   const { multiLanguagesData } = useMultilangHook();
+  console.log(multiLanguagesData, 'multiLanguagesData');
   return (
     <>
       <section className="listing-page ">
-        <HorizantalFilterMaster />
-        <div className="container-fuild">
-          <div className="row  ps-lg-5 pe-lg-4">
-            <div className="col-12 col-sm-4 col-md-3 col-lg-2">
+        <div className="container d-flex justify-content-between w-100  ">
+          <div className="w-50 list-toggle-rtl">
+            <BreadCrumbs />
+          </div>
+
+          <HorizantalFilterMaster />
+        </div>
+        <div className="container-fluid">
+          <div className="row ps-lg-5 pe-lg-4">
+            <div className="col-12 col-md-3">
               <LookingSpecificProduct productListingData={productListingData} multiLanguagesData={multiLanguagesData} />
               <WebFilter />
             </div>
-
-            <div className="container-md col-lg-10 col-md-8 col-sm-8">
+            <div className="container-md  col-md-9 ">
               <div className="row mt-2 product-listing-row">{<ProductlistingGridView productListingData={productListingData} />}</div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="handle_display_mob_filter">
-        <MobileFilter />
-      </div>
+      <div className="handle_display_mob_filter">{/* <MobileFilter /> */}</div>
     </>
   );
 }
