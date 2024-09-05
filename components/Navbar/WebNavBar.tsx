@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavDropdown } from 'react-bootstrap';
 import { FaSearch, FaUserCircle } from 'react-icons/fa';
 import { FaAlignJustify, FaCartPlus, FaHeart } from 'react-icons/fa6';
@@ -8,7 +8,7 @@ import logo from '../../public/assets/images/logo.png';
 import stylesNavbar from '../../styles/components/navbar.module.scss';
 import ProductCatagoriesNavbar from './ProductCatagoriesNavbar';
 
-function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, multiLanguagesData, isLoggedIn }: any) {
+function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, multiLanguagesData }: any) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // const handleKeyDown = (e: any) => {
   //   if (e.key === 'Enter') {

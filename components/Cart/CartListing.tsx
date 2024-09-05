@@ -1,5 +1,3 @@
-import React from 'react';
-
 function CartListing() {
   return <div>CartListing</div>;
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import WebFilter from './FilterView/WebFilter';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import { THEME_CONSTANTS } from '../../services/config/theme-config';
