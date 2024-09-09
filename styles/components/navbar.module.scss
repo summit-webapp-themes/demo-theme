@@ -1,6 +1,7 @@
 .header {
   background: #2c73d6;
   width: 100%;
+  border-bottom: 0.1rem solid #eee;
 }
 .navbar {
   padding: 0;
@@ -55,13 +56,15 @@ margin-top: -2px;
   cursor: pointer;
 }
 .list_inline_item {
-  width: 90px;
+  width: 70px;
 }
 .order_list_dropdown {
   text-align: center;
   font-size: 14px;
 }
-
+.order_list_dropdown a {
+  color: white;
+}
 .order_list_items {
   padding: 4px !important;
   font-size: 14px;

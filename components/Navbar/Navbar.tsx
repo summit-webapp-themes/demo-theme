@@ -4,7 +4,7 @@ import useMultilangHook from '../../hooks/LanguageHook/Multilanguages-hook';
 
 function Navbar() {
   const { navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser } = useNavbar();
-  const { multiLanguagesData } = useMultilangHook();
+  const { multiLanguagesData, selectedLang, handleLanguageChange } = useMultilangHook();
   return (
     <WebNavBar
       navbarData={navbarData}
@@ -13,6 +13,8 @@ function Navbar() {
       selectedCurrencyValue={selectedCurrencyValue}
       handleLogoutUser={handleLogoutUser}
       multiLanguagesData={multiLanguagesData}
+      selectedLang={selectedLang}
+      handleLanguageChange={handleLanguageChange}
     />
   );
 }

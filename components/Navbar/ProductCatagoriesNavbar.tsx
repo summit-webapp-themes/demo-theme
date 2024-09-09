@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Overlay, Placeholder, Popover } from 'react-bootstrap';
 import stylesHeader from '../../styles/components/header.module.scss';
 
-function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage }: any) {
+function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLanguagesData, selectedLang, handleLanguageChange }: any) {
   const [showPopoverIndex, setShowPopoverIndex] = useState<number | null>(null);
   const [target, setTarget] = useState<HTMLElement | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -29,7 +29,7 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage }: any) {
                       pathname: `${itemL2?.url}`,
                       query: { page: '1', currency: 'INR' },
                     }}
-                    className="label theme-blue text-decoration-none"
+                    className="label text-dark text-decoration-none"
                     onClick={() => setShowPopoverIndex(null)}
                   >
                     {itemL2?.label}
@@ -69,33 +69,51 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage }: any) {
     if (navbarData?.length > 0) {
       return (
         <nav ref={ref}>
-          <div className={`${stylesHeader.heading_container} py-2`} onMouseLeave={handleMouseLeave}>
-            {navbarData?.length > 0 &&
-              navbarData.map((item: any, index: number) => (
-                <div key={index} className={`${stylesHeader.header_category_container}`}>
-                  {navbarData === null ? (
-                    <Placeholder xs={6} bg="dark" />
-                  ) : (
-                    <div
-                      className={`heading-category-l1 ${showPopoverIndex === index && 'theme-gold'}`}
-                      onMouseEnter={(e) => handleMouseEnter(e, index)}
-                    >
-                      {item.label}
+          <div className={`${stylesHeader.heading_container} py-2 d-flex`} onMouseLeave={handleMouseLeave}>
+            <div className='flex-grow-1'>
+              <div className='d-flex justfy-content-start'>
+
+                {navbarData?.length > 0 &&
+                  navbarData.map((item: any, index: number) => (
+                    <div key={index} className={`${stylesHeader.header_category_container}`}>
+                      {navbarData === null ? (
+                        <Placeholder xs={6} bg="dark" />
+                      ) : (
+                        <div
+                          className={`heading-category-l1 ${showPopoverIndex === index && 'theme-gold'}`}
+                          onMouseEnter={(e) => handleMouseEnter(e, index)}
+                        >
+                          {item.label}
+                        </div>
+                      )}
+                      <Overlay
+                        show={showPopoverIndex === index && item?.values?.length > 0}
+                        target={target}
+                        placement="bottom"
+                        container={ref.current}
+                        containerPadding={20}
+                      >
+                        {popoverBottom(item)}
+                      </Overlay>
                     </div>
-                  )}
-                  <Overlay
-                    show={showPopoverIndex === index && item?.values?.length > 0}
-                    target={target}
-                    placement="bottom"
-                    container={ref.current}
-                    containerPadding={20}
-                  >
-                    {popoverBottom(item)}
-                  </Overlay>
-                </div>
-              ))}
+                  ))}
+              </div>
+            </div>
+            <div >
+              <select
+                value={selectedLang}
+                onChange={(e) => handleLanguageChange(e?.target?.value)}
+                className="select-field cursor_pointer"
+              >
+                {multiLanguagesData?.length > 0 &&
+                  multiLanguagesData !== null &&
+                  multiLanguagesData?.map((lang: any) => {
+                    return <option value={lang?.lang_code}>{lang?.lang_name}</option>;
+                  })}
+              </select>
+            </div>
           </div>
-        </nav>
+        </nav >
       );
     }
     // if (errorMessage !== '' && navbarData?.length <= 0 && isLoading === false) {

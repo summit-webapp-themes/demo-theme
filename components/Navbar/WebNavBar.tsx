@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { NavDropdown } from 'react-bootstrap';
 import { FaSearch, FaUserCircle } from 'react-icons/fa';
@@ -8,13 +9,23 @@ import logo from '../../public/assets/images/logo.png';
 import stylesNavbar from '../../styles/components/navbar.module.scss';
 import ProductCatagoriesNavbar from './ProductCatagoriesNavbar';
 
-function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, multiLanguagesData }: any) {
+function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, multiLanguagesData, selectedLang, handleLanguageChange }: any) {
+  const router = useRouter()
+  const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  // const handleKeyDown = (e: any) => {
-  //   if (e.key === 'Enter') {
-  //     handleSearch(e);
-  //   }
-  // };
+  const user = localStorage.getItem('party_name')
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    if (searchTerm !== '') {
+      router.push('/product/' + searchTerm);
+    }
+  };
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      handleSearch(e);
+    }
+  };
+
 
   const navMenuclick = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -47,8 +58,8 @@ function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue,
                     placeholder="Search here"
                     aria-label="Search"
                     aria-describedby="basic-addon1"
-                    // onChange={(e: any) => setSearchTerm(e.target.value)}
-                    // onKeyDown={handleKeyDown}
+                    onChange={(e: any) => setSearchTerm(e.target.value)}
+                    onKeyDown={handleKeyDown}
                   />
                   <FaSearch className={stylesNavbar.search_icon} />
                 </div>
@@ -81,7 +92,7 @@ function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue,
                     <div className={stylesNavbar.icon_container}>
                       <FaUserCircle className="icon" />
                     </div>
-                    <NavDropdown title={'I'} id="basic-nav-dropdown" className={`text-center ${stylesNavbar.order_list_dropdown}`}>
+                    <NavDropdown title={user} id="basic-nav-dropdown" className={` ${stylesNavbar.order_list_dropdown}`}>
                       <NavDropdown.Item
                         as="a"
                         className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
@@ -120,13 +131,15 @@ function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue,
             </div>
           </div>
         </nav>
-      </header>
-
+      </header >
       <ProductCatagoriesNavbar
         navbarData={navbarData}
         isLoading={isLoading}
         errorMessage={errorMessage}
         selectedCurrencyValue={selectedCurrencyValue}
+        multiLanguagesData={multiLanguagesData}
+        selectedLang={selectedLang}
+        handleLanguageChange={handleLanguageChange}
       />
     </>
   );
