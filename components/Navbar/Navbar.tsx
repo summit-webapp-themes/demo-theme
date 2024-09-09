@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 function Navbar() {
   const { navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser } = useNavbar();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
+  console.log(selectedLanguageData, 'navbar')
   return (
     <WebNavBar
       navbarData={navbarData}
