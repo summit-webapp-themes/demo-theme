@@ -1,6 +1,5 @@
 import useNavbar from '../../hooks/GeneralHooks/useNavbar';
 import WebNavBar from './WebNavBar';
-import useMultilangHook from '../../hooks/LanguageHook/Multilanguages-hook';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import { useSelector } from 'react-redux';
 
