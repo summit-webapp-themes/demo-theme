@@ -1,6 +1,7 @@
 import React from 'react';
 import useProductListingFilterHook from '../../../hooks/ProductListPageHooks/useProductListFilterHook';
 import { Accordion } from 'react-bootstrap';
+import FilterLoadingLayout from './FilterLoadingLayout';
 
 function WebFilter() {
   const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters } = useProductListingFilterHook();
@@ -11,11 +12,10 @@ function WebFilter() {
         <div className="accordion accordion_custom" id="myAccordion">
           {isLoading ? (
             <div className="row justify-content-center">
-              {[...Array(2)].map(() => (
+              {[...Array(3)].map(() => (
                 <>
                   <div className="col-lg-12 mx-3">
-                    {/* <FiltersLoadingLayout /> */}
-                    Loading...
+                    <FilterLoadingLayout />
                   </div>
                 </>
               ))}

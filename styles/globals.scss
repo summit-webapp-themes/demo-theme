@@ -104,10 +104,16 @@
   .caret-icon.rotate {
     transform: rotate(90deg);
   }
-  
+  // BreadCrumb styles
+.breadcrumb-item a {
+  color: #999 !important;
+  text-decoration: none;
+  font-size: 14px !important;
+}
   @media (min-width: 768px) {
     .mobile-menu-toggle {
       display: none !important;
+   
     }
   }
   .list-toggle-rtl {

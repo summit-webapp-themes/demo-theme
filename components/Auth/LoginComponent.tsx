@@ -1,4 +1,3 @@
-import React from 'react';
 import { Formik, Form as FormikForm, ErrorMessage, useFormikContext } from 'formik';
 import Form from 'react-bootstrap/Form';
 import Image from 'next/image';
