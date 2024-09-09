@@ -33,7 +33,7 @@
     border: none
   }
   .accordion-body {
-    padding:  0.5rem 1rem;
+    padding:  0.5rem 0;
   }
   .accordion-button:focus {
     z-index: 3;
@@ -59,10 +59,11 @@
     align-items: center;
   }
   .form_check_filter .accordion-checkbox {
-    font-size: 12px;
+    font-size: 13px;
     margin-left: 5px;
     margin-right: 5px;
     text-transform: uppercase;
+    line-height: 1.5rem;
   }
   
   .clear_filter a {

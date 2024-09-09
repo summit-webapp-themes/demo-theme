@@ -75,6 +75,10 @@
     background-color: #1a1a49; /* Custom background color */
     color: #ecd386 !important; /* Custom text color */
   }
+  #basic-nav-dropdown{
+    color: white !important;
+    font-weight: 500 !important ;
+  }
   
   // MobNavbar
   .mobile-menu-toggle {
@@ -108,7 +112,7 @@
 .breadcrumb-item a {
   color: #999 !important;
   text-decoration: none;
-  font-size: 14px !important;
+  font-size: 15px !important;
 }
   @media (min-width: 768px) {
     .mobile-menu-toggle {

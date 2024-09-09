@@ -16,7 +16,6 @@ function ProductlistingGridViewMaster({
 }: any) {
   const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 12).toString(), 10) === pageOffset;
   const { addToCartItem, getPartyName } = useAddToCartHook();
-
   const handleDataRendering = () => {
     if (isLoading) {
       return (
@@ -33,7 +32,7 @@ function ProductlistingGridViewMaster({
     if (productListingData?.length > 0) {
       return (
         <>
-          {productListingData.map((data: any, i: any) => {
+          {productListingData?.map((data: any, i: any) => {
             return (
               <div key={innerHeight} className="col-sm-6 col-lg-3 col-xl-3 col-xxl-3 text-center mb-4">
                 <ProductCard data={data} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />

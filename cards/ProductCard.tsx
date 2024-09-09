@@ -27,7 +27,6 @@ const ProductCard = ({ data, handleShow, wishlistData, btnAction, cartData, addT
           }
         });
     }
-    console.log(wishlistData, wishProducts, 'wishProducts');
     if (!wishProducts) {
       return (
         <span className={`${ProductCardStyles.wishlist_icon} text-danger `}>

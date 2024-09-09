@@ -9,7 +9,7 @@ function HorizantalFilterMaster({ handleToggleProductsListingView, sortBy, handl
     <div className="row list-toggle-rtl">
       {THEME_CONSTANTS.ENABLE_TOGGLE_PRODUCT_LISTING_VIEW && (
         <>
-          <ToggleListingGridView handleToggleProductsListingView={handleToggleProductsListingView} />
+          {/* <ToggleListingGridView handleToggleProductsListingView={handleToggleProductsListingView} /> */}
           <SortByFilter sortBy={sortBy} handleSortBy={handleSortBy} />
         </>
       )}

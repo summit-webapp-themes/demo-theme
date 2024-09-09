@@ -1,6 +1,6 @@
 .heading_container {
-    display: flex;
-    justify-content: center;
+  padding-left: 18rem;
+  padding-right: 2rem;
     background: #2c73d6;
     color: white;
   }
@@ -48,5 +48,10 @@
   .carousel-caption {
     bottom: 6rem !important;
     left: 180px !important;
+  }
+  @media  (max-width: 768px) {
+    .heading_container {
+      padding-left: 0;
+    }
   }
   
