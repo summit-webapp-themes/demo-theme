@@ -9,11 +9,21 @@ import logo from '../../public/assets/images/logo.png';
 import stylesNavbar from '../../styles/components/navbar.module.scss';
 import ProductCatagoriesNavbar from './ProductCatagoriesNavbar';
 
-function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, multiLanguagesData, selectedLang, handleLanguageChange }: any) {
-  const router = useRouter()
+function WebNavBar({
+  navbarData,
+  isLoading,
+  errorMessage,
+  selectedCurrencyValue,
+  handleLogoutUser,
+  multiLanguagesData,
+  selectedLang,
+  handleLanguageChange,
+  selectedLanguageData,
+}: any) {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const user = localStorage.getItem('party_name')
+  const user = localStorage.getItem('party_name');
   const handleSearch = (e: any) => {
     e.preventDefault();
     if (searchTerm !== '') {
@@ -25,7 +35,6 @@ function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue,
       handleSearch(e);
     }
   };
-
 
   const navMenuclick = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -100,22 +109,22 @@ function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue,
 
                       <Link href="/quick-order" passHref className="text-decoration-none">
                         <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                          {multiLanguagesData?.quick_order}
+                          {selectedLanguageData?.quick_order}
                         </NavDropdown.Item>
                       </Link>
                       <Link href="/quick-order" passHref className="text-decoration-none">
                         <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                          {multiLanguagesData?.my_account}
+                          {selectedLanguageData?.my_account}
                         </NavDropdown.Item>
                       </Link>
                       <Link href="/quick-order" passHref className="text-decoration-none">
                         <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                          {multiLanguagesData?.dealer_ledger}
+                          {selectedLanguageData?.dealer_ledger}
                         </NavDropdown.Item>
                       </Link>
                       <Link href="/quick-order" passHref className="text-decoration-none">
                         <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                          {multiLanguagesData?.view_catalogs}
+                          {selectedLanguageData?.view_catalogs}
                         </NavDropdown.Item>
                       </Link>
 
@@ -131,7 +140,7 @@ function WebNavBar({ navbarData, isLoading, errorMessage, selectedCurrencyValue,
             </div>
           </div>
         </nav>
-      </header >
+      </header>
       <ProductCatagoriesNavbar
         navbarData={navbarData}
         isLoading={isLoading}

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { Overlay, Placeholder, Popover } from 'react-bootstrap';
 import stylesHeader from '../../styles/components/header.module.scss';
+import LinguisticsAndForex from './LinguisticsAndForex';
 
 function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLanguagesData, selectedLang, handleLanguageChange }: any) {
   const [showPopoverIndex, setShowPopoverIndex] = useState<number | null>(null);
@@ -70,9 +71,8 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
       return (
         <nav ref={ref}>
           <div className={`${stylesHeader.heading_container} py-2 d-flex`} onMouseLeave={handleMouseLeave}>
-            <div className='flex-grow-1'>
-              <div className='d-flex justfy-content-start'>
-
+            <div className="flex-grow-1">
+              <div className="d-flex justfy-content-start">
                 {navbarData?.length > 0 &&
                   navbarData.map((item: any, index: number) => (
                     <div key={index} className={`${stylesHeader.header_category_container}`}>
@@ -99,26 +99,11 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
                   ))}
               </div>
             </div>
-            <div >
-              <select
-                value={selectedLang}
-                onChange={(e) => handleLanguageChange(e?.target?.value)}
-                className="select-field cursor_pointer"
-              >
-                {multiLanguagesData?.length > 0 &&
-                  multiLanguagesData !== null &&
-                  multiLanguagesData?.map((lang: any) => {
-                    return <option value={lang?.lang_code}>{lang?.lang_name}</option>;
-                  })}
-              </select>
-            </div>
+            <LinguisticsAndForex />
           </div>
-        </nav >
+        </nav>
       );
     }
-    // if (errorMessage !== '' && navbarData?.length <= 0 && isLoading === false) {
-    //   return <ComponentErrorHandler error={errorMessage} />;
-    // }
   };
 
   return <header>{handleDataRendering()}</header>;
