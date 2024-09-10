@@ -1,3 +1,5 @@
+
+@import "components/filter.module";
 // Header
 .heading-category-l1 {
     padding: 0px 16px;
@@ -106,9 +108,18 @@
   .caret-icon.rotate {
     transform: rotate(90deg);
   }
-  
+  // BreadCrumb styles
+.breadcrumb-item a {
+  color: #999 !important;
+  text-decoration: none;
+  font-size: 15px !important;
+}
   @media (min-width: 768px) {
     .mobile-menu-toggle {
       display: none !important;
+   
     }
+  }
+  .list-toggle-rtl {
+    margin-top: 25px;
   }

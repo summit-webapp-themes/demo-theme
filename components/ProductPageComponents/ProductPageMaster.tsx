@@ -1,8 +1,7 @@
-import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
+import ReviewForm from '../Reviews/ReviewForm';
 
 function ProductPageMaster() {
-  const {} = useProductDetail();
-  return <div>ProductPageMaster</div>;
+  return <ReviewForm />;
 }
 
 export default ProductPageMaster;
