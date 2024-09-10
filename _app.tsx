@@ -11,10 +11,22 @@ import { persistor, store } from '../store/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
+import {Nunito} from "next/font/google"
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap', 
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <div className={nunito.className}>
+        {/* <style jsx global>{`
+        html {
+          font-family: ${nunito.style.fontFamily};
+        }
+      `}</style> */}
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ErrorBoundary>
