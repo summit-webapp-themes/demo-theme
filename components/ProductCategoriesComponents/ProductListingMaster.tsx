@@ -1,14 +1,9 @@
-import WebFilter from './FilterView/WebFilter';
-import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import { THEME_CONSTANTS } from '../../services/config/theme-config';
 import useProductListing from '../../hooks/ProductListPageHooks/useProductsDataHook';
-import MobileFilter from './FilterView/MobileFilter';
-import { useRouter } from 'next/router';
 import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
-import useMultilangHook from '../../hooks/LanguageHook/Multilanguages-hook';
-import LookingSpecificProduct from './HorizantalFilter/LookingSpecificProduct';
 import BreadCrumbs from '../BreadCrumbs';
-import ProductlistingGridView from './ProductListingView/ProductlistingGridView';
+import ProductGridView from './ProductListingView/ProductGridView';
+import { useSelector } from 'react-redux';
+import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
 
 function ProductListingMaster() {
   const {
@@ -23,34 +18,35 @@ function ProductListingMaster() {
     errorMessage,
     sortBy,
     handleSortBy,
-    handleFilterSearchFun,
-    handleFilterSearchBtn,
-    searchFilterValue,
   } = useProductListing();
-  const router = useRouter();
-  const pathname = router.asPath;
-  const { multiLanguagesData } = useMultilangHook();
+  const wishlistData = useSelector(selectWishlist).items;
+  const pageOffset = Number(query?.page) - 1;
+  const handlePageClick = (event: any) => {
+    handlePaginationBtn(event?.selected);
+  };
+
   return (
     <>
       <section className="listing-page ">
-        <HorizantalFilterMaster />
-        <div className="container-fuild">
-          <div className="row  ps-lg-5 pe-lg-4">
-            <div className="col-12 col-sm-4 col-md-3 col-lg-2">
-              <LookingSpecificProduct productListingData={productListingData} multiLanguagesData={multiLanguagesData} />
-              <WebFilter />
-            </div>
-
-            <div className="container-md col-lg-10 col-md-8 col-sm-8">
-              <div className="row mt-2 product-listing-row">{<ProductlistingGridView productListingData={productListingData} />}</div>
-            </div>
+        <div className="container-fluid d-flex justify-content-between w-100 ps-lg-5 pe-lg-5 ">
+          <div className="w-50 list-toggle-rtl">
+            <BreadCrumbs />
           </div>
+          <HorizantalFilterMaster sortBy={sortBy} handleSortBy={handleSortBy} />
+        </div>
+        <div className="container-fluid">
+          <ProductGridView
+            productListingData={productListingData}
+            handlePaginationBtn={handlePaginationBtn}
+            productListTotalCount={productListTotalCount}
+            pageOffset={pageOffset}
+            handlePageClick={handlePageClick}
+            isLoading={isLoading}
+            wishlistData={wishlistData}
+          />
         </div>
       </section>
-
-      <div className="handle_display_mob_filter">
-        <MobileFilter />
-      </div>
+      <div className="handle_display_mob_filter">{/* <MobileFilter /> */}</div>
     </>
   );
 }
