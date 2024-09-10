@@ -1,15 +1,18 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import { Rating } from 'react-simple-star-rating';
 import { CONSTANTS } from '../../services/config/app-config';
 import Style from '../../styles/components/customerReview.module.scss';
 
 const ReviewForm = ({ reviewPhotos, uploadReviewImage, handleRating, handleFormSubmit, initialValues }: any) => {
+  const imageLoader = ({ src, width, quality }: any) => {
+    return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <div>
       <Formik
         initialValues={initialValues}
-        // validationSchema={ReviewFormValidation}
         onSubmit={(values, { resetForm, setFieldValue }) => {
           handleFormSubmit(values, resetForm);
         }}
@@ -47,11 +50,7 @@ const ReviewForm = ({ reviewPhotos, uploadReviewImage, handleRating, handleFormS
                   {reviewPhotos.length > 0 &&
                     reviewPhotos.map((photo: any, index: any) => (
                       <div key={index} className="ml-2">
-                        <img src={`${CONSTANTS.API_BASE_URL}${photo.image}`} alt={`Uploaded File ${index}`} style={{ width: '120px' }} />
-
-                        {/* <span className="delete-file" onClick={() => handleDeleteFile(index)} style={{ cursor: 'pointer' }}>
-                    X
-                  </span> */}
+                        <Image loader={imageLoader} src={photo.image} width={100} height={90} alt="Item Image" priority={true} />
                       </div>
                     ))}
                 </div>

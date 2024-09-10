@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { CONSTANTS } from '../../services/config/app-config';
 import { FaUserCircle } from 'react-icons/fa';
 import style from '../../styles/components/customerReview.module.scss';
 import { Rating } from 'react-simple-star-rating';
+import CustomerReviewSkeleton from './CustomerReviewSkeleton';
 
 const ReviewList = ({ reviewList, isLoading }: any) => {
   const imageLoader = ({ src, width, quality }: any) => {
@@ -13,10 +14,8 @@ const ReviewList = ({ reviewList, isLoading }: any) => {
     if (isLoading) {
       return (
         <div className="row">
-          {[...Array(10)].map((_, index) => (
-            <div key={index} className="col-md-3 col-lg-3 col-sm-6 mb-3 p-1">
-              loading...
-            </div>
+          {[...Array(4)].map((_, index) => (
+            <CustomerReviewSkeleton />
           ))}
         </div>
       );
@@ -58,7 +57,7 @@ const ReviewList = ({ reviewList, isLoading }: any) => {
       );
     }
     if (reviewList?.length === 0) {
-      return <p>Be the first to review this product</p>;
+      return <h6 className="mt-5">Be the first to review this product</h6>;
     }
   };
   return <>{renderProductReviewListing()}</>;
