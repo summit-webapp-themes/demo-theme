@@ -1,7 +1,14 @@
 import ReviewForm from '../Reviews/ReviewForm';
+import ReviewMaster from '../Reviews/ReviewMaster';
+import MatchingProducts from './MatchingProducts';
 
 function ProductPageMaster() {
-  return <ReviewForm />;
+  return (
+    <>
+      <ReviewMaster />
+      <MatchingProducts />
+    </>
+  );
 }
 
 export default ProductPageMaster;
