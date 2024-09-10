@@ -5,36 +5,26 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CONSTANTS } from '../../services/config/app-config';
 import { currency_selector_state } from '../../store/slices/general_slices/multi-currency-slice';
-import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import cartStyles from '../../styles/components/cartlist.module.scss';
-function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, RemoveItemCartAPIFunc }: any) {
+function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, RemoveItemCartAPIFunc, selectedMultiLangData }: any) {
     const router = useRouter()
     const currency_state_from_redux: any = useSelector(currency_selector_state);
-    const SelectedLangDataFromStore: any = useSelector(
-        SelectedFilterLangDataFromStore
-    );
+
     const [currencySymbol, setCurrencySymbol] = useState('')
     const [updatedCartList, setUpdatedCartList]: any = useState([])
-    const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
-    useEffect(() => {
-        if (
-            Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0
-        ) {
-            setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
-        }
-    }, [SelectedLangDataFromStore]);
+
     const imageLoader = ({ src, width, quality }: any) => {
         return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
     };
-    const handleUpdateCart = () => {
-        const params = {
-            // currency: currency_state_from_redux?.selected_currency_value ? currency_state_from_redux?.selected_currency_value : currency_state_from_redux?.default_currency_value,
-            currency: 'INR',
-            party_name: cartListingItems?.party_name,
-            item_list: updatedCartList
-        }
-        addToCartItem(params, setCartListingItems)
-    }
+    // const handleUpdateCart = () => {
+    //     const params = {
+    //         // currency: currency_state_from_redux?.selected_currency_value ? currency_state_from_redux?.selected_currency_value : currency_state_from_redux?.default_currency_value,
+    //         currency: 'INR',
+    //         party_name: cartListingItems?.party_name,
+    //         item_list: updatedCartList
+    //     }
+    //     addToCartItem(params, setCartListingItems)
+    // }
     const handleQtyChange = (item_code: string, value: string) => {
         const newQty = Number(value);
         const updatedItems = cartListingItems?.categories?.map((category: any) => ({
@@ -179,23 +169,16 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                                     </div>
                                     <div className="col-12">
                                         <div className='row  mt-2'>
-                                            <div className='col-lg-4 col-md-6 col-6 p-0 d-flex align-items-center justify-content-start'>
-                                                <button
-                                                    className=" btn btn-link text-decoration-none"
-                                                    onClick={() => handleUpdateCart()}
-                                                >
-                                                    {selectedMultiLangData?.update_cart}
-                                                </button>
-                                            </div>
+
                                             <div className="col-6 d-flex align-items-center text-center ">
                                                 <Link href="/checkout">
                                                     <button
                                                         type="button"
-                                                        className="  text-uppercase p-2"
                                                         style={{
                                                             backgroundColor: "#0071DC",
                                                             color: "#fff",
                                                             borderRadius: "7px",
+                                                            fontSize: '14px'
                                                         }}
                                                         onClick={goToCheckout}
                                                     >
