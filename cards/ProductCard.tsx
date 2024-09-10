@@ -11,7 +11,7 @@ import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import { useRouter } from 'next/router';
 import { CONSTANTS } from '../services/config/app-config';
 
-const ProductCard = ({ data, handleShow, wishlistData, btnAction, cartData, addToCartItem, getPartyName }: any) => {
+const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) => {
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const imageLoader = ({ src, width, quality }: any) => {
