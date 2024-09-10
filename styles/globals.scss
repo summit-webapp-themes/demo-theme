@@ -1,127 +1,135 @@
+@import '~react-image-gallery/styles/scss/image-gallery.scss';
 
-@import "components/filter.module";
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 200 to 1000
+
+@import 'components/filter.module';
+
 // Header
 .heading-category-l1 {
-    padding: 0px 16px;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 500;
-    display: block;
-    cursor: pointer;
-  }
-  .heading-category-l1:hover + .popover,
-  .pop-over:hover {
-    display: block;
-  }
-  .pop-over {
-    display: none;
-    position: absolute;
-    z-index: 1000;
-  }
-  .pop-over.show {
-    display: block;
-  }
-  
-  .theme-gold {
-    color: #ecd386;
-  }
-  .theme-blue {
-    color: #fff !important;
-    font-weight: 500;
-  }
-  .theme-blue-bg {
-    background-color: #1a1a49;
-    border: none !important;
-  }
-  .theme-btn-blue:hover {
-    background-color: #1a1a49;
-    border: none !important;
-  }
-  .slick-slide {
-    padding: 12px !important;
-  }
-  
-  .slick-slide {
-    width: 320px !important;
-  }
-  
-  // Navbar
-  .top-navbar {
-    padding-top: 0.75rem;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    cursor: pointer;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    text-transform: uppercase;
-  }
-  
-  .icon {
-    color: #fff;
-    text-align: center;
-    font-size: 22px !important;
-  }
-  .navbar-skeleton {
-    background-color: #d9d9d9;
-    padding: 9px;
-  }
-  .custom-dropdown-item:active,
-  .custom-dropdown-item:focus {
-    background-color: #1a1a49; /* Custom background color */
-    color: #ecd386 !important; /* Custom text color */
-  }
-  #basic-nav-dropdown{
-    color: white !important;
-    font-weight: 500 !important ;
-  }
-  
-  // MobNavbar
-  .mobile-menu-toggle {
-    cursor: pointer;
-    font-size: 24px;
-  }
-  .w-icon-hamburger::before {
-    font-weight: 900;
-  }
-  .fs-5 {
-    font-size: 22px !important;
-  }
-  .fs-2 {
-    font-size: 17px !important;
-  }
-  .fa-anchor {
-    margin-right: 10px;
-  }
-  
-  .fa-arrow-right {
-    margin-left: auto;
-  }
-  .caret-icon {
-    transition: transform 0.3s ease;
-  }
-  
-  .caret-icon.rotate {
-    transform: rotate(90deg);
-  }
-  // BreadCrumb styles
+  padding: 0px 16px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+  cursor: pointer;
+}
+.heading-category-l1:hover + .popover,
+.pop-over:hover {
+  display: block;
+}
+.pop-over {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+}
+.pop-over.show {
+  display: block;
+}
+
+.theme-gold {
+  color: #ecd386;
+}
+.theme-blue {
+  color: #fff !important;
+  font-weight: 500;
+}
+.theme-blue-bg {
+  background-color: #1a1a49;
+  border: none !important;
+}
+.theme-btn-blue:hover {
+  background-color: #1a1a49;
+  border: none !important;
+}
+.slick-slide {
+  padding: 12px !important;
+}
+
+.slick-slide {
+  width: 320px !important;
+}
+
+// Navbar
+.top-navbar {
+  padding-top: 0.75rem;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.icon {
+  color: #fff;
+  text-align: center;
+  font-size: 22px !important;
+}
+.navbar-skeleton {
+  background-color: #d9d9d9;
+  padding: 9px;
+}
+.custom-dropdown-item:active,
+.custom-dropdown-item:focus {
+  background-color: #1a1a49; /* Custom background color */
+  color: #ecd386 !important; /* Custom text color */
+}
+#basic-nav-dropdown {
+  color: white !important;
+  font-weight: 500 !important ;
+}
+
+// MobNavbar
+.mobile-menu-toggle {
+  cursor: pointer;
+  font-size: 24px;
+}
+.w-icon-hamburger::before {
+  font-weight: 900;
+}
+.fs-5 {
+  font-size: 22px !important;
+}
+.fs-2 {
+  font-size: 17px !important;
+}
+.fa-anchor {
+  margin-right: 10px;
+}
+
+.fa-arrow-right {
+  margin-left: auto;
+}
+.caret-icon {
+  transition: transform 0.3s ease;
+}
+
+.caret-icon.rotate {
+  transform: rotate(90deg);
+}
+// BreadCrumb styles
 .breadcrumb-item a {
   color: #999 !important;
   text-decoration: none;
   font-size: 15px !important;
 }
+@media (min-width: 768px) {
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+.list-toggle-rtl {
+  margin-top: 25px;
+}
 
-  
-  @media (min-width: 768px) {
-    .mobile-menu-toggle {
-      display: none !important;
-   
-    }
-  }
-  .list-toggle-rtl {
-    margin-top: 25px;
-  }
+//React Image Slider width Adjust
+
+.productDetailImageSlider .image-gallery-slide .image-gallery-image {
+  width: 99% !important;
+}
