@@ -1,0 +1,91 @@
+.bill_checkbox {
+  cursor: pointer;
+}
+
+.ship_heading {
+  cursor: pointer;
+  /* padding: 0 20px; */
+}
+
+.ship_edit {
+  padding-top: 30px;
+}
+
+.bill_edit {
+  padding-top: 30px;
+}
+
+.bill_heading {
+  cursor: pointer;
+}
+
+.button_color {
+  background-color: #0071dc !important;
+  // color: $black-color !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.standard_button {
+  border: 1px solid #0071dc !important;
+  color: #000 !important;
+  border-radius: 7px !important;
+  background-color: #fff !important;
+}
+.standard_button_filled {
+  background-color: #0071dc !important;
+  color: #fff !important;
+  border-radius: 7px !important;
+}
+
+.address_button {
+  background-color: #33669a !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.selected_address_button {
+  background-color: #0071dc !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.address_icon {
+  border: none;
+  background: none;
+}
+
+.card_p {
+  font-size: 13px;
+}
+.cart_p {
+  font-size: 12px;
+}
+.order_summary_sec {
+  margin-top: 69px;
+}
+
+.shipping-margin-top {
+  margin-top: -15px !important;
+  margin-left: -14px;
+}
+
+.shipping-method-margin {
+  margin-top: 0px !important;
+}
+
+.shipping-margin-t {
+  margin-top: -10px !important;
+}
+.card-order-heading-summary {
+  margin-top: 3px !important;
+}
+.checkout-cart-card-font {
+  text-transform: capitalize !important;
+}
+.ship_heading {
+  margin-left: -8px !important;
+}
+.shipping-method-margin {
+  padding-top: 20px !important;
+}
