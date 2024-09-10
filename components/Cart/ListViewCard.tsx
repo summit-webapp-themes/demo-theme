@@ -1,19 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CONSTANTS } from '../../services/config/app-config';
 import { currency_selector_state } from '../../store/slices/general_slices/multi-currency-slice';
+import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import cartStyles from '../../styles/components/cartlist.module.scss';
-import { useRouter } from 'next/router';
-import selectedMultilanguageSlice, { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, RemoveItemCartAPIFunc }: any) {
     const router = useRouter()
     const currency_state_from_redux: any = useSelector(currency_selector_state);
     const SelectedLangDataFromStore: any = useSelector(
         SelectedFilterLangDataFromStore
     );
-    console.log(SelectedLangDataFromStore, 'cart')
     const [currencySymbol, setCurrencySymbol] = useState('')
     const [updatedCartList, setUpdatedCartList]: any = useState([])
     const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -62,13 +61,22 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
     const handleDeleteItem = (item_code: any) => {
         const params = {
             item_code: item_code,
-            ququotation_id: cartListingItems?.name
+            quotation_id: cartListingItems?.name
         }
         RemoveItemCartAPIFunc(params, setCartListingItems)
     }
     const goToCheckout = () => {
         router.push("/checkout");
     };
+    useEffect(() => {
+        if (cartListingItems?.categories?.length > 0) {
+            const firstCategory = cartListingItems.categories[0];
+            if (firstCategory?.orders?.length > 0) {
+                const firstOrder = firstCategory.orders[0];
+                setCurrencySymbol(firstOrder.currency_symbol);
+            }
+        }
+    }, [cartListingItems]);
     return (
         <div className='py-3'>
             {cartListingItems?.categories?.length > 0 && cartListingItems?.categories?.map((category: any) => (
@@ -80,7 +88,7 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                             <div className={`row ${cartStyles.cart_header}`}>
                                 <div className="col-lg-2  col-md-12 m-0"> </div>
                                 <div className="col-lg-7 col-md-12"><h6>{selectedMultiLangData?.item_with_desc}</h6></div>
-                                <div className="col-lg-1 col-md-12 text-center"><h6>{selectedMultiLangData.price_c}</h6></div>
+                                <div className="col-lg-1 col-md-12 text-center"><h6>{selectedMultiLangData?.price_c}</h6></div>
                                 <div className="col-lg-1 col-md-12 text-center"><h6>{selectedMultiLangData?.quantity_c}</h6></div>
                                 <div className="col-lg-1 col-md-12 text-center"><h6>{selectedMultiLangData?.total}</h6></div>
                             </div>
@@ -89,9 +97,8 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
 
                             {category?.orders?.length > 0 && category?.orders?.map((item: any) => (
                                 <div className='row mt-3 ms-2'>
-                                    {/* {setCurrencySymbol(item?.currency_symbol)} */}
                                     <div className="col-lg-2 col-md-12">
-                                        <Image src={item?.image} alt='product image' width={100} height={100} loader={imageLoader} />
+                                        <Image src={item?.image_url} alt='product image' width={100} height={100} loader={imageLoader} />
                                     </div>
                                     <div className="col-lg-7 col-md-12">{item?.item_name} <br /><b>{selectedMultiLangData?.item_code} : {item?.item_code}</b>
                                         <div>
@@ -110,7 +117,7 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                             <div className='col-12 border'>
                                 <div className='row'>
 
-                                    <div className="col-6 col-sm-6"><Image src={item?.image} alt='product image' width={100} height={100} loader={imageLoader} /></div>
+                                    <div className="col-6 col-sm-6"><Image src={item?.image_url} alt='product image' width={100} height={100} loader={imageLoader} /></div>
                                 </div>
                             </div>
                             <div className='col-12 border'>
@@ -149,34 +156,11 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
             <div className="container mt-3 mb-0 pb-0">
                 <div className="col-12 pb-0 mb-0">
                     <div className="row justify-content-start ">
-                        {/* <div className="col-md-6 note-line-height">
-                            <h5>{selectedMultiLangData?.note}:-</h5>
-                            <h5>note</h5>
-                            <p className="note-line-height">
-                                {selectedMultiLangData?.note_1}
-                                note1
-                            </p>
-                            <p className="note-line-height">
-                                {selectedMultiLangData?.note_2}
-                                note2
-                                <button
-                                    onClick={handleShowEnqModal}
-                                    className="btn btn-link text-decoration-none"
-                                >
-                                    {selectedMultiLangData?.let_us_know}
-                                    let us know
-                                </button>{" "}
-                                {selectedMultiLangData?.to_mail_us}{" "}
-                            </p>
-                        </div> */}
                         <div className="col-md-8 col-lg-6 text-start ">
-
                             <>
                                 <div className="row ">
                                     <div className="col-lg-6 col-6  ">
-
                                         {selectedMultiLangData?.sub_total}{" "}
-
                                     </div>
                                     :
                                     <div className="col-lg-5 col-md-5 col-sm-5 col-6  ">
@@ -189,23 +173,19 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                                         {selectedMultiLangData?.order_total_including_tax}{" "}
                                     </div>
                                     :
-
                                     <div className="col-lg-5 col-md-5 col-sm-5 col-6  ">
                                         {currencySymbol}{" "}
                                         {cartListingItems?.grand_total_including_tax}
                                     </div>
-
                                     <div className="col-12">
                                         <div className='row  mt-2'>
                                             <div className='col-lg-4 col-md-6 col-6 p-0 d-flex align-items-center justify-content-start'>
-
                                                 <button
                                                     className=" btn btn-link text-decoration-none"
                                                     onClick={() => handleUpdateCart()}
                                                 >
                                                     {selectedMultiLangData?.update_cart}
                                                 </button>
-
                                             </div>
                                             <div className="col-6 d-flex align-items-center text-center ">
                                                 <Link href="/checkout">
@@ -222,7 +202,6 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                                                         {
                                                             selectedMultiLangData?.order_checkout
                                                         }
-
                                                     </button>
                                                 </Link>
                                             </div>
@@ -230,7 +209,6 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                                     </div>
                                 </div>
                             </>
-                            {/* )} */}
                         </div>
                     </div>
                 </div>
