@@ -1,9 +1,9 @@
-import React from 'react';
+import dynamic from 'next/dynamic';
 import { Button } from 'react-bootstrap';
 import ReviewList from './ReviewList';
 import ReviewRatingBar from './ReviewRatingBar';
 import useCustomerReview from '../../hooks/ProductDetailPageHooks/useCustomerReview';
-import CustomerReviewModal from './CustomerReviewModal';
+const CustomerReviewModal = dynamic(() => import('./CustomerReviewModal'));
 
 const ReviewMaster = () => {
   const {
