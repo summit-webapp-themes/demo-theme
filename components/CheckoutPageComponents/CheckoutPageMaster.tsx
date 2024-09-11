@@ -1,7 +1,18 @@
 import useCheckout from '../../hooks/CheckoutPageHook/useCheckout';
+import useGetUserAddresses from '../../hooks/CheckoutPageHook/useGetUserAddresses';
+import CheckOutAddress from './CheckOutAddress';
 
 export default function CheckoutPageMaster() {
-  //   const { addressLoading, addressError, shippingAddress } = useGetUserAddresses();
+  const {
+    shippingAddressLoading,
+    billingAddressLoading,
+    shippingAddressError,
+    billingAddressError,
+    fetchUserShippingAddress,
+    fetchUserBillingAddress,
+    shippingAddress,
+    billingAddress,
+  } = useGetUserAddresses();
   useCheckout();
-  return <div></div>;
+  return <CheckOutAddress shippingAddress={shippingAddress} billingAddress={billingAddress} />;
 }
