@@ -1,6 +1,4 @@
 function CancelledOrders() {
-    return (
-        <div>cancel</div>
-    )
+  return <div>Cancelled Orders List</div>;
 }
-export default CancelledOrders
+export default CancelledOrders;
