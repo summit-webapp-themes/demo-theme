@@ -10,7 +10,7 @@ import NoDataFound from '../NoRecordFound';
 import ListViewCard from './ListViewCard';
 
 function CartListing() {
-  const { cartListingItems, setCartListingItems, isLoading } = useFetchCartItems();
+  const { cartListingItems, setCartListingItems, isLoading, errorMessage } = useFetchCartItems();
   const { addToCartItem, cLearCartAPIFunc, RemoveItemCartAPIFunc }: any = useAddToCartHook();
   const TokenFromStore: any = useSelector(get_access_token);
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
@@ -29,24 +29,29 @@ function CartListing() {
     }
     return getQuotationInCart;
   };
-  return (
-    <>
-      {isLoading ? (
-        ''
-      ) : Object.keys(cartListingItems)?.length !== 0 ? (
+  const handleDataRendering = () => {
+    if (isLoading) {
+      return (
+        <div className='vh-100 d-flex justify-content-center align-items-center'>
+          <div className="spinner-border" role="status" />
+        </div>
+      )
+    }
+    if (!isLoading && Object.keys(cartListingItems)?.length !== 0) {
+      return (
         <div className="container py-4">
           <div className="d-flex justify-content-between">
-            <h2>Shopping Cart</h2>
+            <h4><b>Shopping Cart</b></h4>
             <div className="text-center">
               <button
                 type="button"
-                className=" btn btn-outline-primary text-decoration-none text-uppercase fs-6 px-2 me-2 "
+                className=" btn btn-outline-primary text-decoration-none text-uppercase px-2 me-2 fs-12 "
                 onClick={(e: any) => handleQuotation(e, cartListingItems?.name)}
               >
                 {selectedMultiLangData?.request_for_quotation}
               </button>
               <button
-                className="btn btn-outline-danger text-decoration-none  px-1"
+                className="btn btn-outline-danger text-decoration-none px-1 fs-12"
                 onClick={() => cLearCartAPIFunc(cartListingItems?.name, setCartListingItems)}
               >
                 Clear cart
@@ -61,9 +66,24 @@ function CartListing() {
             selectedMultiLangData={selectedMultiLangData}
           />
         </div>
-      ) : (
+      )
+    }
+    if (!isLoading && Object.keys(cartListingItems)?.length === 0 && errorMessage !== '') {
+      return (
+        <div className='h-100vh d-flex justify-content-center align-items-center'>
+          <p>{errorMessage}</p>
+        </div>
+      )
+    }
+    if (!isLoading && Object.keys(cartListingItems)?.length === 0 && errorMessage === '') {
+      return (
         <NoDataFound title={'Your cart is empty !!'} message={'Items added to your cart will show up here'} />
-      )}
+      )
+    }
+  }
+  return (
+    <>
+      {handleDataRendering()}
     </>
   );
 }
