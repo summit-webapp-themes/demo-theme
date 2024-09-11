@@ -4,7 +4,16 @@
 // <weight>: Use a value from 200 to 1000
 
 @import 'components/filter.module';
-
+// common font sizes
+.fs-12{
+  font-size: 12px;
+}
+.fs-14{
+  font-size: 14px;
+}
+.fs-16{
+  font-size: 16px;
+}
 // Header
 .heading-category-l1 {
   padding: 0px 16px;
@@ -132,4 +141,12 @@
 
 .productDetailImageSlider .image-gallery-slide .image-gallery-image {
   width: 99% !important;
+}
+
+// Tabs styles
+.nav-link.active {
+  color: #2c73d6 !important;
+}
+.nav-link {
+  color: black !important;
 }
