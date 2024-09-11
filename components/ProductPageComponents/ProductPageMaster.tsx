@@ -1,12 +1,14 @@
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
-import styles from '../../styles/components/productDetail.module.scss';
-import React, { useState } from 'react';
 import ProductDetailImageGallery from './ProductDetailImageGallery';
 import ProductDetailDescribtionSection from './ProductDetailDescribtionSection';
 import ProductDetailSpecsAndTech from './ProductDetailSpecsAndTech';
 import BreadCrumbs from '../BreadCrumbs';
-import { Card, Placeholder } from 'react-bootstrap';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
+const ReviewMaster = dynamic(() => import('../Reviews/ReviewMaster'));
+const MatchingProducts = dynamic(() => import('./MatchingProducts'));
+import styles from '../../styles/components/productDetail.module.scss';
 
 function ProductPageMaster() {
   const { productDetailData, productVariantData, isLoading, errorMessage } = useProductDetail();
@@ -25,7 +27,7 @@ function ProductPageMaster() {
     );
   }
   return (
-    <div className={`container ${styles.detailContainer} `}>
+    <div className={`container-fluid ${styles.detailContainer} w-100 ps-lg-5 pe-lg-5 `}>
       <div className="my-2">
         <BreadCrumbs />
       </div>
@@ -47,6 +49,8 @@ function ProductPageMaster() {
           </div>
         </div>
       </div>
+      <ReviewMaster />
+      <MatchingProducts />
     </div>
   );
 }
