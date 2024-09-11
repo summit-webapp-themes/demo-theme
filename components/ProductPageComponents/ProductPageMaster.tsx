@@ -17,7 +17,7 @@ function ProductPageMaster() {
   if (errorMessage) {
     return <div>{errorMessage}</div>;
   }
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <div className={`container ${styles.detailContainer} `}>
         <ProductDetailSkeleton />
