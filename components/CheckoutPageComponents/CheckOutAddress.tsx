@@ -5,6 +5,7 @@ import style from '../../styles/components/orderCheckout.module.scss';
 import BillingAddress from './BillingAndShippingAddress/BillingAddress';
 import ShippingAddress from './BillingAndShippingAddress/ShippingAddress';
 import OrderSummery from './OrderSummary';
+import useCheckout from '../../hooks/CheckoutPageHook/useCheckout';
 
 const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
   const [showAccordion, setShowAccordion] = useState(false);
@@ -13,8 +14,9 @@ const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
   const [showSelectedAddress, setShowSelectedAddress] = useState<any>({});
   const [showSelectedBillingAddress, setShowSelectedBillingAddress] = useState<any>({});
   const [addressId, setAddressId] = useState<number | string>();
-  const [billingAddressId, setBillingAddressId] = useState<number | string>();
-  console.log(addressId, 'addressId');
+  const [billingAddressId, setBillingAddressId] = useState<any>();
+  const { handlePlaceOrder } = useCheckout();
+
   const handleShowAccordion = (type: string) => {
     // setAddressType(type);
     if (type === 'shipping') {
@@ -22,6 +24,10 @@ const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
     } else {
       setShowBillingAccordion((prev) => !prev);
     }
+  };
+
+  const handleShowBillingAddress = () => {
+    setShowBillingAddress((prev) => !prev);
   };
   const handleSelectAddress = (id: number | string, address: any) => {
     setAddressId(id);
@@ -148,7 +154,7 @@ const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
                 <Form.Check // prettier-ignore
                   type="checkbox"
                   checked={showBillingAddress}
-                  onClick={() => setShowBillingAddress((prev) => !prev)}
+                  onClick={handleShowBillingAddress}
                   id={`default-checkbox`}
                   label={`Use the same address for Billing`}
                 />
@@ -164,6 +170,9 @@ const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
               />
             )}
           </div>
+          <Button variant="primary" onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}>
+            Place Order
+          </Button>
         </div>
         <div className="col-md-1"></div>
         <div className="col-md-3">
