@@ -6,7 +6,6 @@ import img from '../../public/assets/images/error-icon.png';
 const ProductDetailSpecsAndTech = ({ productDetailData, tab, setTab }: any) => {
   const specifications = productDetailData?.prod_specifications?.find((item: any) => item.name === 'Specifications');
   const technologies = productDetailData?.prod_specifications?.find((item: any) => item.name === 'Technologies');
-  console.log(specifications, technologies);
   return (
     <>
       {productDetailData?.prod_specifications?.length > 0 && (
