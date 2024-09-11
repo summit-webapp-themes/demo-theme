@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../styles/components/productDetail.module.scss';
 import Link from 'next/link';
 import { FaWhatsapp, FaShareAlt, FaRegCheckCircle, FaWindowClose } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import { BsTwitterX } from 'react-icons/bs';
 import StarRating from './StarRating';
-import { object } from 'yup';
+import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
+import { Fade } from 'react-bootstrap';
 
 const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode, setQuantity }: any) => {
-  const handleChange = (value: any) => {
-    setQuantity(value.target.value);
+  const { addToCartItem, getPartyName } = useAddToCartHook();
+  const [quantityAlert, setQuantityAlert] = useState(false);
+  const handleAddToProductData = () => {
+    if (quantity < productDetailData?.min_order_qty) {
+      setQuantityAlert(true);
+      setTimeout(() => {
+        setQuantityAlert(false);
+      }, 3000);
+      return;
+    }
+    const addToCartParams = {
+      currency: 'INR',
+      item_list: [{ item_code: productDetailData.name, quantity: quantity }],
+      party_name: getPartyName,
+    };
+
+    addToCartItem(addToCartParams, null);
   };
 
-  const handleAddToCart = () => {};
   return (
     <>
       <div className="border-bottom">
@@ -71,10 +86,8 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
             <input
               className={`ms-2 rounded-1 ${styles.input} ${styles.detailPriceSection}`}
               id="productQuantity"
-              type="number"
-              min={productDetailData?.min_order_qty}
-              value={10}
-              onChange={handleChange}
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
             />
           )}
         </div>
@@ -85,9 +98,16 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
             {productDetailData?.min_order_qty}
           </span>
         </p>
-        <button onClick={handleAddToCart} className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.buttonBackGround}`}>
+        <button onClick={handleAddToProductData} className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.buttonBackGround}`}>
           Add to Cart
         </button>
+        {quantityAlert && (
+          <Fade in={quantityAlert}>
+            <div id="example-fade-text" className="text-danger">
+              Minimum Order Quantiy is {productDetailData?.min_order_qty}
+            </div>
+          </Fade>
+        )}
         <div className="d-flex my-1 ">
           <div className="mx-2 my-1">
             <FaShareAlt fontSize={'20px'} />
