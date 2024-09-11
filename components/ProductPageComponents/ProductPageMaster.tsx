@@ -57,6 +57,7 @@ function ProductPageMaster() {
   if (errorMessage) {
     return <div>{errorMessage}</div>;
   }
+  return <></>;
 }
 
 export default ProductPageMaster;
