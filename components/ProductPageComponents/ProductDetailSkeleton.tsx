@@ -70,7 +70,7 @@ const ProductDetailSkeleton = () => {
           <div className="mt-4">
             <Placeholder animation="glow">
               {Array.from({ length: 4 }).map(() => (
-                <Placeholder style={{ width: '5%', height: 30 }} className="m-2" />
+                <Placeholder style={{ width: '5%', height: 30 }} className="m-1 rounded-2" />
               ))}
             </Placeholder>
           </div>
