@@ -6,6 +6,7 @@ import WebCheckout from './WebCheckout';
 export default function CheckoutPageMaster() {
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
   useCheckout();
+
   return (
     <div className="container margin_from_nav">
       <div className="page_heading ps-4 ms-1">
