@@ -1,18 +1,21 @@
 import { useSelector } from 'react-redux';
 import useCheckout from '../../hooks/CheckoutPageHook/useCheckout';
+import useGetUserAddresses from '../../hooks/CheckoutPageHook/useGetUserAddresses';
+import CheckOutAddress from './CheckOutAddress';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
-import WebCheckout from './WebCheckout';
 
 export default function CheckoutPageMaster() {
+  const {
+    shippingAddressLoading,
+    billingAddressLoading,
+    shippingAddressError,
+    billingAddressError,
+    fetchUserShippingAddress,
+    fetchUserBillingAddress,
+    shippingAddress,
+    billingAddress,
+  } = useGetUserAddresses();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
   useCheckout();
-
-  return (
-    <div className="container margin_from_nav">
-      <div className="page_heading ps-4 ms-1">
-        <h4 className="color-black mb-0">{selectedLanguageData?.checkout_page}</h4>
-        <WebCheckout selectedLanguageData={selectedLanguageData} />
-      </div>
-    </div>
-  );
+  return <CheckOutAddress shippingAddress={shippingAddress} billingAddress={billingAddress} />;
 }

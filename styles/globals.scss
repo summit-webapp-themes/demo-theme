@@ -128,6 +128,13 @@
   text-decoration: none;
   font-size: 15px !important;
 }
+.accordionHeaderTitle .accordion-button {
+  color: #c45500 !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  padding-bottom: 10px !important;
+
+}
 @media (min-width: 768px) {
   .mobile-menu-toggle {
     display: none !important;
