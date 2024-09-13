@@ -3,6 +3,7 @@ import noDataImg from '.././public/assets/images/no-data.png';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { currency_selector_state } from '../store/slices/general_slices/multi-currency-slice';
+import { imageLoader } from '../utils/image_loader';
 
 const MyOrderCardDetailCard = ({ detail, data, selectedMultiLangData, isDealer }: any) => {
   console.log(data, selectedMultiLangData, isDealer, detail);
@@ -12,7 +13,8 @@ const MyOrderCardDetailCard = ({ detail, data, selectedMultiLangData, isDealer }
       <div className="mb-3 mb-sm-0 col-lg-2 col-md-2 col-4 mt-0">
         <div className="product-img">
           <Image
-            src={detail?.img ? `${process.env.NEXT_PUBLIC_API_URL}/${detail?.img}` : noDataImg.src}
+            loader={detail?.img ? imageLoader : undefined}
+            src={detail?.img ? detail?.img : noDataImg.src}
             className="product_img img-fluid orderdetail_img cart-image"
             alt="product-img"
             width={100}
