@@ -7,7 +7,21 @@ import ShippingAddress from './BillingAndShippingAddress/ShippingAddress';
 import OrderSummery from './OrderSummary';
 import useCheckout from '../../hooks/CheckoutPageHook/useCheckout';
 
-const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
+const CheckOutAddress = ({
+  shippingAddress,
+  billingAddress,
+  stateList,
+  handlePlaceOrder,
+  handleEditShippingAddressChange,
+  handleEditBillingAddressChange,
+  setEditShippingAddress,
+  editShippingAddress,
+  editBillingAddress,
+  cityList,
+  setEditBillingAddress,
+  handlePostAddress,
+  handleCreateAddressChange,
+}: any) => {
   const [showAccordion, setShowAccordion] = useState(false);
   const [showBillingAccordion, setShowBillingAccordion] = useState(false);
   const [showBillingAddress, setShowBillingAddress] = useState(true);
@@ -15,10 +29,8 @@ const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
   const [showSelectedBillingAddress, setShowSelectedBillingAddress] = useState<any>({});
   const [addressId, setAddressId] = useState<number | string>();
   const [billingAddressId, setBillingAddressId] = useState<any>();
-  const { handlePlaceOrder } = useCheckout();
 
   const handleShowAccordion = (type: string) => {
-    // setAddressType(type);
     if (type === 'shipping') {
       setShowAccordion((prev) => !prev);
     } else {
@@ -78,64 +90,7 @@ const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
       )
     );
   };
-  const renderAllShippingAddresses: any = () => {
-    return (
-      <Form>
-        {shippingAddress?.map((address: any, i: any) => (
-          <div key={i} className="mb-3">
-            <Form.Check type="radio" id={address.address_id}>
-              <Form.Check.Input
-                type="radio"
-                checked={addressId === address.address_id ? true : false}
-                onClick={() => handleSelectAddress(address.address_id, shippingAddress)}
-              />
-              <Form.Check.Label>
-                <li className={`fw-bold ml-2 ${style.address_list}`}>{address.address_id} </li>
-                <li className={style.address_list}>{address.user_id}</li>
-                <li className={style.address_list}>
-                  {address.full_address}
-                  <span>
-                    <Button variant="link" className={style.edit_btn}>
-                      Edit Address
-                    </Button>
-                  </span>
-                </li>
-              </Form.Check.Label>
-            </Form.Check>
-          </div>
-        ))}
-      </Form>
-    );
-  };
-  const renderAllBillingAddresses: any = () => {
-    return (
-      <Form>
-        {billingAddress?.map((address: any, i: any) => (
-          <div key={i} className="mb-3">
-            <Form.Check type="radio" id={address.address_id}>
-              <Form.Check.Input
-                type="radio"
-                checked={billingAddressId === address.address_id ? true : false}
-                onClick={() => handleBillingSelectAddress(address.address_id, billingAddress)}
-              />
-              <Form.Check.Label>
-                <li className={`fw-bold ml-2 ${style.address_list}`}>{address.address_id} </li>
-                <li className={style.address_list}>{address.user_id}</li>
-                <li className={style.address_list}>
-                  {address.full_address}
-                  <span>
-                    <Button variant="link" className={style.edit_btn}>
-                      Edit Address
-                    </Button>
-                  </span>
-                </li>
-              </Form.Check.Label>
-            </Form.Check>
-          </div>
-        ))}
-      </Form>
-    );
-  };
+
   return (
     <div className={`container-fluid w-100 ps-lg-5 pe-lg-5`}>
       <h4 className="text-center mt-4 fw-bold"> Order Checkout</h4>
@@ -143,11 +98,19 @@ const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
         <div className="col-md-8">
           <div className="row listing-card py-2">
             <ShippingAddress
-              renderAllShippingAddresses={renderAllShippingAddresses}
               handleRenderDefaultShippingAddress={handleRenderDefaultShippingAddress}
               handleShowAccordion={handleShowAccordion}
               showAccordion={showAccordion}
               shippingAddress={shippingAddress}
+              addressId={addressId}
+              handleSelectAddress={handleSelectAddress}
+              stateList={stateList}
+              setEditShippingAddress={setEditShippingAddress}
+              handleEditShippingAddressChange={handleEditShippingAddressChange}
+              editShippingAddress={editShippingAddress}
+              cityList={cityList}
+              handlePostAddress={handlePostAddress}
+              handleCreateAddressChange={handleCreateAddressChange}
             />
             <Form className="mt-2">
               <div key={`default-checkbox`} className="mb-3">
@@ -162,15 +125,23 @@ const CheckOutAddress = ({ shippingAddress, billingAddress }: any) => {
             </Form>
             {!showBillingAddress && (
               <BillingAddress
-                renderAllBillingAddresses={renderAllBillingAddresses}
                 handleRenderDefaultBillingAddress={handleRenderDefaultBillingAddress}
                 handleShowAccordion={handleShowAccordion}
                 showBillingAccordion={showBillingAccordion}
                 billingAddress={billingAddress}
+                billingAddressId={billingAddressId}
+                handleBillingSelectAddress={handleBillingSelectAddress}
+                stateList={stateList}
+                handleEditBillingAddressChange={handleEditBillingAddressChange}
+                cityList={cityList}
+                editBillingAddress={editBillingAddress}
+                setEditBillingAddress={setEditBillingAddress}
+                handlePostAddress={handlePostAddress}
+                handleCreateAddressChange={handleCreateAddressChange}
               />
             )}
           </div>
-          <Button variant="primary" onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}>
+          <Button variant="primary" className="" onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}>
             Place Order
           </Button>
         </div>
