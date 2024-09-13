@@ -7,8 +7,9 @@ import { BsTwitterX } from 'react-icons/bs';
 import StarRating from './StarRating';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import { Fade } from 'react-bootstrap';
+import ProductVariants from './ProductVariants';
 
-const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode, setQuantity }: any) => {
+const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode, setQuantity, productVariantData }: any) => {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
   const handleAddToProductData = () => {
@@ -41,19 +42,19 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
         {Array.isArray(productDetailData?.features)
           ? ''
           : productDetailData?.features &&
-            Object?.keys(productDetailData?.features)?.length > 0 && (
-              <div className="mt-2">
-                <ul>
-                  {productDetailData?.features?.values?.length > 0
-                    ? productDetailData?.features?.values?.map((item: any, index: any) => (
-                        <li key={index} className={`${styles.features} my-1`}>
-                          {item?.description}
-                        </li>
-                      ))
-                    : ''}
-                </ul>
-              </div>
-            )}
+          Object?.keys(productDetailData?.features)?.length > 0 && (
+            <div className="mt-2">
+              <ul>
+                {productDetailData?.features?.values?.length > 0
+                  ? productDetailData?.features?.values?.map((item: any, index: any) => (
+                    <li key={index} className={`${styles.features} my-1`}>
+                      {item?.description}
+                    </li>
+                  ))
+                  : ''}
+              </ul>
+            </div>
+          )}
 
         <Link href="#" className={` ${styles.priceOnReq}`}>
           Price on Request
@@ -75,6 +76,9 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
             Out of Stock
           </span>
         </div>
+      </div>
+      <div>
+        <ProductVariants productVariantData={productVariantData} />
       </div>
       <div>
         <p className={`my-1 ${styles.detailPriceSection}`}>

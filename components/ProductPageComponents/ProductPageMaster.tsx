@@ -40,6 +40,7 @@ function ProductPageMaster() {
               quantity={quantity}
               pinCode={pinCode}
               setQuantity={setQuantity}
+              productVariantData={productVariantData}
             />
           </div>
           <div className="col-12 mt-4">

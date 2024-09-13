@@ -49,3 +49,22 @@
 .avalibility {
   font-size: 12px;
 }
+.variant_btn {
+  width: fit-content;
+  font-size: 12px;
+  color: #000;
+}
+.variant_btn:hover {
+ border: 1px solid #c45500 !important;
+}
+.variant_btn_active {
+  width: fit-content;
+  font-size: 12px;
+  background-color: #c45500;
+  color: #FFF;
+}
+.variant_btn_disabled {
+  width: fit-content;
+  font-size: 12px;
+  color:#CCC;
+}
