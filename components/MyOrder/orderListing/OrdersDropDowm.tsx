@@ -31,7 +31,7 @@ const OrdersDropDown = ({ selectedLanguageData, orderListData }: any) => {
       <div className="col-lg-12">
         <div className="row my-3">
           <div className="col-lg-2 col-sm-4 col-6">
-            <select className="form-select w-75" style={{ fontSize: '12.5px' }} onChange={handleFilterChange} value={currentFilter}>
+            <select className="form-select w-75 fs-12" onChange={handleFilterChange} value={currentFilter}>
               {arrayForFilters.map((filter) => (
                 <option key={filter.value} value={filter.value}>
                   {filter.text}
