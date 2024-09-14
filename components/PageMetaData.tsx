@@ -5,7 +5,6 @@ const PageMetaData = ({ meta_data }: any) => {
   if (typeof window !== 'undefined') {
     isDealer = localStorage.getItem('isDealer');
   }
-
   return (
     <Head>
       <title>
