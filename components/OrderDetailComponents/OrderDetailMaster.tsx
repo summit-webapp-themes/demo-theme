@@ -3,6 +3,7 @@ import useOrderListHook from '../../hooks/OrderListHooks/useOrderListHook';
 
 function OrderDetailMaster() {
   const { orderData, isLoading, errorMessage } = useOrderDetailHook();
+  console.log(orderData, 'ccccccccccccccccc');
   return (
     <div className="container">
       <div className="row my-4">
