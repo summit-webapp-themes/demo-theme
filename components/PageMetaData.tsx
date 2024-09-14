@@ -8,38 +8,26 @@ const PageMetaData = ({ meta_data }: any) => {
   return (
     <Head>
       <title>
-        {meta_data !== undefined && meta_data !== null
-          ? Object?.keys(meta_data)?.length > 0
-            ? meta_data?.meta_title
-            : 'Summit E-Commerce - A Comprehensive E-Commerce Solution'
-          : ''}
+        {meta_data && Object?.keys(meta_data)?.length > 0
+          ? meta_data?.meta_title
+          : 'Summit E-Commerce - A Comprehensive E-Commerce Solution'}
       </title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta
-        name="keywords"
-        content={
-          meta_data !== undefined && meta_data !== null && Object?.keys(meta_data)?.length > 0
-            ? meta_data?.meta_title
-            : 'Summit E-Commerce - A Comprehensive E-Commerce Solution'
-        }
-      />
+      <meta name="keywords" content={meta_data && Object?.keys(meta_data)?.length > 0 && 'Ecommerce, ERP, ERPNext, Summit'} />
       <meta
         name="description"
         content={
-          meta_data !== undefined && meta_data !== null && Object?.keys(meta_data)?.length > 0
+          meta_data && Object?.keys(meta_data)?.length > 0
             ? meta_data?.description
             : 'Summit E-Commerce - A Comprehensive E-Commerce Solution'
         }
       />
-      <meta
-        name="robots"
-        content={meta_data !== undefined && meta_data !== null && Object?.keys(meta_data)?.length > 0 ? meta_data?.robot_name : 'index'}
-      />
+      <meta name="robots" content={meta_data && Object?.keys(meta_data)?.length > 0 ? meta_data?.robot_name : 'index'} />
       <meta property="og:image" content="" />
       <meta
         property="og:title"
         content={
-          meta_data !== undefined && meta_data !== null && Object?.keys(meta_data)?.length > 0
+          meta_data && Object?.keys(meta_data)?.length > 0
             ? meta_data?.meta_title
             : 'Summit E-Commerce - A Comprehensive E-Commerce Solution'
         }
@@ -47,7 +35,7 @@ const PageMetaData = ({ meta_data }: any) => {
       <meta
         property="og:description"
         content={
-          meta_data !== undefined && meta_data !== null && Object?.keys(meta_data)?.length > 0
+          meta_data && Object?.keys(meta_data)?.length > 0
             ? meta_data?.description
             : 'Summit E-Commerce - A Comprehensive E-Commerce Solution'
         }

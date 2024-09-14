@@ -19,7 +19,7 @@ function WebNavBar({
   selectedLang,
   handleLanguageChange,
   selectedLanguageData,
-  cartCount,
+  cartCount
 }: any) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
@@ -82,9 +82,7 @@ function WebNavBar({
                         <div className={stylesNavbar.icon_container}>
                           <FaCartPlus className="icon" />
                           <span className={`${stylesNavbar.badge} ${stylesNavbar.badge_warning} text-white`}>{cartCount}</span>
-                          <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>
-                            {selectedLanguageData?.cart}
-                          </span>
+                          <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>{selectedLanguageData?.cart}</span>
                         </div>
                       </a>
                     </Link>
@@ -130,7 +128,7 @@ function WebNavBar({
                           {selectedLanguageData?.view_catalogs}
                         </NavDropdown.Item>
                       </Link>
-                      <Link href="/my-orders" passHref className="text-decoration-none">
+                      <Link href="/MyOrder" passHref className="text-decoration-none">
                         <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
                           {selectedLanguageData?.my_order}
                         </NavDropdown.Item>
