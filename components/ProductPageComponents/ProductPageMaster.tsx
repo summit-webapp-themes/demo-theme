@@ -9,10 +9,10 @@ import ProductDetailSkeleton from './ProductDetailSkeleton';
 const ReviewMaster = dynamic(() => import('../Reviews/ReviewMaster'));
 const MatchingProducts = dynamic(() => import('./MatchingProducts'));
 import styles from '../../styles/components/productDetail.module.scss';
+import StockAvailabilityTable from './StockAvailabilityTable';
 
 function ProductPageMaster() {
-  const { productDetailData, productVariantData, isLoading, errorMessage } = useProductDetail();
-  const [quantity, setQuantity] = useState();
+  const { productDetailData, productVariantData, isLoading, errorMessage, qty, handleQtyModificationOnInputEdit, handleStockAvailabilityData, stockAvailabilityData } = useProductDetail();
   const [pinCode, setPinCode] = useState('');
   const [tab, setTab] = useState('SPECIFICATION');
 
@@ -37,11 +37,15 @@ function ProductPageMaster() {
           <div className="col-lg-6 p-4">
             <ProductDetailDescribtionSection
               productDetailData={productDetailData}
-              quantity={quantity}
+              quantity={qty}
               pinCode={pinCode}
-              setQuantity={setQuantity}
+              handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
               productVariantData={productVariantData}
+              handleStockAvailabilityData={handleStockAvailabilityData}
             />
+          </div>
+          <div className='col-12 mt-4'>
+            <StockAvailabilityTable stockAvailabilityData={stockAvailabilityData} />
           </div>
           <div className="col-12 mt-4">
             <div className="row">
