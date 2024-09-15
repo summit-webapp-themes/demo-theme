@@ -18,6 +18,8 @@ const BillingAddress = ({
   setEditBillingAddress,
   handlePostAddress,
   handleCreateAddressChange,
+  emptyAddressFields,
+  setEmptyAddressFields
 }: any) => {
   const [show, setShow] = useState(false);
   const [showCreateAddModal, setShowCreateAddModal] = useState(false);
@@ -26,12 +28,14 @@ const BillingAddress = ({
   const handleShowModal = (address_id: any) => {
     const getBillingAddress = billingAddress?.find((item: any, i: any) => item?.address_id === address_id);
     setEditBillingAddress(getBillingAddress);
+    setEmptyAddressFields([])
     setShow(true);
   };
   const handleShowAddAddress = () => {
+    setEmptyAddressFields([])
     setShowCreateAddModal(true);
   };
-  console.log(editBillingAddress, 'editBillingAddress');
+
   const renderAllBillingAddresses: any = () => {
     return (
       <Form>
@@ -98,6 +102,9 @@ const BillingAddress = ({
         showAddress={editBillingAddress}
         cityList={cityList}
         handlePostAddress={handlePostAddress}
+        setShow={setShow}
+        emptyAddressFields={emptyAddressFields}
+        
       />
 
       <CreateAddressModal
@@ -109,6 +116,7 @@ const BillingAddress = ({
         handleCreateAddressChange={handleCreateAddressChange}
         handlePostAddress={handlePostAddress}
         address_type={'Billing'}
+        emptyAddressFields={emptyAddressFields}
       />
     </>
   );

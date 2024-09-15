@@ -41,17 +41,48 @@ const OrderSummary = () => {
               <div className=" col-md-12" key={i}>
                 <div className="row mt-3 ms-2">
                   <div className=" col-md-4">
-                    {item?.image_url && <Image src={item?.image_url} alt="product image" width={100} height={100} loader={imageLoader} />}
+                  <div  style={{ textAlign: 'left' }}>
+                    {item?.image_url && <Image src={item?.image_url} alt="product image" width={90} height={90} loader={imageLoader} />}
+                    </div>
                   </div>
                   <div className="col-md-8">
-                    <h6 className="mb-0 product_item_name ">{item.item_name}</h6>
-                    <div className="d-flex justify-content-between">
-                      <p className={`m-0 ${style.p_tag}`}>{item.name}</p>
+                    <h6 className={`mb-0 ${style.product_item_title}`}>{item.item_name}</h6>
+                    {item?.details?.map((val:any,i:any)=>
+                      <div className="d-flex justify-content-between">
                       <p className={`m-0 ${style.p_tag}`}>
-                        <LiaRupeeSignSolid />
-                        {item.value}
+                      {val?.name}
                       </p>
-                    </div>
+                      <p className={`m-0 ${style.p_tag}`}>
+                      {Object.values(val).includes('Price') && <LiaRupeeSignSolid />}{val.value}
+                      </p>
+                      </div>
+                    )}
+                    <div className="d-flex justify-content-between">
+                      <p className={`m-0 ${style.p_tag}`}>
+                        Qty
+                      </p>
+                      <p className={`m-0 ${style.p_tag}`}>
+                        {item.qty}
+                      </p>
+                      </div>
+                      <div className="d-flex justify-content-between"> 
+                      <p className={`m-0 ${style.p_tag}`}>
+                        Total Item Price:
+                      </p>
+                      <p className={`m-0 ${style.p_tag}`}>
+                      <LiaRupeeSignSolid />
+                        {item.amount}
+                      </p>
+                      </div>
+                      <div className="d-flex justify-content-between"> 
+                      <p className={`m-0 ${style.p_tag}`}>
+                        Total Item Tax:
+                      </p>
+                      <p className={`m-0 ${style.p_tag}`}>
+                        {item.tax}
+                      </p>
+                      </div>                   
+                   
                   </div>
                 </div>
               </div>

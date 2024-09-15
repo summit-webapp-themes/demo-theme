@@ -124,7 +124,7 @@
 }
 // BreadCrumb styles
 .breadcrumb-item a {
-  color: #999 !important;
+  color: #595959 !important;
   text-decoration: none;
   font-size: 15px !important;
 }
@@ -134,6 +134,12 @@
   font-weight: 700 !important;
   padding-bottom: 10px !important;
 
+}
+.mandatoryField {
+  color:#c44500
+}
+.form-check-label {
+  font-size: 13px !important;
 }
 @media (min-width: 768px) {
   .mobile-menu-toggle {

@@ -19,6 +19,8 @@ const ShippingAddress = ({
   cityList,
   handlePostAddress,
   handleCreateAddressChange,
+  emptyAddressFields,
+  setEmptyAddressFields
 }: any) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -28,10 +30,12 @@ const ShippingAddress = ({
     console.log(getShippingAddress, 'getShippingAddress');
     // setShippingAddress(getShippingAddress);
     setEditShippingAddress(getShippingAddress);
+    setEmptyAddressFields([])
     setShow(true);
   };
   const handleCloseCreateAddModal = () => setShowCreateAddModal(false);
   const handleShowAddAddress = () => {
+    setEmptyAddressFields([])
     setShowCreateAddModal(true);
   };
   console.log(editShippingAddress, 'editShippingAddress');
@@ -101,6 +105,8 @@ const ShippingAddress = ({
         handleEditAddressChange={handleEditShippingAddressChange}
         cityList={cityList}
         handlePostAddress={handlePostAddress}
+        setShow={setShow}
+        emptyAddressFields={emptyAddressFields}
       />
       <CreateAddressModal
         handleCloseCreateAddModal={handleCloseCreateAddModal}
@@ -111,6 +117,8 @@ const ShippingAddress = ({
         handleCreateAddressChange={handleCreateAddressChange}
         handlePostAddress={handlePostAddress}
         address_type={'Shipping'}
+        emptyAddressFields={emptyAddressFields}
+
       />
     </>
   );

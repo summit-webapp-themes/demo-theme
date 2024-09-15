@@ -21,9 +21,11 @@ export default function CheckoutPageMaster() {
     setEditBillingAddress,
     handlePostAddress,
     handleCreateAddressChange,
+    emptyAddressFields,
+    setEmptyAddressFields
   } = useGetUserAddresses();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
-  const { stateList, handlePlaceOrder } = useCheckout();
+  const { stateList, handlePlaceOrder,transportersList,handleUserAddressChange } = useCheckout();
   return (
     <CheckOutAddress
       shippingAddress={shippingAddress}
@@ -39,6 +41,10 @@ export default function CheckoutPageMaster() {
       setEditBillingAddress={setEditBillingAddress}
       handlePostAddress={handlePostAddress}
       handleCreateAddressChange={handleCreateAddressChange}
+      transportersList={transportersList}
+      handleUserAddressChange={handleUserAddressChange}
+      emptyAddressFields={emptyAddressFields}
+      setEmptyAddressFields={setEmptyAddressFields}
     />
   );
 }
