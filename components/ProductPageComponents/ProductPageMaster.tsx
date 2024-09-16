@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
-import ProductDetailImageGallery from './ProductDetailImageGallery';
-import ProductDetailDescribtionSection from './ProductDetailDescribtionSection';
-import ProductDetailSpecsAndTech from './ProductDetailSpecsAndTech';
 import BreadCrumbs from '../BreadCrumbs';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
+import ProductDetailImageGallery from './ProductDetailImageGallery';
+import ProductDetailDescribtionSection from './ProductDetailDescribtionSection';
 const ReviewMaster = dynamic(() => import('../Reviews/ReviewMaster'));
 const MatchingProducts = dynamic(() => import('./MatchingProducts'));
+const StockAvailabilityTable = dynamic(() => import('./StockAvailabilityTable'));
+const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndTech'));
 import styles from '../../styles/components/productDetail.module.scss';
-import StockAvailabilityTable from './StockAvailabilityTable';
 
 function ProductPageMaster() {
   const {
