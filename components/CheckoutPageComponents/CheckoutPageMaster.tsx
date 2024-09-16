@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import useCheckout from '../../hooks/CheckoutPageHook/useCheckout';
-import useGetUserAddresses from '../../hooks/CheckoutPageHook/useGetUserAddresse';
+import useGetUserAddresses from '../../hooks/CheckoutPageHook/useGetUserAddresses';
 import CheckOutAddress from './CheckOutAddress';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 
@@ -22,10 +22,19 @@ export default function CheckoutPageMaster() {
     handlePostAddress,
     handleCreateAddressChange,
     emptyAddressFields,
-    setEmptyAddressFields
+    setEmptyAddressFields,
+    show,
+    showCreateAddModal,
+    showBilling,
+    showCreateBillingAddModal,
+    setShowCreateAddModal,
+    setShowBilling,
+    setShow,
+    setShowCreateBillingAddModal,
   } = useGetUserAddresses();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
-  const { stateList, handlePlaceOrder,transportersList,handleUserAddressChange } = useCheckout();
+  const { stateList, handlePlaceOrder, handleUserAddressChange, showLocation } = useCheckout();
+
   return (
     <CheckOutAddress
       shippingAddress={shippingAddress}
@@ -41,10 +50,22 @@ export default function CheckoutPageMaster() {
       setEditBillingAddress={setEditBillingAddress}
       handlePostAddress={handlePostAddress}
       handleCreateAddressChange={handleCreateAddressChange}
-      transportersList={transportersList}
       handleUserAddressChange={handleUserAddressChange}
       emptyAddressFields={emptyAddressFields}
       setEmptyAddressFields={setEmptyAddressFields}
+      shippingAddressLoading={shippingAddressLoading}
+      billingAddressLoading={billingAddressLoading}
+      shippingAddressError={shippingAddressError}
+      billingAddressError={billingAddressError}
+      showLocation={showLocation}
+      show={show}
+      showCreateAddModal={showCreateAddModal}
+      showBilling={showBilling}
+      showCreateBillingAddModal={showCreateBillingAddModal}
+      setShowCreateAddModal={setShowCreateAddModal}
+      setShowBilling={setShowBilling}
+      setShow={setShow}
+      setShowCreateBillingAddModal={setShowCreateBillingAddModal}
     />
   );
 }

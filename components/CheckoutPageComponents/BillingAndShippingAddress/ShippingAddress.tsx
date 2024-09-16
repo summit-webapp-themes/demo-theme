@@ -1,6 +1,5 @@
 import { Accordion, Button } from 'react-bootstrap';
 import style from '../../../styles/components/orderCheckout.module.scss';
-import { useState } from 'react';
 import AddressModal from './AddressModal';
 import { Form } from 'react-bootstrap';
 import CreateAddressModal from './CreateAddressModal';
@@ -20,25 +19,26 @@ const ShippingAddress = ({
   handlePostAddress,
   handleCreateAddressChange,
   emptyAddressFields,
-  setEmptyAddressFields
+  setEmptyAddressFields,
+  shippingAddressLoading,
+  shippingAddressError,
+  show,
+  showCreateAddModal,
+  setShowCreateAddModal,
+  setShow,
 }: any) => {
-  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const [showCreateAddModal, setShowCreateAddModal] = useState(false);
   const handleShowModal = (address_id: any) => {
     const getShippingAddress = shippingAddress.find((item: any, i: any) => item.address_id === address_id);
-    console.log(getShippingAddress, 'getShippingAddress');
-    // setShippingAddress(getShippingAddress);
     setEditShippingAddress(getShippingAddress);
-    setEmptyAddressFields([])
+    setEmptyAddressFields([]);
     setShow(true);
   };
   const handleCloseCreateAddModal = () => setShowCreateAddModal(false);
   const handleShowAddAddress = () => {
-    setEmptyAddressFields([])
+    setEmptyAddressFields([]);
     setShowCreateAddModal(true);
   };
-  console.log(editShippingAddress, 'editShippingAddress');
   const renderAllShippingAddresses: any = () => {
     return (
       <Form>
@@ -71,31 +71,49 @@ const ShippingAddress = ({
       </Form>
     );
   };
+
+  const handleDataRendering = () => {
+    if (shippingAddressLoading) {
+      return <h2>Loading...</h2>;
+    }
+    if (!shippingAddressLoading && shippingAddress?.length > 0) {
+      return (
+        <div className="col-lg-12 p-2 border  ">
+          <div className="row">
+            <div className="col-md-2">
+              <h6 className="mb-0 fw-bolder">Shipping Address</h6>
+            </div>
+            <div className="col-md-8">
+              <div className="w-50">{handleRenderDefaultShippingAddress()}</div>
+            </div>
+            <div className="col-md-2 d-flex justify-content-end align-items-start">
+              <Button variant="text" onClick={() => handleShowAccordion('shipping')} className={style.addressChange_btn}>
+                Change
+              </Button>
+            </div>
+          </div>
+          {showAccordion && (
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header className="accordionHeaderTitle">Select a delivery address</Accordion.Header>
+                <Accordion.Body>{renderAllShippingAddresses()}</Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          )}
+        </div>
+      );
+    }
+    if (!shippingAddressLoading && shippingAddress?.length === 0 && shippingAddressError !== '') {
+      return (
+        <div className="h-100vh d-flex justify-content-center align-items-center">
+          <p>{shippingAddressError}</p>
+        </div>
+      );
+    }
+  };
   return (
     <>
-      <div className="col-lg-12 p-2 border mt-3 ">
-        <div className="row">
-          <div className="col-md-2">
-            <h6 className="mb-0 fw-bolder">Shipping Address</h6>
-          </div>
-          <div className="col-md-8">
-            <div className="w-50">{handleRenderDefaultShippingAddress(shippingAddress)}</div>
-          </div>
-          <div className="col-md-2">
-            <Button variant="text" onClick={() => handleShowAccordion('shipping')} className={style.addressChange_btn}>
-              Change
-            </Button>
-          </div>
-        </div>
-        {showAccordion && (
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header className="accordionHeaderTitle">Select a delivery address</Accordion.Header>
-              <Accordion.Body>{renderAllShippingAddresses()}</Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        )}
-      </div>
+      {handleDataRendering()}
       <AddressModal
         show={show}
         handleClose={handleClose}
@@ -118,7 +136,7 @@ const ShippingAddress = ({
         handlePostAddress={handlePostAddress}
         address_type={'Shipping'}
         emptyAddressFields={emptyAddressFields}
-
+        setShowCreateAddModal={setShowCreateAddModal}
       />
     </>
   );

@@ -11,8 +11,8 @@ const CreateAddressModal = ({
   handlePostAddress,
   address_type,
   handleCreateAddressChange,
-  emptyAddressFields
-
+  emptyAddressFields,
+  setShowCreateAddModal,
 }: any) => {
   return (
     <Modal show={showCreateAddModal} onHide={handleCloseCreateAddModal}>
@@ -27,7 +27,6 @@ const CreateAddressModal = ({
           handlePostAddress={handlePostAddress}
           address_type={address_type}
           emptyAddressFields={emptyAddressFields}
-
         />
       </Modal.Body>
     </Modal>

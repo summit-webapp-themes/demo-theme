@@ -5,8 +5,9 @@ import style from '../../styles/components/orderCheckout.module.scss';
 import BillingAddress from './BillingAndShippingAddress/BillingAddress';
 import ShippingAddress from './BillingAndShippingAddress/ShippingAddress';
 import OrderSummery from './OrderSummary';
-import useCheckout from '../../hooks/CheckoutPageHook/useCheckout';
 import ShippingMethods from './ShippingMethods';
+import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
+import { LiaRupeeSignSolid } from 'react-icons/lia';
 
 const CheckOutAddress = ({
   shippingAddress,
@@ -22,10 +23,22 @@ const CheckOutAddress = ({
   setEditBillingAddress,
   handlePostAddress,
   handleCreateAddressChange,
-  transportersList,
   handleUserAddressChange,
   emptyAddressFields,
-  setEmptyAddressFields
+  setEmptyAddressFields,
+  shippingAddressLoading,
+  billingAddressLoading,
+  shippingAddressError,
+  billingAddressError,
+  showLocation,
+  show,
+  showCreateAddModal,
+  showBilling,
+  showCreateBillingAddModal,
+  setShowCreateAddModal,
+  setShowBilling,
+  setShow,
+  setShowCreateBillingAddModal,
 }: any) => {
   const [showAccordion, setShowAccordion] = useState(false);
   const [showBillingAccordion, setShowBillingAccordion] = useState(false);
@@ -35,7 +48,7 @@ const CheckOutAddress = ({
   const [addressId, setAddressId] = useState<number | string>();
   const [billingAddressId, setBillingAddressId] = useState<any>();
   const [conditionCheck, setConditionCheck] = useState<any>(false);
-
+  const { cartListingItems } = useFetchCartItems();
   const handleShowAccordion = (type: string) => {
     if (type === 'shipping') {
       setShowAccordion((prev) => !prev);
@@ -57,15 +70,15 @@ const CheckOutAddress = ({
     const getSelectedAddress = address?.find((val: any, i: number) => val.address_id === id);
     setShowSelectedBillingAddress(getSelectedAddress);
   };
-  const handleRenderDefaultShippingAddress: any = (address: any) => {
-    const defaultAddress = address?.length > 0 && address?.find((item: any, val: any) => item?.set_as_default === true);
+  const defaultAddress = shippingAddress?.length > 0 && shippingAddress?.find((item: any, val: any) => item?.set_as_default === true);
 
-    useEffect(() => {
-      if (defaultAddress) {
-        setAddressId(defaultAddress.address_id);
-        setShowSelectedAddress(defaultAddress);
-      }
-    }, [defaultAddress]);
+  useEffect(() => {
+    if (defaultAddress) {
+      setAddressId(defaultAddress.address_id);
+      setShowSelectedAddress(defaultAddress);
+    }
+  }, [defaultAddress]);
+  const handleRenderDefaultShippingAddress: any = () => {
     return (
       Object?.keys(showSelectedAddress)?.length > 0 && (
         <ul>
@@ -78,7 +91,7 @@ const CheckOutAddress = ({
   };
 
   const handleRenderDefaultBillingAddress: any = (address: any) => {
-    const defaultBillingAddress = address?.length > 0 && address?.find((item: any, i: any) => item?.set_as_default === true || address[0]) ;
+    const defaultBillingAddress = address?.length > 0 && address?.find((item: any, i: any) => item?.set_as_default === true || address[0]);
 
     useEffect(() => {
       if (defaultBillingAddress) {
@@ -99,10 +112,10 @@ const CheckOutAddress = ({
 
   return (
     <div className={`container-fluid w-100 ps-lg-5 pe-lg-5`}>
-      <h4 className="text-center mt-4 fw-bold"> Order Checkout</h4>
+      <h4 className="text-center mt-5 fw-bold mb-4"> Order Checkout</h4>
       <div className="row">
         <div className="col-md-8">
-          <div className="row listing-card py-2">
+          <div className="row listing-card">
             <ShippingAddress
               handleRenderDefaultShippingAddress={handleRenderDefaultShippingAddress}
               handleShowAccordion={handleShowAccordion}
@@ -119,6 +132,12 @@ const CheckOutAddress = ({
               handleCreateAddressChange={handleCreateAddressChange}
               emptyAddressFields={emptyAddressFields}
               setEmptyAddressFields={setEmptyAddressFields}
+              shippingAddressLoading={shippingAddressLoading}
+              shippingAddressError={shippingAddressError}
+              show={show}
+              showCreateAddModal={showCreateAddModal}
+              setShowCreateAddModal={setShowCreateAddModal}
+              setShow={setShow}
             />
             <Form className="mt-2">
               <div key={`default-checkbox`} className="mb-3">
@@ -148,28 +167,54 @@ const CheckOutAddress = ({
                 handleCreateAddressChange={handleCreateAddressChange}
                 emptyAddressFields={emptyAddressFields}
                 setEmptyAddressFields={setEmptyAddressFields}
+                billingAddressLoading={billingAddressLoading}
+                billingAddressError={billingAddressError}
+                showBilling={showBilling}
+                showCreateBillingAddModal={showCreateBillingAddModal}
+                setShowBilling={setShowBilling}
+                setShowCreateBillingAddModal={setShowCreateBillingAddModal}
               />
             )}
           </div>
-          <ShippingMethods transportersList={transportersList} handleUserAddressChange={handleUserAddressChange}/>
+          <ShippingMethods handleUserAddressChange={handleUserAddressChange} showLocation={showLocation} />
+          <h5 className=" fw-bolder mt-2">Final Review</h5>
+          <div className="d-flex justify-content-between w-50">
+            <p className={`m-0 ${style.p_tag} fw-bolder`}>Sub total:</p>
+            <p className={`m-0 ${style.p_tag} fw-bolder`}>
+              <LiaRupeeSignSolid />
+              {cartListingItems.grand_total_excluding_tax}
+            </p>
+          </div>
+          <div className="d-flex justify-content-between w-50">
+            <p className={`m-0 ${style.p_tag} fw-bolder`}>Order Total Including Tax:</p>
+            <p className={`m-0 ${style.p_tag} fw-bolder`}>
+              <LiaRupeeSignSolid />
+              {cartListingItems.grand_total_excluding_tax}
+            </p>
+          </div>
           <Form className="mt-2">
-              <div key={`default-checkbox`} className="mb-3">
-                <Form.Check // prettier-ignore
-                  type="checkbox"
-                  checked={conditionCheck}
-                  onChange={(e) => setConditionCheck(!conditionCheck)}
-                  id={`default-checkbox`}
-                  label={`By placing the order, I am confirming that I have read and agreed with the Terms and Conditions`}
-                />
-              </div>
-            </Form>
-          <Button variant="primary" className="w-50" disabled={!conditionCheck} onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}>
+            <div key={`default-checkbox`} className="mb-3">
+              <Form.Check // prettier-ignore
+                type="checkbox"
+                checked={conditionCheck}
+                onChange={(e) => setConditionCheck(!conditionCheck)}
+                id={`default-checkbox`}
+                label={`By placing the order, I am confirming that I have read and agreed with the Terms and Conditions`}
+              />
+            </div>
+          </Form>
+          <Button
+            variant="primary"
+            className="w-50"
+            disabled={!conditionCheck}
+            onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}
+          >
             Place Order
           </Button>
         </div>
-   
+
         <div className="col-md-4">
-          <OrderSummery />
+          <OrderSummery cartListingItems={cartListingItems} />
         </div>
       </div>
     </div>

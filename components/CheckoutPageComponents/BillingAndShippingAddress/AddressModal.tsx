@@ -11,8 +11,7 @@ const AddressModal = ({
   showAddress,
   cityList,
   handlePostAddress,
-  setShow,
-  emptyAddressFields
+  emptyAddressFields,
 }: any) => {
   return (
     <Modal show={show} onHide={handleClose}>
@@ -26,7 +25,6 @@ const AddressModal = ({
           handleEditAddressChange={handleEditAddressChange}
           cityList={cityList}
           handlePostAddress={handlePostAddress}
-          setShow={setShow}
           emptyAddressFields={emptyAddressFields}
         />
       </Modal.Body>

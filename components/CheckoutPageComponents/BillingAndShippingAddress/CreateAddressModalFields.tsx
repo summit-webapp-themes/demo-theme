@@ -2,40 +2,91 @@ import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import style from '../../../styles/components/orderCheckout.module.scss';
 
-const CreateAddressModalFields = ({ stateList, cityList, handleCreateAddressChange, emptyAddressFields,
-  handlePostAddress, address_type }: any) => {
+const CreateAddressModalFields = ({
+  stateList,
+  cityList,
+  handleCreateAddressChange,
+  emptyAddressFields,
+  handlePostAddress,
+  address_type,
+}: any) => {
   return (
     <>
       <Form>
         <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Name<span className='mandatoryField'>*</span></Form.Label>
-          <Form.Control type="text" placeholder="Name" name="name"  isInvalid={emptyAddressFields.includes("name")} onChange={(e) => handleCreateAddressChange(e, address_type)} />
+          <Form.Label>
+            Name<span className="mandatoryField">*</span>
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Name"
+            name="name"
+            isInvalid={emptyAddressFields?.includes('name')}
+            onChange={(e) => handleCreateAddressChange(e, address_type)}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="address_1">
-          <Form.Label>Address 1<span className='mandatoryField'>*</span></Form.Label>
-          <Form.Control type="text" placeholder="Address 1" name="address_1"  isInvalid={emptyAddressFields.includes("address_1")}  onChange={(e) => handleCreateAddressChange(e, address_type)} />
+          <Form.Label>
+            Address 1<span className="mandatoryField">*</span>
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Address 1"
+            name="address_1"
+            isInvalid={emptyAddressFields?.includes('address_1')}
+            onChange={(e) => handleCreateAddressChange(e, address_type)}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="address_2">
-          <Form.Label>Address 2<span className='mandatoryField'>*</span></Form.Label>
-          <Form.Control type="text" placeholder="Address 1" name="address_2"  isInvalid={emptyAddressFields.includes("address_2")} onChange={(e) => handleCreateAddressChange(e, address_type)} />
+          <Form.Label>
+            Address 2<span className="mandatoryField">*</span>
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Address 1"
+            name="address_2"
+            isInvalid={emptyAddressFields?.includes('address_2')}
+            onChange={(e) => handleCreateAddressChange(e, address_type)}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="country">
-          <Form.Label>Country<span className='mandatoryField'>*</span></Form.Label>
-          <Form.Select aria-label="country" name="country"  isInvalid={emptyAddressFields.includes("country")} onChange={(e) => handleCreateAddressChange(e, address_type)}>
+          <Form.Label>
+            Country<span className="mandatoryField">*</span>
+          </Form.Label>
+          <Form.Select
+            aria-label="country"
+            name="country"
+            isInvalid={emptyAddressFields?.includes('country')}
+            onChange={(e) => handleCreateAddressChange(e, address_type)}
+          >
             <option>Select Country</option>
             <option>India</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="state">
-          <Form.Label>State<span className='mandatoryField'>*</span></Form.Label>
-          <Form.Select aria-label="state" name="state"  isInvalid={emptyAddressFields.includes("state")} onChange={(e) => handleCreateAddressChange(e, address_type)}>
+          <Form.Label>
+            State<span className="mandatoryField">*</span>
+          </Form.Label>
+          <Form.Select
+            aria-label="state"
+            name="state"
+            isInvalid={emptyAddressFields.includes('state')}
+            onChange={(e) => handleCreateAddressChange(e, address_type)}
+          >
             <option>Select State</option>
             {stateList?.map((item: any, i: any) => <option>{item?.name}</option>)}
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3" controlId="city">
-          <Form.Label>City<span className='mandatoryField'>*</span></Form.Label>
-          <Form.Select aria-label="city" name="city"  isInvalid={emptyAddressFields.includes("city")} onChange={(e) => handleCreateAddressChange(e, address_type)}>
+          <Form.Label>
+            City<span className="mandatoryField">*</span>
+          </Form.Label>
+          <Form.Select
+            aria-label="city"
+            name="city"
+            isInvalid={emptyAddressFields.includes('city')}
+            onChange={(e) => handleCreateAddressChange(e, address_type)}
+          >
             {cityList.length > 0 && cityList?.map((item: any, i: any) => <option>{item?.name}</option>)}
           </Form.Select>
         </Form.Group>
@@ -48,25 +99,14 @@ const CreateAddressModalFields = ({ stateList, cityList, handleCreateAddressChan
           //   checked={showAddress?.set_as_default}
         />
         <Form.Group className="mb-3" controlId="zip_code">
-          <Form.Label>Zip/Postal Code<span className='mandatoryField'>*</span></Form.Label>
+          <Form.Label>
+            Zip/Postal Code<span className="mandatoryField">*</span>
+          </Form.Label>
           <Form.Control
             type="text"
-            isInvalid={emptyAddressFields.includes("postal_code")}
+            isInvalid={emptyAddressFields.includes('postal_code')}
             placeholder="Zip/Postal Code"
             name="postal_code"
-            onChange={(e) => handleCreateAddressChange(e, address_type)}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="zip_code">
-          <Form.Label>Email Id</Form.Label>
-          <Form.Control type="email" placeholder="Email Id" name="email" onChange={(e) => handleCreateAddressChange(e, address_type)} />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="zip_code">
-          <Form.Label>Mobile No.</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Mobile No."
-            name="contact"
             onChange={(e) => handleCreateAddressChange(e, address_type)}
           />
         </Form.Group>

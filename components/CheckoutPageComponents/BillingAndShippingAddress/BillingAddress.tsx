@@ -1,7 +1,6 @@
 import { Accordion, Button, Form } from 'react-bootstrap';
 import style from '../../../styles/components/orderCheckout.module.scss';
 import AddressModal from './AddressModal';
-import { useState } from 'react';
 import CreateAddressModal from './CreateAddressModal';
 
 const BillingAddress = ({
@@ -19,21 +18,25 @@ const BillingAddress = ({
   handlePostAddress,
   handleCreateAddressChange,
   emptyAddressFields,
-  setEmptyAddressFields
+  setEmptyAddressFields,
+  billingAddressLoading,
+  billingAddressError,
+  showBilling,
+  showCreateBillingAddModal,
+  setShowBilling,
+  setShowCreateBillingAddModal,
 }: any) => {
-  const [show, setShow] = useState(false);
-  const [showCreateAddModal, setShowCreateAddModal] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleCloseCreateAddModal = () => setShowCreateAddModal(false);
+  const handleClose = () => setShowBilling(false);
+  const handleCloseCreateAddModal = () => setShowCreateBillingAddModal(false);
   const handleShowModal = (address_id: any) => {
     const getBillingAddress = billingAddress?.find((item: any, i: any) => item?.address_id === address_id);
     setEditBillingAddress(getBillingAddress);
-    setEmptyAddressFields([])
-    setShow(true);
+    setEmptyAddressFields([]);
+    setShowBilling(true);
   };
   const handleShowAddAddress = () => {
-    setEmptyAddressFields([])
-    setShowCreateAddModal(true);
+    setEmptyAddressFields([]);
+    setShowCreateBillingAddModal(true);
   };
 
   const renderAllBillingAddresses: any = () => {
@@ -68,33 +71,51 @@ const BillingAddress = ({
       </Form>
     );
   };
+
+  const handleDataRendering = () => {
+    if (billingAddressLoading) {
+      return <h2>Loading...</h2>;
+    }
+    if (!billingAddressLoading && billingAddress?.length > 0) {
+      return (
+        <div className="col-lg-12 p-2 border mt-3">
+          <div className="row">
+            <div className="col-md-2">
+              <h6 className="mb-0 fw-bolder">Billing Address</h6>
+            </div>
+            <div className="col-md-8">
+              <div className="w-50">{handleRenderDefaultBillingAddress(billingAddress)}</div>
+            </div>
+            <div className="col-md-2 d-flex justify-content-end align-items-start">
+              <Button variant="text" onClick={() => handleShowAccordion('billing')} className={style.addressChange_btn}>
+                Change
+              </Button>
+            </div>
+          </div>
+          {showBillingAccordion && (
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header className="accordionHeaderTitle">Select a delivery address</Accordion.Header>
+                <Accordion.Body>{renderAllBillingAddresses()}</Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          )}
+        </div>
+      );
+    }
+    if (!billingAddressLoading && billingAddress?.length === 0 && billingAddressError !== '') {
+      return (
+        <div className="h-100vh d-flex justify-content-center align-items-center">
+          <p>{billingAddressError}</p>
+        </div>
+      );
+    }
+  };
   return (
     <>
-      <div className="col-lg-12 p-2 border mt-3">
-        <div className="row">
-          <div className="col-md-2">
-            <h6 className="mb-0 fw-bolder">Billing Address</h6>
-          </div>
-          <div className="col-md-8">
-            <div className="w-50">{handleRenderDefaultBillingAddress(billingAddress)}</div>
-          </div>
-          <div className="col-md-2">
-            <Button variant="text" onClick={() => handleShowAccordion('billing')} className={style.addressChange_btn}>
-              Change
-            </Button>
-          </div>
-        </div>
-        {showBillingAccordion && (
-          <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header className="accordionHeaderTitle">Select a delivery address</Accordion.Header>
-              <Accordion.Body>{renderAllBillingAddresses()}</Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        )}
-      </div>
+      {handleDataRendering()}
       <AddressModal
-        show={show}
+        show={showBilling}
         handleClose={handleClose}
         modalTitle={'Edit Billing Address'}
         stateList={stateList}
@@ -102,14 +123,13 @@ const BillingAddress = ({
         showAddress={editBillingAddress}
         cityList={cityList}
         handlePostAddress={handlePostAddress}
-        setShow={setShow}
+        setShow={setShowBilling}
         emptyAddressFields={emptyAddressFields}
-        
       />
 
       <CreateAddressModal
         handleCloseCreateAddModal={handleCloseCreateAddModal}
-        showCreateAddModal={showCreateAddModal}
+        showCreateAddModal={showCreateBillingAddModal}
         modalTitle={'Create Billing Address'}
         stateList={stateList}
         cityList={cityList}
