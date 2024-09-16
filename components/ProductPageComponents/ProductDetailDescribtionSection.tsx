@@ -1,18 +1,40 @@
-import React, { useState } from 'react';
-import styles from '../../styles/components/productDetail.module.scss';
 import Link from 'next/link';
-import { FaWhatsapp, FaShareAlt, FaRegCheckCircle, FaWindowClose } from 'react-icons/fa';
-import { FaSquareInstagram } from 'react-icons/fa6';
-import { BsTwitterX } from 'react-icons/bs';
-import StarRating from './StarRating';
-import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
+import { useState } from 'react';
 import { Fade } from 'react-bootstrap';
+import { BsTwitterX } from 'react-icons/bs';
+import { FaRegCheckCircle, FaShareAlt, FaWhatsapp, FaWindowClose } from 'react-icons/fa';
+import { FaSquareInstagram } from 'react-icons/fa6';
+import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
+import styles from '../../styles/components/productDetail.module.scss';
+import CheckStockAvailability from './CheckStockAvailability';
+import CheckStockAvailabilityBtn from './CheckStockAvailabilityBtn';
+import ProductVariants from './ProductVariants';
+import StarRating from './StarRating';
 
-const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode, setQuantity }: any) => {
+const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode, handleQtyModificationOnInputEdit, productVariantData, handleStockAvailabilityData }: any) => {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
+  const [itemList, setItemList] = useState<any>([{
+    item_code: '',
+    quantity: productDetailData?.min_order_qty || 1
+  }])
+  const handleItemChange = (index: number, itemCode: string, value: string) => {
+    setItemList((prevItemList: any) => {
+      if (!Array.isArray(prevItemList)) {
+        // Handle the case where prevItemList is not an array
+        return [];
+      }
+      const updatedItemList = [...prevItemList];
+      updatedItemList[index] = {
+        ...updatedItemList[index],
+        item_code: itemCode,
+        quantity: value
+      };
+      return updatedItemList;
+    });
+  };
   const handleAddToProductData = () => {
-    if (quantity < productDetailData?.min_order_qty) {
+    if (itemList[0]?.quantity < productDetailData?.min_order_qty) {
       setQuantityAlert(true);
       setTimeout(() => {
         setQuantityAlert(false);
@@ -21,7 +43,7 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
     }
     const addToCartParams = {
       currency: 'INR',
-      item_list: [{ item_code: productDetailData.name, quantity: quantity }],
+      item_list: itemList,
       party_name: getPartyName,
     };
 
@@ -41,19 +63,19 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
         {Array.isArray(productDetailData?.features)
           ? ''
           : productDetailData?.features &&
-            Object?.keys(productDetailData?.features)?.length > 0 && (
-              <div className="mt-2">
-                <ul>
-                  {productDetailData?.features?.values?.length > 0
-                    ? productDetailData?.features?.values?.map((item: any, index: any) => (
-                        <li key={index} className={`${styles.features} my-1`}>
-                          {item?.description}
-                        </li>
-                      ))
-                    : ''}
-                </ul>
-              </div>
-            )}
+          Object?.keys(productDetailData?.features)?.length > 0 && (
+            <div className="mt-2">
+              <ul>
+                {productDetailData?.features?.values?.length > 0
+                  ? productDetailData?.features?.values?.map((item: any, index: any) => (
+                    <li key={index} className={`${styles.features} my-1`}>
+                      {item?.description}
+                    </li>
+                  ))
+                  : ''}
+              </ul>
+            </div>
+          )}
 
         <Link href="#" className={` ${styles.priceOnReq}`}>
           Price on Request
@@ -64,17 +86,11 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
         <p className={`text-uppercase m-0 ${styles.detailSection}`}>
           HSN code : <span> {productDetailData?.gst_hsn_code} </span>
         </p>
-        <div className="my-1">
-          <span className={`fw-bold ${styles.avalibility}`}>
-            <FaRegCheckCircle className={`text-success me-1 ${styles.stockSection}`} size={'1rem'} />
-            Available
-          </span>
-
-          <span className={`mx-2 fw-bold  ${styles.avalibility}`}>
-            <FaWindowClose className={`text-danger me-1 ${styles.stockSection}`} size={'1rem'} />
-            Out of Stock
-          </span>
-        </div>
+      </div>
+      <div>
+        <ProductVariants
+          productVariantData={productVariantData} />
+        <CheckStockAvailability productVariantData={productVariantData} quantity={quantity} handleQtyModificationOnInputEdit={handleItemChange} itemList={itemList} />
       </div>
       <div>
         <p className={`my-1 ${styles.detailPriceSection}`}>
@@ -86,8 +102,8 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
             <input
               className={`ms-2 rounded-1 ${styles.input} ${styles.detailPriceSection}`}
               id="productQuantity"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              value={itemList[0]?.quantity}
+              onChange={(e) => handleItemChange(0, productDetailData?.name, e.target.value)}
             />
           )}
         </div>
@@ -98,9 +114,12 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
             {productDetailData?.min_order_qty}
           </span>
         </p>
-        <button onClick={handleAddToProductData} className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.buttonBackGround}`}>
-          Add to Cart
-        </button>
+        <div>
+          <button onClick={handleAddToProductData} className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.buttonBackGround}`}>
+            Add to Cart
+          </button>
+          <CheckStockAvailabilityBtn handleStockAvailabilityData={handleStockAvailabilityData} quantity={itemList[0]?.quantity} />
+        </div>
         {quantityAlert && (
           <Fade in={quantityAlert}>
             <div id="example-fade-text" className="text-danger">

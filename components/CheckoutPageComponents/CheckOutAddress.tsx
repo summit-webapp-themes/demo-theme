@@ -6,6 +6,7 @@ import BillingAddress from './BillingAndShippingAddress/BillingAddress';
 import ShippingAddress from './BillingAndShippingAddress/ShippingAddress';
 import OrderSummery from './OrderSummary';
 import useCheckout from '../../hooks/CheckoutPageHook/useCheckout';
+import ShippingMethods from './ShippingMethods';
 
 const CheckOutAddress = ({
   shippingAddress,
@@ -21,6 +22,10 @@ const CheckOutAddress = ({
   setEditBillingAddress,
   handlePostAddress,
   handleCreateAddressChange,
+  transportersList,
+  handleUserAddressChange,
+  emptyAddressFields,
+  setEmptyAddressFields
 }: any) => {
   const [showAccordion, setShowAccordion] = useState(false);
   const [showBillingAccordion, setShowBillingAccordion] = useState(false);
@@ -29,6 +34,7 @@ const CheckOutAddress = ({
   const [showSelectedBillingAddress, setShowSelectedBillingAddress] = useState<any>({});
   const [addressId, setAddressId] = useState<number | string>();
   const [billingAddressId, setBillingAddressId] = useState<any>();
+  const [conditionCheck, setConditionCheck] = useState<any>(false);
 
   const handleShowAccordion = (type: string) => {
     if (type === 'shipping') {
@@ -72,7 +78,7 @@ const CheckOutAddress = ({
   };
 
   const handleRenderDefaultBillingAddress: any = (address: any) => {
-    const defaultBillingAddress = address?.length > 0 && address?.find((item: any, val: any) => item?.set_as_default === true);
+    const defaultBillingAddress = address?.length > 0 && address?.find((item: any, i: any) => item?.set_as_default === true || address[0]) ;
 
     useEffect(() => {
       if (defaultBillingAddress) {
@@ -111,6 +117,8 @@ const CheckOutAddress = ({
               cityList={cityList}
               handlePostAddress={handlePostAddress}
               handleCreateAddressChange={handleCreateAddressChange}
+              emptyAddressFields={emptyAddressFields}
+              setEmptyAddressFields={setEmptyAddressFields}
             />
             <Form className="mt-2">
               <div key={`default-checkbox`} className="mb-3">
@@ -138,15 +146,29 @@ const CheckOutAddress = ({
                 setEditBillingAddress={setEditBillingAddress}
                 handlePostAddress={handlePostAddress}
                 handleCreateAddressChange={handleCreateAddressChange}
+                emptyAddressFields={emptyAddressFields}
+                setEmptyAddressFields={setEmptyAddressFields}
               />
             )}
           </div>
-          <Button variant="primary" className="" onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}>
+          <ShippingMethods transportersList={transportersList} handleUserAddressChange={handleUserAddressChange}/>
+          <Form className="mt-2">
+              <div key={`default-checkbox`} className="mb-3">
+                <Form.Check // prettier-ignore
+                  type="checkbox"
+                  checked={conditionCheck}
+                  onChange={(e) => setConditionCheck(!conditionCheck)}
+                  id={`default-checkbox`}
+                  label={`By placing the order, I am confirming that I have read and agreed with the Terms and Conditions`}
+                />
+              </div>
+            </Form>
+          <Button variant="primary" className="w-50" disabled={!conditionCheck} onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}>
             Place Order
           </Button>
         </div>
-        <div className="col-md-1"></div>
-        <div className="col-md-3">
+   
+        <div className="col-md-4">
           <OrderSummery />
         </div>
       </div>

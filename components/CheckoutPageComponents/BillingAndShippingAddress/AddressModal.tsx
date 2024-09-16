@@ -6,12 +6,13 @@ const AddressModal = ({
   show,
   handleClose,
   modalTitle,
-  showShippingAddress,
   stateList,
   handleEditAddressChange,
   showAddress,
   cityList,
   handlePostAddress,
+  setShow,
+  emptyAddressFields
 }: any) => {
   return (
     <Modal show={show} onHide={handleClose}>
@@ -25,6 +26,8 @@ const AddressModal = ({
           handleEditAddressChange={handleEditAddressChange}
           cityList={cityList}
           handlePostAddress={handlePostAddress}
+          setShow={setShow}
+          emptyAddressFields={emptyAddressFields}
         />
       </Modal.Body>
     </Modal>

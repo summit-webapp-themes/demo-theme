@@ -10,7 +10,19 @@
     font-size: 14px;
 }
 .p_tag {
-    font-size: 14px;
+    font-size: 13px;
+}
+.product_item_title {
+    font-weight: 600;
+    margin-bottom: 3px !important;
+    font-size: 15px;
+    line-height: 20px;
+    text-decoration: none !important;
+    width: auto;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 .p_tagBold {
     font-weight: 700; 
