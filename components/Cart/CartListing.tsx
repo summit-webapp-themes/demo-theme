@@ -41,7 +41,7 @@ function CartListing() {
       return (
         <div className="container py-4">
           <div className="d-flex justify-content-between">
-            <h4><b>Shopping Cart</b></h4>
+            <h4><b>{selectedMultiLangData?.shopping_cart}</b></h4>
             <div className="text-center">
               <button
                 type="button"
@@ -54,7 +54,7 @@ function CartListing() {
                 className="btn btn-outline-danger text-decoration-none px-1 fs-12"
                 onClick={() => cLearCartAPIFunc(cartListingItems?.name, setCartListingItems)}
               >
-                Clear cart
+                {selectedMultiLangData?.clear_cart}
               </button>
             </div>
           </div>

@@ -12,7 +12,19 @@ import styles from '../../styles/components/productDetail.module.scss';
 import StockAvailabilityTable from './StockAvailabilityTable';
 
 function ProductPageMaster() {
-  const { productDetailData, productVariantData, isLoading, errorMessage, qty, handleQtyModificationOnInputEdit, handleStockAvailabilityData, stockAvailabilityData } = useProductDetail();
+  const {
+    productDetailData,
+    productVariantData,
+    isLoading,
+    errorMessage,
+    handleMultipleQtyChange,
+    itemList,
+    qty,
+    handleQtyModificationOnInputEdit,
+    handleQtyModificationOnButtonClick,
+    handleStockAvailabilityData,
+    stockAvailabilityData,
+  } = useProductDetail();
   const [pinCode, setPinCode] = useState('');
   const [tab, setTab] = useState('SPECIFICATION');
 
@@ -37,14 +49,17 @@ function ProductPageMaster() {
           <div className="col-lg-6 p-4">
             <ProductDetailDescribtionSection
               productDetailData={productDetailData}
-              quantity={qty}
               pinCode={pinCode}
               handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
+              handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
               productVariantData={productVariantData}
               handleStockAvailabilityData={handleStockAvailabilityData}
+              itemList={itemList}
+              handleMultipleQtyChange={handleMultipleQtyChange}
+              qty={qty}
             />
           </div>
-          <div className='col-12 mt-4'>
+          <div className="col-12 mt-4">
             <StockAvailabilityTable stockAvailabilityData={stockAvailabilityData} />
           </div>
           <div className="col-12 mt-4">

@@ -157,7 +157,7 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                         </b>
                         <div>
                           <button className="btn btn-link text-decoration-none p-0" onClick={() => handleDeleteItem(item?.item_code)}>
-                            Delete
+                            {selectedMultiLangData?.delete}
                           </button>
                         </div>
                       </div>
