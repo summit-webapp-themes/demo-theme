@@ -1,12 +1,11 @@
 import React from 'react';
-import { Col, Nav, Row, Tab, Table } from 'react-bootstrap';
-import { FaUser, FaLocationDot, FaTags, FaCreditCard, FaCalendarDays } from 'react-icons/fa6';
+import { Col, Nav, Row, Tab } from 'react-bootstrap';
+import { FaUser, FaCalendarDays } from 'react-icons/fa6';
 import useGetUserDetails from '../../hooks/UserProfileHook/useGetUserDetails';
 import { useSelector } from 'react-redux';
-import selectedMultilanguageSlice, {
-  SelectedFilterLangDataFromStore,
-} from '../../store/slices/general_slices/selected-multilanguage-slice';
+import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import EnquiryHistory from './EnquiryHistory';
+import ProfilePageSkeleton from './ProfilePageSkeleton';
 
 const ProfileMaster = () => {
   const { userData, isLoading, errorMessage } = useGetUserDetails();
@@ -47,7 +46,11 @@ const ProfileMaster = () => {
     },
   ];
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <ProfilePageSkeleton />
+      </div>
+    );
   }
   if (userData && Object?.keys(userData)?.length > 0) {
     return (
