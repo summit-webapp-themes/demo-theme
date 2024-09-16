@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Fade } from 'react-bootstrap';
 import { BsTwitterX } from 'react-icons/bs';
-import { FaRegCheckCircle, FaShareAlt, FaWhatsapp, FaWindowClose } from 'react-icons/fa';
+import { FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
@@ -10,31 +10,24 @@ import CheckStockAvailability from './CheckStockAvailability';
 import CheckStockAvailabilityBtn from './CheckStockAvailabilityBtn';
 import ProductVariants from './ProductVariants';
 import StarRating from './StarRating';
+import QuantityInputField from './QuantityInputField';
+import AddToCartBtn from './AddToCartBtn';
 
-const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode, handleQtyModificationOnInputEdit, productVariantData, handleStockAvailabilityData }: any) => {
+const ProductDetailDescribtionSection = ({
+  productDetailData,
+  pinCode,
+  handleMultipleQtyChange,
+  itemList,
+  qty,
+  handleQtyModificationOnInputEdit,
+  productVariantData,
+  handleStockAvailabilityData,
+  handleQtyModificationOnButtonClick,
+}: any) => {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
-  const [itemList, setItemList] = useState<any>([{
-    item_code: '',
-    quantity: productDetailData?.min_order_qty || 1
-  }])
-  const handleItemChange = (index: number, itemCode: string, value: string) => {
-    setItemList((prevItemList: any) => {
-      if (!Array.isArray(prevItemList)) {
-        // Handle the case where prevItemList is not an array
-        return [];
-      }
-      const updatedItemList = [...prevItemList];
-      updatedItemList[index] = {
-        ...updatedItemList[index],
-        item_code: itemCode,
-        quantity: value
-      };
-      return updatedItemList;
-    });
-  };
-  const handleAddToProductData = () => {
-    if (itemList[0]?.quantity < productDetailData?.min_order_qty) {
+  const handleAddToSingleProductData = () => {
+    if (qty < productDetailData?.min_order_qty) {
       setQuantityAlert(true);
       setTimeout(() => {
         setQuantityAlert(false);
@@ -43,10 +36,18 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
     }
     const addToCartParams = {
       currency: 'INR',
+      item_list: [{ item_code: productDetailData?.name, quantity: qty }],
+      party_name: getPartyName,
+    };
+    addToCartItem(addToCartParams, null);
+  };
+
+  const handleAddMultipleProductData = () => {
+    const addToCartParams = {
+      currency: 'INR',
       item_list: itemList,
       party_name: getPartyName,
     };
-
     addToCartItem(addToCartParams, null);
   };
 
@@ -63,19 +64,19 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
         {Array.isArray(productDetailData?.features)
           ? ''
           : productDetailData?.features &&
-          Object?.keys(productDetailData?.features)?.length > 0 && (
-            <div className="mt-2">
-              <ul>
-                {productDetailData?.features?.values?.length > 0
-                  ? productDetailData?.features?.values?.map((item: any, index: any) => (
-                    <li key={index} className={`${styles.features} my-1`}>
-                      {item?.description}
-                    </li>
-                  ))
-                  : ''}
-              </ul>
-            </div>
-          )}
+            Object?.keys(productDetailData?.features)?.length > 0 && (
+              <div className="mt-2">
+                <ul>
+                  {productDetailData?.features?.values?.length > 0
+                    ? productDetailData?.features?.values?.map((item: any, index: any) => (
+                        <li key={index} className={`${styles.features} my-1`}>
+                          {item?.description}
+                        </li>
+                      ))
+                    : ''}
+                </ul>
+              </div>
+            )}
 
         <Link href="#" className={` ${styles.priceOnReq}`}>
           Price on Request
@@ -88,37 +89,40 @@ const ProductDetailDescribtionSection = ({ productDetailData, quantity, pinCode,
         </p>
       </div>
       <div>
-        <ProductVariants
-          productVariantData={productVariantData} />
-        <CheckStockAvailability productVariantData={productVariantData} quantity={quantity} handleQtyModificationOnInputEdit={handleItemChange} itemList={itemList} />
+        <ProductVariants productVariantData={productVariantData} />
+        <CheckStockAvailability
+          productVariantData={productVariantData}
+          handleMultipleQtyChange={handleMultipleQtyChange}
+          itemList={itemList}
+        />
       </div>
       <div>
-        <p className={`my-1 ${styles.detailPriceSection}`}>
-          SKU CODE : <span>{productDetailData?.sku_code}</span>
-        </p>
-        <div className={`my-1 ${styles.detailPriceSection}`}>
-          <label htmlFor="productQuantity">Quantity:</label>
-          {productDetailData?.min_order_qty && (
-            <input
-              className={`ms-2 rounded-1 ${styles.input} ${styles.detailPriceSection}`}
-              id="productQuantity"
-              value={itemList[0]?.quantity}
-              onChange={(e) => handleItemChange(0, productDetailData?.name, e.target.value)}
+        {productVariantData?.length === 0 && (
+          <>
+            <p className={`my-1 ${styles.detailPriceSection}`}>
+              SKU CODE : <span>{productDetailData?.sku_code}</span>
+            </p>
+            <QuantityInputField
+              productDetailData={productDetailData}
+              qty={qty}
+              handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
+              handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
             />
-          )}
-        </div>
-
+          </>
+        )}
         <p className="my-1">
           Minimum Order Quantity:{' '}
-          <span className={productDetailData?.min_order_qty > quantity ? 'text-danger' : 'text-success'}>
+          <span className={productDetailData?.min_order_qty > itemList[0]?.quantity ? 'text-danger' : 'text-success'}>
             {productDetailData?.min_order_qty}
           </span>
         </p>
         <div>
-          <button onClick={handleAddToProductData} className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.buttonBackGround}`}>
-            Add to Cart
-          </button>
-          <CheckStockAvailabilityBtn handleStockAvailabilityData={handleStockAvailabilityData} quantity={itemList[0]?.quantity} />
+          {productVariantData?.length > 0 ? (
+            <AddToCartBtn handleAddToCart={handleAddMultipleProductData} />
+          ) : (
+            <AddToCartBtn handleAddToCart={handleAddToSingleProductData} />
+          )}
+          <CheckStockAvailabilityBtn handleStockAvailabilityData={handleStockAvailabilityData} />
         </div>
         {quantityAlert && (
           <Fade in={quantityAlert}>

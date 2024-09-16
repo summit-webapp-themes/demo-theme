@@ -5,14 +5,18 @@
 
 @import 'components/filter.module';
 // common font sizes
-.fs-12{
+.fs-12 {
   font-size: 12px;
 }
-.fs-14{
+.fs-14 {
   font-size: 14px;
 }
-.fs-16{
+.fs-16 {
   font-size: 16px;
+}
+// cursor-pointer
+.cursor-pointer {
+  cursor: pointer;
 }
 // Header
 .heading-category-l1 {
@@ -133,7 +137,6 @@
   font-size: 18px !important;
   font-weight: 700 !important;
   padding-bottom: 10px !important;
-
 }
 .mandatoryField {
   color:#c44500
