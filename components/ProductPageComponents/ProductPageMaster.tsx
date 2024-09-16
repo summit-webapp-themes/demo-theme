@@ -1,15 +1,17 @@
-import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
-import ProductDetailImageGallery from './ProductDetailImageGallery';
-import ProductDetailDescribtionSection from './ProductDetailDescribtionSection';
-import ProductDetailSpecsAndTech from './ProductDetailSpecsAndTech';
-import BreadCrumbs from '../BreadCrumbs';
-import ProductDetailSkeleton from './ProductDetailSkeleton';
+import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
+import styles from '../../styles/components/productDetail.module.scss';
+const BreadCrumbs = dynamic(() => import('../BreadCrumbs'));
 const ReviewMaster = dynamic(() => import('../Reviews/ReviewMaster'));
 const MatchingProducts = dynamic(() => import('./MatchingProducts'));
-import styles from '../../styles/components/productDetail.module.scss';
-import StockAvailabilityTable from './StockAvailabilityTable';
+const StockAvailabilityTable = dynamic(() => import('./StockAvailabilityTable'));
+const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndTech'));
+const ProductDetailSkeleton = dynamic(() => import('./ProductDetailSkeleton'));
+const ProductDetailImageGallery = dynamic(() => import('./ProductDetailImageGallery'));
+const ProductDetailDescribtionSection = dynamic(() => import('./ProductDetailDescribtionSection'));
 
 function ProductPageMaster() {
   const {
@@ -27,7 +29,13 @@ function ProductPageMaster() {
   } = useProductDetail();
   const [pinCode, setPinCode] = useState('');
   const [tab, setTab] = useState('SPECIFICATION');
-
+  const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
+  const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
+  useEffect(() => {
+    if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
+      setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
+    }
+  }, [SelectedLangDataFromStore]);
   if (isLoading) {
     return (
       <div className={`container ${styles.detailContainer} `}>
@@ -57,6 +65,7 @@ function ProductPageMaster() {
               itemList={itemList}
               handleMultipleQtyChange={handleMultipleQtyChange}
               qty={qty}
+              selectedMultiLangData={selectedMultiLangData}
             />
           </div>
           <div className="col-12 mt-4">

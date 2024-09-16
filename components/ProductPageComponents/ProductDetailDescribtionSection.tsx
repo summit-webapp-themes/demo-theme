@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Fade } from 'react-bootstrap';
@@ -6,12 +7,12 @@ import { FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
-import CheckStockAvailability from './CheckStockAvailability';
-import CheckStockAvailabilityBtn from './CheckStockAvailabilityBtn';
-import ProductVariants from './ProductVariants';
-import StarRating from './StarRating';
-import QuantityInputField from './QuantityInputField';
-import AddToCartBtn from './AddToCartBtn';
+const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
+const CheckStockAvailability = dynamic(() => import('./CheckStockAvailability'));
+const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
+const ProductVariants = dynamic(() => import('./ProductVariants'));
+const QuantityInputField = dynamic(() => import('./QuantityInputField'));
+const StarRating = dynamic(() => import('./StarRating'));
 
 const ProductDetailDescribtionSection = ({
   productDetailData,
@@ -23,6 +24,7 @@ const ProductDetailDescribtionSection = ({
   productVariantData,
   handleStockAvailabilityData,
   handleQtyModificationOnButtonClick,
+  selectedMultiLangData,
 }: any) => {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
@@ -56,7 +58,9 @@ const ProductDetailDescribtionSection = ({
       <div className="border-bottom">
         <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
         <div className="">{productDetailData?.rating && <StarRating rating={productDetailData?.rating} />}</div>
-        <p className="mb-0">Item code: {productDetailData?.name}</p>
+        <p className="mb-0">
+          {selectedMultiLangData?.item_code}: {productDetailData?.name}
+        </p>
         <div>
           <span className={`text-dark  ${styles.price}`}>{`₹ ${productDetailData?.price}`}</span>
           <del className={`text-dark ps-2 ${styles.price}`}>{`₹ ${productDetailData?.mrp_price}`}</del>
@@ -79,13 +83,13 @@ const ProductDetailDescribtionSection = ({
             )}
 
         <Link href="#" className={` ${styles.priceOnReq}`}>
-          Price on Request
+          {selectedMultiLangData?.price_on_request}
         </Link>
         <p className={`text-uppercase m-0 ${styles.detailSection}`}>
-          Brand : <span> {productDetailData?.brand} </span>
+          {selectedMultiLangData?.brand} : <span> {productDetailData?.brand} </span>
         </p>
         <p className={`text-uppercase m-0 ${styles.detailSection}`}>
-          HSN code : <span> {productDetailData?.gst_hsn_code} </span>
+          {selectedMultiLangData?.hsn_code} : <span> {productDetailData?.gst_hsn_code} </span>
         </p>
       </div>
       <div>
@@ -94,40 +98,45 @@ const ProductDetailDescribtionSection = ({
           productVariantData={productVariantData}
           handleMultipleQtyChange={handleMultipleQtyChange}
           itemList={itemList}
+          selectedMultiLangData={selectedMultiLangData}
         />
       </div>
       <div>
         {productVariantData?.length === 0 && (
           <>
             <p className={`my-1 ${styles.detailPriceSection}`}>
-              SKU CODE : <span>{productDetailData?.sku_code}</span>
+              {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
             </p>
             <QuantityInputField
               productDetailData={productDetailData}
               qty={qty}
               handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
               handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
+              selectedMultiLangData={selectedMultiLangData}
             />
           </>
         )}
         <p className="my-1">
-          Minimum Order Quantity:{' '}
+          {selectedMultiLangData?.minimum_order_qty}:{' '}
           <span className={productDetailData?.min_order_qty > itemList[0]?.quantity ? 'text-danger' : 'text-success'}>
             {productDetailData?.min_order_qty}
           </span>
         </p>
         <div>
           {productVariantData?.length > 0 ? (
-            <AddToCartBtn handleAddToCart={handleAddMultipleProductData} />
+            <AddToCartBtn handleAddToCart={handleAddMultipleProductData} selectedMultiLangData={selectedMultiLangData} />
           ) : (
-            <AddToCartBtn handleAddToCart={handleAddToSingleProductData} />
+            <AddToCartBtn handleAddToCart={handleAddToSingleProductData} selectedMultiLangData={selectedMultiLangData} />
           )}
-          <CheckStockAvailabilityBtn handleStockAvailabilityData={handleStockAvailabilityData} />
+          <CheckStockAvailabilityBtn
+            handleStockAvailabilityData={handleStockAvailabilityData}
+            selectedMultiLangData={selectedMultiLangData}
+          />
         </div>
         {quantityAlert && (
           <Fade in={quantityAlert}>
             <div id="example-fade-text" className="text-danger">
-              Minimum Order Quantiy is {productDetailData?.min_order_qty}
+              {selectedMultiLangData?.minimum_order_qty} : {productDetailData?.min_order_qty}
             </div>
           </Fade>
         )}
