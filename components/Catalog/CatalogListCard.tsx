@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FaEye, FaPlus } from 'react-icons/fa6';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 
-const CatalogListCard = ({ catalogListItem, handleDeleteCatalog, selectedMultiLangData }: any) => {
+const CatalogListCard = ({ catalogList, handleDeleteCatalog, selectedMultiLangData }: any) => {
   return (
     <>
       <div className="row mt-5 mb-0 mx-auto pb-0 w-100">
@@ -11,8 +11,8 @@ const CatalogListCard = ({ catalogListItem, handleDeleteCatalog, selectedMultiLa
             <b>{selectedMultiLangData?.catalog_list}</b>
           </h4>
 
-          {catalogListItem?.length > 0 &&
-            catalogListItem?.map((catalog: any, i: any) => (
+          {catalogList?.length > 0 &&
+            catalogList?.map((catalog: any, i: any) => (
               <div className="col-md-12 col-lg-12 mt-4 mb-0  " key={i}>
                 <div className="card catalogListing-card rounded-3 mb-5">
                   <div className="card-header catalogListing-cardHeader d-flex justify-content-between border-0">

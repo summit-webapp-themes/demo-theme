@@ -10,8 +10,8 @@ function ProductGridView({
   productListTotalCount,
   wishlistData,
   isSuperAdmin,
-  handleCloseCatalogModal,
   handleShowCatalogModal,
+  handleDeleteCatalogItem,
 }: any) {
   return (
     <div className="row ps-lg-5 pe-lg-5">
@@ -30,7 +30,7 @@ function ProductGridView({
             isLoading={isLoading}
             isSuperAdmin={isSuperAdmin}
             handleShowCatalogModal={handleShowCatalogModal}
-            handleCloseCatalogModal={handleCloseCatalogModal}
+            handleDeleteCatalogItem={handleDeleteCatalogItem}
           />
         </div>
       </div>

@@ -1,11 +1,9 @@
-import React from 'react';
-import ProductCard from '../../../cards/ProductCard';
 import ReactPaginate from 'react-paginate';
-import paginationStyle from '../../../styles/components/pagination.module.scss';
-import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
-import NoDataFound from '../../NoRecordFound';
+import ProductCard from '../../../cards/ProductCard';
 import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
-import useCatalogFunctions from '../../../hooks/CatalogHooks/useCatalogFunctions';
+import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
+import paginationStyle from '../../../styles/components/pagination.module.scss';
+import NoDataFound from '../../NoRecordFound';
 
 function ProductlistingGridViewMaster({
   isLoading,
@@ -15,12 +13,11 @@ function ProductlistingGridViewMaster({
   handlePageClick,
   wishlistData,
   isSuperAdmin,
-  handleCloseCatalogModal,
   handleShowCatalogModal,
+  handleDeleteCatalogItem,
 }: any) {
   const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 12).toString(), 10) === pageOffset;
   const { addToCartItem, getPartyName } = useAddToCartHook();
-  const { handleAddProductToCatalog, handleDeleteCatalogItem }: any = useCatalogFunctions();
   const handleDataRendering = () => {
     if (isLoading) {
       return (
@@ -46,10 +43,8 @@ function ProductlistingGridViewMaster({
                   getPartyName={getPartyName}
                   wishlistData={wishlistData}
                   isSuperAdmin={isSuperAdmin}
-                  handleAddProductToCatalog={handleAddProductToCatalog}
                   handleDeleteCatalogItem={handleDeleteCatalogItem}
                   handleShowCatalogModal={handleShowCatalogModal}
-                  handleCloseCatalogModal={handleCloseCatalogModal}
                 />
               </div>
             );
