@@ -10,12 +10,62 @@ export default function CheckoutPageMaster() {
     billingAddressLoading,
     shippingAddressError,
     billingAddressError,
-    fetchUserShippingAddress,
-    fetchUserBillingAddress,
     shippingAddress,
     billingAddress,
+    handleEditShippingAddressChange,
+    handleEditBillingAddressChange,
+    setEditShippingAddress,
+    editShippingAddress,
+    editBillingAddress,
+    cityList,
+    setEditBillingAddress,
+    handlePostAddress,
+    handleCreateAddressChange,
+    emptyAddressFields,
+    setEmptyAddressFields,
+    show,
+    showCreateAddModal,
+    showBilling,
+    showCreateBillingAddModal,
+    setShowCreateAddModal,
+    setShowBilling,
+    setShow,
+    setShowCreateBillingAddModal,
   } = useGetUserAddresses();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
-  useCheckout();
-  return <CheckOutAddress shippingAddress={shippingAddress} billingAddress={billingAddress} />;
+  const { stateList, handlePlaceOrder, handleUserAddressChange, showLocation } = useCheckout();
+
+  return (
+    <CheckOutAddress
+      shippingAddress={shippingAddress}
+      billingAddress={billingAddress}
+      stateList={stateList}
+      handlePlaceOrder={handlePlaceOrder}
+      handleEditShippingAddressChange={handleEditShippingAddressChange}
+      handleEditBillingAddressChange={handleEditBillingAddressChange}
+      setEditShippingAddress={setEditShippingAddress}
+      editShippingAddress={editShippingAddress}
+      cityList={cityList}
+      editBillingAddress={editBillingAddress}
+      setEditBillingAddress={setEditBillingAddress}
+      handlePostAddress={handlePostAddress}
+      handleCreateAddressChange={handleCreateAddressChange}
+      handleUserAddressChange={handleUserAddressChange}
+      emptyAddressFields={emptyAddressFields}
+      setEmptyAddressFields={setEmptyAddressFields}
+      shippingAddressLoading={shippingAddressLoading}
+      billingAddressLoading={billingAddressLoading}
+      shippingAddressError={shippingAddressError}
+      billingAddressError={billingAddressError}
+      showLocation={showLocation}
+      show={show}
+      showCreateAddModal={showCreateAddModal}
+      showBilling={showBilling}
+      showCreateBillingAddModal={showCreateBillingAddModal}
+      setShowCreateAddModal={setShowCreateAddModal}
+      setShowBilling={setShowBilling}
+      setShow={setShow}
+      setShowCreateBillingAddModal={setShowCreateBillingAddModal}
+    />
+  );
 }
