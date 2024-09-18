@@ -5,6 +5,7 @@ import paginationStyle from '../../../styles/components/pagination.module.scss';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import NoDataFound from '../../NoRecordFound';
 import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
+import useCatalogFunctions from '../../../hooks/CatalogHooks/useCatalogFunctions';
 
 function ProductlistingGridViewMaster({
   isLoading,
@@ -13,9 +14,13 @@ function ProductlistingGridViewMaster({
   pageOffset,
   handlePageClick,
   wishlistData,
+  isSuperAdmin,
+  handleCloseCatalogModal,
+  handleShowCatalogModal,
 }: any) {
   const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 12).toString(), 10) === pageOffset;
   const { addToCartItem, getPartyName } = useAddToCartHook();
+  const { handleAddProductToCatalog, handleDeleteCatalogItem }: any = useCatalogFunctions();
   const handleDataRendering = () => {
     if (isLoading) {
       return (
@@ -35,7 +40,17 @@ function ProductlistingGridViewMaster({
           {productListingData?.map((data: any, i: any) => {
             return (
               <div key={innerHeight} className="col-sm-6 col-lg-3 col-xl-3 col-xxl-3 text-center mb-4">
-                <ProductCard data={data} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />
+                <ProductCard
+                  data={data}
+                  addToCartItem={addToCartItem}
+                  getPartyName={getPartyName}
+                  wishlistData={wishlistData}
+                  isSuperAdmin={isSuperAdmin}
+                  handleAddProductToCatalog={handleAddProductToCatalog}
+                  handleDeleteCatalogItem={handleDeleteCatalogItem}
+                  handleShowCatalogModal={handleShowCatalogModal}
+                  handleCloseCatalogModal={handleCloseCatalogModal}
+                />
               </div>
             );
           })}

@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import useCatalog from '../../hooks/CatalogHooks/useCatalog';
+import CreateCatalog from './CreateCatalog';
+import CatalogListCard from './CatalogListCard';
 
 const CatalogList = () => {
   const {
-    handleChange,
+    handleCatalogName,
     handleSubmitCatalogName,
     catalogListItem,
+    catalogList,
     handleDeleteCatalog,
     handleAddProduct,
-    currency_state_from_redux,
-    loading,
+    isLoading,
   }: any = useCatalog();
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
@@ -20,31 +22,30 @@ const CatalogList = () => {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore]);
-
   return (
-    <div className="margin_from_nav">
-      {loading === 'pending' ? (
+    <div className="container">
+      {isLoading ? (
         <div className="row justify-content-center">
-          {[...Array(6)].map(() => (
+          {/* {[...Array(6)].map(() => (
             <>
               <div className="col-lg-7 mx-3">
                 <ListViewLoadingLayout />
               </div>
             </>
-          ))}
+          ))} */}
+          Loading
         </div>
       ) : (
         <div className="container">
           <CreateCatalog
             handleSubmitCatalogName={handleSubmitCatalogName}
-            handleChange={handleChange}
+            handleChange={handleCatalogName}
             selectedMultiLangData={selectedMultiLangData}
           />
           <CatalogListCard
             catalogListItem={catalogListItem}
             handleDeleteCatalog={handleDeleteCatalog}
             handleAddProduct={handleAddProduct}
-            currency_state_from_redux={currency_state_from_redux}
             selectedMultiLangData={selectedMultiLangData}
           />
         </div>

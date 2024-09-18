@@ -10,8 +10,19 @@ import ProductCardStyles from '../styles/components/productCard.module.scss';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import { useRouter } from 'next/router';
 import { CONSTANTS } from '../services/config/app-config';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
 
-const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) => {
+const ProductCard = ({
+  data,
+  wishlistData,
+  addToCartItem,
+  getPartyName,
+  isSuperAdmin,
+  handleAddProductToCatalog,
+  handleDeleteCatalogItem,
+  handleCloseCatalogModal,
+  handleShowCatalogModal,
+}: any) => {
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const imageLoader = ({ src, width, quality }: any) => {
@@ -95,8 +106,25 @@ const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) =
                 <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}> {data.mrp_price}</span>
               </Card.Text>
             </div>
-            <div>{handleRenderAddToCartBtn()}</div>
+            {!isSuperAdmin && <div>{handleRenderAddToCartBtn()}</div>}
           </div>
+          {isSuperAdmin && (
+            <div className="d-flex justify-content-center">
+              {router?.asPath?.startsWith('/catalog') ? (
+                <button
+                  className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`}
+                  onClick={() => handleDeleteCatalogItem(router?.query?.category, data?.name)}
+                >
+                  <RiDeleteBin2Fill />
+                </button>
+              ) : (
+                <button className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={handleShowCatalogModal}>
+                  Add to catalog
+                </button>
+              )}
+              {handleRenderAddToCartBtn()}
+            </div>
+          )}
         </div>
       </Card.Body>
     </Card>
