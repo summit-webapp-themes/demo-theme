@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
 import BreadCrumbs from '../BreadCrumbs';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
@@ -10,6 +11,7 @@ const MatchingProducts = dynamic(() => import('./MatchingProducts'));
 const StockAvailabilityTable = dynamic(() => import('./StockAvailabilityTable'));
 const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndTech'));
 import styles from '../../styles/components/productDetail.module.scss';
+import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 
 function ProductPageMaster() {
   const {
@@ -27,7 +29,13 @@ function ProductPageMaster() {
   } = useProductDetail();
   const [pinCode, setPinCode] = useState('');
   const [tab, setTab] = useState('SPECIFICATION');
-
+  const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
+  const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
+  useEffect(() => {
+    if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
+      setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
+    }
+  }, [SelectedLangDataFromStore]);
   if (isLoading) {
     return (
       <div className={`container ${styles.detailContainer} `}>
@@ -57,6 +65,7 @@ function ProductPageMaster() {
               itemList={itemList}
               handleMultipleQtyChange={handleMultipleQtyChange}
               qty={qty}
+              selectedMultiLangData={selectedMultiLangData}
             />
           </div>
           <div className="col-12 mt-4">

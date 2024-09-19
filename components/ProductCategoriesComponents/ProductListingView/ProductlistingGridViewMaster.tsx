@@ -1,10 +1,9 @@
-import React from 'react';
-import ProductCard from '../../../cards/ProductCard';
 import ReactPaginate from 'react-paginate';
-import paginationStyle from '../../../styles/components/pagination.module.scss';
-import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
-import NoDataFound from '../../NoRecordFound';
+import ProductCard from '../../../cards/ProductCard';
 import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
+import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
+import paginationStyle from '../../../styles/components/pagination.module.scss';
+import NoDataFound from '../../NoRecordFound';
 
 function ProductlistingGridViewMaster({
   isLoading,
@@ -13,6 +12,9 @@ function ProductlistingGridViewMaster({
   pageOffset,
   handlePageClick,
   wishlistData,
+  isSuperAdmin,
+  handleShowCatalogModal,
+  handleDeleteCatalogItem,
 }: any) {
   const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 12).toString(), 10) === pageOffset;
   const { addToCartItem, getPartyName } = useAddToCartHook();
@@ -35,7 +37,15 @@ function ProductlistingGridViewMaster({
           {productListingData?.map((data: any, i: any) => {
             return (
               <div key={innerHeight} className="col-sm-6 col-lg-3 col-xl-3 col-xxl-3 text-center mb-4">
-                <ProductCard data={data} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />
+                <ProductCard
+                  data={data}
+                  addToCartItem={addToCartItem}
+                  getPartyName={getPartyName}
+                  wishlistData={wishlistData}
+                  isSuperAdmin={isSuperAdmin}
+                  handleDeleteCatalogItem={handleDeleteCatalogItem}
+                  handleShowCatalogModal={handleShowCatalogModal}
+                />
               </div>
             );
           })}

@@ -2,11 +2,17 @@ import React from 'react';
 import styles from '../../styles/components/productDetail.module.scss';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 
-const QuantityInputField = ({ productDetailData, qty, handleQtyModificationOnInputEdit, handleQtyModificationOnButtonClick }: any) => {
+const QuantityInputField = ({
+  productDetailData,
+  qty,
+  handleQtyModificationOnInputEdit,
+  handleQtyModificationOnButtonClick,
+  selectedMultiLangData,
+}: any) => {
   return (
     <>
       <div className={`my-1 ${styles.detailPriceSection}`}>
-        <label htmlFor="productQuantity">Quantity:</label>
+        <label htmlFor="productQuantity">{selectedMultiLangData?.quantity}:</label>
         {productDetailData?.min_order_qty && (
           <span className="mx-1">
             <FaPlus className="mx-1 cursor-pointer" onClick={() => handleQtyModificationOnButtonClick('increase')} />
