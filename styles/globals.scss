@@ -138,6 +138,17 @@
   font-weight: 700 !important;
   padding-bottom: 10px !important;
 }
+.mandatoryField {
+  color:#c44500
+}
+.form-check-label {
+  font-size: 13px !important;
+}
+.form-label {
+  margin-bottom: .5rem;
+  font-size: 14px;
+  font-weight: 600;
+}
 @media (min-width: 768px) {
   .mobile-menu-toggle {
     display: none !important;

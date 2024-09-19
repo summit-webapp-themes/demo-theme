@@ -9,16 +9,16 @@ import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
 import Image from 'next/image';
 import { CONSTANTS } from '../../services/config/app-config';
 
-const OrderSummary = () => {
+const OrderSummary = ({ cartListingItems }: any) => {
   const quotationId = useSelector(selectCart).quotation_Id;
   const { orderSummaryLoading: isLoading, orderSummaryError: errorMessage, orderSummary } = useOrderSummary(quotationId);
-  const { cartListingItems } = useFetchCartItems();
+
   const imageLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
 
   return (
-    <div className="mt-3">
+    <div className="">
       <Card style={{ width: 'auto' }}>
         <Card.Body>
           <h5 className="fw-bold">Order Summery</h5>
@@ -41,16 +41,35 @@ const OrderSummary = () => {
               <div className=" col-md-12" key={i}>
                 <div className="row mt-3 ms-2">
                   <div className=" col-md-4">
-                    {item?.image_url && <Image src={item?.image_url} alt="product image" width={100} height={100} loader={imageLoader} />}
+                    <div style={{ textAlign: 'left' }}>
+                      {item?.image_url && <Image src={item?.image_url} alt="product image" width={90} height={90} loader={imageLoader} />}
+                    </div>
                   </div>
                   <div className="col-md-8">
-                    <h6 className="mb-0 product_item_name ">{item.item_name}</h6>
+                    <h6 className={`mb-0 ${style.product_item_title}`}>{item.item_name}</h6>
+                    {item?.details?.map((val: any, i: any) => (
+                      <div className="d-flex justify-content-between">
+                        <p className={`m-0 ${style.p_tag}`}>{val?.name}</p>
+                        <p className={`m-0 ${style.p_tag}`}>
+                          {Object.values(val).includes('Price') && <LiaRupeeSignSolid />}
+                          {val.value}
+                        </p>
+                      </div>
+                    ))}
                     <div className="d-flex justify-content-between">
-                      <p className={`m-0 ${style.p_tag}`}>{item.name}</p>
+                      <p className={`m-0 ${style.p_tag}`}>Qty</p>
+                      <p className={`m-0 ${style.p_tag}`}>{item.qty}</p>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <p className={`m-0 ${style.p_tag}`}>Total Item Price:</p>
                       <p className={`m-0 ${style.p_tag}`}>
                         <LiaRupeeSignSolid />
-                        {item.value}
+                        {item.amount}
                       </p>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <p className={`m-0 ${style.p_tag}`}>Total Item Tax:</p>
+                      <p className={`m-0 ${style.p_tag}`}>{item.tax}</p>
                     </div>
                   </div>
                 </div>

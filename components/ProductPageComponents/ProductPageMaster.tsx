@@ -2,16 +2,16 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
-import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
-import styles from '../../styles/components/productDetail.module.scss';
-const BreadCrumbs = dynamic(() => import('../BreadCrumbs'));
+import BreadCrumbs from '../BreadCrumbs';
+import ProductDetailSkeleton from './ProductDetailSkeleton';
+import ProductDetailImageGallery from './ProductDetailImageGallery';
+import ProductDetailDescribtionSection from './ProductDetailDescribtionSection';
 const ReviewMaster = dynamic(() => import('../Reviews/ReviewMaster'));
 const MatchingProducts = dynamic(() => import('./MatchingProducts'));
 const StockAvailabilityTable = dynamic(() => import('./StockAvailabilityTable'));
 const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndTech'));
-const ProductDetailSkeleton = dynamic(() => import('./ProductDetailSkeleton'));
-const ProductDetailImageGallery = dynamic(() => import('./ProductDetailImageGallery'));
-const ProductDetailDescribtionSection = dynamic(() => import('./ProductDetailDescribtionSection'));
+import styles from '../../styles/components/productDetail.module.scss';
+import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 
 function ProductPageMaster() {
   const {
