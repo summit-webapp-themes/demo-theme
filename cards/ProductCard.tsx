@@ -1,17 +1,24 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
-import { Button, Card } from 'react-bootstrap';
-import { FaHeart, FaRegHeart } from 'react-icons/fa6';
-import { FaCartPlus } from 'react-icons/fa6';
-import noImage from '../public/assets/images/no_image.png';
-import { RxCross2 } from 'react-icons/rx';
-import ProductCardStyles from '../styles/components/productCard.module.scss';
-import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import { useRouter } from 'next/router';
+import { Button, Card } from 'react-bootstrap';
+import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
+import { RxCross2 } from 'react-icons/rx';
+import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
+import noImage from '../public/assets/images/no_image.png';
 import { CONSTANTS } from '../services/config/app-config';
+import ProductCardStyles from '../styles/components/productCard.module.scss';
 
-const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) => {
+const ProductCard = ({
+  data,
+  wishlistData,
+  addToCartItem,
+  getPartyName,
+  isSuperAdmin,
+  handleDeleteCatalogItem,
+  handleShowCatalogModal,
+}: any) => {
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const imageLoader = ({ src, width, quality }: any) => {
@@ -21,7 +28,7 @@ const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) =
   const handleRenderIcon = () => {
     {
       wishlistData?.length > 0 &&
-        wishlistData?.map((item: any, index: number) => {
+        wishlistData?.map((item: any) => {
           if (item.name === data?.name) {
             wishProducts = item?.name;
           }
@@ -58,19 +65,46 @@ const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) =
     addToCartItem(addToCartParams, null);
   };
   const handleRenderAddToCartBtn: any = () => {
-    return (
-      <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={handleAddToProductData}>
-        ADD
-        <FaCartPlus className={ProductCardStyles.cardBtn} />
-      </Button>
-    );
+    if (isSuperAdmin === 'true') {
+      return (
+        <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={handleAddToProductData}>
+          ADD
+          <FaCartPlus className={ProductCardStyles.cardBtn} />
+        </Button>
+      );
+    }
+  };
+
+  const handleRenderAddToCatalogBtn: any = () => {
+    if (isSuperAdmin === 'false') {
+      return (
+        <div className="d-flex justify-content-center">
+          {router?.asPath?.startsWith('/catalog') ? (
+            <button
+              className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`}
+              onClick={() => handleDeleteCatalogItem(router?.query?.category, data?.name)}
+            >
+              <RiDeleteBin2Fill />
+            </button>
+          ) : (
+            <button className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={() => handleShowCatalogModal(data?.name)}>
+              Add to catalog
+            </button>
+          )}
+          <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={handleAddToProductData}>
+            ADD
+            <FaCartPlus className={ProductCardStyles.cardBtn} />
+          </Button>
+        </div>
+      );
+    }
   };
 
   return (
     <Card className={` ${ProductCardStyles.product_card} pt-2`}>
       <div className={` ${ProductCardStyles.product_card_img} `}>
         {handleRenderIcon()}
-        <Link href={`${data?.url}`} target="_blank" className="text-decoration-none text-dark">
+        <Link href={`${data?.url}`} className="text-decoration-none text-dark">
           <Image
             loader={data.image ? imageLoader : undefined}
             src={data.image ? data.image : noImage}
@@ -85,7 +119,7 @@ const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) =
       </div>
       <Card.Body className={`${ProductCardStyles.content_wrap}`}>
         <div className={`${ProductCardStyles.product_content_wrap}`}>
-          <Link href={`${data?.url}`} target="_blank" className={`text-dark text-decoration-none ${ProductCardStyles.product_name}`}>
+          <Link href={`${data?.url}`} className={`text-dark text-decoration-none ${ProductCardStyles.product_name}`}>
             <Card.Title className={`my-0 ${ProductCardStyles.product_name} mb-0`}>{data?.item_name}</Card.Title>
           </Link>
           <div className="d-flex justify-content-between align-items-center">
@@ -97,6 +131,7 @@ const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) =
             </div>
             <div>{handleRenderAddToCartBtn()}</div>
           </div>
+          <div>{handleRenderAddToCatalogBtn()}</div>
         </div>
       </Card.Body>
     </Card>

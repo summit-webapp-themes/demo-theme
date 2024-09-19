@@ -1,15 +1,18 @@
-import useProductListing from '../../hooks/ProductListPageHooks/useProductsDataHook';
-import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
-import BreadCrumbs from '../BreadCrumbs';
-import ProductGridView from './ProductListingView/ProductGridView';
-import { useSelector } from 'react-redux';
-import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
-import FloatingFilterBtn from './FloatingBtns/FloatingFilterBtn';
 import { useEffect, useState } from 'react';
-import FilterModal from './FilterView/FilterModal';
-import FloatingSortbyBtn from './FloatingBtns/FloatingSortbyBtn';
-import SortbyModal from './HorizantalFilter/SortbyModal';
+import { useSelector } from 'react-redux';
+import useCatalogFunctions from '../../hooks/CatalogHooks/useCatalogFunctions';
+import useProductListing from '../../hooks/ProductListPageHooks/useProductsDataHook';
+import { selectCatalogList } from '../../store/slices/catalog-slice/catalog-local-slice';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
+import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
+import BreadCrumbs from '../BreadCrumbs';
+import AddToCatalogModal from '../Catalog/AddToCatalogModal';
+import FilterModal from './FilterView/FilterModal';
+import FloatingFilterBtn from './FloatingBtns/FloatingFilterBtn';
+import FloatingSortbyBtn from './FloatingBtns/FloatingSortbyBtn';
+import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
+import SortbyModal from './HorizantalFilter/SortbyModal';
+import ProductGridView from './ProductListingView/ProductGridView';
 
 function ProductListingMaster() {
   const {
@@ -26,7 +29,23 @@ function ProductListingMaster() {
     handleSortBy,
   } = useProductListing();
   const wishlistData = useSelector(selectWishlist).items;
+  const isSuperAdmin = localStorage.getItem('isSuperAdmin');
   const pageOffset = Number(query?.page) - 1;
+  const catalogListData = useSelector(selectCatalogList).catalogList;
+  const { handleAddProductToCatalog, handleDeleteCatalogItem }: any = useCatalogFunctions();
+  const [catalogItem, setCatalogItem] = useState('');
+  const [showCatalogModal, setShowCatalogModal] = useState(false);
+  const handleCloseCatalogModal = () => setShowCatalogModal(false);
+  const handleShowCatalogModal = (item: any) => {
+    setCatalogItem(item);
+    setShowCatalogModal(true);
+  };
+  const handleSaveCatalogName = (catalogName: any) => {
+    if (catalogItem !== '' && catalogName !== '') {
+      handleAddProductToCatalog(catalogName, catalogItem);
+      setShowCatalogModal(false);
+    }
+  };
   const handlePageClick = (event: any) => {
     handlePaginationBtn(event?.selected);
   };
@@ -63,6 +82,9 @@ function ProductListingMaster() {
             handlePageClick={handlePageClick}
             isLoading={isLoading}
             wishlistData={wishlistData}
+            isSuperAdmin={isSuperAdmin}
+            handleShowCatalogModal={handleShowCatalogModal}
+            handleDeleteCatalogItem={handleDeleteCatalogItem}
           />
         </div>
         <div className="sticky_filter_btn w-100  d-block d-sm-none">
@@ -78,6 +100,13 @@ function ProductListingMaster() {
       </section>
       <FilterModal show={showFilterModal} handleClose={handleCloseFilterModal} title={selectedMultiLangData?.filter} />
       <SortbyModal show={showSortbyModal} handleClose={handleCloseSortbyModal} sortBy={sortBy} handleSortBy={handleSortBy} />
+      <AddToCatalogModal
+        show={showCatalogModal}
+        handleClose={handleCloseCatalogModal}
+        catalogListData={catalogListData}
+        handleSaveCatalogName={handleSaveCatalogName}
+      />
+      <div className="handle_display_mob_filter">{/* <MobileFilter /> */}</div>
     </>
   );
 }

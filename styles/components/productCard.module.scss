@@ -42,7 +42,6 @@
   font-size: 15px;
   line-height: 20px;
   text-decoration: none !important;
-  // width: 200px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -96,7 +95,7 @@
   text-align: left;
 }
 .product_content_wrap {
-  height: 80px;
+  height: auto;
 }
 .product_card:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
