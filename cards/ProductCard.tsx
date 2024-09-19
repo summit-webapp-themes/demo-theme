@@ -92,7 +92,7 @@ const ProductCard = ({ data, wishlistData, addToCartItem, getPartyName }: any) =
             <div>
               <Card.Text className={`my-0 py-0 fw-bold ${ProductCardStyles.product_card_text} `}>
                 {data.price} <span className={ProductCardStyles.mrpPrice}>M.R.P:</span>
-                <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}> {data.mrp_price}</span>
+                <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}>{data.mrp_price}</span>
               </Card.Text>
             </div>
             <div>{handleRenderAddToCartBtn()}</div>

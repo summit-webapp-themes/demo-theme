@@ -8,6 +8,7 @@ import { FaAlignJustify, FaCartPlus, FaHeart } from 'react-icons/fa6';
 import logo from '../../public/assets/images/logo.png';
 import stylesNavbar from '../../styles/components/navbar.module.scss';
 import ProductCatagoriesNavbar from './ProductCatagoriesNavbar';
+import MobileProductCategories from './MobileProductCategories';
 
 function WebNavBar({
   navbarData,
@@ -20,7 +21,7 @@ function WebNavBar({
   handleLanguageChange,
   selectedLanguageData,
   cartCount,
-  wishlistCount
+  wishlistCount,
 }: any) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,24 +38,26 @@ function WebNavBar({
       handleSearch(e);
     }
   };
-
-  const navMenuclick = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  console.log(selectedLanguageData, 'lang');
+  const handleCloseSidebar = () => setIsSidebarOpen(false);
   return (
     <>
       <header className={stylesNavbar.header}>
         <nav>
           <div className={`${stylesNavbar.navbar} ps-lg-5 pe-lg-4`}>
             <div className="w-100 d-flex justify-content-end pt-4">
-              <div className="mobile-nav d-flex justify-content-sm-between">
+              <div className="mobile-nav d-flex justify-content-sm-between px-4">
                 <Link href="#" legacyBehavior>
-                  <a className="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle" onClick={navMenuclick}>
+                  <a
+                    className="mobile-menu-toggle  w-icon-hamburger"
+                    aria-label="menu-toggle"
+                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                  >
                     <FaAlignJustify className="icon" />
                   </a>
                 </Link>
               </div>
-              <div className={stylesNavbar.logo}>
+              <div className={`${stylesNavbar.logo} d-none d-sm-none d-md-block`}>
                 <Link href="/" legacyBehavior>
                   <a>
                     <Image className="pb-2 mb-1" src={logo} alt="logo" width={250} />
@@ -76,14 +79,16 @@ function WebNavBar({
                 </div>
               </div>
               <div className={stylesNavbar.inlineList}>
-                <ul className="nav  list-inline d-flex justify-content-end">
+                <ul className="nav list-inline d-flex justify-content-end pe-sm-3">
                   <li className={stylesNavbar.list_inline_item}>
                     <Link href="/cart" legacyBehavior>
                       <a className={`link-dark ${stylesNavbar.label}`}>
                         <div className={stylesNavbar.icon_container}>
                           <FaCartPlus className="icon" />
                           <span className={`${stylesNavbar.badge} ${stylesNavbar.badge_warning} text-white`}>{cartCount}</span>
-                          <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>{selectedLanguageData?.cart}</span>
+                          <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>
+                            {selectedLanguageData?.cart}
+                          </span>
                         </div>
                       </a>
                     </Link>
@@ -94,7 +99,9 @@ function WebNavBar({
                         <div className={stylesNavbar.icon_container}>
                           <FaHeart className="icon" />
                           <span className={`${stylesNavbar.badge} ${stylesNavbar.badge_warning} text-white`}>{wishlistCount}</span>
-                          <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>Wishlist</span>
+                          <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>
+                            {selectedLanguageData?.wishlist}
+                          </span>
                         </div>
                       </a>
                     </Link>
@@ -102,8 +109,9 @@ function WebNavBar({
                   <li className={stylesNavbar.list_inline_item}>
                     <div className={stylesNavbar.icon_container}>
                       <FaUserCircle className="icon" />
+                      <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>{user}</span>
                     </div>
-                    <NavDropdown title={user} id="basic-nav-dropdown" className={` ${stylesNavbar.order_list_dropdown}`}>
+                    <NavDropdown title={''} id="basic-nav-dropdown" className={` ${stylesNavbar.order_list_dropdown}`}>
                       <NavDropdown.Item
                         as="a"
                         className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
@@ -137,7 +145,7 @@ function WebNavBar({
 
                       <Link href="#" passHref className="text-decoration-none" onClick={handleLogoutUser}>
                         <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                          Sign Out
+                          {selectedLanguageData?.logout}
                         </NavDropdown.Item>
                       </Link>
                     </NavDropdown>
@@ -148,9 +156,18 @@ function WebNavBar({
           </div>
         </nav>
       </header>
+      <MobileProductCategories
+        show={isSidebarOpen}
+        handleClose={handleCloseSidebar}
+        navbarData={navbarData}
+        setIsSidebarOpen={setIsSidebarOpen}
+        selectedLanguageData={selectedLanguageData}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        handleSearch={handleSearch}
+      />
       <ProductCatagoriesNavbar
         navbarData={navbarData}
-        isLoading={isLoading}
         errorMessage={errorMessage}
         selectedCurrencyValue={selectedCurrencyValue}
         multiLanguagesData={multiLanguagesData}
