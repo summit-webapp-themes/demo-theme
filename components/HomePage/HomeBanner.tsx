@@ -4,6 +4,7 @@ import { Carousel } from 'react-bootstrap';
 import CarouselCaption from 'react-bootstrap/CarouselCaption';
 import CarouselItem from 'react-bootstrap/CarouselItem';
 import { CONSTANTS } from '../../services/config/app-config';
+import style from '../../styles/components/home.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -21,7 +22,7 @@ const HomeBanner = () => {
             <Link href={`${banners.button_1_url}`}>
               <Image
                 loader={myLoader}
-                className="d-block w-100"
+                className={`d-block w-100 image-fluid ${style.catagoryImg}`}
                 src={banners?.img}
                 alt="Banner Images"
                 priority

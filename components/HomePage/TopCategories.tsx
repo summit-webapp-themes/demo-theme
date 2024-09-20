@@ -1,9 +1,8 @@
-import React from 'react';
 import useHomeTopCategories from '../../hooks/HomePageHooks/TopCategoriesHook';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CONSTANTS } from '../../services/config/app-config';
-
+import style from '../../styles/components/home.module.scss';
 const TopCategories = () => {
   const { homeTopCategories, isLoading, errorMessage } = useHomeTopCategories();
   console.log(homeTopCategories, 'homeTopCategories');
@@ -25,6 +24,7 @@ const TopCategories = () => {
                   loader={imageLoader}
                   src={homeTopCategories?.length > 0 && homeTopCategories[1]?.product_img}
                   alt="Picture of the author"
+                  className={`w-100 ${style.catagoryImg}`}
                   width={590}
                   height={500}
                 />
@@ -40,6 +40,7 @@ const TopCategories = () => {
                 <div className="category-banner banner banner-fixed ">
                   <Image
                     loader={imageLoader}
+                    className={`w-100 ${style.catagoryImg}`}
                     src={homeTopCategories?.length > 0 && homeTopCategories[0]?.product_img}
                     alt="Picture of the author"
                     width={340}
@@ -58,6 +59,7 @@ const TopCategories = () => {
                   src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
                   alt="Picture of the author"
                   width={340}
+                  className={`w-100 ${style.catagoryImg}`}
                   height={195}
                 />
               </div>
@@ -73,6 +75,7 @@ const TopCategories = () => {
                   loader={imageLoader}
                   src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
                   alt="Picture of the author"
+                  className={`w-100 ${style.catagoryImg}`}
                   width={470}
                   height={500}
                 />
