@@ -42,11 +42,11 @@
   font-size: 15px;
   line-height: 20px;
   text-decoration: none !important;
-  width: 200px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 .product_name a {
   text-decoration: none !important;
