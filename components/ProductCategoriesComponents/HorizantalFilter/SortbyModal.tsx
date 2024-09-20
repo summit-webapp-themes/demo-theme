@@ -13,7 +13,11 @@ function SortbyModal({ show, handleClose, sortBy, handleSortBy }: any) {
           <SortByFilter sortBy={sortBy} handleSortBy={handleSortBy} />
         </div>
       </Modal.Body>
-      <Modal.Footer></Modal.Footer>
+      <Modal.Footer>
+        <button className="btn btn-primary" onClick={handleClose}>
+          Close
+        </button>
+      </Modal.Footer>
     </Modal>
   );
 }

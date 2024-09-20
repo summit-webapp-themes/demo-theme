@@ -13,7 +13,11 @@ function FilterModal({ show, handleClose, title }: any) {
           <WebFilter />
         </div>
       </Modal.Body>
-      <Modal.Footer></Modal.Footer>
+      <Modal.Footer>
+        <button className="btn btn-primary" onClick={handleClose}>
+          Close
+        </button>
+      </Modal.Footer>
     </Modal>
   );
 }

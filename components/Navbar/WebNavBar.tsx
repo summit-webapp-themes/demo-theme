@@ -38,7 +38,6 @@ function WebNavBar({
       handleSearch(e);
     }
   };
-  console.log(selectedLanguageData, 'lang');
   const handleCloseSidebar = () => setIsSidebarOpen(false);
   return (
     <>
@@ -46,7 +45,7 @@ function WebNavBar({
         <nav>
           <div className={`${stylesNavbar.navbar} ps-lg-5 pe-lg-4`}>
             <div className="w-100 d-flex justify-content-end pt-4">
-              <div className="mobile-nav d-flex justify-content-sm-between px-4">
+              <div className="mobile-nav d-flex justify-content-sm-between px-3 px-sm-4">
                 <Link href="#" legacyBehavior>
                   <a
                     className="mobile-menu-toggle  w-icon-hamburger"
@@ -79,7 +78,7 @@ function WebNavBar({
                 </div>
               </div>
               <div className={stylesNavbar.inlineList}>
-                <ul className="nav list-inline d-flex justify-content-end pe-sm-3">
+                <ul className="nav list-inline d-flex justify-content-end px-3">
                   <li className={stylesNavbar.list_inline_item}>
                     <Link href="/cart" legacyBehavior>
                       <a className={`link-dark ${stylesNavbar.label}`}>

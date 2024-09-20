@@ -4,13 +4,13 @@ import { Accordion } from 'react-bootstrap';
 import FilterLoadingLayout from './FilterLoadingLayout';
 
 function WebFilter() {
-  const { filtersData, isLoading, errorMessage, debouncedHandleFilterCheckFun, selectedFilters } = useProductListingFilterHook();
+  const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters } = useProductListingFilterHook();
 
   const renderFilters: any = () => {
     if (isLoading) {
       return (
         <div className="row justify-content-center">
-          {[...Array(3)].map(() => (
+          {[...Array(1)].map(() => (
             <>
               <div className="col-lg-12 mx-3">
                 <FilterLoadingLayout />
@@ -36,7 +36,7 @@ function WebFilter() {
                       checked={selectedFilters.some(
                         (selectedFilter: any) => selectedFilter.name === filter.section && selectedFilter.value.includes(filterValue)
                       )}
-                      onChange={debouncedHandleFilterCheckFun}
+                      onChange={handleFilterCheckFun}
                     />
                     <label className="form-check-label filter-label accordion-checkbox checkbox-margin" htmlFor="flexCheckDefault">
                       {filterValue}
