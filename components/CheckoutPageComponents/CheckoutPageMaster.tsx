@@ -32,7 +32,6 @@ export default function CheckoutPageMaster() {
     setShow,
     setShowCreateBillingAddModal,
   } = useGetUserAddresses();
-  const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
   const { stateList, handlePlaceOrder, handleUserAddressChange, showLocation } = useCheckout();
 
   return (

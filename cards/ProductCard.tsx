@@ -64,19 +64,9 @@ const ProductCard = ({
     };
     addToCartItem(addToCartParams, null);
   };
-  const handleRenderAddToCartBtn: any = () => {
-    if (isSuperAdmin === 'true') {
-      return (
-        <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={handleAddToProductData}>
-          ADD
-          <FaCartPlus className={ProductCardStyles.cardBtn} />
-        </Button>
-      );
-    }
-  };
 
   const handleRenderAddToCatalogBtn: any = () => {
-    if (isSuperAdmin === 'false') {
+    if (isSuperAdmin === 'true') {
       return (
         <div className="d-flex justify-content-center">
           {router?.asPath?.startsWith('/catalog') ? (
@@ -87,14 +77,10 @@ const ProductCard = ({
               <RiDeleteBin2Fill />
             </button>
           ) : (
-            <button className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={() => handleShowCatalogModal(data?.name)}>
+            <Button className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={() => handleShowCatalogModal(data?.name)}>
               Add to catalog
-            </button>
+            </Button>
           )}
-          <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={handleAddToProductData}>
-            ADD
-            <FaCartPlus className={ProductCardStyles.cardBtn} />
-          </Button>
         </div>
       );
     }
@@ -129,9 +115,14 @@ const ProductCard = ({
                 <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}>{data.mrp_price}</span>
               </Card.Text>
             </div>
-            <div>{handleRenderAddToCartBtn()}</div>
+            <div>
+              <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={handleAddToProductData}>
+                ADD
+                <FaCartPlus className={ProductCardStyles.cardBtn} />
+              </Button>
+            </div>
           </div>
-          <div>{handleRenderAddToCatalogBtn()}</div>
+          <div>{isSuperAdmin === 'true' && handleRenderAddToCatalogBtn()}</div>
         </div>
       </Card.Body>
     </Card>
