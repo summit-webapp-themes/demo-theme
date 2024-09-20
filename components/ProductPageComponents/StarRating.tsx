@@ -3,12 +3,10 @@ import { MdOutlineStar, MdOutlineStarHalf, MdOutlineStarBorder } from 'react-ico
 type Props = {};
 
 const StarRating = (props: any) => {
-  console.log('@star rating ', props);
   const { rating }: any = props;
   const fullStars: any = (rating * 10) / 2;
   const emptyStars: any = 5 - fullStars;
   const renderStar: any = (type: string) => {
-    console.log('star rating', rating);
     if (type === 'full') {
       return <MdOutlineStar style={{ color: '#666' }} />;
     } else if (type === 'half') {

@@ -10,7 +10,7 @@ function WebFilter() {
     if (isLoading) {
       return (
         <div className="row justify-content-center">
-          {[...Array(3)].map(() => (
+          {[...Array(1)].map(() => (
             <>
               <div className="col-lg-12 mx-3">
                 <FilterLoadingLayout />

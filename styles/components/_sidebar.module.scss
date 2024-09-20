@@ -1,0 +1,19 @@
+.nav-sidebar .accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.nav-sidebar .accordio-body {
+  padding: 0 !important;
+}
+.nav-sidebar .accordion-body {
+  padding: 0 !important;
+}
+.nav-sidebar .accordion-button {
+  padding: 1rem 0 !important;
+}
+.nav-sidebar2 .accordion {
+  width: 90% !important;
+}
+.nav-sidebar2 .accordion-button {
+  padding: 0.5rem !important;
+}

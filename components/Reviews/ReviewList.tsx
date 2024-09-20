@@ -28,7 +28,7 @@ const ReviewList = ({ reviewList, isLoading }: any) => {
             <div className="row listing-card py-2" key={i}>
               <div className="col-lg-12 p-2 border ">
                 <div className="row">
-                  <div className="col-md-2">
+                  <div className="col-12">
                     <p className="fs-2 mb-0">
                       <FaUserCircle size={27} />
                       <span className={`fw-semibold text-capitalize ${style.text_margin}`}>{val.name}</span>

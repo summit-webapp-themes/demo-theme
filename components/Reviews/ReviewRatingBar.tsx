@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
 
-const ReviewRatingBar = ({ reviewList }: any) => {
+const ReviewRatingBar = ({ reviewList, selectedMultiLangData }: any) => {
   const starCounts: any = {}; // Object to store the count of each star rating
   const progressreviewList: any = [];
 
@@ -54,14 +54,14 @@ const ReviewRatingBar = ({ reviewList }: any) => {
   });
   return (
     <div className="container my-3 ">
-      <h5 className="mb-2">Customer reviews</h5>
+      <h5 className="mb-2">{selectedMultiLangData?.customer_reviews}</h5>
       {progressreviewList?.length > 0 &&
         ratioSum?.map((e: any, ind: number) => {
           return (
             <div key={ind} className="row my-1 py-1">
-              <div className="col-3">
+              <div className="col-3 p-0">
                 <p className="fw-semibold m-0">
-                  {e.star} {`Star`}
+                  {e.star} {selectedMultiLangData?.star}
                 </p>
               </div>
               <div className="col-7">

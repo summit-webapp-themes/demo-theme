@@ -5,7 +5,7 @@ import ReviewRatingBar from './ReviewRatingBar';
 import useCustomerReview from '../../hooks/ProductDetailPageHooks/useCustomerReview';
 const CustomerReviewModal = dynamic(() => import('./CustomerReviewModal'));
 
-const ReviewMaster = () => {
+const ReviewMaster = ({ selectedMultiLangData }: any) => {
   const {
     uploadReviewImage,
     reviewPhotos,
@@ -23,11 +23,11 @@ const ReviewMaster = () => {
     <div className="container-fluid w-100 ps-lg-5 pe-lg-5">
       <div className="row">
         <div className="col-md-4">
-          <ReviewRatingBar reviewList={reviewList} />
+          <ReviewRatingBar reviewList={reviewList} selectedMultiLangData={selectedMultiLangData} />
           <h5>Review this product</h5>
           <p>Share your thoughts with other customers</p>
           <Button variant="outline-primary" onClick={handleToggleReviewForm}>
-            Write Product Review
+            {selectedMultiLangData?.write_a_review}
           </Button>
         </div>
         <div className="col-md-8">

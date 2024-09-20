@@ -77,7 +77,7 @@ function ProductPageMaster() {
             </div>
           </div>
         </div>
-        <ReviewMaster />
+        <ReviewMaster selectedMultiLangData={selectedMultiLangData} />
         <MatchingProducts />
       </div>
     );

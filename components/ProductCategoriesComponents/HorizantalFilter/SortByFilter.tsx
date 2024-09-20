@@ -4,7 +4,7 @@ function SortByFilter({ sortBy, handleSortBy }: any) {
   return (
     <div className="col-lg-8 col-8">
       <select
-        className={`form-select form-select ${horizontalFilterStyles.sort_by_select} `}
+        className={`form-select form-select  ${horizontalFilterStyles.sort_by_select} `}
         value={sortBy}
         onChange={(e) => handleSortBy(e.target.value)}
       >
