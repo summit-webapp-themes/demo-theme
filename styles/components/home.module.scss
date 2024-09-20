@@ -10,3 +10,10 @@ height: 100%;
     width: 96%;
     margin: 0 auto;
 }
+@media (max-width: 1024px) {
+
+    .catagoryImg {
+    height: auto !important;
+    margin-top: 0.5rem;
+    }
+  }
