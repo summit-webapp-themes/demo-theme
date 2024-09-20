@@ -101,9 +101,9 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
                       ))}
                   </div>
                 </div>
-              </div>
-              <div className="col-lg-2 col-md-4 text-end">
-                <LinguisticsAndForex />
+                <div className="col-lg-2 col-md-4 text-end">
+                  <LinguisticsAndForex />
+                </div>
               </div>
             </div>
           </nav>
