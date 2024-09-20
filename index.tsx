@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { fetchMultiLanguagesThunkAPI, setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
 import MetaTag from '../services/api/general-apis/meta-tag-api';
 import PageMetaData from '../components/PageMetaData';
+import HomePageMaster from '../components/HomePage/HomePageMaster';
 
 const Home = ({ fetchedDataFromServer }: any) => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Home = ({ fetchedDataFromServer }: any) => {
   return (
     <>
       {CONSTANTS.ENABLE_META_TAGS && <PageMetaData meta_data={fetchedDataFromServer?.metaTagsData} />}
-      <div>Home</div>
+      <HomePageMaster />
     </>
   );
 };
