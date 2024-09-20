@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MultiLangApi from '../services/api/general-apis/multilanguage-api';
 import { CONSTANTS } from '../services/config/app-config';
 import { useDispatch } from 'react-redux';
-import { fetchMultiLanguagesThunkAPI, setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
+import { setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
 import MetaTag from '../services/api/general-apis/meta-tag-api';
 import PageMetaData from '../components/PageMetaData';
 import HomePageMaster from '../components/HomePage/HomePageMaster';
