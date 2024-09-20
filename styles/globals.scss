@@ -23,7 +23,7 @@
 }
 // background
 .bg-blue {
-  background-color: #2c73d6;
+  background-color: #233E63;
 }
 // Header
 .heading-category-l1 {
@@ -51,7 +51,7 @@
   color: #ecd386;
 }
 .theme-blue {
-  color: #fff !important;
+  color: #233E63 !important;
   font-weight: 500;
 }
 .theme-blue-bg {
@@ -87,7 +87,7 @@
 }
 
 .icon {
-  color: #fff;
+  color: #233E63;
   text-align: center;
   font-size: 22px !important;
 }
@@ -101,7 +101,7 @@
   color: #ecd386 !important; /* Custom text color */
 }
 #basic-nav-dropdown {
-  color: white !important;
+  color: #233E63 !important;
   font-weight: 500 !important ;
 }
 
@@ -164,7 +164,11 @@
 .list-toggle-rtl {
   margin-top: 25px;
 }
-
+// homepage global css
+.slider-container {
+  background-color: #fff;
+  padding: 22px;
+}
 //React Image Slider width Adjust
 
 .productDetailImageSlider .image-gallery-slide .image-gallery-image {
