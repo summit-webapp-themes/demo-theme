@@ -1,8 +1,9 @@
 import React from 'react';
-import HomeBanner from './HomeBanner';
-import TopCategories from './TopCategories';
-import DisplayTag from './DisplayTag';
-import BrandListing from './BrandListing';
+import dynamic from 'next/dynamic';
+import HomeBanner from './BannerSection/HomeBanner';
+const TopCategories = dynamic(() => import('./PersonalizedCategories/TopCategories'));
+const BrandListing = dynamic(() => import('./BrandSection/BrandListingMaster'));
+const CollectionsMaster = dynamic(() => import('./FeaturedCollections/CollectionMaster'));
 import style from '../../styles/components/home.module.scss';
 
 const HomePageMaster = () => {
@@ -12,7 +13,7 @@ const HomePageMaster = () => {
       <div className={`row ps-lg-5 pe-lg-5 ${style.backgoundColor}`}>
         <TopCategories />
         <BrandListing />
-        <DisplayTag />
+        <CollectionsMaster />
       </div>
     </>
   );
