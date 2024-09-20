@@ -69,43 +69,45 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
     }
     if (navbarData?.length > 0) {
       return (
-        <nav ref={ref} className="w-100 d-none d-sm-none d-md-block">
-          <div className={`bg-blue text-light fs-16  py-2 `} onMouseLeave={handleMouseLeave}>
-            <div className="row ">
-              <div className="offset-lg-2 col-lg-8 col-md-8">
-                <div className="d-flex justfy-content-start">
-                  {navbarData?.length > 0 &&
-                    navbarData.map((item: any, index: number) => (
-                      <div key={index} className={`${stylesHeader.header_category_container}`}>
-                        {navbarData === null ? (
-                          <Placeholder xs={6} bg="dark" />
-                        ) : (
-                          <div
-                            className={`heading-category-l1 ${showPopoverIndex === index && 'theme-gold'}`}
-                            onMouseEnter={(e) => handleMouseEnter(e, index)}
+        <header>
+          <nav ref={ref} className="w-100 d-none d-sm-none d-md-block">
+            <div className={`bg-blue text-light fs-16  py-2 `} onMouseLeave={handleMouseLeave}>
+              <div className="row w-100 ">
+                <div className="offset-lg-2 col-lg-8 col-md-8">
+                  <div className="d-flex justfy-content-start">
+                    {navbarData?.length > 0 &&
+                      navbarData.map((item: any, index: number) => (
+                        <div key={index} className={`${stylesHeader.header_category_container}`}>
+                          {navbarData === null ? (
+                            <Placeholder xs={6} bg="dark" />
+                          ) : (
+                            <div
+                              className={`heading-category-l1 ${showPopoverIndex === index && 'theme-gold'}`}
+                              onMouseEnter={(e) => handleMouseEnter(e, index)}
+                            >
+                              {item.label}
+                            </div>
+                          )}
+                          <Overlay
+                            show={showPopoverIndex === index && item?.values?.length > 0}
+                            target={target}
+                            placement="bottom"
+                            container={ref.current}
+                            containerPadding={20}
                           >
-                            {item.label}
-                          </div>
-                        )}
-                        <Overlay
-                          show={showPopoverIndex === index && item?.values?.length > 0}
-                          target={target}
-                          placement="bottom"
-                          container={ref.current}
-                          containerPadding={20}
-                        >
-                          {popoverBottom(item)}
-                        </Overlay>
-                      </div>
-                    ))}
+                            {popoverBottom(item)}
+                          </Overlay>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+                <div className="col-lg-2 col-md-4 p-0">
+                  <LinguisticsAndForex />
                 </div>
               </div>
-              <div className="col-lg-2 col-md-4">
-                <LinguisticsAndForex />
-              </div>
             </div>
-          </div>
-        </nav>
+          </nav>
+        </header>
       );
     }
   };
