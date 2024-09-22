@@ -17,8 +17,6 @@ const TopCategories = () => {
         <Image src={ErrorImage} width={250} height={250} alt="Error Image" />
       </div>
     );
-  } else {
-    return <></>;
   }
   return <></>;
 };

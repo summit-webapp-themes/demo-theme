@@ -21,9 +21,10 @@ const BannerCarousel = ({ bannersList }: any) => {
                 className={`d-block w-100 image-fluid ${style.catagoryImg}`}
                 src={banners?.img}
                 alt="Banner Images"
-                priority
-                width={1400}
-                height={400}
+                loading="eager"
+                priority={true}
+                width={736}
+                height={414}
               />
               <CarouselCaption className="corousel-captionn">
                 {banners?.btn_info?.map((btn_item: any, index: number) => (

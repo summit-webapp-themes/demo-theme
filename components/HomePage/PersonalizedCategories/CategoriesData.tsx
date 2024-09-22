@@ -8,7 +8,7 @@ const CategoriesData = ({ homeTopCategories }: any) => {
     return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
   };
   return (
-    <div className="container-fluid slider-container mt-5">
+    <div className="container-fluid slider-container mt-4">
       <h4 className="mt-2 fw-bold">Our Handpicked Categories for You</h4>
       <div className="row mt-3">
         <div className="col-sm-12 col-md-6 col-lg-5 col-xl-5">
@@ -19,11 +19,13 @@ const CategoriesData = ({ homeTopCategories }: any) => {
             <div className="category-banner banner banner-fixed ">
               <Image
                 loader={imageLoader}
+                className={`w-100 ${style.catagoryImg}`}
                 src={homeTopCategories?.length > 0 && homeTopCategories[1]?.product_img}
                 alt="Picture of the author"
-                width={590}
-                height={500}
-                className={`w-100 ${style.catagoryImg}`}
+                width={978}
+                height={550}
+                loading="eager"
+                priority={true}
               />
             </div>
           </Link>
@@ -37,11 +39,13 @@ const CategoriesData = ({ homeTopCategories }: any) => {
               <div className="category-banner banner banner-fixed ">
                 <Image
                   loader={imageLoader}
+                  className={`w-100 ${style.catagoryImg}`}
                   src={homeTopCategories?.length > 0 && homeTopCategories[0]?.product_img}
                   alt="Picture of the author"
-                  width={340}
+                  width={498}
                   height={280}
-                  className={`w-100 ${style.catagoryImg}`}
+                  loading="eager"
+                  priority={true}
                 />
               </div>
             </Link>
@@ -53,11 +57,13 @@ const CategoriesData = ({ homeTopCategories }: any) => {
             <div className="category-banner banner banner-fixed ">
               <Image
                 loader={imageLoader}
+                className={`w-100 ${style.catagoryImg}`}
                 src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
                 alt="Picture of the author"
-                width={340}
-                height={195}
-                className={`w-100 ${style.catagoryImg}`}
+                width={445}
+                height={250}
+                loading="eager"
+                priority={true}
               />
             </div>
           </Link>
@@ -70,11 +76,13 @@ const CategoriesData = ({ homeTopCategories }: any) => {
             <div className="category-banner banner banner-fixed ">
               <Image
                 loader={imageLoader}
+                className={`w-100 ${style.catagoryImg}`}
                 src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
                 alt="Picture of the author"
-                width={470}
-                height={500}
-                className={`w-100 ${style.catagoryImg}`}
+                width={978}
+                height={550}
+                loading="eager"
+                priority={true}
               />
             </div>
           </Link>

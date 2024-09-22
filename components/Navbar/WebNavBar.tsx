@@ -61,7 +61,7 @@ function WebNavBar({
               <div className={`${stylesNavbar.logo} d-none d-sm-none d-md-block`}>
                 <Link href="/" legacyBehavior>
                   <a>
-                    <Image className="pb-2 mb-1" src={logo} alt="logo" width={250} />
+                    <Image className="pb-2 mb-1" src={logo} alt="logo" width={250} priority={true} />
                   </a>
                 </Link>
               </div>
