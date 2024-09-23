@@ -1,8 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import HomeBanner from './BannerSection/HomeBanner';
-const TopCategories = dynamic(() => import('./PersonalizedCategories/TopCategories'));
-const BrandListing = dynamic(() => import('./BrandSection/BrandListingMaster'));
+import TopCategories from './PersonalizedCategories/TopCategories';
+import BrandListing from './BrandSection/BrandListingMaster';
 const CollectionsMaster = dynamic(() => import('./FeaturedCollections/CollectionMaster'));
 import style from '../../styles/components/home.module.scss';
 

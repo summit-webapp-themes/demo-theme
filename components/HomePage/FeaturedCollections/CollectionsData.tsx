@@ -4,6 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import style from '../../../styles/components/home.module.scss';
 
 const CollectionsData = ({ allTagsData }: any) => {
+  console.log('allTagsData', allTagsData);
   const responsive: any = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -29,7 +30,7 @@ const CollectionsData = ({ allTagsData }: any) => {
           (item: any, i: any) =>
             item.value.length > 0 && (
               <div key={i} className="slider-container mt-5">
-                <h4 className="fw-bold">{item.tag_name}</h4>
+                <h4 className="fw-bold">{item.description}</h4>
                 {item.value.length > 0 && (
                   <Carousel responsive={responsive}>
                     {item.value.map((val: any, index: any) => (
