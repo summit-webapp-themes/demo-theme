@@ -1,14 +1,11 @@
-import { useEffect } from 'react';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import useBanner from '../../../hooks/HomePageHooks/useHomeBanners';
 import HomeBannerLoading from './HomeBannerLoading';
 import ErrorImage from '../../../public/assets/images/error-icon.png';
-const BannerCarousel = dynamic(() => import('./BannerCarousel'), { ssr: false });
+import BannerCarousel from './BannerCarousel';
 
 const HomeBanner = () => {
   const { bannersList, isLoading, errorMessage } = useBanner();
-
   if (isLoading) {
     return <HomeBannerLoading />;
   } else if (bannersList?.length > 0) {
@@ -20,7 +17,7 @@ const HomeBanner = () => {
       </div>
     );
   }
-  return <HomeBannerLoading />;
+  return <></>;
 };
 
 export default HomeBanner;

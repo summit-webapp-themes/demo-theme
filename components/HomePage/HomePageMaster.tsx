@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import HomeBanner from './BannerSection/HomeBanner';
 import TopCategories from './PersonalizedCategories/TopCategories';
