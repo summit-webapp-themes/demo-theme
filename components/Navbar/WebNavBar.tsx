@@ -116,7 +116,6 @@ function WebNavBar({
                           <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>{user}</span>
                         </div>
 
-<<<<<<< HEAD
                         <NavDropdown
                           title={''}
                           id="basic-nav-dropdown"
@@ -129,33 +128,6 @@ function WebNavBar({
                                 as="a"
                                 className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
                               ></NavDropdown.Item>
-=======
-                        <Link href="/quick-order" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.quick_order}
-                          </NavDropdown.Item>
-                        </Link>
-                        <Link href="/quick-order" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.my_account}
-                          </NavDropdown.Item>
-                        </Link>
-                        <Link href="/quick-order" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.dealer_ledger}
-                          </NavDropdown.Item>
-                        </Link>
-                        <Link href="/catalog" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.view_catalogs}
-                          </NavDropdown.Item>
-                        </Link>
-                        <Link href="/my-orders" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.my_order}
-                          </NavDropdown.Item>
-                        </Link>
->>>>>>> upstream/master
 
                               <Link href="/quick-order" passHref className="text-decoration-none">
                                 <NavDropdown.Item
