@@ -7,7 +7,6 @@ import OrderDeatil from './OrderDeatil';
 
 function OrderDetailMaster() {
   const { orderData, isLoading, errorMessage } = useOrderDetailHook();
-  console.log(orderData, 'data');
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
   useEffect(() => {

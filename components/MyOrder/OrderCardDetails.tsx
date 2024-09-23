@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 
 function OrderCardDetails({ data, selectedMultiLangData }: any) {
   const { query } = useRouter();
-  console.log(query, 'query');
   const currency_state_from_redux: any = useSelector(currency_selector_state);
   const [isDealer, setIsDealer] = useState(false);
   useEffect(() => {
@@ -26,7 +25,7 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
   return (
     <>
       {data?.order_details?.map((detail: any) => (
-        <div className="cart_item cart_item-myorder-m card-body order_cartdetails" key={detail?.item_name}>
+        <div className=" card-body " key={detail?.item_name}>
           {!query?.orderId && (
             <div className="d-flex mb-2 pb-0">
               <div className="flex-fill">
@@ -62,7 +61,7 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
                       <b>{detail?.item_name}</b>
                     </a>
                   </Link>
-                  <table width="100%" className="mt-1 table table-borderless">
+                  <table width="100%" className="mt-1 table table-borderless ">
                     <tbody>
                       <tr className=" ">
                         <td className="p-0 m-0">
@@ -92,10 +91,10 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
                       </tr>
 
                       <tr>
-                        <td className="px-0 py-0 pb-0 myorder_td">
+                        <td className="px-0 py-0 pb-0 ">
                           <p className="text-capitalize m-0  ">{selectedMultiLangData?.quantity}</p>
                         </td>
-                        <td width="85%" className="px-0 py-0 pb-0 myorder_width">
+                        <td width="85%" className="px-0 py-0 pb-0 ">
                           <p className="text-capitalize m-0  ">: {detail?.prod_info[2]?.value}</p>
                         </td>
                       </tr>
@@ -114,7 +113,7 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
                 data?.shipping_method?.transport_charges === null ? (
                   ''
                 ) : (
-                  <h5 className="data_heading mb-1">{selectedMultiLangData?.shipping_method}</h5>
+                  <h5 className=" mb-1">{selectedMultiLangData?.shipping_method}</h5>
                 )}
 
                 <div>
