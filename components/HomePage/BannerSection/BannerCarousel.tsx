@@ -18,13 +18,14 @@ const BannerCarousel = ({ bannersList }: any) => {
             <Link href={`${banners.button_1_url}`}>
               <Image
                 loader={myLoader}
-                className={`d-block w-100 image-fluid ${style.catagoryImg}`}
+                className={`d-block image-fluid ${style.catagoryImg}`}
                 src={banners?.img}
                 alt="Banner Images"
                 loading="eager"
                 priority={true}
-                width={736}
-                height={414}
+                width={1600}
+                height={400}
+                style={{ width: '100%', height: 'auto' }}
               />
               <CarouselCaption className="corousel-captionn">
                 {banners?.btn_info?.map((btn_item: any, index: number) => (

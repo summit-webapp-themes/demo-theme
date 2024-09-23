@@ -6,10 +6,10 @@ import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
 
 function Navbar() {
-  const { navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser } = useNavbar();
+  const { navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, isLoggedIn } = useNavbar();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
-  const cartCount = useSelector(selectCart)?.cartCount
-  const wishlistCount = useSelector(selectWishlist)?.wislistCount
+  const cartCount = useSelector(selectCart)?.cartCount;
+  const wishlistCount = useSelector(selectWishlist)?.wislistCount;
   return (
     <WebNavBar
       navbarData={navbarData}
@@ -20,6 +20,7 @@ function Navbar() {
       selectedLanguageData={selectedLanguageData}
       cartCount={cartCount}
       wishlistCount={wishlistCount}
+      isLoggedIn={isLoggedIn}
     />
   );
 }

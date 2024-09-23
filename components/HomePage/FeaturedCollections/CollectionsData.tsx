@@ -4,7 +4,6 @@ import 'react-multi-carousel/lib/styles.css';
 import style from '../../../styles/components/home.module.scss';
 
 const CollectionsData = ({ allTagsData }: any) => {
-  console.log('allTagsData', allTagsData);
   const responsive: any = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
