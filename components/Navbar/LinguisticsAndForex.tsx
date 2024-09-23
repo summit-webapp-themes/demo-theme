@@ -7,7 +7,7 @@ const LinguisticsAndForex = () => {
 
   return (
     <>
-      <div className="mx-3 px-5">
+      <div className="mx-3 ">
         <select value={selectedLang} onChange={(e) => handleLanguageChange(e?.target?.value)} className="select-field cursor_pointer">
           {multiLanguagesData?.length > 0 &&
             multiLanguagesData !== null &&
