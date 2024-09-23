@@ -35,7 +35,7 @@ const BrandsData = ({ brandListing }: any) => {
               <div key={`${j}`} className="card-wrapper mx-auto " style={{ width: '96%' }}>
                 <Link href={val?.url} className="banner-title text-white text-capitalize ls-25 homecategory_btnlink">
                   <div className="category-banner banner banner-fixed ">
-                    <Image loader={imageLoader} src={val?.image} alt="Brand Images" width={130} height={130} />
+                    <Image loader={imageLoader} src={val?.image} alt="Brand Images" width={130} height={130} priority={false} />
                   </div>
                 </Link>
               </div>
