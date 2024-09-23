@@ -22,6 +22,7 @@ function WebNavBar({
   selectedLanguageData,
   cartCount,
   wishlistCount,
+  isLoggedIn,
 }: any) {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
@@ -40,7 +41,7 @@ function WebNavBar({
     }
   };
   const handleCloseSidebar = () => setIsSidebarOpen(false);
-  const handleShowDropDown = () => setShowDropDown(true);
+  const handleShowDropDown = () => setShowDropDown(!showDropDown);
   return (
     <>
       <header className={stylesNavbar.header}>
@@ -108,50 +109,87 @@ function WebNavBar({
                     </Link>
                   </li>
                   <li className={stylesNavbar.list_inline_item}>
-                    <div className={stylesNavbar.icon_container} onClick={handleShowDropDown}>
-                      <FaUserCircle className="icon" />
-                      <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>{user}</span>
-                    </div>
-                    {
-                      <NavDropdown title={''} id="basic-nav-dropdown" className={` ${stylesNavbar.order_list_dropdown}`}>
-                        <NavDropdown.Item
-                          as="a"
-                          className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
-                        ></NavDropdown.Item>
+                    {isLoggedIn ? (
+                      <>
+                        <div className={stylesNavbar.icon_container} onClick={handleShowDropDown}>
+                          <FaUserCircle className="icon" />
+                          <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>{user}</span>
+                        </div>
 
-                        <Link href="/quick-order" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.quick_order}
-                          </NavDropdown.Item>
-                        </Link>
-                        <Link href="/quick-order" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.my_account}
-                          </NavDropdown.Item>
-                        </Link>
-                        <Link href="/quick-order" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.dealer_ledger}
-                          </NavDropdown.Item>
-                        </Link>
-                        <Link href="/catalog" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.view_catalogs}
-                          </NavDropdown.Item>
-                        </Link>
-                        <Link href="/my-orders" passHref className="text-decoration-none">
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.my_order}
-                          </NavDropdown.Item>
-                        </Link>
+                        <NavDropdown
+                          title={''}
+                          id="basic-nav-dropdown"
+                          className={` ${stylesNavbar.order_list_dropdown}`}
+                          show={showDropDown}
+                        >
+                          {isLoggedIn && (
+                            <>
+                              <NavDropdown.Item
+                                as="a"
+                                className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                              ></NavDropdown.Item>
 
-                        <Link href="#" passHref className="text-decoration-none" onClick={handleLogoutUser}>
-                          <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
-                            {selectedLanguageData?.logout}
-                          </NavDropdown.Item>
-                        </Link>
-                      </NavDropdown>
-                    }
+                              <Link href="/quick-order" passHref className="text-decoration-none">
+                                <NavDropdown.Item
+                                  as="a"
+                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                                >
+                                  {selectedLanguageData?.quick_order}
+                                </NavDropdown.Item>
+                              </Link>
+                              <Link href="/quick-order" passHref className="text-decoration-none">
+                                <NavDropdown.Item
+                                  as="a"
+                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                                >
+                                  {selectedLanguageData?.my_account}
+                                </NavDropdown.Item>
+                              </Link>
+                              <Link href="/quick-order" passHref className="text-decoration-none">
+                                <NavDropdown.Item
+                                  as="a"
+                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                                >
+                                  {selectedLanguageData?.dealer_ledger}
+                                </NavDropdown.Item>
+                              </Link>
+                              <Link href="/catalog" passHref className="text-decoration-none">
+                                <NavDropdown.Item
+                                  as="a"
+                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                                >
+                                  {selectedLanguageData?.view_catalogs}
+                                </NavDropdown.Item>
+                              </Link>
+                              <Link href="/MyOrder" passHref className="text-decoration-none">
+                                <NavDropdown.Item
+                                  as="a"
+                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                                >
+                                  {selectedLanguageData?.my_order}
+                                </NavDropdown.Item>
+                              </Link>
+
+                              <Link href="#" passHref className="text-decoration-none" onClick={handleLogoutUser}>
+                                <NavDropdown.Item
+                                  as="a"
+                                  className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}
+                                >
+                                  {selectedLanguageData?.logout}
+                                </NavDropdown.Item>
+                              </Link>
+                            </>
+                          )}
+                        </NavDropdown>
+                      </>
+                    ) : (
+                      <Link href={'/login'} className={stylesNavbar.icon_container} onClick={handleShowDropDown}>
+                        <FaUserCircle className="icon" />
+                        <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>
+                          {selectedLanguageData.sign_in}
+                        </span>
+                      </Link>
+                    )}
                   </li>
                 </ul>
               </div>

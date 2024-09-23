@@ -16,14 +16,14 @@ const CategoriesData = ({ homeTopCategories }: any) => {
             href={`${homeTopCategories[1]?.category_url}`}
             className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
           >
-            <div className="category-banner banner banner-fixed ">
+            <div className="category-banner banner banner-fixed " style={{ maxWidth: '100%', height: 'auto' }}>
               <Image
                 loader={imageLoader}
                 className={`w-100 ${style.catagoryImg}`}
                 src={homeTopCategories?.length > 0 && homeTopCategories[1]?.product_img}
                 alt="Picture of the author"
-                width={978}
-                height={550}
+                width={500}
+                height={500}
                 loading="eager"
                 priority={true}
               />
@@ -36,14 +36,14 @@ const CategoriesData = ({ homeTopCategories }: any) => {
               href={`${homeTopCategories[0]?.category_url}`}
               className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
             >
-              <div className="category-banner banner banner-fixed ">
+              <div className="category-banner banner banner-fixed " style={{ maxWidth: '100%', height: 'auto' }}>
                 <Image
                   loader={imageLoader}
                   className={`w-100 ${style.catagoryImg}`}
                   src={homeTopCategories?.length > 0 && homeTopCategories[0]?.product_img}
                   alt="Picture of the author"
-                  width={498}
-                  height={280}
+                  width={275}
+                  height={236}
                   loading="eager"
                   priority={true}
                 />
@@ -54,14 +54,14 @@ const CategoriesData = ({ homeTopCategories }: any) => {
             href={`${homeTopCategories[3]?.category_url}`}
             className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
           >
-            <div className="category-banner banner banner-fixed ">
+            <div className="category-banner banner banner-fixed " style={{ maxWidth: '100%', height: 'auto' }}>
               <Image
                 loader={imageLoader}
                 className={`w-100 ${style.catagoryImg}`}
                 src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
                 alt="Picture of the author"
-                width={445}
-                height={250}
+                width={275}
+                height={236}
                 loading="eager"
                 priority={true}
               />
@@ -73,14 +73,14 @@ const CategoriesData = ({ homeTopCategories }: any) => {
             href={`${homeTopCategories[2]?.category_url}`}
             className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
           >
-            <div className="category-banner banner banner-fixed ">
+            <div className="category-banner banner banner-fixed " style={{ maxWidth: '100%', height: 'auto' }}>
               <Image
                 loader={imageLoader}
                 className={`w-100 ${style.catagoryImg}`}
                 src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
                 alt="Picture of the author"
-                width={978}
-                height={550}
+                width={500}
+                height={500}
                 loading="eager"
                 priority={true}
               />

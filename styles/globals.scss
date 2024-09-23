@@ -169,6 +169,9 @@
   background-color: #fff;
   padding: 22px;
 }
+.dropdown-toggle:after {
+  display: none !important;
+}
 //React Image Slider width Adjust
 
 .productDetailImageSlider .image-gallery-slide .image-gallery-image {
