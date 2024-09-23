@@ -78,7 +78,7 @@ const BillingAddress = ({
     }
     if (!billingAddressLoading && billingAddress?.length > 0) {
       return (
-        <div className="col-lg-12 p-2 border mt-3">
+        <div className="col-lg-12 p-2 border rounded mt-3">
           <div className="row">
             <div className="col-md-2">
               <h6 className="mb-0 fw-bolder">Billing Address</h6>

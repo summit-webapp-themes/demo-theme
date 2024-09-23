@@ -1,8 +1,9 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Accordion, Offcanvas } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
-
 import { FiCommand } from 'react-icons/fi';
+import logo from '../../public/assets/images/logo.png';
 
 const MobileProductCategories = ({
   show,
@@ -16,7 +17,15 @@ const MobileProductCategories = ({
 }: any) => {
   return (
     <Offcanvas show={show} onHide={handleClose}>
-      <Offcanvas.Header closeButton />
+      <Offcanvas.Header closeButton>
+        <div className={''}>
+          <Link href="/" legacyBehavior>
+            <a>
+              <Image className="pb-2 mb-1" src={logo} alt="logo" width={250} />
+            </a>
+          </Link>
+        </div>{' '}
+      </Offcanvas.Header>
       <Offcanvas.Body>
         <div className="d-flex ">
           <input
