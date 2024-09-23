@@ -7,7 +7,7 @@ import PlacedOrders from './PlacedOrders';
 import CancelledOrders from './CancelledOrders';
 
 function OrderMaster() {
-  const { orderListData, isLoading, errorMessage } = useOrderListHook();
+  const { orderListData, isLoading, errorMessage, history, handleHistoryDate } = useOrderListHook();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
 
   return (
@@ -18,10 +18,22 @@ function OrderMaster() {
         </h4>
         <Tabs defaultActiveKey={1} id="uncontrolled-tab-example" className="mt-2">
           <Tab eventKey={1} title={selectedLanguageData?.orders}>
-            <PlacedOrders selectedMultiLangData={selectedLanguageData} isLoading={isLoading} orderListData={orderListData} />
+            <PlacedOrders
+              selectedMultiLangData={selectedLanguageData}
+              isLoading={isLoading}
+              orderListData={orderListData}
+              handleHistoryDate={handleHistoryDate}
+              history={history}
+            />
           </Tab>
           <Tab eventKey={2} title={selectedLanguageData?.cancelled}>
-            <CancelledOrders />
+            <CancelledOrders
+              selectedMultiLangData={selectedLanguageData}
+              isLoading={isLoading}
+              orderListData={orderListData}
+              handleHistoryDate={handleHistoryDate}
+              history={history}
+            />
           </Tab>
         </Tabs>
       </div>

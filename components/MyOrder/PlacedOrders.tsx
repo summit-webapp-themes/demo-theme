@@ -1,19 +1,15 @@
 import MyOrderCard from '../../cards/MyOrderCard';
 import NoDataFound from '../NoRecordFound';
 
-function PlacedOrders({ selectedMultiLangData, isLoading, orderListData }: any) {
+function PlacedOrders({ selectedMultiLangData, isLoading, orderListData, handleHistoryDate, history }: any) {
   return (
     <>
       <div role="tabpanel" aria-hidden="false">
-        <div className="row mb-4 fs-14">
+        <div className="row my-4 fs-14">
           <div className="col-lg-12">
             <div className="row">
               <div className="col-lg-2 col-sm-4 col-6">
-                <select
-                  className="form-select w-auto "
-                  // onChange={handleHistoryDate}
-                  // value={history}
-                >
+                <select className="form-select w-auto " onChange={handleHistoryDate} value={history}>
                   <option value="this_month">{selectedMultiLangData?.this_month}</option>
                   <option value="last_30_days">{selectedMultiLangData?.last_30_days}</option>
                   <option value="past_3_months">{selectedMultiLangData?.past_3_months}</option>
@@ -32,13 +28,11 @@ function PlacedOrders({ selectedMultiLangData, isLoading, orderListData }: any) 
         </div>
         {isLoading === true ? (
           <div className="row justify-content-center">
-            {[...Array(10)].map(() => (
-              <>
-                <div className="col-lg-12 mx-3">
-                  <div className="spinner-border" role="status" />
-                </div>
-              </>
-            ))}
+            <>
+              <div className="col-lg-12 h-100 mx-3">
+                <div className="spinner-border" role="status" />
+              </div>
+            </>
           </div>
         ) : (
           <>
@@ -58,11 +52,7 @@ function PlacedOrders({ selectedMultiLangData, isLoading, orderListData }: any) 
                     ))}
               </>
             ) : (
-              <NoDataFound
-                heading={selectedMultiLangData?.no_orders_found}
-                content={selectedMultiLangData?.orders_show_up_here}
-                selectedMultiLangData={selectedMultiLangData}
-              />
+              <NoDataFound title={selectedMultiLangData?.no_orders_found} message={selectedMultiLangData?.orders_show_up_here} />
             )}
           </>
         )}
