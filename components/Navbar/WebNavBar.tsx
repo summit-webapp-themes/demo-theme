@@ -46,9 +46,9 @@ function WebNavBar({
     <>
       <header className={stylesNavbar.header}>
         <nav>
-          <div className={`${stylesNavbar.navbar} ps-lg-5 pe-lg-4`}>
+          <div className={`${stylesNavbar.navbar} ps-lg-4 pe-lg-4`}>
             <div className="w-100 d-flex justify-content-end pt-4">
-              <div className="mobile-nav d-flex justify-content-sm-between px-3 px-sm-4">
+              <div className="mobile-nav d-flex justify-content-sm-between px-3 px-sm-4 d-sm-block d-md-none">
                 <Link href="#" legacyBehavior>
                   <a
                     className="mobile-menu-toggle  w-icon-hamburger"
