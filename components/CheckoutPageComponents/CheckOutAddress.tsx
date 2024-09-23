@@ -8,6 +8,8 @@ import OrderSummery from './OrderSummary';
 import ShippingMethods from './ShippingMethods';
 import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
 import { LiaRupeeSignSolid } from 'react-icons/lia';
+import StoreCredit from './StoreCredit';
+import CouponCode from './CouponCode';
 
 const CheckOutAddress = ({
   shippingAddress,
@@ -213,9 +215,7 @@ const CheckOutAddress = ({
           </Button>
         </div>
 
-        <div className="col-lg-4 col-12  order-lg-2 order-1 ">
-          <OrderSummery cartListingItems={cartListingItems} />
-        </div>
+        <OrderSummery cartListingItems={cartListingItems} />
       </div>
     </div>
   );

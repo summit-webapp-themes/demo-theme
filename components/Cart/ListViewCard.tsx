@@ -1,13 +1,13 @@
+import debounce from 'debounce';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import NoImage from '../../public/assets/images/no_image.png';
 import { CONSTANTS } from '../../services/config/app-config';
 import { currency_selector_state } from '../../store/slices/general_slices/multi-currency-slice';
 import cartStyles from '../../styles/components/cartlist.module.scss';
-import NoImage from '../../public/assets/images/no_image.png';
-import debounce from 'debounce';
 
 function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, RemoveItemCartAPIFunc, selectedMultiLangData }: any) {
   const router = useRouter();
@@ -100,14 +100,10 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                   category?.orders?.map((item: any) => (
                     <div className="row mt-3 ms-2">
                       <div className="col-lg-2 col-md-12">
-                        {item?.image_url && (
-                          <Image
-                            src={item?.image_url ? item?.image_url : NoImage}
-                            alt="product image"
-                            width={100}
-                            height={100}
-                            loader={imageLoader}
-                          />
+                        {item?.image_url ? (
+                          <Image src={item?.image_url} alt="product image" width={100} height={100} loader={imageLoader} />
+                        ) : (
+                          <Image src={NoImage} alt="product image" width={100} height={100} />
                         )}
                       </div>
                       <div className="col-lg-7 col-md-12">
@@ -147,14 +143,10 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                   <div className={`col-12 ${item?.image_url ? 'border' : 'd-none'}`}>
                     <div className="row">
                       <div className="col-6 col-sm-6">
-                        {item?.image_url && (
-                          <Image
-                            src={item?.image_url ? item?.image_url : NoImage}
-                            alt="product image"
-                            width={100}
-                            height={100}
-                            loader={imageLoader}
-                          />
+                        {item?.image_url ? (
+                          <Image src={item?.image_url} alt="product image" width={100} height={100} loader={imageLoader} />
+                        ) : (
+                          <Image src={NoImage} alt="product image" width={100} height={100} />
                         )}
                       </div>
                     </div>
