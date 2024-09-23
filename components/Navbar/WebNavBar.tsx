@@ -139,7 +139,7 @@ function WebNavBar({
                             {selectedLanguageData?.view_catalogs}
                           </NavDropdown.Item>
                         </Link>
-                        <Link href="/MyOrder" passHref className="text-decoration-none">
+                        <Link href="/my-orders" passHref className="text-decoration-none">
                           <NavDropdown.Item as="a" className={`text-decoration-none ${stylesNavbar.order_list_items} custom-dropdown-item`}>
                             {selectedLanguageData?.my_order}
                           </NavDropdown.Item>

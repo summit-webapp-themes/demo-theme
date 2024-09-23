@@ -32,17 +32,21 @@ function CartListing() {
   const handleDataRendering = () => {
     if (isLoading) {
       return (
-        <div className='vh-100 d-flex justify-content-center align-items-center'>
+        <div className="vh-100 d-flex justify-content-center align-items-center">
           <div className="spinner-border" role="status" />
         </div>
-      )
+      );
     }
     if (!isLoading && Object.keys(cartListingItems)?.length !== 0) {
       return (
         <div className="container py-4">
-          <div className="d-flex justify-content-between">
-            <h4><b>{selectedMultiLangData?.shopping_cart}</b></h4>
-            <div className="text-center">
+          <div className="row">
+            <div className="col-12 col-sm-4">
+              <h4>
+                <b>{selectedMultiLangData?.shopping_cart}</b>
+              </h4>
+            </div>
+            <div className="col-12 col-sm-8 text-start text-sm-end">
               <button
                 type="button"
                 className=" btn btn-outline-primary text-decoration-none text-uppercase px-2 me-2 fs-12 "
@@ -66,26 +70,20 @@ function CartListing() {
             selectedMultiLangData={selectedMultiLangData}
           />
         </div>
-      )
+      );
     }
     if (!isLoading && Object.keys(cartListingItems)?.length === 0 && errorMessage !== '') {
       return (
-        <div className='h-100vh d-flex justify-content-center align-items-center'>
+        <div className="h-100vh d-flex justify-content-center align-items-center">
           <p>{errorMessage}</p>
         </div>
-      )
+      );
     }
     if (!isLoading && Object.keys(cartListingItems)?.length === 0 && errorMessage === '') {
-      return (
-        <NoDataFound title={'Your cart is empty !!'} message={'Items added to your cart will show up here'} />
-      )
+      return <NoDataFound title={'Your cart is empty !!'} message={'Items added to your cart will show up here'} />;
     }
-  }
-  return (
-    <>
-      {handleDataRendering()}
-    </>
-  );
+  };
+  return <>{handleDataRendering()}</>;
 }
 
 export default CartListing;

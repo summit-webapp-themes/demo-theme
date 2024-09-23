@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import useWishlist from '../../hooks/WishlistHooks/useWishlistHook';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
@@ -9,14 +8,14 @@ const ProductCardSkeleton = dynamic(() => import('../../cards/ProductCardSkeleto
 
 const WishlistMaster = () => {
   const { wishlistData, isLoading } = useWishlist();
-  const cartData = useSelector(selectCart)?.items
+  const cartData = useSelector(selectCart)?.items;
   const handleDataRendering = () => {
     if (isLoading) {
       return (
         <div className="row ">
           {[...Array(10)].map(() => (
             <>
-              <div className="col-md-3 col-lg-3 col-sm-6 mb-3 p-1">
+              <div className="col-md-3 col-lg-4 col-sm-6 mb-3 p-1">
                 <ProductCardSkeleton />
               </div>
             </>
@@ -26,14 +25,14 @@ const WishlistMaster = () => {
     }
     if (wishlistData?.length > 0) {
       return (
-        <div className="d-flex flex-wrap ">
+        <div className=" row">
           {wishlistData?.length > 0 &&
             wishlistData?.map((item: any, index: number) => (
-              <div key={index} className="col-sm-6 col-lg-3 col-xl-3 col-xxl-3 text-center mb-4 px-3">
+              <div key={index} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4 px-3">
                 <ProductCard data={item} wishlistData={wishlistData} btnAction={'Add'} cartData={cartData} />
-              </div >
+              </div>
             ))}
-        </div >
+        </div>
       );
     }
     if (wishlistData?.length === 0) {
