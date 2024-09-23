@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import QuickOrderCard from './QuickOrderCard';
-import useQuickOrderHook from '../../hooks/QucikOrderHooks/useQuickOrderHook';
+import useQuickOrderHook from '../../hooks/QuickOrder/useQuickOrderHook';
 
 const QuickOrderMaster = () => {
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
