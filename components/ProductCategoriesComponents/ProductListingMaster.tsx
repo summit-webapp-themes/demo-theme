@@ -89,10 +89,10 @@ function ProductListingMaster() {
         </div>
         <div className="sticky_filter_btn w-100  d-block d-sm-none">
           <div className="row">
-            <div className="col-6">
+            <div className="col-6 p-0 border">
               <FloatingFilterBtn handleShow={handleShowFilterModal} selectedMultiLangData={selectedMultiLangData} />
             </div>
-            <div className="col-6">
+            <div className="col-6 p-0 border">
               <FloatingSortbyBtn handleShow={handleShowSortbyModal} selectedMultiLangData={selectedMultiLangData} />
             </div>
           </div>

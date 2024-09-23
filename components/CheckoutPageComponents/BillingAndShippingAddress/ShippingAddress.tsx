@@ -78,10 +78,10 @@ const ShippingAddress = ({
     }
     if (!shippingAddressLoading && shippingAddress?.length > 0) {
       return (
-        <div className="col-lg-12 p-2 border  ">
+        <div className="col-lg-12 border rounded mt-2 mt-md-0 py-2 ">
           <div className="row">
             <div className="col-md-2">
-              <h6 className="mb-0 fw-bolder">Shipping Address</h6>
+              <h6 className="mb-0 fw-bolder ps-2">Shipping Address</h6>
             </div>
             <div className="col-md-8">
               <div className="w-50">{handleRenderDefaultShippingAddress()}</div>

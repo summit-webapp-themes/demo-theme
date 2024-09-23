@@ -8,17 +8,45 @@ import { LiaRupeeSignSolid } from 'react-icons/lia';
 import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
 import Image from 'next/image';
 import { CONSTANTS } from '../../services/config/app-config';
+import StoreCredit from './StoreCredit';
+import CouponCode from './CouponCode';
 
 const OrderSummary = ({ cartListingItems }: any) => {
   const quotationId = useSelector(selectCart).quotation_Id;
-  const { orderSummaryLoading: isLoading, orderSummaryError: errorMessage, orderSummary } = useOrderSummary(quotationId);
+  const {
+    orderSummaryLoading: isLoading,
+    orderSummaryError: errorMessage,
+    orderSummary,
+    storeCredit,
+    couponCode,
+    handleChangeCouponCode,
+    handleChangeStoreCredit,
+    isCouponApplied,
+    handleApplyCouponCode,
+    handleApplyStoreCredit,
+    handleRemoveCouponCode,
+  } = useOrderSummary(quotationId);
 
   const imageLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
 
   return (
-    <div className="">
+    <div className="col-lg-4 col-12  order-lg-2 order-1">
+      <div>
+        <StoreCredit
+          storeCredit={storeCredit}
+          handleChangeStoreCredit={handleChangeStoreCredit}
+          handleApplyStoreCredit={handleApplyStoreCredit}
+        />
+        <CouponCode
+          couponCode={couponCode}
+          handleChangeCouponCode={handleChangeCouponCode}
+          handleApplyCouponCode={handleApplyCouponCode}
+          handleRemoveCouponCode={handleRemoveCouponCode}
+          isCouponApplied={isCouponApplied}
+        />
+      </div>
       <Card style={{ width: 'auto' }}>
         <Card.Body>
           <h5 className="fw-bold">Order Summery</h5>

@@ -5,7 +5,7 @@ import style from '../../styles/components/orderCheckout.module.scss';
 const ShippingMethods = ({ handleUserAddressChange, showLocation }: any) => {
   return (
     <>
-      <h5 className=" fw-bolder">Shipping Methods</h5>
+      <h5 className="mt-3 fw-bolder">Shipping Methods</h5>
       <div className="row">
         <div className="col-md-6">
           <Form className="d-flex ">
@@ -20,7 +20,6 @@ const ShippingMethods = ({ handleUserAddressChange, showLocation }: any) => {
                 onClick={(e) => handleUserAddressChange(e, 'door_delivery')}
               />
             </div>
-
             <div className={style.radio_tag}>
               <Form.Check
                 type="radio"

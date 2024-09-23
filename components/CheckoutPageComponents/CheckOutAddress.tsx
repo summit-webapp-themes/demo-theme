@@ -8,6 +8,8 @@ import OrderSummery from './OrderSummary';
 import ShippingMethods from './ShippingMethods';
 import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
 import { LiaRupeeSignSolid } from 'react-icons/lia';
+import StoreCredit from './StoreCredit';
+import CouponCode from './CouponCode';
 
 const CheckOutAddress = ({
   shippingAddress,
@@ -111,11 +113,11 @@ const CheckOutAddress = ({
   };
 
   return (
-    <div className={`container-fluid w-100 ps-lg-5 pe-lg-5`}>
-      <h4 className="text-center mt-5 fw-bold mb-4"> Order Checkout</h4>
+    <div className={`container-md my-5`}>
+      <h4 className="fw-bold text-center"> Order Checkout</h4>
       <div className="row">
-        <div className="col-md-8">
-          <div className="row listing-card">
+        <div className="col-lg-8 order-2 order-lg-1 mt-3 mt-lg-0">
+          <div className="">
             <ShippingAddress
               handleRenderDefaultShippingAddress={handleRenderDefaultShippingAddress}
               handleShowAccordion={handleShowAccordion}
@@ -177,22 +179,22 @@ const CheckOutAddress = ({
             )}
           </div>
           <ShippingMethods handleUserAddressChange={handleUserAddressChange} showLocation={showLocation} />
-          <h5 className=" fw-bolder mt-2">Final Review</h5>
-          <div className="d-flex justify-content-between w-50">
+          <h5 className=" fw-bolder mt-2 ">Final Review</h5>
+          <div className="d-flex justify-content-between w-50 ">
             <p className={`m-0 ${style.p_tag} fw-bolder`}>Sub total:</p>
             <p className={`m-0 ${style.p_tag} fw-bolder`}>
               <LiaRupeeSignSolid />
               {cartListingItems.grand_total_excluding_tax}
             </p>
           </div>
-          <div className="d-flex justify-content-between w-50">
+          <div className="d-flex justify-content-between w-50 ">
             <p className={`m-0 ${style.p_tag} fw-bolder`}>Order Total Including Tax:</p>
             <p className={`m-0 ${style.p_tag} fw-bolder`}>
               <LiaRupeeSignSolid />
               {cartListingItems.grand_total_excluding_tax}
             </p>
           </div>
-          <Form className="mt-2">
+          <Form className="mt-2 ">
             <div key={`default-checkbox`} className="mb-3">
               <Form.Check // prettier-ignore
                 type="checkbox"
@@ -205,7 +207,7 @@ const CheckOutAddress = ({
           </Form>
           <Button
             variant="primary"
-            className="w-50"
+            className="w-100 "
             disabled={!conditionCheck}
             onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}
           >
@@ -213,9 +215,7 @@ const CheckOutAddress = ({
           </Button>
         </div>
 
-        <div className="col-md-4">
-          <OrderSummery cartListingItems={cartListingItems} />
-        </div>
+        <OrderSummery cartListingItems={cartListingItems} />
       </div>
     </div>
   );
