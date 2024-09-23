@@ -1,8 +1,7 @@
-import dynamic from 'next/dynamic';
 import HomeBanner from './BannerSection/HomeBanner';
 import TopCategories from './PersonalizedCategories/TopCategories';
 import BrandListing from './BrandSection/BrandListingMaster';
-const CollectionsMaster = dynamic(() => import('./FeaturedCollections/CollectionMaster'));
+import CollectionsMaster from './FeaturedCollections/CollectionMaster';
 import style from '../../styles/components/home.module.scss';
 
 const HomePageMaster = () => {
