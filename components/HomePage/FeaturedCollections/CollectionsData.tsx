@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import style from '../../../styles/components/home.module.scss';
 
-const CollectionsData = ({ allTagsData }: any) => {
+const CollectionsData = ({ allTagsData, addToCartItem, getPartyName }: any) => {
   const responsive: any = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -32,9 +32,9 @@ const CollectionsData = ({ allTagsData }: any) => {
                 <h4 className="fw-bold">{item.description}</h4>
                 {item.value.length > 0 && (
                   <Carousel responsive={responsive}>
-                    {item.value.map((val: any, index: any) => (
+                    {item?.value?.map((val: any, index: any) => (
                       <div className={style.cardMargin}>
-                        <ProductCard key={index} data={val} />
+                        <ProductCard key={index} data={val} addToCartItem={addToCartItem} getPartyName={getPartyName} />
                       </div>
                     ))}
                   </Carousel>
