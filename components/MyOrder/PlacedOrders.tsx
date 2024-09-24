@@ -43,7 +43,7 @@ function PlacedOrders({ selectedMultiLangData, isLoading, orderListData, handleH
                     ?.map((data: any, i: any) => (
                       <div className="row color-black fs-14" key={i}>
                         <div className="col-lg-12">
-                          <div className="order_card cart_table mb-2 card">
+                          <div className="  mb-2 card row">
                             <MyOrderCard data={data} selectedMultiLangData={selectedMultiLangData} />
                           </div>
                         </div>

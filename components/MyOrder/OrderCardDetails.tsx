@@ -29,7 +29,11 @@ function OrderCardDetails({ data, selectedMultiLangData }: any) {
           {!query?.orderId && (
             <div className="d-flex mb-2 pb-0">
               <div className="flex-fill">
-                <h6 className="text-capitalize mb-0 mt-2 d-inline-flex text-success">
+                <h6
+                  className={`text-capitalize mb-0 mt-2 d-inline-flex ${
+                    query?.status === 'completed-orders' ? 'text-success' : 'text-danger'
+                  } `}
+                >
                   <b>
                     <div>{selectedMultiLangData?.status} </div>
                   </b>

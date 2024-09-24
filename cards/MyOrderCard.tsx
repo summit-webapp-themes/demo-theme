@@ -69,9 +69,9 @@ function MyOrderCard({ data, selectedMultiLangData }: any) {
             </div>
             <div className="col-md-2 col-4  text-end">
               <div className=" text-center ">
-                <div className="flex-fill detail_link text-capitalize  b2c_btn btn_order_detail fs-13">
+                <div className="flex-fill  text-capitalize    fs-13">
                   <Link href={`my-orders/${data?.name}`} legacyBehavior>
-                    <button className="btn btn-outline-primary w-100 rounded-0 text-uppercase">
+                    <button className="btn btn-outline-primary w-100 rounded-0 text-md-uppercase">
                       {selectedMultiLangData?.order_details}
                     </button>
                   </Link>
