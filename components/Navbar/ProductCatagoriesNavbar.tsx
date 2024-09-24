@@ -30,7 +30,7 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
                       pathname: `${itemL2?.url}`,
                       query: { page: '1', currency: 'INR' },
                     }}
-                    className="label text-dark text-decoration-none"
+                    className="label text-dark text-decoration-none navbar_catagory"
                     onClick={() => setShowPopoverIndex(null)}
                   >
                     {itemL2?.label}
