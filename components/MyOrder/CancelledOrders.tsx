@@ -1,5 +1,6 @@
 import MyOrderCard from '../../cards/MyOrderCard';
 import NoDataFound from '../NoRecordFound';
+import ListCardLoadingSkeleton from './ListCardLoadingSkeleton';
 
 function CancelledOrders({ selectedMultiLangData, isLoading, orderListData, handleHistoryDate, history }: any) {
   const orderCancelled: any = orderListData.length > 0 && orderListData.filter((items: any) => items?.payment_status === 'Cancelled');
@@ -28,13 +29,11 @@ function CancelledOrders({ selectedMultiLangData, isLoading, orderListData, hand
           </div>
         </div>
         {isLoading === true ? (
-          <div className="row justify-content-center">
-            <>
-              <div className="col-lg-12 h-100 mx-3">
-                <div className="spinner-border" role="status" />
-              </div>
-            </>
-          </div>
+          <>
+            {[...Array(5)].map(() => (
+              <ListCardLoadingSkeleton />
+            ))}
+          </>
         ) : (
           <>
             {orderCancelled && orderCancelled?.length > 0 ? (

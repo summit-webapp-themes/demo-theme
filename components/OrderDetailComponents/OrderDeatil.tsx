@@ -6,7 +6,7 @@ function OrderDeatil({ orderData, selectedMultiLangData }: any) {
       {orderData?.length > 0 &&
         orderData !== null &&
         orderData?.map((data: any) => (
-          <div className="container " key={data?.name}>
+          <div className="" key={data?.name}>
             <div className="col-md-6 my-4">
               <div className="text-uppercase">
                 <h4 className="p-0 m-0">
@@ -24,19 +24,19 @@ function OrderDeatil({ orderData, selectedMultiLangData }: any) {
 
             <div id="printableArea" className="row ">
               <div className="col-lg-12">
-                <div className="order_card mb-3 card">
+                <div className=" mb-3 card">
                   <div className="card-body">
                     <div className="row">
                       {data?.addresses?.map((addr: any, index: any) => (
-                        <div className="mb-0 mb-sm-0 col-md-3" key={index}>
+                        <div className="mb-0 mb-sm-0 col-md-4" key={index}>
                           <div>
                             <h5 className="mb-1">
                               <b>{addr?.name}</b>
                             </h5>
                             {addr?.values &&
                               addr?.values.map((addrValue: any, i: any) => (
-                                <div className="myorders" key={i}>
-                                  <p className="my-0 py-0 address_tiitles">{addrValue?.address_title}</p>
+                                <div className="" key={i}>
+                                  <p className="my-0 py-0 ">{addrValue?.address_title}</p>
                                   <p className="my-0 py-0 line-height">{addrValue?.address_1}</p>
                                   <p className="mb-0 my-0 py-0 line-height">{addrValue?.postal_code}</p>
                                   <p className="mb-0">
@@ -49,7 +49,7 @@ function OrderDeatil({ orderData, selectedMultiLangData }: any) {
                         </div>
                       ))}
 
-                      <div className="col-md-2">
+                      {/* <div className="col-md-2">
                         {data.shipping_method.transporter === null ||
                         data?.shipping_method?.door_delivery === null ||
                         data?.shipping_method?.godown_delivery === null ||
@@ -100,9 +100,9 @@ function OrderDeatil({ orderData, selectedMultiLangData }: any) {
                             </p>
                           )}
                         </div>
-                      </div>
+                      </div> */}
 
-                      <div className="col-md-4 myorders">
+                      <div className="col-md-4 ">
                         <h5 className=" mb-1">
                           {' '}
                           <b>{selectedMultiLangData?.order_summary}</b>

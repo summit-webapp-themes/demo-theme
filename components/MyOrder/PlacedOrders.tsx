@@ -1,5 +1,6 @@
 import MyOrderCard from '../../cards/MyOrderCard';
 import NoDataFound from '../NoRecordFound';
+import ListCardLoadingSkeleton from './ListCardLoadingSkeleton';
 
 function PlacedOrders({ selectedMultiLangData, isLoading, orderListData, handleHistoryDate, history }: any) {
   return (
@@ -27,13 +28,11 @@ function PlacedOrders({ selectedMultiLangData, isLoading, orderListData, handleH
           </div>
         </div>
         {isLoading === true ? (
-          <div className="row justify-content-center">
-            <>
-              <div className="col-lg-12 h-100 mx-3">
-                <div className="spinner-border" role="status" />
-              </div>
-            </>
-          </div>
+          <>
+            {[...Array(5)].map(() => (
+              <ListCardLoadingSkeleton />
+            ))}
+          </>
         ) : (
           <>
             {orderListData && orderListData?.length > 0 ? (

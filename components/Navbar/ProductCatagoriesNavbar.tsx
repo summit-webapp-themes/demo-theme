@@ -30,17 +30,18 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
                       pathname: `${itemL2?.url}`,
                       query: { page: '1', currency: 'INR' },
                     }}
-                    className="label text-dark text-decoration-none navBar_label"
+                    className="label text-dark text-decoration-none"
                     onClick={() => setShowPopoverIndex(null)}
                   >
                     {itemL2?.label}
                   </Link>
                 </div>
+                <hr className="m-1" />
                 <div className={stylesHeader.col_container}>
                   {Array.from({ length: columnCount }, (_, columnIndex) => (
                     <div key={columnIndex} className={stylesHeader.column}>
                       {itemL2?.values?.slice(columnIndex * 8, (columnIndex + 1) * 8).map((itemL3: any, idx: number) => (
-                        <div key={idx} className="py-1 ">
+                        <div key={idx} className=" p-1">
                           <Link
                             href={{
                               pathname: `${itemL3?.url}`,

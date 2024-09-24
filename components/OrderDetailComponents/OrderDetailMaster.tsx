@@ -4,6 +4,7 @@ import useOrderDetailHook from '../../hooks/OrderDetailHook/useOrderDetailHook';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import NoDataFound from '../NoRecordFound';
 import OrderDeatil from './OrderDeatil';
+import ListCardLoadingSkeleton from '../MyOrder/ListCardLoadingSkeleton';
 
 function OrderDetailMaster() {
   const { orderData, isLoading, errorMessage } = useOrderDetailHook();
@@ -16,21 +17,19 @@ function OrderDetailMaster() {
   }, [SelectedLangDataFromStore]);
 
   return (
-    <>
+    <div className="container">
       {isLoading ? (
-        <div className="row justify-content-center">
-          <>
-            <div className="col-lg-12 h-100 mx-3">
-              <div className="spinner-border" role="status" />
-            </div>
-          </>
-        </div>
+        <>
+          {[...Array(5)].map(() => (
+            <ListCardLoadingSkeleton />
+          ))}
+        </>
       ) : orderData?.length > 0 ? (
         <OrderDeatil orderData={orderData} selectedMultiLangData={selectedMultiLangData} />
       ) : (
         <NoDataFound title={selectedMultiLangData?.no_orders_found} message={selectedMultiLangData?.orders_show_up_here} />
       )}
-    </>
+    </div>
   );
 }
 

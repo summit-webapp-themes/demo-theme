@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { Tab, Tabs } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import useOrderListHook from '../../hooks/OrderListHooks/useOrderListHook';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
-import { Tab, Tabs } from 'react-bootstrap';
-import PlacedOrders from './PlacedOrders';
 import CancelledOrders from './CancelledOrders';
+import PlacedOrders from './PlacedOrders';
+import ListCardLoadingSkeleton from './ListCardLoadingSkeleton';
 
 function OrderMaster() {
   const { orderListData, isLoading, errorMessage, history, handleHistoryDate } = useOrderListHook();
