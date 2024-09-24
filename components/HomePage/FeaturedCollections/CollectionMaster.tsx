@@ -3,13 +3,14 @@ import useDisplayTagHooks from '../../../hooks/HomePageHooks/useFeaturedCollecti
 import CollectionsData from './CollectionsData';
 import ErrorImage from '../../../public/assets/images/error-icon.png';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
+import CollectionsLoading from './CollectionsLoading';
 
 const CollectionMaster = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
   const { addToCartItem, getPartyName } = useAddToCartHook();
 
   if (isLoading) {
-    return <h3>Loading ...</h3>;
+    return <CollectionsLoading />;
   } else if (allTagsData?.length > 0) {
     return <CollectionsData allTagsData={allTagsData} addToCartItem={addToCartItem} getPartyName={getPartyName} />;
   } else if (errorMessage) {
