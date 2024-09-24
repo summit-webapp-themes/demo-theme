@@ -62,6 +62,7 @@ const ProductCard = ({
       item_list: [{ item_code: data.name, quantity: 1 }],
       party_name: getPartyName,
     };
+    console.log(addToCartParams, 'addToCartParams');
     addToCartItem(addToCartParams, null);
   };
 
