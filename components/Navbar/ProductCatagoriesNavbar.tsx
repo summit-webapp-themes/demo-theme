@@ -30,13 +30,12 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
                       pathname: `${itemL2?.url}`,
                       query: { page: '1', currency: 'INR' },
                     }}
-                    className="label text-dark text-decoration-none"
+                    className="label text-dark text-decoration-none navbar_category"
                     onClick={() => setShowPopoverIndex(null)}
                   >
                     {itemL2?.label}
                   </Link>
                 </div>
-                <hr className="m-1" />
                 <div className={stylesHeader.col_container}>
                   {Array.from({ length: columnCount }, (_, columnIndex) => (
                     <div key={columnIndex} className={stylesHeader.column}>
