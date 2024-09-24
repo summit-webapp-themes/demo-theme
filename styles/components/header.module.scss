@@ -11,7 +11,7 @@
   font-size: 16px;
   font-weight: 500;
   color: #233E63 !important;
-  text-align:left;
+  text-align: center;
 }
 
 .heading_category_l3 {
@@ -32,6 +32,8 @@
 }
 .column {
   padding-bottom: 15px 0;
+  padding-left: 5px;
+  padding-right: 5px;
   width: max-content;
   display: table-column;
 }
