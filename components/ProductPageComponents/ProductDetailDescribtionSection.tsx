@@ -7,6 +7,7 @@ import { FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
+import { toast } from 'react-toastify';
 const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
 const CheckStockAvailability = dynamic(() => import('./CheckStockAvailability'));
 const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
@@ -28,7 +29,9 @@ const ProductDetailDescribtionSection = ({
 }: any) => {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
-  const handleAddToSingleProductData = () => {
+  const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
+  const [stockAvailabilityLoader, setStockAvailabilityLoader] = useState(false);
+  const handleAddToSingleProductData = async () => {
     if (qty < productDetailData?.min_order_qty) {
       setQuantityAlert(true);
       setTimeout(() => {
@@ -41,18 +44,31 @@ const ProductDetailDescribtionSection = ({
       item_list: [{ item_code: productDetailData?.name, quantity: qty }],
       party_name: getPartyName,
     };
-    addToCartItem(addToCartParams, null);
+    setAddToCartLoaderBtn(true);
+    try {
+      await addToCartItem(addToCartParams, null);
+    } catch (error) {
+      toast.error('Failed to add product to cart. Please try again.');
+    } finally {
+      setAddToCartLoaderBtn(false);
+    }
   };
 
-  const handleAddMultipleProductData = () => {
+  const handleAddMultipleProductData = async () => {
     const addToCartParams = {
       currency: 'INR',
       item_list: itemList,
       party_name: getPartyName,
     };
-    addToCartItem(addToCartParams, null);
+    setAddToCartLoaderBtn(true);
+    try {
+      await addToCartItem(addToCartParams, null);
+    } catch (error) {
+      toast.error('');
+    } finally {
+      setAddToCartLoaderBtn(false);
+    }
   };
-
   return (
     <>
       <div className="border-bottom">
@@ -124,13 +140,23 @@ const ProductDetailDescribtionSection = ({
         </p>
         <div>
           {productVariantData?.length > 0 ? (
-            <AddToCartBtn handleAddToCart={handleAddMultipleProductData} selectedMultiLangData={selectedMultiLangData} />
+            <AddToCartBtn
+              handleAddToCart={handleAddMultipleProductData}
+              selectedMultiLangData={selectedMultiLangData}
+              addToCartLoaderBtn={addToCartLoaderBtn}
+            />
           ) : (
-            <AddToCartBtn handleAddToCart={handleAddToSingleProductData} selectedMultiLangData={selectedMultiLangData} />
+            <AddToCartBtn
+              handleAddToCart={handleAddToSingleProductData}
+              selectedMultiLangData={selectedMultiLangData}
+              addToCartLoaderBtn={addToCartLoaderBtn}
+            />
           )}
           <CheckStockAvailabilityBtn
             handleStockAvailabilityData={handleStockAvailabilityData}
             selectedMultiLangData={selectedMultiLangData}
+            stockAvailabilityLoader={stockAvailabilityLoader}
+            setStockAvailabilityLoader={setStockAvailabilityLoader}
           />
         </div>
         {quantityAlert && (

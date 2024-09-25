@@ -1,13 +1,22 @@
 import React from 'react';
 import styles from '../../styles/components/productDetail.module.scss';
 
-const CheckStockAvailabilityBtn = ({ handleStockAvailabilityData, selectedMultiLangData }: any) => {
+const CheckStockAvailabilityBtn = ({
+  handleStockAvailabilityData,
+  selectedMultiLangData,
+  stockAvailabilityLoader,
+  setStockAvailabilityLoader,
+}: any) => {
   return (
     <button
-      onClick={() => handleStockAvailabilityData()}
-      className={`border-0 px-lg-5 px-3 ms-2 py-2 rounded-1  ${styles.buttonBackGround}`}
+      onClick={() => handleStockAvailabilityData(setStockAvailabilityLoader)}
+      className={`border-0 ms-2 py-2 rounded-1  ${styles.buttonBackGround} ${styles?.detail_page_btn}`}
     >
-      {selectedMultiLangData?.check_availability_btn_label}
+      {stockAvailabilityLoader ? (
+        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      ) : (
+        <span>{selectedMultiLangData?.check_availability_btn_label}</span>
+      )}
     </button>
   );
 };

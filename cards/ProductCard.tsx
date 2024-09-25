@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
@@ -21,6 +22,7 @@ const ProductCard = ({
 }: any) => {
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
+  const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
   const imageLoader = ({ src, width, quality }: any) => {
     return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
@@ -56,14 +58,21 @@ const ProductCard = ({
       }
     }
   };
-  const handleAddToProductData = () => {
+  const handleAddToProductData = async () => {
+    setAddToCartLoaderBtn(true);
     const addToCartParams = {
       currency: 'INR',
       item_list: [{ item_code: data.name, quantity: 1 }],
       party_name: getPartyName,
     };
-    console.log(addToCartParams, 'addToCartParams');
-    addToCartItem(addToCartParams, null);
+
+    try {
+      await addToCartItem(addToCartParams, null);
+    } catch (error) {
+      console.error('Error adding to cart', error);
+    } finally {
+      setAddToCartLoaderBtn(false);
+    }
   };
 
   const handleRenderAddToCatalogBtn: any = () => {
@@ -78,7 +87,11 @@ const ProductCard = ({
               <RiDeleteBin2Fill />
             </button>
           ) : (
-            <Button className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={() => handleShowCatalogModal(data?.name)}>
+            <Button
+              className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`}
+              onClick={() => handleShowCatalogModal(data?.name)}
+              // disabled={addToCartLoaderBtn}
+            >
               Add to catalog
             </Button>
           )}
@@ -117,9 +130,20 @@ const ProductCard = ({
               </Card.Text>
             </div>
             <div>
-              <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={handleAddToProductData}>
-                ADD
-                <FaCartPlus className={ProductCardStyles.cardBtn} />
+              <Button
+                type="button"
+                className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`}
+                onClick={handleAddToProductData}
+                disabled={addToCartLoaderBtn}
+              >
+                {!addToCartLoaderBtn ? (
+                  <>
+                    <span>ADD</span>
+                    <FaCartPlus className={ProductCardStyles.cardBtn} />
+                  </>
+                ) : (
+                  <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+                )}
               </Button>
             </div>
           </div>

@@ -99,12 +99,11 @@ const QuickOrderCard = (props: Props) => {
                 {selectedMultiLangData?.delete}
               </div>
             </div>
-            <div className="col-md-1 col-12 ">
+            <div className="col-md-1 col-12 my-0 my-md-2">
               <span className="d-block d-md-none">
                 <b>{selectedMultiLangData?.price} :</b>
               </span>
               <p>
-                {itemData?.price}
                 {itemData?.price !== 0 ? (
                   <>
                     {itemData?.currency_symbol}
@@ -137,8 +136,8 @@ const QuickOrderCard = (props: Props) => {
                 <span className="d-block d-md-none">
                   <b>{selectedMultiLangData?.total} :</b>
                 </span>
-                {data?.currency_symbol}
-                <IndianNumber value={(total = 10000 * showValue(localItem?.quantity))} />
+                {itemData?.currency_symbol}
+                <IndianNumber value={(total = itemData?.price * showValue(localItem?.quantity))} />
               </div>
             </div>
           </>
