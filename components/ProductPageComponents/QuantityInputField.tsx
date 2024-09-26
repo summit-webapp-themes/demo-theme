@@ -13,10 +13,11 @@ const QuantityInputField = ({
     <>
       <div className={`my-1 ${styles.detailPriceSection}`}>
         <label htmlFor="productQuantity">{selectedMultiLangData?.quantity}:</label>
-        {productDetailData?.min_order_qty && (
+        
           <span className="mx-1">
             <FaPlus className="mx-1 cursor-pointer" onClick={() => handleQtyModificationOnButtonClick('increase')} />
             <input
+            
               className={`rounded-1 border-1 ${styles.input} ${styles.detailPriceSection}`}
               id="productQuantity"
               name="quantity"
@@ -25,7 +26,7 @@ const QuantityInputField = ({
             />
             <FaMinus className="mx-1 cursor-pointer" onClick={() => handleQtyModificationOnButtonClick('decrease')} />
           </span>
-        )}
+        
       </div>
     </>
   );

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from '../../styles/components/productDetail.module.scss';
 import { FaRegCheckCircle, FaWindowClose } from 'react-icons/fa';
 
-const CheckStockAvailability = ({ productVariantData, handleMultipleQtyChange, itemList, selectedMultiLangData }: any) => {
+function MultipleQuantityInputField  ({ productVariantData, handleMultipleQtyChange, itemList, selectedMultiLangData }: any) {
   return (
     <div>
       {productVariantData?.variants?.length > 0 &&
@@ -22,7 +22,7 @@ const CheckStockAvailability = ({ productVariantData, handleMultipleQtyChange, i
                 />
               </div>
             </div>
-            <div className="my-1">
+            <div className="my-1 d-flex align-items-center">
               {variant?.stock ? (
                 <span className={`fw-bold mx-4 ${styles.avalibility}`}>
                   <FaRegCheckCircle className={`text-success me-1 ${styles.stockSection}`} size={'1rem'} />
@@ -41,4 +41,4 @@ const CheckStockAvailability = ({ productVariantData, handleMultipleQtyChange, i
   );
 };
 
-export default CheckStockAvailability;
+export default MultipleQuantityInputField;

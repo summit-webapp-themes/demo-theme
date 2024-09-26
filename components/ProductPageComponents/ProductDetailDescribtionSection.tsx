@@ -9,13 +9,13 @@ import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
 import { toast } from 'react-toastify';
 const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
-const CheckStockAvailability = dynamic(() => import('./CheckStockAvailability'));
+const MultipleQuantityInputField = dynamic(() => import('./MultipleQuantityInputField'));
 const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
 const ProductVariants = dynamic(() => import('./ProductVariants'));
 const QuantityInputField = dynamic(() => import('./QuantityInputField'));
 const StarRating = dynamic(() => import('./StarRating'));
 
-const ProductDetailDescribtionSection = ({
+function ProductDetailDescribtionSection  ({
   productDetailData,
   pinCode,
   handleMultipleQtyChange,
@@ -26,7 +26,7 @@ const ProductDetailDescribtionSection = ({
   handleStockAvailabilityData,
   handleQtyModificationOnButtonClick,
   selectedMultiLangData,
-}: any) => {
+}: any)  {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
@@ -110,7 +110,7 @@ const ProductDetailDescribtionSection = ({
       </div>
       <div>
         <ProductVariants productVariantData={productVariantData} />
-        <CheckStockAvailability
+        <MultipleQuantityInputField
           productVariantData={productVariantData}
           handleMultipleQtyChange={handleMultipleQtyChange}
           itemList={itemList}
@@ -118,7 +118,7 @@ const ProductDetailDescribtionSection = ({
         />
       </div>
       <div>
-        {productVariantData?.length === 0 && (
+        {productVariantData?.length !== 0 && (
           <>
             <p className={`my-1 ${styles.detailPriceSection}`}>
               {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
@@ -132,9 +132,9 @@ const ProductDetailDescribtionSection = ({
             />
           </>
         )}
-        <p className="my-1">
+        <p className="my-1 fs-14">
           {selectedMultiLangData?.minimum_order_qty}:{' '}
-          <span className={productDetailData?.min_order_qty > itemList[0]?.quantity ? 'text-danger' : 'text-success'}>
+          <span className={productDetailData?.min_order_qty > qty ? 'text-danger' : 'text-success'}>
             {productDetailData?.min_order_qty}
           </span>
         </p>
