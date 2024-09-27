@@ -8,7 +8,7 @@ import style from '../../../styles/components/home.module.scss';
 
 const BannerCarousel = ({ bannersList }: any) => {
   const myLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
+    return `${src}?w=${width}&q=${quality || 75}`;
   };
   return (
     <Carousel>
