@@ -1,14 +1,13 @@
-import { Formik, Form as FormikForm, ErrorMessage, useFormikContext } from 'formik';
-import Form from 'react-bootstrap/Form';
+import { ErrorMessage, Formik, Form as FormikForm } from 'formik';
 import Image from 'next/image';
-import { FaEye } from 'react-icons/fa';
-import { FaEyeSlash } from 'react-icons/fa';
-import * as Yup from 'yup';
 import Link from 'next/link';
-import logo from '../../public/assets/images/progearhub.png';
-import useLoginHook from '../../hooks/AuthHooks/useLoginHook';
-import LoginStyles from '../../styles/components/login.module.scss';
 import { InputGroup } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import * as Yup from 'yup';
+import useLoginHook from '../../hooks/AuthHooks/useLoginHook';
+import logo from '../../public/assets/images/progearhub.png';
+import LoginStyles from '../../styles/components/login.module.scss';
 
 const validation = Yup.object().shape({
   usr: Yup.string().email(' Enter valid email').required(' Email field is required'),
@@ -16,7 +15,7 @@ const validation = Yup.object().shape({
 });
 
 function LoginComponent() {
-  const { passwordHidden, togglePasswordIcon, fetchToken } = useLoginHook();
+  const { passwordHidden, togglePasswordIcon, fetchToken, loginBtnLoader } = useLoginHook();
   return (
     <Formik
       initialValues={{
@@ -87,8 +86,12 @@ function LoginComponent() {
                   </div>
                   <div className="row px-4 mt-3">
                     <div className="col-12 d-flex justify-content-center">
-                      <button type="submit" className={`${LoginStyles.btn_login} rounded mb-3 mt-2`}>
-                        LOGIN
+                      <button type="submit" className={`${LoginStyles.btn_login} rounded w-100 mb-3 mt-2`}>
+                        {loginBtnLoader ? (
+                          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        ) : (
+                          <span>LOGIN</span>
+                        )}
                       </button>
                     </div>
                   </div>
