@@ -53,7 +53,7 @@ const ReviewRatingBar = ({ reviewList, selectedMultiLangData }: any) => {
     }
   });
   return (
-    <div className="container my-3 ">
+    <div className="container my-3 px-0">
       <h5 className="mb-2">{selectedMultiLangData?.customer_reviews}</h5>
       {progressreviewList?.length > 0 &&
         ratioSum?.map((e: any, ind: number) => {

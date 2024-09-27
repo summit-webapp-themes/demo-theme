@@ -14,6 +14,7 @@ function CartListing() {
   const { addToCartItem, cLearCartAPIFunc, RemoveItemCartAPIFunc }: any = useAddToCartHook();
   const TokenFromStore: any = useSelector(get_access_token);
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
+  const [clearCartLoader, setClearCartLoader] = useState(false);
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
   useEffect(() => {
@@ -56,9 +57,14 @@ function CartListing() {
               </button>
               <button
                 className="btn btn-outline-danger text-decoration-none px-1 fs-12"
-                onClick={() => cLearCartAPIFunc(cartListingItems?.name, setCartListingItems)}
+                onClick={() => cLearCartAPIFunc(cartListingItems?.name, setCartListingItems, setClearCartLoader)}
+                disabled={clearCartLoader}
               >
-                {selectedMultiLangData?.clear_cart}
+                {clearCartLoader ? (
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                ) : (
+                  <>{selectedMultiLangData?.clear_cart}</>
+                )}
               </button>
             </div>
           </div>

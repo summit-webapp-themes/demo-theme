@@ -1,0 +1,36 @@
+.popup_container {
+  background-color: white;
+  border-radius: 5px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  opacity: 0;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+  transform: translateY(-20px);
+}
+
+.popup_container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.popup_content {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  border: none !important;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+}
+.block_btn {
+  background-color: gray;
+}
+.allow_btn {
+  background-color: #c45500;
+}

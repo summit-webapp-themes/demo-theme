@@ -50,6 +50,7 @@ const CheckOutAddress = ({
   const [addressId, setAddressId] = useState<number | string>();
   const [billingAddressId, setBillingAddressId] = useState<any>();
   const [conditionCheck, setConditionCheck] = useState<any>(false);
+  const [placeOrderLoader, setPlacePrderLoader] = useState(false);
   const { cartListingItems } = useFetchCartItems();
   const handleShowAccordion = (type: string) => {
     if (type === 'shipping') {
@@ -209,9 +210,13 @@ const CheckOutAddress = ({
             variant="primary"
             className="w-100 "
             disabled={!conditionCheck}
-            onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress)}
+            onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress, setPlacePrderLoader)}
           >
-            Place Order
+            {placeOrderLoader ? (
+              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            ) : (
+              <span>Place Order</span>
+            )}
           </Button>
         </div>
 
