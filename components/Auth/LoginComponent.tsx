@@ -8,6 +8,7 @@ import Link from 'next/link';
 import logo from '../../public/assets/images/progearhub.png';
 import useLoginHook from '../../hooks/AuthHooks/useLoginHook';
 import LoginStyles from '../../styles/components/login.module.scss';
+import { InputGroup } from 'react-bootstrap';
 
 const validation = Yup.object().shape({
   usr: Yup.string().email(' Enter valid email').required(' Email field is required'),
@@ -31,9 +32,9 @@ function LoginComponent() {
         <FormikForm>
           <div className="form-wrapper" id="wrapper-login">
             <div className="content-wrapper" id="content-signin">
-              <div className="row justify-content-center">
-                <div className={`col-lg-3 col-md-4 ${LoginStyles.main_column}`}>
-                  <div className="row ">
+              <div className="row mx-4 mx-sm-0">
+                <div className={`offset-lg-4 offset-md-3 offset-sm-2 col-sm-8 col-12  col-lg-4 col-md-6 ${LoginStyles.main_column}`}>
+                  <div className="row px-4">
                     <div className="col-12">
                       <div className="img">
                         <Link href="/" className="navbar-brand">
@@ -56,11 +57,11 @@ function LoginComponent() {
                       </Form.Group>
                     </div>
                   </div>
-                  <div className="row mt-1 ">
+                  <div className="row px-4 mt-1 ">
                     <div className="col-12 mt-2">
                       <Form.Group controlId="formPassword">
                         <Form.Label>Password </Form.Label>
-                        <div className={`${LoginStyles.input_group}`}>
+                        <InputGroup>
                           <Form.Control
                             onChange={handleChange}
                             type={passwordHidden ? 'password' : 'text'}
@@ -68,27 +69,30 @@ function LoginComponent() {
                             placeholder="Enter Password"
                             onBlur={handleBlur}
                           />
-                          <span className={`input-group-text ${LoginStyles.login_icon}`}>
-                            {passwordHidden ? (
-                              <FaEyeSlash onClick={(e: any) => togglePasswordIcon(e)} />
-                            ) : (
-                              <FaEye onClick={(e: any) => togglePasswordIcon(e)} />
-                            )}
-                          </span>
-                        </div>
+                          <InputGroup.Text id="basic-addon2">
+                            <span className={``}>
+                              {passwordHidden ? (
+                                <FaEyeSlash onClick={(e: any) => togglePasswordIcon(e)} />
+                              ) : (
+                                <FaEye onClick={(e: any) => togglePasswordIcon(e)} />
+                              )}
+                            </span>
+                          </InputGroup.Text>
+                        </InputGroup>
                         <div className="empty">
                           <ErrorMessage name="pwd" />
                         </div>
                       </Form.Group>
                     </div>
                   </div>
-                  <div className="row mt-3">
+                  <div className="row px-4 mt-3">
                     <div className="col-12 d-flex justify-content-center">
-                      <button type="submit" className={`${LoginStyles.btn_login} mb-2 mt-2`}>
+                      <button type="submit" className={`${LoginStyles.btn_login} rounded mb-3 mt-2`}>
                         LOGIN
                       </button>
                     </div>
                   </div>
+
                   <div className="text-center">
                     <span className="not_an_account">
                       <span className="color-black">Not an account ?</span>
