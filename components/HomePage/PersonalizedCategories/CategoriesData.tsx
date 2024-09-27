@@ -5,7 +5,7 @@ import style from '../../../styles/components/home.module.scss';
 
 const CategoriesData = ({ homeTopCategories }: any) => {
   const imageLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
+    return `${src}?w=${width}&q=${quality || 75}`;
   };
   return (
     <div className="container-fluid slider-container mt-4">

@@ -24,7 +24,7 @@ const ProductCard = ({
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
   const imageLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
+    return `${src}?w=${width}&q=${quality || 75}`;
   };
   let wishProducts: any;
   const handleRenderIcon = () => {
