@@ -78,7 +78,7 @@ function LoginComponent() {
                             </span>
                           </InputGroup.Text>
                         </InputGroup>
-                        <div className="empty">
+                        <div className={`${LoginStyles.empty} mt-1`}>
                           <ErrorMessage name="pwd" />
                         </div>
                       </Form.Group>
@@ -98,8 +98,7 @@ function LoginComponent() {
 
                   <div className="text-center">
                     <span className="not_an_account">
-                      <span className="color-black">Not an account ?</span>
-                      <Link href="/register">Register</Link>
+                      <span className="color-black">New to Summit?</span> <Link href="/register">Create an account</Link>
                     </span>
                   </div>
                 </div>
