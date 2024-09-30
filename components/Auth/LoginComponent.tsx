@@ -1,12 +1,12 @@
-import { Formik, Form as FormikForm, ErrorMessage, useFormikContext } from 'formik';
-import Form from 'react-bootstrap/Form';
+import { ErrorMessage, Formik, Form as FormikForm } from 'formik';
 import Image from 'next/image';
-import { FaEye } from 'react-icons/fa';
-import { FaEyeSlash } from 'react-icons/fa';
-import * as Yup from 'yup';
 import Link from 'next/link';
-import logo from '../../public/assets/images/progearhub.png';
+import { InputGroup } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import * as Yup from 'yup';
 import useLoginHook from '../../hooks/AuthHooks/useLoginHook';
+import logo from '../../public/assets/images/progearhub.png';
 import LoginStyles from '../../styles/components/login.module.scss';
 
 const validation = Yup.object().shape({
@@ -15,7 +15,7 @@ const validation = Yup.object().shape({
 });
 
 function LoginComponent() {
-  const { passwordHidden, togglePasswordIcon, fetchToken } = useLoginHook();
+  const { passwordHidden, togglePasswordIcon, fetchToken, loginBtnLoader } = useLoginHook();
   return (
     <Formik
       initialValues={{
@@ -31,9 +31,9 @@ function LoginComponent() {
         <FormikForm>
           <div className="form-wrapper" id="wrapper-login">
             <div className="content-wrapper" id="content-signin">
-              <div className="row justify-content-center">
-                <div className={`col-lg-3 col-md-4 ${LoginStyles.main_column}`}>
-                  <div className="row ">
+              <div className="row mx-4 mx-sm-0">
+                <div className={`offset-lg-4 offset-md-3 offset-sm-2 col-sm-8 col-12  col-lg-4 col-md-6 ${LoginStyles.main_column}`}>
+                  <div className="row px-4">
                     <div className="col-12">
                       <div className="img">
                         <Link href="/" className="navbar-brand">
@@ -56,11 +56,11 @@ function LoginComponent() {
                       </Form.Group>
                     </div>
                   </div>
-                  <div className="row mt-1 ">
+                  <div className="row px-4 mt-1 ">
                     <div className="col-12 mt-2">
                       <Form.Group controlId="formPassword">
                         <Form.Label>Password </Form.Label>
-                        <div className={`${LoginStyles.input_group}`}>
+                        <InputGroup>
                           <Form.Control
                             onChange={handleChange}
                             type={passwordHidden ? 'password' : 'text'}
@@ -68,27 +68,34 @@ function LoginComponent() {
                             placeholder="Enter Password"
                             onBlur={handleBlur}
                           />
-                          <span className={`input-group-text ${LoginStyles.login_icon}`}>
-                            {passwordHidden ? (
-                              <FaEyeSlash onClick={(e: any) => togglePasswordIcon(e)} />
-                            ) : (
-                              <FaEye onClick={(e: any) => togglePasswordIcon(e)} />
-                            )}
-                          </span>
-                        </div>
+                          <InputGroup.Text id="basic-addon2">
+                            <span className={``}>
+                              {passwordHidden ? (
+                                <FaEyeSlash onClick={(e: any) => togglePasswordIcon(e)} />
+                              ) : (
+                                <FaEye onClick={(e: any) => togglePasswordIcon(e)} />
+                              )}
+                            </span>
+                          </InputGroup.Text>
+                        </InputGroup>
                         <div className="empty">
                           <ErrorMessage name="pwd" />
                         </div>
                       </Form.Group>
                     </div>
                   </div>
-                  <div className="row mt-3">
+                  <div className="row px-4 mt-3">
                     <div className="col-12 d-flex justify-content-center">
-                      <button type="submit" className={`${LoginStyles.btn_login} mb-2 mt-2`}>
-                        LOGIN
+                      <button type="submit" className={`${LoginStyles.btn_login} rounded w-100 mb-3 mt-2`}>
+                        {loginBtnLoader ? (
+                          <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        ) : (
+                          <span>LOGIN</span>
+                        )}
                       </button>
                     </div>
                   </div>
+
                   <div className="text-center">
                     <span className="not_an_account">
                       <span className="color-black">Not an account ?</span>
