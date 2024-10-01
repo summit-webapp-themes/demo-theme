@@ -86,11 +86,7 @@ const ProductCard = ({
               <RiDeleteBin2Fill />
             </button>
           ) : (
-            <Button
-              className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`}
-              onClick={() => handleShowCatalogModal(data?.name)}
-              // disabled={addToCartLoaderBtn}
-            >
+            <Button className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={() => handleShowCatalogModal(data?.name)}>
               Add to catalog
             </Button>
           )}
@@ -126,7 +122,10 @@ const ProductCard = ({
               <Card.Text className={`my-0 py-0 fw-bold ${ProductCardStyles.product_card_text} `}>
                 {data?.currency_symbol}
                 {data.price} <span className={ProductCardStyles.mrpPrice}>M.R.P:</span>
-                <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}>{data.mrp_price}</span>
+                <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}>
+                  {data?.currency_symbol}
+                  {data.mrp_price}
+                </span>
               </Card.Text>
             </div>
             <div>
