@@ -16,7 +16,7 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
   const [updatedCartList, setUpdatedCartList]: any = useState([]);
 
   const imageLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
+    return `${src}?w=${width}&q=${quality || 75}`;
   };
 
   const handleDeleteItem = (item_code: any) => {
@@ -101,7 +101,7 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                     <div className="row mt-3 ms-2">
                       <div className="col-lg-2 col-md-12">
                         {item?.image_url ? (
-                          <Image src={item?.image_url} alt="product image" width={100} height={100} loader={imageLoader} />
+                          <Image src={item?.image_url} alt="product image" width={135} height={100} loader={imageLoader} />
                         ) : (
                           <Image src={NoImage} alt="product image" width={100} height={100} />
                         )}
