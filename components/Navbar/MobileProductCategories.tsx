@@ -46,7 +46,7 @@ const MobileProductCategories = ({
           <Accordion defaultActiveKey="0">
             {navbarData?.length > 0 &&
               navbarData?.map((itemL1: any, indexL1: number) => (
-                <Accordion.Item eventKey={`${indexL1}`} className="border-0">
+                <Accordion.Item eventKey={`${indexL1}`} className="border-0" key={indexL1}>
                   <Accordion.Header className=" border-0 fs-16 ">
                     <div>
                       <span className="pe-2">
@@ -60,7 +60,7 @@ const MobileProductCategories = ({
                       itemL1?.values !== null &&
                       itemL1?.values.map((itemL2: any, indexL2: number) => {
                         return (
-                          <div className="nav-sidebar2">
+                          <div className="nav-sidebar2" key={indexL2}>
                             <Accordion>
                               <Accordion.Item eventKey={`${indexL2}`} className="border-0">
                                 <Accordion.Header>
@@ -68,8 +68,9 @@ const MobileProductCategories = ({
                                 </Accordion.Header>
                                 <Accordion.Body>
                                   {itemL2?.values?.length > 0 &&
-                                    itemL2?.values?.map((itemL3: any) => (
+                                    itemL2?.values?.map((itemL3: any, indexL3: number) => (
                                       <Link
+                                        key={indexL3}
                                         href={{ pathname: `${itemL3?.url}`, query: { page: '1', currency: 'INR' } }}
                                         className="text-decoration-none text-dark"
                                         onClick={() => setIsSidebarOpen(false)}

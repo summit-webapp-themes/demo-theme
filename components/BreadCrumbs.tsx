@@ -18,14 +18,14 @@ function BreadCrumbs() {
         </li>
         {breadCrumbData?.length > 0 &&
           breadCrumbData?.map((item: any, index: number) => (
-            <>
+            <div key={index}>
               <FaAngleRight className=" my-1" size={15} color="#999" />
               <li className="breadcrumb-item active text-secondary" aria-current="page">
                 <Link href={`${item?.link}?page=1`} legacyBehavior className="text-secondary">
                   {item?.name}
                 </Link>
               </li>
-            </>
+            </div>
           ))}
       </ol>
     </nav>

@@ -5,7 +5,6 @@ import QuickOrderCard from './QuickOrderCard';
 
 const QuickOrderMaster = () => {
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
-  console.log(selectedLanguageData, 'data1');
   const {
     data,
     itemCode,

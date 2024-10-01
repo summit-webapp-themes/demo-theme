@@ -13,12 +13,12 @@ const WishlistMaster = () => {
     if (isLoading) {
       return (
         <div className="row ">
-          {[...Array(10)].map(() => (
-            <>
+          {[...Array(10)].map((_, index: number) => (
+            <div key={index}>
               <div className="col-md-3 col-lg-4 col-sm-6 mb-3 p-1">
                 <ProductCardSkeleton />
               </div>
-            </>
+            </div>
           ))}
         </div>
       );
