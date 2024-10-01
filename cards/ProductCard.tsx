@@ -8,7 +8,6 @@ import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
-import { CONSTANTS } from '../services/config/app-config';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
 
 const ProductCard = ({
@@ -125,6 +124,7 @@ const ProductCard = ({
           <div className="d-flex justify-content-between align-items-center">
             <div>
               <Card.Text className={`my-0 py-0 fw-bold ${ProductCardStyles.product_card_text} `}>
+                {data?.currency_symbol}
                 {data.price} <span className={ProductCardStyles.mrpPrice}>M.R.P:</span>
                 <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}>{data.mrp_price}</span>
               </Card.Text>
