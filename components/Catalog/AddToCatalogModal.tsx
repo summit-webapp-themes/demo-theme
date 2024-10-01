@@ -13,7 +13,12 @@ const AddToCatalogModal = ({ show, handleClose, catalogListData, handleSaveCatal
           <label htmlFor="">Select Catalog :</label>
           <select className="form-select mt-3" aria-label="Default select example" onChange={(e) => setCatalogName(e.target.value)}>
             <option selected>Open this select menu</option>
-            {catalogListData?.length > 0 && catalogListData?.map((catalog: any) => <option value={catalog?.slug}>{catalog?.name}</option>)}
+            {catalogListData?.length > 0 &&
+              catalogListData?.map((catalog: any, index: number) => (
+                <option value={catalog?.slug} key={index}>
+                  {catalog?.name}
+                </option>
+              ))}
           </select>
         </Modal.Body>
         <Modal.Footer>
