@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import MultiLangApi from '../services/api/general-apis/multilanguage-api';
 import { CONSTANTS } from '../services/config/app-config';
 import { useDispatch } from 'react-redux';
 import { setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
 import MetaTag from '../services/api/general-apis/meta-tag-api';
+import useGoogleAnalyticsOperationsHandler from '../hooks/GoogleAnalytics/useGoogleAnalyticsOperationsHandler';
 import PageMetaData from '../components/PageMetaData';
 import HomePageMaster from '../components/HomePage/HomePageMaster';
 
 const Home = ({ fetchedDataFromServer }: any) => {
   const dispatch = useDispatch();
+  const { sendPageViewToGA } = useGoogleAnalyticsOperationsHandler();
   useEffect(() => {
+    sendPageViewToGA(window.location.pathname + window.location.search, 'Home Page');
     if (fetchedDataFromServer?.multiLingualListTranslationTextList) {
       dispatch(setMultiLingualData(fetchedDataFromServer.multiLingualListTranslationTextList));
     }

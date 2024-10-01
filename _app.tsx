@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { PersistGate } from 'redux-persist/integration/react';
 import { CONSTANTS } from '../services/config/app-config';
 import { persistor, store } from '../store/store';
-import useGoogleAnalyticsHandler from '../hooks/GoogleAnalytics/useGoogleAnalyticsHandler';
+import useInitializeGoogleAnalytics from '../hooks/GoogleAnalytics/useInitializeGoogleAnalytics';
 import ErrorBoundary from '../components/ErrorBoundary';
 const Layout = dynamic(() => import('../components/Layout'));
 const ProtectedRoute = dynamic(() => import('../routes/ProtectedRoute'));
@@ -26,7 +26,7 @@ const nunito = Nunito({
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (CONSTANTS.ENABLE_GOOGLE_ANALYTICS) {
-      useGoogleAnalyticsHandler();
+      useInitializeGoogleAnalytics();
     }
   }, []);
   return (
