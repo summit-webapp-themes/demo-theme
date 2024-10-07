@@ -6,7 +6,7 @@ const CollectionsLoading = () => {
   return (
     <>
       {[...Array(3)].map((_, index) => (
-        <div className="row">
+        <div className="row" key={index}>
           <Placeholder as={Card.Text} animation="glow">
             <Placeholder style={{ width: '25%', marginTop: '20px' }} />
           </Placeholder>

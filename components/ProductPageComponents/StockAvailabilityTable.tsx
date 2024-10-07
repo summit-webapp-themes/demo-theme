@@ -38,8 +38,8 @@ const StockAvailabilityTable = ({ stockAvailabilityData }: any) => {
             </tr>
           </thead>
           <tbody>
-            {stockAvailabilityData?.map((stock: any) => (
-              <tr>
+            {stockAvailabilityData?.map((stock: any, index: number) => (
+              <tr key={index}>
                 <td className="text-center">{stock?.warehouse || '--'}</td>
                 <td className="text-center">{stock?.qty || '--'}</td>
                 <td className="text-center">{stock?.incoming_qty || '--'}</td>

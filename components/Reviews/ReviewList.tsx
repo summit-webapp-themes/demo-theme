@@ -15,7 +15,9 @@ const ReviewList = ({ reviewList, isLoading }: any) => {
       return (
         <div className="row">
           {[...Array(4)].map((_, index) => (
-            <CustomerReviewSkeleton />
+            <div key={index}>
+              <CustomerReviewSkeleton />
+            </div>
           ))}
         </div>
       );

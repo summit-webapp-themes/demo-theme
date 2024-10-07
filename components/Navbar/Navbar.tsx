@@ -4,12 +4,14 @@ import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slic
 import { useSelector } from 'react-redux';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
+import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
+import useWishlist from '../../hooks/WishlistHooks/useWishlistHook';
 
 function Navbar() {
   const { navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, isLoggedIn } = useNavbar();
   const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
-  const cartCount = useSelector(selectCart)?.cartCount;
-  const wishlistCount = useSelector(selectWishlist)?.wislistCount;
+  const { cartCount } = useFetchCartItems();
+  const { wishlistCount } = useWishlist();
   return (
     <WebNavBar
       navbarData={navbarData}

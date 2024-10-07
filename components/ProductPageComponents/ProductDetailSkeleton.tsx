@@ -69,8 +69,8 @@ const ProductDetailSkeleton = () => {
           </div>
           <div className="mt-4">
             <Placeholder animation="glow">
-              {Array.from({ length: 4 }).map(() => (
-                <Placeholder style={{ width: '5%', height: 30 }} className="m-1 rounded-2" />
+              {Array.from({ length: 4 }).map((_, index) => (
+                <Placeholder style={{ width: '5%', height: 30 }} className="m-1 rounded-2" key={index} />
               ))}
             </Placeholder>
           </div>

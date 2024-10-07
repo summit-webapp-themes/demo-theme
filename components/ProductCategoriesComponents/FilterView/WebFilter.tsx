@@ -10,12 +10,12 @@ function WebFilter() {
     if (isLoading) {
       return (
         <div className="row justify-content-center">
-          {[...Array(1)].map(() => (
-            <>
+          {[...Array(1)].map((_, index: number) => (
+            <div key={index}>
               <div className="col-lg-12 mx-3">
                 <FilterLoadingLayout />
               </div>
-            </>
+            </div>
           ))}
         </div>
       );
@@ -23,7 +23,7 @@ function WebFilter() {
     if (filtersData?.filters?.length > 0) {
       return filtersData?.filters?.map((filter: any, index: any) => {
         return (
-          <Accordion defaultActiveKey="0">
+          <Accordion defaultActiveKey="0" key={index}>
             <Accordion.Item eventKey="0">
               <Accordion.Header>{filter?.section}</Accordion.Header>
               <Accordion.Body>

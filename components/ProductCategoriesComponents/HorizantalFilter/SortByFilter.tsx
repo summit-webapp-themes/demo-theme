@@ -8,9 +8,7 @@ function SortByFilter({ sortBy, handleSortBy }: any) {
         value={sortBy}
         onChange={(e) => handleSortBy(e.target.value)}
       >
-        <option value="latest" selected>
-          Latest Products
-        </option>
+        <option value="latest">Latest Products</option>
         <option value="oldest">Oldest Products</option>
         <option value="low_to_high">Low To High</option>
         <option value="high_to_low">High To Low</option>

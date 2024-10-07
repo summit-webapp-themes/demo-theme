@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import NoImage from '../../public/assets/images/no_image.png';
-import { CONSTANTS } from '../../services/config/app-config';
 import { currency_selector_state } from '../../store/slices/general_slices/multi-currency-slice';
 import cartStyles from '../../styles/components/cartlist.module.scss';
 
@@ -72,8 +71,8 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
   return (
     <div className="py-3">
       {cartListingItems?.categories?.length > 0 &&
-        cartListingItems?.categories?.map((category: any) => (
-          <div className="border p-4">
+        cartListingItems?.categories?.map((category: any, idx: number) => (
+          <div className="border p-4" key={idx}>
             <h5>
               <b>{category?.category}</b>
             </h5>
@@ -97,13 +96,20 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
               </div>
               <div className="col-lg-12 col-md-6">
                 {category?.orders?.length > 0 &&
-                  category?.orders?.map((item: any) => (
-                    <div className="row mt-3 ms-2">
+                  category?.orders?.map((item: any, index: number) => (
+                    <div className="row mt-3 ms-2" key={index}>
                       <div className="col-lg-2 col-md-12">
                         {item?.image_url ? (
-                          <Image src={item?.image_url} alt="product image" width={135} height={100} loader={imageLoader} />
+                          <Image
+                            src={item?.image_url}
+                            alt="product image"
+                            width={400}
+                            height={400}
+                            loader={imageLoader}
+                            className={cartStyles.cart_image}
+                          />
                         ) : (
-                          <Image src={NoImage} alt="product image" width={100} height={100} />
+                          <Image src={NoImage} alt="product image" width={150} height={150} />
                         )}
                       </div>
                       <div className="col-lg-7 col-md-12">
@@ -138,8 +144,8 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
               </div>
             </div>
             {category?.orders?.length > 0 &&
-              category?.orders?.map((item: any) => (
-                <div className="row d-lg-none d-md-block mb-5 border">
+              category?.orders?.map((item: any, index: number) => (
+                <div className="row d-lg-none d-md-block mb-5 border" key={index}>
                   <div className={`col-12 ${item?.image_url ? 'border' : 'd-none'}`}>
                     <div className="row">
                       <div className="col-6 col-sm-6">

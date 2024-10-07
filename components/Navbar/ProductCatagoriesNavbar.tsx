@@ -23,7 +23,7 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
           item?.values.map((itemL2: any, index: number) => {
             const columnCount = Math.ceil(itemL2?.values?.length / 8);
             return (
-              <div className="col">
+              <div key={index} className="col">
                 <div className={stylesHeader.heading_category_l2}>
                   <Link
                     href={{

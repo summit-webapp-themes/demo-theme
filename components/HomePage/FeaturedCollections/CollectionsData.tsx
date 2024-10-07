@@ -33,7 +33,7 @@ const CollectionsData = ({ allTagsData, addToCartItem, getPartyName }: any) => {
                 {item.value.length > 0 && (
                   <Carousel responsive={responsive}>
                     {item?.value?.map((val: any, index: any) => (
-                      <div className={style.cardMargin}>
+                      <div className={style.cardMargin} key={index}>
                         <ProductCard key={index} data={val} addToCartItem={addToCartItem} getPartyName={getPartyName} />
                       </div>
                     ))}

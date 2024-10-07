@@ -147,7 +147,7 @@ const CheckOutAddress = ({
                 <Form.Check // prettier-ignore
                   type="checkbox"
                   checked={showBillingAddress}
-                  onClick={handleShowBillingAddress}
+                  onChange={handleShowBillingAddress}
                   id={`default-checkbox`}
                   label={`Use the same address for Billing`}
                 />

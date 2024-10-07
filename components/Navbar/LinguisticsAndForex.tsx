@@ -11,8 +11,12 @@ const LinguisticsAndForex = () => {
         <select value={selectedLang} onChange={(e) => handleLanguageChange(e?.target?.value)} className="select-field cursor_pointer">
           {multiLanguagesData?.length > 0 &&
             multiLanguagesData !== null &&
-            multiLanguagesData?.map((lang: any) => {
-              return <option value={lang?.lang_code}>{lang?.lang_name}</option>;
+            multiLanguagesData?.map((lang: any, index: number) => {
+              return (
+                <option value={lang?.lang_code} key={index}>
+                  {lang?.lang_name}
+                </option>
+              );
             })}
         </select>
       </div>

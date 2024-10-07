@@ -15,7 +15,7 @@ const ProductVariants = dynamic(() => import('./ProductVariants'));
 const QuantityInputField = dynamic(() => import('./QuantityInputField'));
 const StarRating = dynamic(() => import('./StarRating'));
 
-function ProductDetailDescribtionSection  ({
+function ProductDetailDescribtionSection({
   productDetailData,
   pinCode,
   handleMultipleQtyChange,
@@ -26,7 +26,7 @@ function ProductDetailDescribtionSection  ({
   handleStockAvailabilityData,
   handleQtyModificationOnButtonClick,
   selectedMultiLangData,
-}: any)  {
+}: any) {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
@@ -193,11 +193,11 @@ function ProductDetailDescribtionSection  ({
           <label htmlFor="pincode" className="">
             Enter Your Pincode Below To Check the Delievry
           </label>
-          <input className="d-block form-control w-50" id="pincode" value={pinCode} placeholder="Enter the Pincode" />
+          <input className="d-block form-control w-50" id="pincode" defaultValue={pinCode} placeholder="Enter the Pincode" />
         </div>
       </div>
     </>
   );
-};
+}
 
 export default ProductDetailDescribtionSection;
