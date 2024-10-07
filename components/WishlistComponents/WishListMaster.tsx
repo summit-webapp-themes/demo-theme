@@ -12,12 +12,10 @@ const WishlistMaster = () => {
   const handleDataRendering = () => {
     if (isLoading) {
       return (
-        <div className="row ">
+        <div className="row">
           {[...Array(10)].map((_, index: number) => (
-            <div key={index}>
-              <div className="col-md-3 col-lg-4 col-sm-6 mb-3 p-1">
-                <ProductCardSkeleton />
-              </div>
+            <div className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4 px-3" key={index}>
+              <ProductCardSkeleton />
             </div>
           ))}
         </div>

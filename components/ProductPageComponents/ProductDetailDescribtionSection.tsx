@@ -118,20 +118,16 @@ function ProductDetailDescribtionSection({
         />
       </div>
       <div>
-        {productVariantData?.length !== 0 && (
-          <>
-            <p className={`my-1 ${styles.detailPriceSection}`}>
-              {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
-            </p>
-            <QuantityInputField
-              productDetailData={productDetailData}
-              qty={qty}
-              handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
-              handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
-              selectedMultiLangData={selectedMultiLangData}
-            />
-          </>
-        )}
+        <p className={`my-1 ${styles.detailPriceSection}`}>
+          {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
+        </p>
+        <QuantityInputField
+          productDetailData={productDetailData}
+          qty={qty}
+          handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
+          handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
+          selectedMultiLangData={selectedMultiLangData}
+        />
         <p className="my-1 fs-14">
           {selectedMultiLangData?.minimum_order_qty}:{' '}
           <span className={productDetailData?.min_order_qty > qty ? 'text-danger' : 'text-success'}>
