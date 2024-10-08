@@ -13,6 +13,7 @@ import ProductCardStyles from '../styles/components/productCard.module.scss';
 const ProductCard = ({
   data,
   wishlistData,
+  cartData,
   addToCartItem,
   getPartyName,
   isSuperAdmin,
@@ -55,6 +56,23 @@ const ProductCard = ({
           </span>
         );
       }
+    }
+  };
+  let cartProducts: any;
+  console.log(cartProducts, cartData, data?.name, 'data');
+  const handleRenderCartBtnText = () => {
+    {
+      cartData?.length > 0 &&
+        cartData?.map((item: any) => {
+          if (item === data?.name) {
+            cartProducts = item;
+          }
+        });
+    }
+    if (!cartProducts) {
+      return <span>ADD</span>;
+    } else {
+      return <span>ADDED</span>;
     }
   };
   const handleAddToProductData = async () => {
@@ -121,7 +139,7 @@ const ProductCard = ({
             <div>
               <Card.Text className={`my-0 py-0 fw-bold ${ProductCardStyles.product_card_text} `}>
                 {data?.currency_symbol}
-                {data.price} <span className={ProductCardStyles.mrpPrice}>M.R.P:</span>
+                {data.price}{' '}
                 <span className={`text-decoration-line-through ${ProductCardStyles.mrpPrice}`}>
                   {data?.currency_symbol}
                   {data.mrp_price}
@@ -137,7 +155,7 @@ const ProductCard = ({
               >
                 {!addToCartLoaderBtn ? (
                   <>
-                    <span>ADD</span>
+                    {handleRenderCartBtnText()}
                     <FaCartPlus className={ProductCardStyles.cardBtn} />
                   </>
                 ) : (
