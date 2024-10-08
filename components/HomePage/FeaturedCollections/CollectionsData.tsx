@@ -1,9 +1,9 @@
-import ProductCard from '../../../cards/ProductCard';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import ProductCard from '../../../cards/ProductCard';
 import style from '../../../styles/components/home.module.scss';
 
-const CollectionsData = ({ allTagsData, addToCartItem, getPartyName }: any) => {
+const CollectionsData = ({ allTagsData, addToCartItem, getPartyName, wishlistData }: any) => {
   const responsive: any = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -34,7 +34,13 @@ const CollectionsData = ({ allTagsData, addToCartItem, getPartyName }: any) => {
                   <Carousel responsive={responsive}>
                     {item?.value?.map((val: any, index: any) => (
                       <div className={style.cardMargin} key={index}>
-                        <ProductCard key={index} data={val} addToCartItem={addToCartItem} getPartyName={getPartyName} />
+                        <ProductCard
+                          key={index}
+                          data={val}
+                          addToCartItem={addToCartItem}
+                          getPartyName={getPartyName}
+                          wishlistData={wishlistData}
+                        />
                       </div>
                     ))}
                   </Carousel>

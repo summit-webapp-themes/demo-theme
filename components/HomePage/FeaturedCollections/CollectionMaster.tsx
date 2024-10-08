@@ -1,18 +1,23 @@
 import Image from 'next/image';
-import useDisplayTagHooks from '../../../hooks/HomePageHooks/useFeaturedCollections';
-import CollectionsData from './CollectionsData';
-import ErrorImage from '../../../public/assets/images/error-icon.png';
+import { useSelector } from 'react-redux';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
+import useDisplayTagHooks from '../../../hooks/HomePageHooks/useFeaturedCollections';
+import ErrorImage from '../../../public/assets/images/error-icon.png';
+import { selectWishlist } from '../../../store/slices/wishlist-slices/wishlist-local-slice';
+import CollectionsData from './CollectionsData';
 import CollectionsLoading from './CollectionsLoading';
 
 const CollectionMaster = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
   const { addToCartItem, getPartyName } = useAddToCartHook();
+  const wishlistData = useSelector(selectWishlist).items;
 
   if (isLoading) {
     return <CollectionsLoading />;
   } else if (allTagsData?.length > 0) {
-    return <CollectionsData allTagsData={allTagsData} addToCartItem={addToCartItem} getPartyName={getPartyName} />;
+    return (
+      <CollectionsData allTagsData={allTagsData} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />
+    );
   } else if (errorMessage) {
     return (
       <div className="p-3 d-flex justify-content-center align-items-center" style={{ fontSize: '40px' }}>
