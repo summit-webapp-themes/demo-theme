@@ -66,7 +66,8 @@
   border: 1px solid #cd8825;
   height: 30px;
 }
-.carListingBtn:disabled {
+.carListingBtn:disabled,
+.carListingBtn:hover {
   background-color: #cd8825;
   border: 1px solid #cd8825;
 }
@@ -78,6 +79,10 @@
   padding: 5px 11px;
   border: 1px solid #184f2f;
   height: 30px;
+}
+.carListingBtn_added:hover {
+  background-color: #184f2f;
+  border: 1px solid #184f2f;
 }
 .mrpPrice {
   color: #7f7f7f !important;
