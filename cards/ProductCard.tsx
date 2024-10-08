@@ -3,12 +3,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
+import { FaCartPlus, FaCircleCheck, FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
+import { FaCheckCircle } from 'react-icons/fa';
 
 const ProductCard = ({
   data,
@@ -59,7 +60,6 @@ const ProductCard = ({
     }
   };
   let cartProducts: any;
-  console.log(cartProducts, cartData, data?.name, 'data');
   const handleRenderCartBtnText = () => {
     {
       cartData?.length > 0 &&
@@ -70,9 +70,36 @@ const ProductCard = ({
         });
     }
     if (!cartProducts) {
-      return <span>ADD</span>;
+      return (
+        <Button
+          type="button"
+          className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`}
+          onClick={handleAddToProductData}
+          disabled={addToCartLoaderBtn}
+        >
+          {!addToCartLoaderBtn ? (
+            <>
+              <span>ADD</span>
+              <FaCartPlus className={`${ProductCardStyles.cardBtn}`} />
+            </>
+          ) : (
+            <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+          )}
+        </Button>
+      );
     } else {
-      return <span>ADDED</span>;
+      return (
+        <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn_added}`}>
+          {!addToCartLoaderBtn ? (
+            <>
+              <span>ADDED</span>
+              <FaCheckCircle className={`mb-1 ${ProductCardStyles.cardBtn}`} />
+            </>
+          ) : (
+            <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+          )}
+        </Button>
+      );
     }
   };
   const handleAddToProductData = async () => {
@@ -146,23 +173,7 @@ const ProductCard = ({
                 </span>
               </Card.Text>
             </div>
-            <div>
-              <Button
-                type="button"
-                className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`}
-                onClick={handleAddToProductData}
-                disabled={addToCartLoaderBtn}
-              >
-                {!addToCartLoaderBtn ? (
-                  <>
-                    {handleRenderCartBtnText()}
-                    <FaCartPlus className={ProductCardStyles.cardBtn} />
-                  </>
-                ) : (
-                  <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
-                )}
-              </Button>
-            </div>
+            <div>{handleRenderCartBtnText()}</div>
           </div>
           <div>{isSuperAdmin === 'true' && handleRenderAddToCatalogBtn()}</div>
         </div>
