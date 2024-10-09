@@ -12,19 +12,12 @@ const CollectionMaster = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
-  const cartData = useSelector(selectCart).items;
 
   if (isLoading) {
     return <CollectionsLoading />;
   } else if (allTagsData?.length > 0) {
     return (
-      <CollectionsData
-        allTagsData={allTagsData}
-        addToCartItem={addToCartItem}
-        getPartyName={getPartyName}
-        wishlistData={wishlistData}
-        cartData={cartData}
-      />
+      <CollectionsData allTagsData={allTagsData} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />
     );
   } else if (errorMessage) {
     return (
