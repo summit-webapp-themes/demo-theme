@@ -3,6 +3,7 @@ import TopCategories from './PersonalizedCategories/TopCategories';
 import BrandListing from './BrandSection/BrandListingMaster';
 import CollectionsMaster from './FeaturedCollections/CollectionMaster';
 import style from '../../styles/components/home.module.scss';
+import TabbedCollectionMaster from './FeaturedCollections/tabbedFeaturedCollection/TabbedCollectionMaster';
 
 const HomePageMaster = () => {
   return (
@@ -12,6 +13,7 @@ const HomePageMaster = () => {
         <TopCategories />
         <BrandListing />
         <CollectionsMaster />
+        <TabbedCollectionMaster />
       </div>
     </>
   );
