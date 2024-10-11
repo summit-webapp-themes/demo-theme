@@ -12,6 +12,7 @@ const CollectionMaster = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
+  console.log(allTagsData);
 
   if (isLoading) {
     return <CollectionsLoading />;
