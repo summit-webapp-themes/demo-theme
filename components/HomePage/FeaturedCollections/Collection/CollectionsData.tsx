@@ -1,8 +1,8 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import ProductCard from '../../../cards/ProductCard';
-import style from '../../../styles/components/home.module.scss';
-import CarouselCommonComponent from './CarouselCommonComponent';
+import ProductCard from '../../../../cards/ProductCard';
+import styles from '../../../styles/components/home.module.scss';
+import CarouselCommonComponent from '../CarouselCommonComponent';
 
 const CollectionsData = ({ allTagsData, addToCartItem, getPartyName, wishlistData }: any) => {
   const responsive: any = {
