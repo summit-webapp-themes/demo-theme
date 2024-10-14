@@ -14,6 +14,7 @@ const HomePageMaster = () => {
         <BrandListing />
         <CollectionsMaster />
         <TabbedCollectionMaster />
+        <CountDownWithProduct />
       </div>
     </>
   );
