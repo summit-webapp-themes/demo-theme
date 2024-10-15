@@ -1,18 +1,17 @@
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
-import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
-import useDisplayTagHooks from '../../../../hooks/HomePageHooks/useFeaturedCollections';
-import ErrorImage from '../../../../public/assets/images/error-icon.png';
-import { selectWishlist } from '../../../../store/slices/wishlist-slices/wishlist-local-slice';
+import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
+import useDisplayTagHooks from '../../../hooks/HomePageHooks/useFeaturedCollections';
+import ErrorImage from '../../../public/assets/images/error-icon.png';
+import { selectWishlist } from '../../../store/slices/wishlist-slices/wishlist-local-slice';
 import CollectionsData from './CollectionsData';
-import CollectionsLoading from '../CollectionsLoading';
-import { selectCart } from '../../../../store/slices/cart-slices/cart-local-slice';
+import CollectionsLoading from './CollectionsLoading';
+import { selectCart } from '../../../store/slices/cart-slices/cart-local-slice';
 
 const CollectionMaster = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
-  console.log(allTagsData);
 
   if (isLoading) {
     return <CollectionsLoading />;
