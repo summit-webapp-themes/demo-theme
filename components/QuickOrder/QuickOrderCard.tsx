@@ -57,7 +57,7 @@ const QuickOrderCard = (props: Props) => {
               width={150}
               height={150}
               // loader={imageLoader}
-              className={styles.cart_image}
+              className={`w-100 ${styles.cartImage}`}
             />
           ) : (
             <Image src={noDataImg.src} alt="product image" width={150} height={150} />

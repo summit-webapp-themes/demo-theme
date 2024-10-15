@@ -123,6 +123,7 @@ const QuickOrderMaster = () => {
                 handleQuantityChange={handleQuantityChange}
                 minQuntityWarning={minQuntityWarning}
                 error={error}
+                isLoading={loading}
               />
             </div>
           </div>
