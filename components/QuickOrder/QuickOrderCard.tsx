@@ -46,7 +46,6 @@ const QuickOrderCard = (props: Props) => {
 
   return data?.map((item: any, index: number) => {
     const localItem = itemList?.find((itemValue: any) => itemValue.item_code === item?.name);
-    console.log(item, 'iiiiiiii');
     return (
       <div className="row mt-3 ms-2" key={index}>
         <div className="col-lg-2 col-md-12">
@@ -92,10 +91,16 @@ const QuickOrderCard = (props: Props) => {
         </div>
         <div className="col-lg-1 col-md-12 text-center">
           <input
-            type="number"
-            value={localItem?.quantity || 0}
+            type="text"
             className="w-100 text-center border"
-            onChange={(e) => handleQuantityChange(item?.name, e.target.value, item)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*$/.test(value)) {
+                handleQuantityChange(item?.name, value, item);
+              } else {
+                // setMinQuantityWarning({ warning: `Please enter a valid number!`, itemCode: item?.name });
+              }
+            }}
           />
           {minQuntityWarning && minQuntityWarning?.itemCode === item?.name && (
             <span className="text-danger fs-14">{minQuntityWarning?.warning}</span>
