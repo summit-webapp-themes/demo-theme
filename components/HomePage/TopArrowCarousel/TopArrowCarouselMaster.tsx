@@ -1,83 +1,14 @@
-import React, { useRef } from 'react';
-import Slider from 'react-slick';
+import { useSelector } from 'react-redux';
+import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
+import useDisplayTagHooks from '../../../hooks/HomePageHooks/useFeaturedCollections';
+import { selectWishlist } from '../../../store/slices/wishlist-slices/wishlist-local-slice';
+import TopArrowSlider from './TopArrrowSlider';
 
 function TopArrowCarouselMaster() {
-  let sliderRef: any = useRef(null);
-  const next = () => {
-    sliderRef?.slickNext();
-  };
-  const previous = () => {
-    sliderRef?.slickPrev();
-  };
-  const settings = {
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-  return (
-    <div className="slider-container">
-      <div className="d-flex justify-content-end">
-        <button className="btn btn-primary" onClick={previous}>
-          Previous
-        </button>
-        <button className="button" onClick={next}>
-          Next
-        </button>
-      </div>
-      <Slider
-        ref={(slider) => {
-          sliderRef = slider;
-        }}
-        {...settings}
-      >
-        <div key={1} className="w-100vh">
-          <h3>1</h3>
-        </div>
-        <div key={2}>
-          <h3>2</h3>
-        </div>
-        <div key={3}>
-          <h3>3</h3>
-        </div>
-        <div key={4}>
-          <h3>4</h3>
-        </div>
-        <div key={5}>
-          <h3>5</h3>
-        </div>
-        <div key={6}>
-          <h3>6</h3>
-        </div>
-      </Slider>
-    </div>
-  );
+  const { allTagsData, isLoading, errorMessage } = useDisplayTagHooks();
+  const { addToCartItem, getPartyName } = useAddToCartHook();
+  const wishlistData = useSelector(selectWishlist).items;
+  return <TopArrowSlider data={allTagsData} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />;
 }
 
 export default TopArrowCarouselMaster;
