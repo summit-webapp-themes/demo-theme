@@ -8,6 +8,7 @@ const QuickOrderMaster = () => {
   const {
     data,
     loading,
+    error,
     itemCode,
     itemList,
     itemExist,
@@ -18,6 +19,7 @@ const QuickOrderMaster = () => {
     addItemsToDCart,
     clearQuickOrder,
     handleAddProduct,
+    minQuntityWarning,
   } = useQuickOrderHook();
   return (
     <div className="container-fluid px-lg-5">
@@ -29,31 +31,34 @@ const QuickOrderMaster = () => {
           <div className="d-flex align-items-center justify-content-md-between flex-column flex-md-row">
             <div className="py-1">
               {/* <p className="my-3">{selectedLanguageData?.you_can_add_upto_25_valid_item_code_oem_part_no_below}</p> */}
-              <div className="d-flex">
-                <input
-                  type="text"
-                  className="form-control w-auto border-2"
-                  name="inputValue"
-                  value={itemCode}
-                  onChange={(e: any) => setItemCode(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder={selectedLanguageData?.item_code}
-                />
-                <div className="d-lg-none d-block ms-3">
+              <div className="d-sm-flex ">
+                <div>
+                  <input
+                    type="text"
+                    className=" quick-order form-control w-auto border-2"
+                    name="inputValue"
+                    value={itemCode}
+                    onChange={(e: any) => setItemCode(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder={selectedLanguageData?.item_code}
+                  />
+                </div>
+                <div className="d-lg-none d-block ms:sm-2 ms-0 my-2 my-sm-0">
                   <button className="btn btn-primary" onClick={handleAddProduct}>
                     {selectedLanguageData?.add_product}
                   </button>
                 </div>
               </div>
               <div className="text-start">{itemExist && <div className="text-danger fs-6">{itemExist}</div>}</div>
+              <div className="text-start">{error && <div className="text-danger fs-6">{error}</div>}</div>
             </div>
             {data?.length > 0 && (
               <div className="d-flex">
                 <div className="">
-                  <div className="text-start text-md-end p-2">
+                  <div className="text-start text-md-end">
                     <button
                       type="button"
-                      className=" mb-0 text-uppercase py-2 px-lg-4 px-2 mt-0 fs-14 "
+                      className=" text-uppercase fs-14 p-2 me-2"
                       style={{
                         border: '2px solid rgb(204, 134, 37)',
                         borderRadius: '7px',
@@ -66,12 +71,12 @@ const QuickOrderMaster = () => {
                   </div>
                 </div>
                 <div className="">
-                  <div className="text-md-end text-start ps-2 py-2">
+                  <div className="text-md-end text-start ">
                     <button
                       type="button"
-                      className=" text-white mb-0 text-uppercase py-2 px-lg-4 px-2 me-0 mt-0 fs-14"
+                      className=" text-white text-uppercase fs-14 py-2 ps-2"
                       style={{
-                        border: 'none',
+                        border: '2px solid rgb(204, 134, 37)',
                         borderRadius: '7px',
                         backgroundColor: 'rgb(204, 134, 37)',
                         color: '#fff',
@@ -116,16 +121,12 @@ const QuickOrderMaster = () => {
                 selectedMultiLangData={selectedLanguageData}
                 removeItemFromQucikList={removeItemFromQucikList}
                 handleQuantityChange={handleQuantityChange}
+                minQuntityWarning={minQuntityWarning}
+                error={error}
               />
             </div>
           </div>
         )}
-        <div className="row justify-content-center flex-column my-0 mt-5  py-lg-0 py-1">
-          <div className="offset-0 offset-md-2 col-12 col-md-10">
-            <div className="d-flex "></div>
-          </div>
-          <div className="offset-0 offset-md-2 col-12 col-md-10">{itemExist && <div className="text-danger fs-6">{itemExist}</div>}</div>
-        </div>
       </div>
     </div>
   );

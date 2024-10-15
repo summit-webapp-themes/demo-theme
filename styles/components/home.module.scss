@@ -46,6 +46,12 @@
   color: white;
 }
 
+.cartImage {
+  max-width: 150px !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
 @media (max-width: 768px) {
   .productWithCountDowmConatiner {
     padding: 0px 10% !important;
