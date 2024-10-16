@@ -1,41 +1,76 @@
-import React, { useRef } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
+import { useRef } from 'react';
+import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
 import Slider from 'react-slick';
-import ProductCard from '../../../cards/ProductCard';
+import TopArrowCarouselCard from './TopArrowCarouselCard';
 
 function TopArrowSlider({ data, addToCartItem, getPartyName, wishlistData }: any) {
   console.log(data, 'data');
   let sliderRef: any = useRef(null);
   const next = () => {
-    sliderRef?.slickNext();
+    sliderRef.slickNext();
   };
   const previous = () => {
-    sliderRef?.slickPrev();
+    sliderRef.slickPrev();
   };
   const settings = {
+    dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 7,
     slidesToScroll: 1,
-    initialSlide: 5,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1440,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          initialSlide: 2,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 2,
           initialSlide: 2,
         },
       },
       {
         breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 400,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -45,17 +80,21 @@ function TopArrowSlider({ data, addToCartItem, getPartyName, wishlistData }: any
   };
   return (
     <div className="slider-container">
-      <div className="d-flex justify-content-between">
-        <div className="d-flex">
-          <h2>{data[0]?.tag_name}</h2>
-          <p className="mt-2 mb-0 ms-5 text-secondary">{data[0]?.description}</p>
+      <div className="d-flex justify-content-between px-4">
+        <div className="row">
+          <div className="col-6">
+            <h2>{data[0]?.tag_name}</h2>
+          </div>
+          <div className="col-6">
+            <p className="mb-0 mt-2 ms-5">{data[0]?.description}</p>
+          </div>
         </div>
         <div>
-          <button className="btn border py-2 bg-light rounded-circle me-3 " onClick={previous}>
-            <FaArrowLeft />
+          <button className="border rounded-circle px-2 py-1 mx-1" onClick={previous}>
+            <FaArrowLeftLong />
           </button>
-          <button className="btn border py-2 bg-light rounded-circle" onClick={next}>
-            <FaArrowRight />
+          <button className="border rounded-circle px-2 py-1 mx-1" onClick={next}>
+            <FaArrowRightLong />
           </button>
         </div>
       </div>
@@ -65,12 +104,12 @@ function TopArrowSlider({ data, addToCartItem, getPartyName, wishlistData }: any
         }}
         {...settings}
       >
-        {data[0]?.value?.length > 0 &&
-          data[0]?.value?.map((item: any, index: number) => (
-            <div key={index}>
-              <ProductCard key={index} data={item} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />
-            </div>
-          ))}
+        {data[0]?.value?.map((val: any, index: any) => (
+          <div key={index} className="px-2">
+            {/* <ProductCard key={index} data={val} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} /> */}
+            <TopArrowCarouselCard />
+          </div>
+        ))}
       </Slider>
     </div>
   );
