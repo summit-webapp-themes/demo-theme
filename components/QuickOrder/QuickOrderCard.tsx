@@ -5,6 +5,7 @@ import noDataImg from '../../public/assets/images/no-data.png';
 import { imageLoader } from '../../utils/image_loader';
 import IndianNumber from './IndianNumber';
 import styles from '../../styles/components/home.module.scss';
+import { useState } from 'react';
 
 type Props = any;
 
@@ -46,6 +47,7 @@ const QuickOrderCard = (props: Props) => {
 
   return data?.map((item: any, index: number) => {
     const localItem = itemList?.find((itemValue: any) => itemValue.item_code === item?.name);
+    const [inputValue, setInputValue] = useState(localItem?.quantity || 1);
     return (
       <div className="row mt-3 ms-2" key={index}>
         <div className="col-lg-2 col-md-12">
@@ -89,16 +91,17 @@ const QuickOrderCard = (props: Props) => {
             <IndianNumber value={item?.price} />
           </b>
         </div>
-        <div className="col-lg-1 col-md-12 text-center">
+        <div className="col-lg-1 col-md-12 text-center quick-order-input-card">
           <input
             type="text"
             className="w-100 text-center border"
+            value={inputValue}
             onChange={(e) => {
               const value = e.target.value;
-              if (/^\d*$/.test(value)) {
+              const regexp = /^[0-9\b]+$/;
+              if (value === '' || regexp.test(value)) {
+                setInputValue(value);
                 handleQuantityChange(item?.name, value, item);
-              } else {
-                // setMinQuantityWarning({ warning: `Please enter a valid number!`, itemCode: item?.name });
               }
             }}
           />
