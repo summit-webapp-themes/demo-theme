@@ -3,9 +3,12 @@ import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
 import Slider from 'react-slick';
 import TopArrowCarouselCard from './TopArrowCarouselCard';
 
-function TopArrowSlider({ data, addToCartItem, getPartyName, wishlistData }: any) {
-  console.log(data, 'data');
+function TopArrowSlider({ data }: any) {
   let sliderRef: any = useRef(null);
+  const modifiedData = [...data];
+  if (modifiedData.length < 7) {
+    modifiedData.push(...data);
+  }
   const next = () => {
     sliderRef.slickNext();
   };
@@ -80,15 +83,7 @@ function TopArrowSlider({ data, addToCartItem, getPartyName, wishlistData }: any
   };
   return (
     <div className="slider-container">
-      <div className="d-flex justify-content-between px-4">
-        <div className="row">
-          <div className="col-6">
-            <h2>{data[0]?.tag_name}</h2>
-          </div>
-          <div className="col-6">
-            <p className="mb-0 mt-2 ms-5">{data[0]?.description}</p>
-          </div>
-        </div>
+      <div className="d-flex justify-content-end px-2">
         <div>
           <button className="border rounded-circle px-2 py-1 mx-1" onClick={previous}>
             <FaArrowLeftLong />
@@ -104,10 +99,9 @@ function TopArrowSlider({ data, addToCartItem, getPartyName, wishlistData }: any
         }}
         {...settings}
       >
-        {data[0]?.value?.map((val: any, index: any) => (
-          <div key={index} className="px-2">
-            {/* <ProductCard key={index} data={val} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} /> */}
-            <TopArrowCarouselCard />
+        {modifiedData?.map((val: any, index: any) => (
+          <div key={index} className="">
+            <TopArrowCarouselCard data={val} />
           </div>
         ))}
       </Slider>

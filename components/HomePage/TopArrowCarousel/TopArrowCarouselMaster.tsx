@@ -1,14 +1,14 @@
-import { useSelector } from 'react-redux';
-import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
-import useDisplayTagHooks from '../../../hooks/HomePageHooks/useFeaturedCollections';
-import { selectWishlist } from '../../../store/slices/wishlist-slices/wishlist-local-slice';
+import useHomeTopCategories from '../../../hooks/HomePageHooks/usePersonalizedCategories';
 import TopArrowSlider from './TopArrrowSlider';
 
 function TopArrowCarouselMaster() {
-  const { allTagsData, isLoading, errorMessage } = useDisplayTagHooks();
-  const { addToCartItem, getPartyName } = useAddToCartHook();
-  const wishlistData = useSelector(selectWishlist).items;
-  return <TopArrowSlider data={allTagsData} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />;
+  const { homeTopCategories, isLoading, errorMessage } = useHomeTopCategories();
+
+  return (
+    <>
+      <TopArrowSlider data={homeTopCategories} />
+    </>
+  );
 }
 
 export default TopArrowCarouselMaster;
