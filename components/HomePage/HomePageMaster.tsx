@@ -1,8 +1,9 @@
 import HomeBanner from './BannerSection/HomeBanner';
 import TopCategories from './PersonalizedCategories/TopCategories';
 import BrandListing from './BrandSection/BrandListingMaster';
-import CollectionsMaster from './FeaturedCollections/LinearProductCarousel/CollectionMaster';
+import LinearProductCarouselMaster from './FeaturedCollections/LinearProductCarousel/LinearProductCarouselMaster';
 import style from '../../styles/components/home.module.scss';
+// import TopArrowCarouselMaster from './FeaturedCollections/TopArrowCarousel/TopArrowCarouselMaster';
 
 const HomePageMaster = () => {
   return (
@@ -11,7 +12,8 @@ const HomePageMaster = () => {
       <div className={`row ps-lg-5 pe-lg-5 ${style.backgoundColor}`}>
         <TopCategories />
         <BrandListing />
-        <CollectionsMaster />
+        <LinearProductCarouselMaster />
+        {/* <TopArrowCarouselMaster /> */}
       </div>
     </>
   );

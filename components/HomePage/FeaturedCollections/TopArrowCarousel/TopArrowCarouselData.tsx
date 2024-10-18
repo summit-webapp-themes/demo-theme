@@ -1,13 +1,9 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
-import noImage from '../../../public/assets/images/no_image.png';
-import ProductCard from '../../../cards/ProductCard';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import CollectionCards from './CollectionCards';
+import React from 'react';
+import noImage from '../../../../public/assets/images/no_image.png';
+import TopArrowCarouselCards from './TopArrowCarouselCards';
 
-function FeaturedCollections({ allTagsData, addToCartItem, getPartyName, wishlistData }: any) {
-
+function TopArrowCarouselData({ allTagsData, addToCartItem, getPartyName, wishlistData }: any) {
   const imageLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
@@ -15,16 +11,15 @@ function FeaturedCollections({ allTagsData, addToCartItem, getPartyName, wishlis
   return (
     allTagsData?.length > 0 &&
     allTagsData.map((item: any, index: number) => {
-      const firstItem = item?.value[0] || {};
-      const remaingItems = item?.value?.slice(0) || [];
       return (
         <React.Fragment key={index}>
-          <div className="container-fluid py-5 my-2" key={index}>
+          <div className="container-fluid py-5 my-2 slider-container mt-5" key={index}>
+            <h4 className="fw-bold col-7 pb-0 mb-0 pb-md-2 mb-md-2">{item.description}</h4>
             <div className="row mx-0">
-              <div className="col-md-4">
+              <div className="col-md-4 d-none d-md-block ps-0">
                 <Image
-                  loader={firstItem.image ? imageLoader : undefined}
-                  src={firstItem.image ? firstItem.image : noImage}
+                  loader={item?.tag_image ? imageLoader : undefined}
+                  src={item?.tag_image ? item?.tag_image : noImage}
                   width={1200}
                   height={900}
                   alt="Item Image"
@@ -33,9 +28,9 @@ function FeaturedCollections({ allTagsData, addToCartItem, getPartyName, wishlis
                   priority={true}
                 />
               </div>
-              <div className="col-md-8">
-                <CollectionCards
-                  remaingItems={remaingItems}
+              <div className="col-md-8 mt-0 pt-3 pt-md-0 px-0 px-md-3">
+                <TopArrowCarouselCards
+                  remainingItems={item?.value || []}
                   addToCartItem={addToCartItem}
                   getPartyName={getPartyName}
                   wishlistData={wishlistData}
@@ -49,4 +44,4 @@ function FeaturedCollections({ allTagsData, addToCartItem, getPartyName, wishlis
   );
 }
 
-export default FeaturedCollections;
+export default TopArrowCarouselData;
