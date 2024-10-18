@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import useHomeTopCategories from '../../../hooks/HomePageHooks/usePersonalizedCategories';
+import useHomeTopCategories from '../../../../hooks/HomePageHooks/usePersonalizedCategories';
 import CategoriesData from './CategoriesData';
 import CategoriesLoading from './CategoriesLoading';
 import ErrorImage from '../../../public/assets/images/error-icon.png';

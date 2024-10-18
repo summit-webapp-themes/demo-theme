@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { CONSTANTS } from '../../../services/config/app-config';
+import { CONSTANTS } from '../../../../services/config/app-config';
 import style from '../../../styles/components/home.module.scss';
 
 const CategoriesData = ({ homeTopCategories }: any) => {

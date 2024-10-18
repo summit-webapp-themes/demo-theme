@@ -1,5 +1,5 @@
 import HomeBanner from './BannerSection/HomeBanner';
-import TopCategories from './PersonalizedCategories/TopCategories';
+import TopCategories from './PersonalizedCategories/MasonryLayoutCategories/TopCategories';
 import BrandListing from './BrandSection/BrandListingMaster';
 import CollectionsMaster from './FeaturedCollections/CollectionMaster';
 import style from '../../styles/components/home.module.scss';
