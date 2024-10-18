@@ -190,3 +190,27 @@
   text-align: right !important;
   color: #cd8825 !important;
 }
+
+.carousel_styles .react-multi-carousel-track {
+  width: 100%;
+}
+
+.fade {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.fade-in {
+  opacity: 1;
+}
+
+.CollectionCarousel {
+  transition: transform 0.5s ease-in-out;
+}
+
+.CollectionCarousel.slide-left {
+  transform: translateX(-100%);
+}
+
+.CollectionCarousel.slide-right {
+  transform: translateX(100%);
+}

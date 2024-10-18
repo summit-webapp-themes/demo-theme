@@ -7,6 +7,7 @@ import { selectWishlist } from '../../../store/slices/wishlist-slices/wishlist-l
 import CollectionsData from './CollectionsData';
 import CollectionsLoading from './CollectionsLoading';
 import { selectCart } from '../../../store/slices/cart-slices/cart-local-slice';
+import FeaturedCollections from './FeaturedCollections';
 
 const CollectionMaster = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
@@ -17,7 +18,15 @@ const CollectionMaster = () => {
     return <CollectionsLoading />;
   } else if (allTagsData?.length > 0) {
     return (
-      <CollectionsData allTagsData={allTagsData} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />
+      <>
+        <FeaturedCollections
+          allTagsData={allTagsData}
+          addToCartItem={addToCartItem}
+          getPartyName={getPartyName}
+          wishlistData={wishlistData}
+        />
+        <CollectionsData allTagsData={allTagsData} addToCartItem={addToCartItem} getPartyName={getPartyName} wishlistData={wishlistData} />
+      </>
     );
   } else if (errorMessage) {
     return (
