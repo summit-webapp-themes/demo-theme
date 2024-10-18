@@ -1,7 +1,7 @@
 import HomeBanner from './BannerSection/HomeBanner';
 import TopCategories from './PersonalizedCategories/TopCategories';
 import BrandListing from './BrandSection/BrandListingMaster';
-import CollectionsMaster from './FeaturedCollections/CollectionMaster';
+import CollectionsMaster from './FeaturedCollections/LinearProductCarousel/CollectionMaster';
 import style from '../../styles/components/home.module.scss';
 
 const HomePageMaster = () => {
