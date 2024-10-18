@@ -12,7 +12,7 @@ const LinearProductCarouselMaster = () => {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
 
-  if (isLoading) {
+  if (!isLoading) {
     return <LinearProductCarouselLoading />;
   } else if (allTagsData?.length > 0) {
     return (
