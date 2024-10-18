@@ -23,7 +23,6 @@ function TopArrowCarouselData({ allTagsData, addToCartItem, getPartyName, wishli
                   width={1200}
                   height={900}
                   alt="Item Image"
-                  // className={`${ProductCardStyles.product_code_img}`}
                   style={{ width: '100%', height: '100%' }}
                   priority={true}
                 />
