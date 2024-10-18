@@ -83,7 +83,10 @@ function TopArrowSlider({ data }: any) {
   };
   return (
     <div className="slider-container">
-      <div className="d-flex justify-content-end px-2">
+      <div className="d-flex justify-content-between px-2">
+        <div>
+          <h2>Featured Categories</h2>
+        </div>
         <div>
           <button className="border rounded-circle px-2 py-1 mx-1" onClick={previous}>
             <FaArrowLeftLong />

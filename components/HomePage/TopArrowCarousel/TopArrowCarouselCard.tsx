@@ -10,7 +10,7 @@ function TopArrowCarouselCard({ data }: any) {
   };
   return (
     <div className="top-arrow-carousel">
-      <div className="card w-100">
+      <div className="card w-100 cursor-pointer">
         {data?.category_url ? (
           <Link href={data?.category_url} className={`${styles?.img_container} p-3`}>
             <Image className="rounded-circle" loader={imageLoader} src={data?.product_img} alt="category-image" width={120} height={120} />
@@ -21,7 +21,9 @@ function TopArrowCarouselCard({ data }: any) {
           </Link>
         )}
         <div className="card-body">
-          <h5 className="card-title text-center">{data?.heading}</h5>
+          <Link href={data?.category_url} className="text-dark text-decoration-none">
+            <h5 className="card-title text-center">{data?.heading}</h5>
+          </Link>
         </div>
       </div>
     </div>

@@ -2,11 +2,12 @@ import Image from 'next/image';
 import useHomeTopCategories from '../../../hooks/HomePageHooks/usePersonalizedCategories';
 import ErrorImage from '../../../public/assets/images/error-icon.png';
 import TopArrowSlider from './TopArrrowSlider';
+import TopArrowCarouselSkeleton from './TopArrowCarouselSkeleton';
 
 function TopArrowCarouselMaster() {
   const { homeTopCategories, isLoading, errorMessage } = useHomeTopCategories();
   if (isLoading) {
-    return <div>Loading</div>;
+    return <TopArrowCarouselSkeleton />;
   } else if (homeTopCategories?.length > 0) {
     return <TopArrowSlider data={homeTopCategories} />;
   } else if (errorMessage) {
