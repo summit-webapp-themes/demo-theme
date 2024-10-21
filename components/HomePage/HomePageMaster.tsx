@@ -5,6 +5,7 @@ import CollectionsMaster from './FeaturedCollections/CollectionMaster';
 import style from '../../styles/components/home.module.scss';
 
 const HomePageMaster = () => {
+  console.log('homepage');
   return (
     <>
       <HomeBanner />
