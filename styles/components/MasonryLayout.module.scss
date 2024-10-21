@@ -1,0 +1,95 @@
+/* components/MasonryLayout.module.css */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 200px); /* Adjust row height as needed */
+  gap: 10px; /* Space between items */
+}
+
+.item {
+  //   background-color: #eee; /* Placeholder color */
+  display: flex;
+  justify-content: start;
+  align-items: start;
+}
+
+.item img {
+  max-width: 100%;
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.item:nth-of-type(2) {
+  grid-column: 2 / span 2; /* Occupy columns 2 and 3 */
+  grid-row: 1 / span 2; /* Occupy the first row */
+}
+
+.item:nth-of-type(3) {
+  grid-column: 1; /* 3rd element in the first column */
+  grid-row: 2 / span 2; /* Start in the second row */
+}
+
+.item:nth-of-type(4) {
+  grid-column: 4; /* 4th element in the last column */
+  grid-row: 1 / span 2; /* Start in the second row */
+}
+
+@media (max-width: 770px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 200px); /* Adjust row height as needed */
+    gap: 10px; /* Space between items */
+  }
+
+  .item:nth-of-type(4) {
+    grid-column: 3; /* 4th element in the last column */
+    grid-row: 4; /* Start in the second row */
+  }
+
+  .item:nth-of-type(7) {
+    grid-column: 1 / span 2; /* 4th element in the last column */
+    grid-row: 4; /* Start in the second row */
+  }
+}
+
+@media (max-width: 570px) {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 200px); /* Adjust row height as needed */
+    gap: 10px; /* Space between items */
+  }
+
+  .item:nth-of-type(2) {
+    grid-column: 2 / span 2; /* Occupy columns 2 and 3 */
+    grid-row: 1; /* Occupy the first row */
+  }
+
+  .item:nth-of-type(3) {
+    grid-column: 1 / span 2; /* Occupy columns 2 and 3 */
+    grid-row: 2 / span 2; /* Occupy the first row */
+  }
+
+  .item:nth-of-type(5) {
+    grid-column: 3; /* Occupy columns 2 and 3 */
+    grid-row: 2; /* Occupy the first row */
+  }
+
+  .item:nth-of-type(6) {
+    grid-column: 3; /* Occupy columns 2 and 3 */
+    grid-row: 3; /* Occupy the first row */
+  }
+
+  .item:nth-of-type(4) {
+    grid-column: 3; /* 4th element in the last column */
+    grid-row: 4; /* Start in the second row */
+  }
+
+  .item:nth-of-type(7) {
+    grid-column: 1 / span 2; /* 4th element in the last column */
+    grid-row: 4; /* Start in the second row */
+  }
+}
