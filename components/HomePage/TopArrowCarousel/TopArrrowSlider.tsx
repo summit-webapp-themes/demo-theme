@@ -1,113 +1,74 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
-import Slider from 'react-slick';
 import TopArrowCarouselCard from './TopArrowCarouselCard';
+import styles from '../../../styles/components/topCarousel.module.scss';
+import Carousel from 'react-multi-carousel';
 
 function TopArrowSlider({ data }: any) {
-  let sliderRef: any = useRef(null);
-  const modifiedData = [...data];
-  if (modifiedData.length < 7) {
-    modifiedData.push(...data);
-  }
-  const next = () => {
-    sliderRef.slickNext();
+  const responsive: any = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 7,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1200 },
+      items: 7,
+    },
+    tablet: {
+      breakpoint: { max: 1200, min: 600 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 600, min: 0 },
+      items: 1,
+    },
   };
-  const previous = () => {
-    sliderRef.slickPrev();
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const totalItems = data?.length < 7 ? data?.length * 2 : data?.length; // Total number of items in the remainingItems array
+  const halfIndex = Math.ceil(totalItems / 1.5); // Index that splits the items into two halves
+  const sliderRef = useRef<any>(null);
+  const handleNext = (): void => {
+    if (currentSlide < totalItems - 1) {
+      // Check if not on the last slide
+      setCurrentSlide(currentSlide + 1);
+      // Move the carousel to the next slide
+      sliderRef?.current?.next();
+    }
   };
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 400,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+  const handlePrev = (): void => {
+    if (currentSlide > 0) {
+      // Check if not on the first slide
+      setCurrentSlide(currentSlide - 1);
+      // Move the carousel to the previous slide
+      sliderRef?.current?.previous();
+    }
   };
   return (
-    <div className="slider-container">
+    <div className={`${styles.slider_container}`}>
       <div className="d-flex justify-content-between px-2">
         <div>
           <h2>Featured Categories</h2>
         </div>
         <div>
-          <button className="border rounded-circle px-2 py-1 mx-1" onClick={previous}>
+          <button className="border rounded-circle px-2 py-1 mx-1" onClick={handlePrev}>
             <FaArrowLeftLong />
           </button>
-          <button className="border rounded-circle px-2 py-1 mx-1" onClick={next}>
+          <button className="border rounded-circle px-2 py-1 mx-1" onClick={handleNext}>
             <FaArrowRightLong />
           </button>
         </div>
       </div>
-      <Slider
-        ref={(slider) => {
-          sliderRef = slider;
-        }}
-        {...settings}
-      >
-        {modifiedData?.map((val: any, index: any) => (
-          <div key={index} className="">
+
+      {/* Custom slider wrapper */}
+      <Carousel ref={sliderRef} responsive={responsive} arrows={false} infinite>
+        {data.slice(0, halfIndex).map((val: any, index: number) => (
+          <div key={index} className={`${styles.slider_item}`}>
             <TopArrowCarouselCard data={val} />
           </div>
         ))}
-      </Slider>
+      </Carousel>
     </div>
   );
 }
