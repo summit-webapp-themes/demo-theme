@@ -3,7 +3,6 @@ import TopCategories from './PersonalizedCategories/TopCategories';
 import BrandListing from './BrandSection/BrandListingMaster';
 import LinearProductCarouselMaster from './FeaturedCollections/LinearProductCarousel/LinearProductCarouselMaster';
 import style from '../../styles/components/home.module.scss';
-import TopArrowCarouselMaster from './FeaturedCollections/TopArrowCarousel/TopArrowCarouselMaster';
 
 const HomePageMaster = () => {
   return (
@@ -13,7 +12,6 @@ const HomePageMaster = () => {
         <TopCategories />
         <BrandListing />
         <LinearProductCarouselMaster />
-        <TopArrowCarouselMaster />
       </div>
     </>
   );

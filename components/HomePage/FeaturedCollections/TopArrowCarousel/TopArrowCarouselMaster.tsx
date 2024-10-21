@@ -12,7 +12,7 @@ const TopArrowCarouselMaster = () => {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
 
-  if (!isLoading) {
+  if (isLoading) {
     return <TopArrowCarouselLoading />;
   } else if (allTagsData?.length > 0) {
     return (
