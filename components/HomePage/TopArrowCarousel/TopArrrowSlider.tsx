@@ -25,6 +25,10 @@ function TopArrowSlider({ data }: any) {
   };
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const modifiedData = [...data];
+  if (modifiedData.length < 7) {
+    modifiedData.push(...data); // Duplicate the array
+  }
 
   const totalItems = data?.length < 7 ? data?.length * 2 : data?.length; // Total number of items in the remainingItems array
   const halfIndex = Math.ceil(totalItems / 1.5); // Index that splits the items into two halves
@@ -63,7 +67,7 @@ function TopArrowSlider({ data }: any) {
 
       {/* Custom slider wrapper */}
       <Carousel ref={sliderRef} responsive={responsive} arrows={false} infinite>
-        {data.slice(0, halfIndex).map((val: any, index: number) => (
+        {modifiedData.map((val: any, index: number) => (
           <div key={index} className={`${styles.slider_item}`}>
             <TopArrowCarouselCard data={val} />
           </div>
