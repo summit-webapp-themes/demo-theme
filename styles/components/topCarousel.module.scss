@@ -4,21 +4,3 @@
   display: flex;
   justify-content: center;
 }
-.slider_wrapper {
-  overflow: hidden;
-  width: 100%; /* Full width to hold the slider */
-}
-
-.slider_inner {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slider_item {
-  min-width: calc(100% / 7); /* 7 items per row */
-  padding: 0 10px; /* Space between cards */
-}
-
-.slider_container {
-  padding: 20px;
-}
