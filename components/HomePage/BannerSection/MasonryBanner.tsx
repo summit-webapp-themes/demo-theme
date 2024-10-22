@@ -3,19 +3,19 @@ import styles from '../../../styles/components/MasonryLayout.module.scss';
 
 function MasonryBanner() {
   const images = [
-    'https://picsum.photos/200/300?image=206',
-    'https://picsum.photos/300/300?image=206',
-    'https://picsum.photos/300/300?image=406',
-    'https://picsum.photos/300/300?image=606',
-    'https://picsum.photos/300/300?image=206',
-    'https://picsum.photos/300/300?image=306',
-    'https://picsum.photos/300/300?image=506',
-    // 'https://picsum.photos/300/300?image=206',
     // 'https://picsum.photos/200/300?image=206',
     // 'https://picsum.photos/300/300?image=206',
     // 'https://picsum.photos/300/300?image=406',
     // 'https://picsum.photos/300/300?image=606',
     // 'https://picsum.photos/300/300?image=206',
+    // 'https://picsum.photos/300/300?image=306',
+    // 'https://picsum.photos/300/300?image=506',
+    'https://picsum.photos/300/300?image=206',
+    'https://picsum.photos/200/300?image=206',
+    'https://picsum.photos/300/300?image=206',
+    'https://picsum.photos/300/300?image=406',
+    'https://picsum.photos/300/300?image=606',
+    'https://picsum.photos/300/300?image=206',
   ];
 
   const splitArrayIntoChunks = (array: any) => {
@@ -28,17 +28,18 @@ function MasonryBanner() {
 
   return (
     <div className="container-fluid slider-container">
-      <div className={styles.grid}>
-        {splitArrayIntoChunks(images).map((images, index) => (
-          <React.Fragment key={index}>
-            {images.map((image:any, index:number) => (
+      {splitArrayIntoChunks(images).map((images, index) => {
+        const gridClass = `grid-${images.length || 0}`;
+        return (
+          <div className={`${styles[gridClass]} ${styles.grid} ${gridClass}`} key={index} style={{ marginTop: '10px' }}>
+            {images.map((image: any, index: number) => (
               <div key={index} className={styles.item}>
                 <img src={image} alt={`Image ${index + 1}`} />
               </div>
             ))}
-          </React.Fragment>
-        ))}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
