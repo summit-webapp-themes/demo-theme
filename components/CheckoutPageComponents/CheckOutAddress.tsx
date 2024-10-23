@@ -52,7 +52,6 @@ const CheckOutAddress = ({
   const [conditionCheck, setConditionCheck] = useState<any>(false);
   const [placeOrderLoader, setPlacePrderLoader] = useState(false);
   const { cartListingItems } = useFetchCartItems();
-
   const handleShowAccordion = (type: string) => {
     if (type === 'shipping') {
       setShowAccordion((prev) => !prev);
