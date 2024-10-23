@@ -1,7 +1,7 @@
 import React from 'react';
-import style from '../../../styles/components/home.module.scss';
+import style from '../../../../styles/components/home.module.scss';
 import Carousel from 'react-multi-carousel';
-import ProductCard from '../../../cards/ProductCard';
+import ProductCard from '../../../../cards/ProductCard';
 
 type Props = {
   item: any;

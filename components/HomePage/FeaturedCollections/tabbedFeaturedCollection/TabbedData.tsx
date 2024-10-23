@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../../../../styles/components/home';
+import styles from '../../../../styles/components/home.module.scss';
 import CarouselCommonComponent from './CarouselCommonComponent';
 
 type Props = {
