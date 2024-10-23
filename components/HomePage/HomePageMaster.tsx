@@ -8,7 +8,7 @@ const HomePageMaster = () => {
   return (
     <>
       <HomeBanner />
-      <div className={`row mx-0 ps-lg-5 pe-lg-5 ${style.backgoundColor}`}>
+      <div className={`row ps-lg-5 pe-lg-5 ${style.backgoundColor}`}>
         <TopCategories />
         <BrandListing />
         <CollectionsMaster />
