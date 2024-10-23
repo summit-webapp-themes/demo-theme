@@ -18,5 +18,4 @@ const HomePageMaster = () => {
     </>
   );
 };
-
 export default HomePageMaster;
