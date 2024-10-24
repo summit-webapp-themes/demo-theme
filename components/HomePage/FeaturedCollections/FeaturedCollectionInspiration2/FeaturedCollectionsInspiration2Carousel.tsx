@@ -10,7 +10,7 @@ type Props = {
   wishlistData: any;
 };
 
-const CarouselCommonComponent = (props: Props) => {
+const FeaturedCollectionsInspiration2Carousel = (props: Props) => {
   const { item, addToCartItem, getPartyName, wishlistData } = props;
   const responsive: any = {
     superLargeDesktop: {
@@ -41,4 +41,4 @@ const CarouselCommonComponent = (props: Props) => {
   );
 };
 
-export default CarouselCommonComponent;
+export default FeaturedCollectionsInspiration2Carousel;

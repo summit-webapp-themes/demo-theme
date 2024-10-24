@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../../../../styles/components/home.module.scss';
-import CarouselCommonComponent from './CarouselCommonComponent';
+import FeaturedCollectionsInspiration2Carousel from './FeaturedCollectionsInspiration2Carousel';
 
 type Props = {
   data: any;
@@ -9,7 +9,7 @@ type Props = {
   wishlistData: any;
 };
 
-const TabbedData = (props: Props) => {
+const FeaturedCollectionsInspiration2Data = (props: Props) => {
   const [activeTab, setActivetab] = useState(0);
   const { data, addToCartItem, getPartyName, wishlistData } = props;
   const handleTabChange = (index: number) => {
@@ -41,7 +41,7 @@ const TabbedData = (props: Props) => {
         </div>
         <div className="mt-3">
           {data && data[activeTab]?.value?.length > 0 && (
-            <CarouselCommonComponent
+            <FeaturedCollectionsInspiration2Carousel
               item={data[activeTab]?.value}
               addToCartItem={addToCartItem}
               getPartyName={getPartyName}
@@ -54,4 +54,4 @@ const TabbedData = (props: Props) => {
   );
 };
 
-export default TabbedData;
+export default FeaturedCollectionsInspiration2Data;

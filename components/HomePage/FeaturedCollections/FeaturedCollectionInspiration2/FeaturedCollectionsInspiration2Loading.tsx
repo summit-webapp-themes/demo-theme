@@ -4,7 +4,7 @@ import { Card, Placeholder } from 'react-bootstrap';
 
 type Props = {};
 
-const TabbedFeatureSkeleton = (props: Props) => {
+const FeaturedCollectionsInspiration2Loading = (props: Props) => {
   return (
     <div className="my-5 card">
       <div className="row">
@@ -28,4 +28,4 @@ const TabbedFeatureSkeleton = (props: Props) => {
   );
 };
 
-export default TabbedFeatureSkeleton;
+export default FeaturedCollectionsInspiration2Loading;

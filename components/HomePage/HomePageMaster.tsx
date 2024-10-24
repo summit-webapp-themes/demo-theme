@@ -1,9 +1,9 @@
 import HomeBanner from './BannerSection/HomeBanner';
 import TopCategories from './PersonalizedCategories/TopCategories';
 import BrandListing from './BrandSection/BrandListingMaster';
-import CollectionsMaster from './FeaturedCollections/CollectionMaster';
+import CollectionsMaster from './FeaturedCollections/FeaturedCollectionInspiration1/FeaturedCollectionsInspiration1Master';
 import style from '../../styles/components/home.module.scss';
-import TabbedCollectionMaster from './FeaturedCollections/tabbedFeaturedCollection/TabbedCollectionMaster';
+import FeaturedCollectionsInspiration1Master from './FeaturedCollections/FeaturedCollectionInspiration1/FeaturedCollectionsInspiration1Master';
 
 const HomePageMaster = () => {
   return (
@@ -12,8 +12,7 @@ const HomePageMaster = () => {
       <div className={`row ps-lg-5 pe-lg-5 ${style.backgoundColor}`}>
         <TopCategories />
         <BrandListing />
-        <CollectionsMaster />
-        <TabbedCollectionMaster />
+        <FeaturedCollectionsInspiration1Master />
       </div>
     </>
   );
