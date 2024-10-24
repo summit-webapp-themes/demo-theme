@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '../../../styles/components/MasonryLayout.module.scss';
 import Image from 'next/image';
+import styles from '../../../styles/components/MasonryLayout.module.scss';
 
-function MasonryBanner({ bannersList = [] }: any) {
+function HomeBannerInspiration1({ bannersList = [] }: any) {
   const splitArrayIntoChunks = (array: any) => {
     const result = [];
     for (let i = 0; i < array.length; i += 7) {
@@ -42,4 +42,4 @@ function MasonryBanner({ bannersList = [] }: any) {
   );
 }
 
-export default MasonryBanner;
+export default HomeBannerInspiration1;

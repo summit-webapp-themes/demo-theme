@@ -2,7 +2,7 @@ import React from 'react';
 import { Placeholder } from 'react-bootstrap';
 import styles from '../../../styles/components/MasonryLayout.module.scss';
 
-function MasonryBannerLoading() {
+function HomeBannerInspiration1Loading() {
   return (
     <div className="container-fluid slider-container">
       <div className={`${styles[`grid-7`]} ${styles[`grid`]}`} style={{ marginTop: '10px' }}>
@@ -18,4 +18,4 @@ function MasonryBannerLoading() {
   );
 }
 
-export default MasonryBannerLoading;
+export default HomeBannerInspiration1Loading;

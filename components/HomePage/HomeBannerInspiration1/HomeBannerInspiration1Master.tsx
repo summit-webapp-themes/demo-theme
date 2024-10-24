@@ -1,17 +1,15 @@
 import Image from 'next/image';
 import useBanner from '../../../hooks/HomePageHooks/useHomeBanners';
-// import HomeBannerLoading from './HomeBannerLoading';
 import ErrorImage from '../../../public/assets/images/error-icon.png';
-// import BannerCarousel from './BannerCarousel';
-import MasonryBanner from './MasonryBanner';
-import MasonryBannerLoading from './MasonryBannerLoading';
+import HomeBannerInspiration1 from './HomeBannerInspiration1';
+import HomeBannerInspiration1Loading from './HomeBannerInspiration1Loading';
 
-const MasonryBannerMaster = () => {
+const HomeBannerInspiration1Master = () => {
   const { bannersList, isLoading, errorMessage } = useBanner();
   if (isLoading) {
-    return <MasonryBannerLoading />;
+    return <HomeBannerInspiration1Loading />;
   } else if (bannersList?.length > 0) {
-    return <MasonryBanner bannersList={bannersList} />;
+    return <HomeBannerInspiration1 bannersList={bannersList} />;
   } else if (errorMessage) {
     return (
       <div className="p-3 d-flex justify-content-center align-items-center" style={{ fontSize: '40px' }}>
@@ -22,4 +20,4 @@ const MasonryBannerMaster = () => {
   return <></>;
 };
 
-export default MasonryBannerMaster;
+export default HomeBannerInspiration1Master;
