@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import useBanner from '../../../hooks/HomePageHooks/useHomeBanners';
 import ErrorImage from '../../../public/assets/images/error-icon.png';
-import HomeBannerInspiration1 from './HomeBannerInspiration1';
-import HomeBannerInspiration1Loading from './HomeBannerInspiration1Loading';
+import HomeBannerInspiration2 from './HomeBannerInspiration2';
+import HomeBannerInspiration2Loading from './HomeBannerInspiration2Loading';
 
-const HomeBannerInspiration1Master = () => {
+const HomeBannerInspiration2Master = () => {
   const { bannersList, isLoading, errorMessage } = useBanner();
   if (isLoading) {
-    return <HomeBannerInspiration1Loading />;
+    return <HomeBannerInspiration2Loading />;
   } else if (bannersList?.length > 0) {
-    return <HomeBannerInspiration1 bannersList={bannersList} />;
+    return <HomeBannerInspiration2 bannersList={bannersList} />;
   } else if (errorMessage) {
     return (
       <div className="p-3 d-flex justify-content-center align-items-center" style={{ fontSize: '40px' }}>
@@ -20,4 +20,4 @@ const HomeBannerInspiration1Master = () => {
   return <></>;
 };
 
-export default HomeBannerInspiration1Master;
+export default HomeBannerInspiration2Master;
