@@ -115,8 +115,6 @@ const CheckOutAddress = ({
     );
   };
 
-  // console.log(cartListingItems);
-
   return (
     <div className={`container-md my-5`}>
       <h4 className="fw-bold text-center"> Order Checkout</h4>
