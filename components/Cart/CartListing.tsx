@@ -81,7 +81,8 @@ function CartListing() {
     if (!isLoading && Object.keys(cartListingItems)?.length === 0 && errorMessage !== '') {
       return (
         <div className="h-100vh d-flex justify-content-center align-items-center">
-          <p>{errorMessage}</p>
+          {/* <p>{errorMessage}</p> */}
+          <h5 className='col-12 text-center mt-3 w-100'>Please add products to the cart.</h5>
         </div>
       );
     }
