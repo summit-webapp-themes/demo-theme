@@ -4,7 +4,7 @@ import noImage from '../../../public/assets/images/no_image.png';
 import styles from './../../../styles/components/topCarousel.module.scss';
 import Link from 'next/link';
 
-function TopArrowCarouselCard({ data }: any) {
+function CategoriesCard({ data }: any) {
   const imageLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
@@ -30,4 +30,4 @@ function TopArrowCarouselCard({ data }: any) {
   );
 }
 
-export default TopArrowCarouselCard;
+export default CategoriesCard;

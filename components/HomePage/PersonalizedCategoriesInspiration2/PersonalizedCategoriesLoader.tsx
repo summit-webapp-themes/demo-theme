@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Placeholder } from 'react-bootstrap';
 
-function TopArrowCarouselSkeleton() {
+function PersonalizedCategoriesLoader() {
   return (
     <>
       <div className="row mx-3">
@@ -27,4 +27,4 @@ function TopArrowCarouselSkeleton() {
   );
 }
 
-export default TopArrowCarouselSkeleton;
+export default PersonalizedCategoriesLoader;

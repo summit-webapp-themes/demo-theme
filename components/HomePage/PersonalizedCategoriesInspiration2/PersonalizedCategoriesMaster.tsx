@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import useHomeTopCategories from '../../../hooks/HomePageHooks/usePersonalizedCategories';
 import ErrorImage from '../../../public/assets/images/error-icon.png';
-import TopArrowSlider from './TopArrrowSlider';
-import TopArrowCarouselSkeleton from './TopArrowCarouselSkeleton';
+import TopArrowSlider from './PersonalizedCategoriesSlider';
+import TopArrowCarouselSkeleton from './PersonalizedCategoriesLoader';
 
-function TopArrowCarouselMaster() {
+function PersonalizedCategoriesMaster() {
   const { homeTopCategories, isLoading, errorMessage } = useHomeTopCategories();
   if (isLoading) {
     return <TopArrowCarouselSkeleton />;
@@ -21,4 +21,4 @@ function TopArrowCarouselMaster() {
   }
 }
 
-export default TopArrowCarouselMaster;
+export default PersonalizedCategoriesMaster;

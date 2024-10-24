@@ -1,8 +1,8 @@
-import style from '../../styles/components/home.module.scss';
 import HomeBanner from './BannerSection/HomeBanner';
+import TopCategories from './PersonalizedCategories/TopCategories';
 import BrandListing from './BrandSection/BrandListingMaster';
 import CollectionsMaster from './FeaturedCollections/CollectionMaster';
-import TopCategories from './PersonalizedCategories/TopCategories';
+import style from '../../styles/components/home.module.scss';
 
 const HomePageMaster = () => {
   return (
