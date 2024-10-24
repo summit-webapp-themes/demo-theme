@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import useBanner from '../../../hooks/HomePageHooks/useHomeBanners';
+import useBanner from '../../../../hooks/HomePageHooks/useHomeBanners';
 import HomeBannerLoading from './HomeBannerLoading';
 import ErrorImage from '../../../public/assets/images/error-icon.png';
 import BannerCarousel from './BannerCarousel';
