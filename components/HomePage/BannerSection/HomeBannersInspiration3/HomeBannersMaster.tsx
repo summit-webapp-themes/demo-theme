@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import ErrorImage from '../../../../public/assets/images/error-icon.png';
 import useBanner from '../../../../hooks/HomePageHooks/useHomeBanners';
 import HomeBanners from './HomeBanners';
 import HomeBannersLoading from './HomeBannersLoading';
+import ErrorImage from '../../../../public/assets/images/error-icon.png';
 
 const HomeBannersInspiration3 = () => {
   const { bannersList, isLoading, errorMessage } = useBanner();

@@ -17,7 +17,7 @@ const BannersData = ({ bannersList }: BannersProps) => {
   const myLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
-  // Initialize leftBanner, rightBanner, and carouselBannersList
+  // Initialize leftBanner, rightBanner, and middleCarouselBannersList
   let leftBanner: any = null;
   let rightBanner: any = null;
   const carouselBannersList: any = [];
