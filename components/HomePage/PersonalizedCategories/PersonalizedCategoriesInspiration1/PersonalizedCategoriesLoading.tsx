@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Placeholder from 'react-bootstrap/Placeholder';
 
-const CategoriesLoading = () => {
+const PersonalizedCategoriesLoading = () => {
   return (
     <Container className="mt-3">
       <Row className="justify-content-center">
@@ -27,4 +27,4 @@ const CategoriesLoading = () => {
   );
 };
 
-export default CategoriesLoading;
+export default PersonalizedCategoriesLoading;

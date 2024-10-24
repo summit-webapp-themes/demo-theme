@@ -2,12 +2,9 @@ import Link from 'next/link';
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { IoIosArrowForward } from 'react-icons/io';
-import categoriesStyles from '../../../../styles/components/home.module.scss'; 
+import categoriesStyles from '../../../../styles/components/home.module.scss';
 
-const CategoriesBlocks = ({ homeTopCategories }: any) => {
-
-  console.log({ homeTopCategories });
-
+const PersonalizedCategories = ({ homeTopCategories }: any) => {
   return (
     <div className="container-fluid slider-container mt-4">
       <div className="row mt-3">
@@ -18,7 +15,7 @@ const CategoriesBlocks = ({ homeTopCategories }: any) => {
                 key={index}
                 className="col rounded-4 p-3 mx-2"
                 style={{
-                  backgroundImage: `url(${encodeURI(category?.product_img)})`, 
+                  backgroundImage: `url(${encodeURI(category?.product_img)})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   height: '230px',
@@ -41,4 +38,4 @@ const CategoriesBlocks = ({ homeTopCategories }: any) => {
   );
 };
 
-export default CategoriesBlocks;
+export default PersonalizedCategories;
