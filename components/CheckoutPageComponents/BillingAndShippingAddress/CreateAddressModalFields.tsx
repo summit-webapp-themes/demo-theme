@@ -53,7 +53,7 @@ const CreateAddressModalFields = ({
           <>
             <Form.Group className="mb-3" controlId="address_2">
               <Form.Label>
-                GST Number<span className="mandatoryField">*</span>
+                GST Number
               </Form.Label>
               <Form.Control
                 type="text"
@@ -68,7 +68,7 @@ const CreateAddressModalFields = ({
                 Email<span className="mandatoryField">*</span>
               </Form.Label>
               <Form.Control
-                type="text"
+                type="email"
                 placeholder="Email"
                 name="email"
                 isInvalid={emptyAddressFields?.includes('email')}
@@ -80,9 +80,10 @@ const CreateAddressModalFields = ({
                 Contact No.<span className="mandatoryField">*</span>
               </Form.Label>
               <Form.Control
-                type="text"
+                type="tel"
                 placeholder="Contact No."
                 name="contact"
+                required={true}
                 isInvalid={emptyAddressFields?.includes('contact')}
                 onChange={(e) => handleCreateAddressChange(e, address_type)}
               />

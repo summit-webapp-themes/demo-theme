@@ -106,7 +106,6 @@ const ShippingAddress = ({
     if (!shippingAddressLoading && shippingAddress?.length === 0 && shippingAddressError !== '') {
       return (
         <div className="h-100vh">
-          {/* <p>{shippingAddressError}</p> */}
           <h5>Please provide your address to proceed with the order.</h5>
 
           <Button className={`mt-3 ${style.submitAddress}`} onClick={handleShowAddAddress}>
