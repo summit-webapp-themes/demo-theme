@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../../../styles/components/MasonryCarouselLayout.module.scss';
 import { Placeholder } from 'react-bootstrap';
+import styles from '../../../styles/components/MasonryCarouselLayout.module.scss';
 
 function HomeBannerInspiration4Loading() {
   return (
