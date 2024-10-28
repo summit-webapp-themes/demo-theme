@@ -1,9 +1,10 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import ProductCard from '../../../cards/ProductCard';
-import style from '../../../styles/components/home.module.scss';
+import ProductCard from '../../../../cards/ProductCard';
+import style from '../../../../styles/components/home.module.scss';
+// import style from '../../../../styles/components/home.module.scss';
 
-const CollectionsData = ({ allTagsData, addToCartItem, getPartyName, wishlistData }: any) => {
+const LinearProductCarouselData = ({ allTagsData, addToCartItem, getPartyName, wishlistData }: any) => {
   const responsive: any = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -52,4 +53,4 @@ const CollectionsData = ({ allTagsData, addToCartItem, getPartyName, wishlistDat
   );
 };
 
-export default CollectionsData;
+export default LinearProductCarouselData;
