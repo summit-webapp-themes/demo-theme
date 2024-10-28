@@ -6,6 +6,8 @@
 @import 'components/filter.module';
 // mobile sidebar css
 @import 'components/sidebar.module';
+// importing Masonry carousel banner
+@import 'components/MasonryCarouselLayout.module.scss';
 
 // common font sizes
 .fs-12 {
