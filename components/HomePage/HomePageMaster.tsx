@@ -1,7 +1,7 @@
 import HomeBannersInspiration1Master from './BannerSection/HomeBannersInspiration1/HomeBannersMaster';
-import TopCategories from './PersonalizedCategories/TopCategories';
-import BrandListing from './BrandSection/BrandListingMaster';
+import PersonalizedCategoriesInspiration1Master from './PersonalizedCategories/PersonalizedCategoriesInspiration1/PersonalizedCategoriesMaster';
 import CollectionsMaster from './FeaturedCollections/CollectionMaster';
+import BrandListing from './BrandSection/BrandListingMaster';
 import style from '../../styles/components/home.module.scss';
 
 const HomePageMaster = () => {
@@ -9,7 +9,7 @@ const HomePageMaster = () => {
     <>
       <HomeBannersInspiration1Master />
       <div className={`row ps-lg-5 pe-lg-5 ${style.backgoundColor}`}>
-        <TopCategories />
+        <PersonalizedCategoriesInspiration1Master />
         <BrandListing />
         <CollectionsMaster />
       </div>
