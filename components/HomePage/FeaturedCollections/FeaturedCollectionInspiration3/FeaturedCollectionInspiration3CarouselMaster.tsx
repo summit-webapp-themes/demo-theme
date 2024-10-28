@@ -1,27 +1,29 @@
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
-import { selectWishlist } from '../../../../store/slices/wishlist-slices/wishlist-local-slice';
 import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
 import useDisplayTagHooks from '../../../../hooks/HomePageHooks/useFeaturedCollections';
-import FeaturedCollectionsInspiration1Data from './FeaturedCollectionsInspiration1Data';
-import FeaturedCollectionsInspiration1Loading from './FeaturedCollectionsInspiration1Loading';
 import ErrorImage from '../../../../public/assets/images/error-icon.png';
+import { selectWishlist } from '../../../../store/slices/wishlist-slices/wishlist-local-slice';
+import TopArrowCarouselData from './FeaturedCollectionInspiration3CarouselData';
+import TopArrowCarouselLoading from './FeaturedCollectionInspiration3CarouselLoading';
 
-const FeaturedCollectionsInspiration1Master = () => {
-  const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
+const TopArrowCarouselMaster = () => {
+  const { allTagsData, isLoading, errorMessage } = useDisplayTagHooks();
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
 
   if (isLoading) {
-    return <FeaturedCollectionsInspiration1Loading />;
+    return <TopArrowCarouselLoading />;
   } else if (allTagsData?.length > 0) {
     return (
-      <FeaturedCollectionsInspiration1Data
-        allTagsData={allTagsData}
-        addToCartItem={addToCartItem}
-        getPartyName={getPartyName}
-        wishlistData={wishlistData}
-      />
+      <>
+        <TopArrowCarouselData
+          allTagsData={allTagsData}
+          addToCartItem={addToCartItem}
+          getPartyName={getPartyName}
+          wishlistData={wishlistData}
+        />
+      </>
     );
   } else if (errorMessage) {
     return (
@@ -34,4 +36,4 @@ const FeaturedCollectionsInspiration1Master = () => {
   }
 };
 
-export default FeaturedCollectionsInspiration1Master;
+export default TopArrowCarouselMaster;

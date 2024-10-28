@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import useTopBrand from '../../../hooks/HomePageHooks/useHomeBrands';
-import BrandsLoading from './BrandsLoading';
-import BrandsData from './BrandsData';
-import ErrorImage from '../../../public/assets/images/error-icon.png';
+import useTopBrand from '../../../../hooks/HomePageHooks/useHomeBrands';
+import BrandsLoading from './BrandsInspiration1Loading';
+import BrandsData from './BrandsInspiration1Data';
+import ErrorImage from '../../../../public/assets/images/error-icon.png';
 
 const BrandListing = () => {
   const { isLoading, brandListing, errorMessage } = useTopBrand();
