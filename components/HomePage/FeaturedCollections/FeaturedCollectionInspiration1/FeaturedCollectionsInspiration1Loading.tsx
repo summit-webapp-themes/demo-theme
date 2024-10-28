@@ -1,8 +1,8 @@
 import React from 'react';
 import { Card, Placeholder } from 'react-bootstrap';
-import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
+import ProductCardSkeleton from '../../../../cards/ProductCardSkeleton';
 
-const CollectionsLoading = () => {
+const FeaturedCollectionsInspiration1Loading = () => {
   return (
     <>
       {[...Array(3)].map((_, index) => (
@@ -20,5 +20,4 @@ const CollectionsLoading = () => {
     </>
   );
 };
-
-export default CollectionsLoading;
+export default FeaturedCollectionsInspiration1Loading;
