@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import noImage from '../../../public/assets/images/no_image.png';
-import styles from './../../../styles/components/topCarousel.module.scss';
+import noImage from '../../../../public/assets/images/no_image.png';
+import styles from '../../../../styles/components/topCarousel.module.scss';
 import Link from 'next/link';
 
 function CategoriesCard({ data }: any) {

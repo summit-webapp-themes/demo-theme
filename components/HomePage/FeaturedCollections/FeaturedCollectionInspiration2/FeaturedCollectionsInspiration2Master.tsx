@@ -1,13 +1,12 @@
 import React from 'react';
-import useFeaturedCollections from '../../../../hooks/HomePageHooks/useFeaturedCollections';
-import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
+import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { selectWishlist } from '../../../../store/slices/wishlist-slices/wishlist-local-slice';
-import ErrorImage from '../../../../public/assets/images/error-icon.png';
-import Image from 'next/image';
-import FeaturedCollectionsLoading from '../FeaturedCollectionInspiration1/FeaturedCollectionsInspiration1Loading';
+import useFeaturedCollections from '../../../../hooks/HomePageHooks/useFeaturedCollections';
+import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
 import FeaturedCollectionsInspiration2Data from './FeaturedCollectionsInspiration2Data';
 import FeaturedCollectionsInspiration2Loading from './FeaturedCollectionsInspiration2Loading';
+import ErrorImage from '../../../../public/assets/images/error-icon.png';
 
 type Props = {};
 

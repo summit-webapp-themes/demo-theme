@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from '../../../styles/components/MasonryLayout.module.scss';
+import styles from '../../../../styles/components/MasonryLayout.module.scss';
 
 function HomeBannerInspiration2({ bannersList = [] }: any) {
   const splitArrayIntoChunks = (array: any) => {
@@ -10,7 +10,7 @@ function HomeBannerInspiration2({ bannersList = [] }: any) {
     }
     return result;
   };
-  
+
   const myLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };

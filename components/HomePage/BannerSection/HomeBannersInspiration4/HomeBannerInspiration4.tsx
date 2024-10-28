@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Carousel, CarouselItem } from 'react-bootstrap';
-import styles from '../../../styles/components/MasonryCarouselLayout.module.scss';
+import styles from '../../../../styles/components/MasonryCarouselLayout.module.scss';
 
 function HomeBannerInspiration4({ bannersList = [] }: any) {
   const myLoader = ({ src, width, quality }: any) => {

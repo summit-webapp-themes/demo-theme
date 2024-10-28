@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import useHomeTopCategories from '../../../hooks/HomePageHooks/usePersonalizedCategories';
-import ErrorImage from '../../../public/assets/images/error-icon.png';
+import useHomeTopCategories from '../../../../hooks/HomePageHooks/usePersonalizedCategories';
+import ErrorImage from '../../../../public/assets/images/error-icon.png';
 import TopArrowSlider from './PersonalizedCategoriesSlider';
 import TopArrowCarouselSkeleton from './PersonalizedCategoriesLoader';
 

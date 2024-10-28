@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import useBanner from '../../../hooks/HomePageHooks/useHomeBanners';
-import ErrorImage from '../../../public/assets/images/error-icon.png';
+import useBanner from '../../../../hooks/HomePageHooks/useHomeBanners';
+import ErrorImage from '../../../../public/assets/images/error-icon.png';
 import HomeBannerInspiration2 from './HomeBannerInspiration2';
 import HomeBannerInspiration2Loading from './HomeBannerInspiration2Loading';
 

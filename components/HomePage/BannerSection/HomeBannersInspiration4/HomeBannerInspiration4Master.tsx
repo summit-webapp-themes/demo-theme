@@ -2,8 +2,8 @@ import Image from 'next/image';
 import React from 'react';
 import HomeBannerInspiration4Loading from './HomeBannerInspiration4Loading';
 import HomeBannerInspiration4 from './HomeBannerInspiration4';
-import useBanner from '../../../hooks/HomePageHooks/useHomeBanners';
-import ErrorImage from '../../../public/assets/images/error-icon.png';
+import useBanner from '../../../../hooks/HomePageHooks/useHomeBanners';
+import ErrorImage from '../../../../public/assets/images/error-icon.png';
 
 function HomeBannerInspiration4Master() {
   const { bannersList, isLoading, errorMessage } = useBanner();
