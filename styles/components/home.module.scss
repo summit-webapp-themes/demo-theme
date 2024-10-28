@@ -16,3 +16,25 @@
     margin-top: 0.5rem;
   }
 }
+
+
+// PersonalizedCategoryBlocks
+.category_btn {
+  background-color: #cd8825;
+  font-size: 0.9rem;
+} 
+.category_btn:focus {
+  background-color: #cd8825 !important; 
+
+}
+.category_btn:hover {
+  background-color: #cd8825;
+} 
+
+.category_title, .category_desc {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
