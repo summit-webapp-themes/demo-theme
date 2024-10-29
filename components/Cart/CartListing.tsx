@@ -78,14 +78,7 @@ function CartListing() {
         </div>
       );
     }
-    if (!isLoading && Object.keys(cartListingItems)?.length === 0 && errorMessage !== '') {
-      return (
-        <div className="h-100vh d-flex justify-content-center align-items-center">
-          <h5 className='col-12 text-center mt-3 w-100'>Please add products to the cart.</h5>
-        </div>
-      );
-    }
-    if (!isLoading && Object.keys(cartListingItems)?.length === 0 && errorMessage === '') {
+    if (!isLoading && Object.keys(cartListingItems)?.length === 0) {
       return <NoDataFound title={'Your cart is empty !!'} message={'Items added to your cart will show up here'} />;
     }
   };
