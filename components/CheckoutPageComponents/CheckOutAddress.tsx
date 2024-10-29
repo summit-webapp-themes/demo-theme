@@ -52,6 +52,8 @@ const CheckOutAddress = ({
   const [conditionCheck, setConditionCheck] = useState<any>(false);
   const [placeOrderLoader, setPlacePrderLoader] = useState(false);
   const { cartListingItems } = useFetchCartItems();
+  const partyName = localStorage.getItem('party_name');
+
   const handleShowAccordion = (type: string) => {
     if (type === 'shipping') {
       setShowAccordion((prev) => !prev);
@@ -116,112 +118,144 @@ const CheckOutAddress = ({
   return (
     <div className={`container-md my-5`}>
       <h4 className="fw-bold text-center"> Order Checkout</h4>
-      <div className="row">
-        <div className="col-lg-8 order-2 order-lg-1 mt-3 mt-lg-0">
-          <div className="">
-            <ShippingAddress
-              handleRenderDefaultShippingAddress={handleRenderDefaultShippingAddress}
-              handleShowAccordion={handleShowAccordion}
-              showAccordion={showAccordion}
-              shippingAddress={shippingAddress}
-              addressId={addressId}
-              handleSelectAddress={handleSelectAddress}
-              stateList={stateList}
-              setEditShippingAddress={setEditShippingAddress}
-              handleEditShippingAddressChange={handleEditShippingAddressChange}
-              editShippingAddress={editShippingAddress}
-              cityList={cityList}
-              handlePostAddress={handlePostAddress}
-              handleCreateAddressChange={handleCreateAddressChange}
-              emptyAddressFields={emptyAddressFields}
-              setEmptyAddressFields={setEmptyAddressFields}
-              shippingAddressLoading={shippingAddressLoading}
-              shippingAddressError={shippingAddressError}
-              show={show}
-              showCreateAddModal={showCreateAddModal}
-              setShowCreateAddModal={setShowCreateAddModal}
-              setShow={setShow}
-            />
-            <Form className="mt-2">
-              <div key={`default-checkbox`} className="mb-3">
-                <Form.Check // prettier-ignore
-                  type="checkbox"
-                  checked={showBillingAddress}
-                  onChange={handleShowBillingAddress}
-                  id={`default-checkbox`}
-                  label={`Use the same address for Billing`}
-                />
-              </div>
-            </Form>
-            {!showBillingAddress && (
-              <BillingAddress
-                handleRenderDefaultBillingAddress={handleRenderDefaultBillingAddress}
+      {cartListingItems && Object.keys(cartListingItems).length > 0 ? (
+        <div className="row">
+          {!partyName ? (
+            <div className="col-lg-8 order-2 order-lg-1 mt-3 mt-lg-0">
+              <ShippingAddress
+                handleRenderDefaultShippingAddress={handleRenderDefaultShippingAddress}
                 handleShowAccordion={handleShowAccordion}
-                showBillingAccordion={showBillingAccordion}
-                billingAddress={billingAddress}
-                billingAddressId={billingAddressId}
-                handleBillingSelectAddress={handleBillingSelectAddress}
+                showAccordion={showAccordion}
+                shippingAddress={shippingAddress}
+                addressId={addressId}
+                handleSelectAddress={handleSelectAddress}
                 stateList={stateList}
-                handleEditBillingAddressChange={handleEditBillingAddressChange}
+                setEditShippingAddress={setEditShippingAddress}
+                handleEditShippingAddressChange={handleEditShippingAddressChange}
+                editShippingAddress={editShippingAddress}
                 cityList={cityList}
-                editBillingAddress={editBillingAddress}
-                setEditBillingAddress={setEditBillingAddress}
                 handlePostAddress={handlePostAddress}
                 handleCreateAddressChange={handleCreateAddressChange}
                 emptyAddressFields={emptyAddressFields}
                 setEmptyAddressFields={setEmptyAddressFields}
-                billingAddressLoading={billingAddressLoading}
-                billingAddressError={billingAddressError}
-                showBilling={showBilling}
-                showCreateBillingAddModal={showCreateBillingAddModal}
-                setShowBilling={setShowBilling}
-                setShowCreateBillingAddModal={setShowCreateBillingAddModal}
-              />
-            )}
-          </div>
-          <ShippingMethods handleUserAddressChange={handleUserAddressChange} showLocation={showLocation} />
-          <h5 className=" fw-bolder mt-2 ">Final Review</h5>
-          <div className="d-flex justify-content-between w-50 ">
-            <p className={`m-0 ${style.p_tag} fw-bolder`}>Sub total:</p>
-            <p className={`m-0 ${style.p_tag} fw-bolder`}>
-              <LiaRupeeSignSolid />
-              {cartListingItems.grand_total_excluding_tax}
-            </p>
-          </div>
-          <div className="d-flex justify-content-between w-50 ">
-            <p className={`m-0 ${style.p_tag} fw-bolder`}>Order Total Including Tax:</p>
-            <p className={`m-0 ${style.p_tag} fw-bolder`}>
-              <LiaRupeeSignSolid />
-              {cartListingItems.grand_total_excluding_tax}
-            </p>
-          </div>
-          <Form className="mt-2 ">
-            <div key={`default-checkbox`} className="mb-3">
-              <Form.Check // prettier-ignore
-                type="checkbox"
-                checked={conditionCheck}
-                onChange={(e) => setConditionCheck(!conditionCheck)}
-                id={`default-checkbox`}
-                label={`By placing the order, I am confirming that I have read and agreed with the Terms and Conditions`}
+                shippingAddressLoading={shippingAddressLoading}
+                shippingAddressError={shippingAddressError}
+                show={show}
+                showCreateAddModal={showCreateAddModal}
+                setShowCreateAddModal={setShowCreateAddModal}
+                setShow={setShow}
               />
             </div>
-          </Form>
-          <Button
-            variant="primary"
-            className="w-100 "
-            disabled={!conditionCheck}
-            onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress, setPlacePrderLoader)}
-          >
-            {placeOrderLoader ? (
-              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            ) : (
-              <span>Place Order</span>
-            )}
-          </Button>
-        </div>
+          ) : (
+            <div className="col-lg-8 order-2 order-lg-1 mt-3 mt-lg-0">
+              <div className="">
+                <ShippingAddress
+                  handleRenderDefaultShippingAddress={handleRenderDefaultShippingAddress}
+                  handleShowAccordion={handleShowAccordion}
+                  showAccordion={showAccordion}
+                  shippingAddress={shippingAddress}
+                  addressId={addressId}
+                  handleSelectAddress={handleSelectAddress}
+                  stateList={stateList}
+                  setEditShippingAddress={setEditShippingAddress}
+                  handleEditShippingAddressChange={handleEditShippingAddressChange}
+                  editShippingAddress={editShippingAddress}
+                  cityList={cityList}
+                  handlePostAddress={handlePostAddress}
+                  handleCreateAddressChange={handleCreateAddressChange}
+                  emptyAddressFields={emptyAddressFields}
+                  setEmptyAddressFields={setEmptyAddressFields}
+                  shippingAddressLoading={shippingAddressLoading}
+                  shippingAddressError={shippingAddressError}
+                  show={show}
+                  showCreateAddModal={showCreateAddModal}
+                  setShowCreateAddModal={setShowCreateAddModal}
+                  setShow={setShow}
+                />
+                <Form className="mt-2">
+                  <div key={`default-checkbox`} className="mb-3">
+                    <Form.Check // prettier-ignore
+                      type="checkbox"
+                      checked={showBillingAddress}
+                      onChange={handleShowBillingAddress}
+                      id={`default-checkbox`}
+                      label={`Use the same address for Billing`}
+                    />
+                  </div>
+                </Form>
+                {!showBillingAddress && (
+                  <BillingAddress
+                    handleRenderDefaultBillingAddress={handleRenderDefaultBillingAddress}
+                    handleShowAccordion={handleShowAccordion}
+                    showBillingAccordion={showBillingAccordion}
+                    billingAddress={billingAddress}
+                    billingAddressId={billingAddressId}
+                    handleBillingSelectAddress={handleBillingSelectAddress}
+                    stateList={stateList}
+                    handleEditBillingAddressChange={handleEditBillingAddressChange}
+                    cityList={cityList}
+                    editBillingAddress={editBillingAddress}
+                    setEditBillingAddress={setEditBillingAddress}
+                    handlePostAddress={handlePostAddress}
+                    handleCreateAddressChange={handleCreateAddressChange}
+                    emptyAddressFields={emptyAddressFields}
+                    setEmptyAddressFields={setEmptyAddressFields}
+                    billingAddressLoading={billingAddressLoading}
+                    billingAddressError={billingAddressError}
+                    showBilling={showBilling}
+                    showCreateBillingAddModal={showCreateBillingAddModal}
+                    setShowBilling={setShowBilling}
+                    setShowCreateBillingAddModal={setShowCreateBillingAddModal}
+                  />
+                )}
+              </div>
+              <ShippingMethods handleUserAddressChange={handleUserAddressChange} showLocation={showLocation} />
+              <h5 className=" fw-bolder mt-2 ">Final Review</h5>
+              <div className="d-flex justify-content-between w-50 ">
+                <p className={`m-0 ${style.p_tag} fw-bolder`}>Sub total:</p>
+                <p className={`m-0 ${style.p_tag} fw-bolder`}>
+                  <LiaRupeeSignSolid />
+                  {cartListingItems.grand_total_excluding_tax}
+                </p>
+              </div>
+              <div className="d-flex justify-content-between w-50 ">
+                <p className={`m-0 ${style.p_tag} fw-bolder`}>Order Total Including Tax:</p>
+                <p className={`m-0 ${style.p_tag} fw-bolder`}>
+                  <LiaRupeeSignSolid />
+                  {cartListingItems.grand_total_excluding_tax}
+                </p>
+              </div>
+              <Form className="mt-2 ">
+                <div key={`default-checkbox`} className="mb-3">
+                  <Form.Check // prettier-ignore
+                    type="checkbox"
+                    checked={conditionCheck}
+                    onChange={(e) => setConditionCheck(!conditionCheck)}
+                    id={`default-checkbox`}
+                    label={`By placing the order, I am confirming that I have read and agreed with the Terms and Conditions`}
+                  />
+                </div>
+              </Form>
+              <Button
+                variant="primary"
+                className="w-100 "
+                disabled={!conditionCheck}
+                onClick={() => handlePlaceOrder(billingAddressId, addressId, showBillingAddress, setPlacePrderLoader)}
+              >
+                {placeOrderLoader ? (
+                  <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                ) : (
+                  <span>Place Order</span>
+                )}
+              </Button>
+            </div>
+          )}
 
-        <OrderSummery cartListingItems={cartListingItems} />
-      </div>
+          <OrderSummery cartListingItems={cartListingItems} />
+        </div>
+      ) : (
+        <h5 className='col-12 text-center mt-3 w-100'>Please add products to place your order.</h5>
+      )}
     </div>
   );
 };
