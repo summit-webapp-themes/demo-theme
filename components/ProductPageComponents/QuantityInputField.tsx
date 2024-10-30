@@ -17,7 +17,6 @@ const QuantityInputField = ({
         <span className="mx-1">
           <FaMinus className="mx-1 cursor-pointer" onClick={() => handleQtyModificationOnButtonClick('decrease')} />
           <input
-            type="number"
             className={`rounded-1 border-1 ${styles.input} ${styles.detailPriceSection}`}
             id="productQuantity"
             name="quantity"
