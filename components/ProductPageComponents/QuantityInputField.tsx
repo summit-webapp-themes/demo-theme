@@ -15,15 +15,16 @@ const QuantityInputField = ({
         <label htmlFor="productQuantity">{selectedMultiLangData?.quantity}:</label>
 
         <span className="mx-1">
-          <FaPlus className="mx-1 cursor-pointer" onClick={() => handleQtyModificationOnButtonClick('increase')} />
+          <FaMinus className="mx-1 cursor-pointer" onClick={() => handleQtyModificationOnButtonClick('decrease')} />
           <input
+            type="number"
             className={`rounded-1 border-1 ${styles.input} ${styles.detailPriceSection}`}
             id="productQuantity"
             name="quantity"
             value={qty}
             onChange={(e) => handleQtyModificationOnInputEdit(e)}
           />
-          <FaMinus className="mx-1 cursor-pointer" onClick={() => handleQtyModificationOnButtonClick('decrease')} />
+          <FaPlus className="mx-1 cursor-pointer" onClick={() => handleQtyModificationOnButtonClick('increase')} />
         </span>
       </div>
     </>
