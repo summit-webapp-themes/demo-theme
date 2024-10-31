@@ -33,7 +33,13 @@ const BrandsData = ({ brandListing }: any) => {
           {brandListing?.length > 0 &&
             brandListing?.map((val: any, j: any) => (
               <div key={`${j}`} className="card-wrapper mx-auto " style={{ width: '96%' }}>
-                <Link href={val?.url} className="banner-title text-white text-capitalize ls-25 homecategory_btnlink">
+                <Link
+                  href={{
+                    pathname: `${val?.url}`,
+                    query: { page: '1', currency: 'INR' },
+                  }}
+                  className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
+                >
                   <div className="category-banner banner banner-fixed ">
                     <Image loader={imageLoader} src={val?.image} alt="Brand Images" width={130} height={130} priority={false} />
                   </div>
