@@ -98,9 +98,9 @@ function ProductDetailDescribtionSection({
               </div>
             )}
 
-        <Link href="#" className={` ${styles.priceOnReq}`}>
+        {/* <Link href="#" className={` ${styles.priceOnReq}`}>
           {selectedMultiLangData?.price_on_request}
-        </Link>
+        </Link> */}
         <p className={`text-uppercase m-0 ${styles.detailSection}`}>
           {selectedMultiLangData?.brand} : <span> {productDetailData?.brand} </span>
         </p>
@@ -128,12 +128,14 @@ function ProductDetailDescribtionSection({
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
           selectedMultiLangData={selectedMultiLangData}
         />
-        <p className="my-1 fs-14">
-          {selectedMultiLangData?.minimum_order_qty}:{' '}
-          <span className={productDetailData?.min_order_qty > qty ? 'text-danger' : 'text-success'}>
-            {productDetailData?.min_order_qty}
-          </span>
-        </p>
+        {productDetailData?.min_order_qty > 0 && (
+          <p className="my-1 fs-14">
+            {selectedMultiLangData?.minimum_order_qty}:{' '}
+            <span className={productDetailData?.min_order_qty > qty ? 'text-danger' : 'text-success'}>
+              {productDetailData?.min_order_qty}
+            </span>
+          </p>
+        )}
         <div>
           {productVariantData?.length > 0 ? (
             <AddToCartBtn

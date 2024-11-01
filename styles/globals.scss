@@ -6,6 +6,8 @@
 @import 'components/filter.module';
 // mobile sidebar css
 @import 'components/sidebar.module';
+// importing Masonry carousel banner
+@import 'components/MasonryCarouselLayout.module.scss';
 
 // common font sizes
 .fs-12 {
@@ -189,4 +191,8 @@
 .navbar_category {
   text-align: right !important;
   color: #cd8825 !important;
+}
+
+.carousel_styles .react-multi-carousel-track {
+  width: 100%;
 }

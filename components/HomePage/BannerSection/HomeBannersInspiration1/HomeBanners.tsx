@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Carousel } from 'react-bootstrap';
-import { CONSTANTS } from '../../../services/config/app-config';
 import CarouselCaption from 'react-bootstrap/CarouselCaption';
 import CarouselItem from 'react-bootstrap/CarouselItem';
-import style from '../../../styles/components/home.module.scss';
+import style from '../../../../styles/components/home.module.scss';
 
 const BannerCarousel = ({ bannersList }: any) => {
   const myLoader = ({ src, width, quality }: any) => {
