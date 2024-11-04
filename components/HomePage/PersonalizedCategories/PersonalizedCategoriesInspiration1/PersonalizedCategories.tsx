@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { CONSTANTS } from '../../../services/config/app-config';
-import style from '../../../styles/components/home.module.scss';
+import { CONSTANTS } from '../../../../services/config/app-config';
+import style from '../../../../styles/components/home.module.scss';
 
-const CategoriesData = ({ homeTopCategories }: any) => {
+const PersonalizedCategories = ({ homeTopCategories }: any) => {
   const imageLoader = ({ src, width, quality }: any) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
@@ -92,4 +92,4 @@ const CategoriesData = ({ homeTopCategories }: any) => {
   );
 };
 
-export default CategoriesData;
+export default PersonalizedCategories;

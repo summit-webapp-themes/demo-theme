@@ -49,6 +49,47 @@ const CreateAddressModalFields = ({
             onChange={(e) => handleCreateAddressChange(e, address_type)}
           />
         </Form.Group>
+        {!localStorage.getItem('party_name') && (
+          <>
+            <Form.Group className="mb-3" controlId="address_2">
+              <Form.Label>
+                GST Number
+              </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="GST Number"
+                name="gst_number"
+                isInvalid={emptyAddressFields?.includes('gst_number')}
+                onChange={(e) => handleCreateAddressChange(e, address_type)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="address_2">
+              <Form.Label>
+                Email<span className="mandatoryField">*</span>
+              </Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Email"
+                name="email"
+                isInvalid={emptyAddressFields?.includes('email')}
+                onChange={(e) => handleCreateAddressChange(e, address_type)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="address_2">
+              <Form.Label>
+                Contact No.<span className="mandatoryField">*</span>
+              </Form.Label>
+              <Form.Control
+                type="tel"
+                placeholder="Contact No."
+                name="contact"
+                required={true}
+                isInvalid={emptyAddressFields?.includes('contact')}
+                onChange={(e) => handleCreateAddressChange(e, address_type)}
+              />
+            </Form.Group>
+          </>
+        )}
         <Form.Group className="mb-3" controlId="country">
           <Form.Label>
             Country<span className="mandatoryField">*</span>
