@@ -246,27 +246,33 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
           <div className="row justify-content-start fs-14">
             <div className="col-md-8 col-lg-6 text-start ">
               <>
-                <div className="row fs-16 ">
-                  <div className="col-md-6 col-6  ">
-                    <b>{selectedMultiLangData?.sub_total}</b>{' '}
+                {!handleCartDisable() && (
+                  <div className="row fs-16 ">
+                    <div className="col-md-6 col-6  ">
+                      <b>{selectedMultiLangData?.sub_total}</b>{' '}
+                    </div>
+                    :
+                    <div className="col-lg-5 col-md-5 col-sm-5 col-5  ">
+                      <b>
+                        {currencySymbol} {cartListingItems?.grand_total_excluding_tax}
+                      </b>
+                    </div>
                   </div>
-                  :
-                  <div className="col-lg-5 col-md-5 col-sm-5 col-5  ">
-                    <b>
-                      {currencySymbol} {cartListingItems?.grand_total_excluding_tax}
-                    </b>
-                  </div>
-                </div>
+                )}
                 <div className="row ">
-                  <div className="col-lg-6 col-6 fs-16 ">
-                    <b>{selectedMultiLangData?.order_total_including_tax}</b>{' '}
-                  </div>
-                  :
-                  <div className="col-lg-5 col-md-5 col-sm-5 col-5 fs-16 ">
-                    <b>
-                      {currencySymbol} {cartListingItems?.grand_total_including_tax}
-                    </b>
-                  </div>
+                  {!handleCartDisable() && (
+                    <>
+                      <div className="col-lg-6 col-6 fs-16 ">
+                        <b>{selectedMultiLangData?.order_total_including_tax}</b>{' '}
+                      </div>
+                      :
+                      <div className="col-lg-5 col-md-5 col-sm-5 col-5 fs-16 ">
+                        <b>
+                          {currencySymbol} {cartListingItems?.grand_total_including_tax}
+                        </b>
+                      </div>
+                    </>
+                  )}
                   <div className="col-12">
                     <div className="row  mt-2">
                       <div className="col-6 d-flex align-items-center text-center ">
