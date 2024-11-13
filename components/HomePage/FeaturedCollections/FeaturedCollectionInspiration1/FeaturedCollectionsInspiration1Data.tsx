@@ -3,7 +3,7 @@ import 'react-multi-carousel/lib/styles.css';
 import ProductCard from '../../../../cards/ProductCard';
 import style from '../../../../styles/components/home.module.scss';
 
-const FeaturedCollectionsInspiration1Data = ({ allTagsData, addToCartItem, getPartyName, wishlistData }: any) => {
+const FeaturedCollectionsInspiration1Data = ({ allTagsData, cartData, addToCartItem, getPartyName, wishlistData }: any) => {
   const responsive: any = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -37,6 +37,7 @@ const FeaturedCollectionsInspiration1Data = ({ allTagsData, addToCartItem, getPa
                         <ProductCard
                           key={index}
                           data={val}
+                          cartData={cartData}
                           addToCartItem={addToCartItem}
                           getPartyName={getPartyName}
                           wishlistData={wishlistData}

@@ -6,11 +6,13 @@ import useDisplayTagHooks from '../../../../hooks/HomePageHooks/useFeaturedColle
 import FeaturedCollectionsInspiration1Data from './FeaturedCollectionsInspiration1Data';
 import FeaturedCollectionsInspiration1Loading from './FeaturedCollectionsInspiration1Loading';
 import ErrorImage from '../../../../public/assets/images/error-icon.png';
+import { selectCart } from '../../../../store/slices/cart-slices/cart-local-slice';
 
 const FeaturedCollectionsInspiration1Master = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
+  const cartData = useSelector(selectCart).items;
 
   if (isLoading) {
     return <FeaturedCollectionsInspiration1Loading />;
@@ -18,6 +20,7 @@ const FeaturedCollectionsInspiration1Master = () => {
     return (
       <FeaturedCollectionsInspiration1Data
         allTagsData={allTagsData}
+        cartData={cartData}
         addToCartItem={addToCartItem}
         getPartyName={getPartyName}
         wishlistData={wishlistData}
