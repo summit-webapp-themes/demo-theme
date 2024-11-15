@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Fade } from 'react-bootstrap';
 import { BsTwitterX } from 'react-icons/bs';
-import { FaShareAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaCheckCircle, FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
@@ -26,6 +26,7 @@ function ProductDetailDescribtionSection({
   handleStockAvailabilityData,
   handleQtyModificationOnButtonClick,
   selectedMultiLangData,
+  cartData,
 }: any) {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
@@ -69,6 +70,30 @@ function ProductDetailDescribtionSection({
       setAddToCartLoaderBtn(false);
     }
   };
+
+  let cartProducts: any;
+  const handleRenderBtnText = (handleData: any) => {
+    {
+      cartData?.length > 0 &&
+        cartData?.map((item: any) => {
+          if (item === productDetailData?.name) {
+            cartProducts = item;
+          }
+        });
+    }
+    if (!cartProducts) {
+      return (
+        <AddToCartBtn handleAddToCart={handleData} selectedMultiLangData={selectedMultiLangData} addToCartLoaderBtn={addToCartLoaderBtn} />
+      );
+    } else {
+      return (
+        <button className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.detail_page_btn}`} style={{ background: '#184f2f', color: '#fff' }}>
+          {addToCartLoaderBtn ? <FaCheckCircle className={`mb-1`} /> : <>Added to cart</>}
+        </button>
+      );
+    }
+  };
+
   return (
     <>
       <div className="border-bottom">
@@ -137,19 +162,9 @@ function ProductDetailDescribtionSection({
           </p>
         )}
         <div>
-          {productVariantData?.length > 0 ? (
-            <AddToCartBtn
-              handleAddToCart={handleAddMultipleProductData}
-              selectedMultiLangData={selectedMultiLangData}
-              addToCartLoaderBtn={addToCartLoaderBtn}
-            />
-          ) : (
-            <AddToCartBtn
-              handleAddToCart={handleAddToSingleProductData}
-              selectedMultiLangData={selectedMultiLangData}
-              addToCartLoaderBtn={addToCartLoaderBtn}
-            />
-          )}
+          {productVariantData?.length > 0
+            ? handleRenderBtnText(handleAddMultipleProductData)
+            : handleRenderBtnText(handleAddToSingleProductData)}
           <CheckStockAvailabilityBtn
             handleStockAvailabilityData={handleStockAvailabilityData}
             selectedMultiLangData={selectedMultiLangData}
