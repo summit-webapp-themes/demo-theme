@@ -1,16 +1,12 @@
 import debounce from 'debounce';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
 import NoImage from '../../public/assets/images/no_image.png';
-import { currency_selector_state } from '../../store/slices/general_slices/multi-currency-slice';
 import cartStyles from '../../styles/components/cartlist.module.scss';
 
 function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, RemoveItemCartAPIFunc, selectedMultiLangData }: any) {
   const router = useRouter();
-  const currency_state_from_redux: any = useSelector(currency_selector_state);
   const [currencySymbol, setCurrencySymbol] = useState('');
   const [updatedCartList, setUpdatedCartList]: any = useState([]);
 
@@ -40,8 +36,12 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
     addToCartItem(params, setCartListingItems);
   }, []);
 
+  const handleUpdateCartItems = (updateCartItemList: any) => {
+    setUpdatedCartList([...updateCartItemList]);
+  };
+
   const debouncedUpdateCart = useMemo(() => {
-    return debounce(handleUpdateCart, 2000);
+    return debounce(handleUpdateCartItems, 800);
   }, [handleUpdateCart]);
 
   const handleQtyChange = (item_code: string, value: string) => {
@@ -55,10 +55,21 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
         return item;
       }),
     }));
+    let updatedCartItems = [{ item_code, quantity: newQty }];
     setCartListingItems((prevItems: any) => ({ ...prevItems, categories: updatedItems }));
-    setUpdatedCartList([{ item_code, quantity: newQty }]);
-    debouncedUpdateCart(updatedCartList);
+    debouncedUpdateCart(updatedCartItems);
   };
+
+  const handleCartDisable = () => {
+    let qtyError: any = [];
+    cartListingItems?.categories?.map((category: any, idx: number) =>
+      category?.orders?.map((item: any) => {
+        qtyError = [...qtyError, item?.qty === 0];
+      })
+    );
+    return qtyError?.filter((item: any) => item !== false)?.length !== 0;
+  };
+
   useEffect(() => {
     if (cartListingItems?.categories?.length > 0) {
       const firstCategory = cartListingItems.categories[0];
@@ -68,6 +79,15 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
       }
     }
   }, [cartListingItems]);
+
+  useEffect(() => {
+    if (updatedCartList?.length > 0) {
+      if (updatedCartList[0]?.quantity !== 0) {
+        handleUpdateCart(updatedCartList);
+      }
+    }
+  }, [updatedCartList]);
+
   return (
     <div className="py-3">
       {cartListingItems?.categories?.length > 0 &&
@@ -125,7 +145,7 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                       </div>
                       <div className="col-lg-1 col-md-12">
                         {item?.currency_symbol}
-                        {item?.amount}
+                        {item?.qty === 0 ? 0 : item?.amount}
                       </div>
                       <div className="col-lg-1 col-md-12">
                         <input
@@ -134,10 +154,11 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                           className="w-100 text-center border"
                           onChange={(e) => handleQtyChange(item?.item_code, e.target.value)}
                         />
+                        {item?.qty === 0 && <p style={{ color: 'red', fontSize: '10px', whiteSpace: 'nowrap' }}>Minimum QTY Is 1</p>}
                       </div>
                       <div className="col-lg-1 col-md-12">
                         {item?.currency_symbol}
-                        {item?.amount}
+                        {item?.qty === 0 ? 0 : item?.amount}
                       </div>
                     </div>
                   ))}
@@ -225,35 +246,39 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
           <div className="row justify-content-start fs-14">
             <div className="col-md-8 col-lg-6 text-start ">
               <>
-                <div className="row fs-16 ">
-                  <div className="col-md-6 col-6  ">
-                    <b>{selectedMultiLangData?.sub_total}</b>{' '}
+                {!handleCartDisable() && (
+                  <div className="row fs-16 ">
+                    <div className="col-md-6 col-6  ">
+                      <b>{selectedMultiLangData?.sub_total}</b>{' '}
+                    </div>
+                    :
+                    <div className="col-lg-5 col-md-5 col-sm-5 col-5  ">
+                      <b>
+                        {currencySymbol} {cartListingItems?.grand_total_excluding_tax}
+                      </b>
+                    </div>
                   </div>
-                  :
-                  <div className="col-lg-5 col-md-5 col-sm-5 col-5  ">
-                    <b>
-                      {currencySymbol} {cartListingItems?.grand_total_excluding_tax}
-                    </b>
-                  </div>
-                </div>
+                )}
                 <div className="row ">
-                  <div className="col-lg-6 col-6 fs-16 ">
-                    <b>{selectedMultiLangData?.order_total_including_tax}</b>{' '}
-                  </div>
-                  :
-                  <div className="col-lg-5 col-md-5 col-sm-5 col-5 fs-16 ">
-                    <b>
-                      {currencySymbol} {cartListingItems?.grand_total_including_tax}
-                    </b>
-                  </div>
+                  {!handleCartDisable() && (
+                    <>
+                      <div className="col-lg-6 col-6 fs-16 ">
+                        <b>{selectedMultiLangData?.order_total_including_tax}</b>{' '}
+                      </div>
+                      :
+                      <div className="col-lg-5 col-md-5 col-sm-5 col-5 fs-16 ">
+                        <b>
+                          {currencySymbol} {cartListingItems?.grand_total_including_tax}
+                        </b>
+                      </div>
+                    </>
+                  )}
                   <div className="col-12">
                     <div className="row  mt-2">
                       <div className="col-6 d-flex align-items-center text-center ">
-                        <Link href="/checkout">
-                          <button type="button" className="btn btn-primary fs-12 py-1" onClick={goToCheckout}>
-                            {selectedMultiLangData?.order_checkout}
-                          </button>
-                        </Link>
+                        <button type="button" disabled={handleCartDisable()} className="btn btn-primary fs-12 py-1" onClick={goToCheckout}>
+                          {selectedMultiLangData?.order_checkout}
+                        </button>
                       </div>
                     </div>
                   </div>
