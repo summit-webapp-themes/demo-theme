@@ -24,7 +24,7 @@ const ReviewMaster = ({ selectedMultiLangData }: any) => {
       <div className="row">
         <div className="col-md-4">
           <ReviewRatingBar reviewList={reviewList} selectedMultiLangData={selectedMultiLangData} />
-          {/* {localStorage.getItem('party_name') && ( */}
+          {localStorage.getItem('party_name') && (
             <>
               <h5>Review this product</h5>
               <p>Share your thoughts with other customers</p>
@@ -32,7 +32,7 @@ const ReviewMaster = ({ selectedMultiLangData }: any) => {
                 {selectedMultiLangData?.write_a_review}
               </Button>
             </>
-           {/* )} */}
+           )}
         </div>
         <div className="col-md-8">
           <ReviewList reviewList={reviewList} isLoading={isLoading} />
