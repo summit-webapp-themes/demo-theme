@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
 
-const nunito = Poppins({
+const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '700'],
   display: 'swap',
@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
   return (
-    <div className={nunito.className}>
+    <div className={poppins.className}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ErrorBoundary>
