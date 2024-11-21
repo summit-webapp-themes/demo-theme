@@ -7,20 +7,21 @@ import MetaTag from '../services/api/general-apis/meta-tag-api';
 import useGoogleAnalyticsOperationsHandler from '../hooks/GoogleAnalytics/useGoogleAnalyticsOperationsHandler';
 import PageMetaData from '../components/PageMetaData';
 import HomePageMaster from '../components/HomePage/HomePageMaster';
+import getHomePageComponentsList from '../services/api/home-page-apis/get-home-page-components';
 
 const Home = ({ fetchedDataFromServer }: any) => {
   const dispatch = useDispatch();
   const { sendPageViewToGA } = useGoogleAnalyticsOperationsHandler();
   useEffect(() => {
     sendPageViewToGA(window.location.pathname + window.location.search, 'Home Page');
-    if (fetchedDataFromServer?.multiLingualListTranslationTextList) {
+    if (Object.keys(fetchedDataFromServer?.multiLingualListTranslationTextList)?.length > 0) {
       dispatch(setMultiLingualData(fetchedDataFromServer.multiLingualListTranslationTextList));
     }
   }, []);
   return (
     <>
       {CONSTANTS.ENABLE_META_TAGS && <PageMetaData meta_data={fetchedDataFromServer?.metaTagsData} />}
-      <HomePageMaster />
+      <HomePageMaster componentsList={fetchedDataFromServer?.homePageComponents} />
     </>
   );
 };
@@ -37,6 +38,8 @@ export async function getServerSideProps(context: any) {
     let metaData: any = await MetaTag(`${CONSTANTS.API_BASE_URL}${SUMMIT_APP_CONFIG.app_name}${params}&page_name=${url}`);
     if (metaData.status === 200 && metaData?.data?.message?.msg === 'success' && metaData?.data?.message?.data !== 'null') {
       fetchedDataFromServer.metaTagsData = metaData?.data?.message?.data;
+    } else {
+      fetchedDataFromServer.metaTagsData = {};
     }
   }
   const multiLangParams = {
@@ -45,6 +48,14 @@ export async function getServerSideProps(context: any) {
   const MultilanguageData = await MultiLangApi(multiLangParams.appConfig);
   if (MultilanguageData?.length > 0) {
     fetchedDataFromServer.multiLingualListTranslationTextList = MultilanguageData;
+  } else {
+    fetchedDataFromServer.multiLingualListTranslationTextList = {};
+  }
+  let getComponentsList = await getHomePageComponentsList(SUMMIT_APP_CONFIG);
+  if (getComponentsList?.status === 200 && getComponentsList?.data?.message?.msg === 'success') {
+    fetchedDataFromServer.homePageComponents = getComponentsList?.data?.message?.data;
+  } else {
+    fetchedDataFromServer.homePageComponents = [];
   }
 
   return {
