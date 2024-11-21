@@ -38,3 +38,30 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
+// apparel theme
+.bannerTitle {
+  font-size: 57px;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 10px;
+}
+.banner_btn {
+    background-color: #222222;
+    border-radius: 0;
+    border: none;
+    font-weight: 700;
+    padding: 10px 32px;
+}
+.banner_p_tag {
+  font-size: 19px !important;
+  font-weight: 500;
+  color: #222222;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  letter-spacing:1px;
+}
+.catagoryImg {
+object-fit: cover;
+object-position: center center;
+
+}

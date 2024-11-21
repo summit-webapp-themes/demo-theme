@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { Nunito } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
 
-const nunito = Nunito({
+const nunito = Poppins({
   subsets: ['latin'],
   weight: ['400', '700'],
   display: 'swap',
