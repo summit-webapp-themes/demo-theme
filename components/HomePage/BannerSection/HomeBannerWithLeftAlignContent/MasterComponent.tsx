@@ -4,7 +4,7 @@ import HomeBannerLoading from './HomeBannersLoading';
 import HomeBanners from './HomeBanners';
 import ErrorImage from '../../../../public/assets/images/error-icon.png';
 
-const HomeBannersMaster = () => {
+const MasterComponent = () => {
   const { bannersList, isLoading, errorMessage } = useBanner();
   console.log(bannersList, 'HomeBannerWithRightSideTitle');
   if (isLoading) {
@@ -21,4 +21,4 @@ const HomeBannersMaster = () => {
   return <></>;
 };
 
-export default HomeBannersMaster;
+export default MasterComponent;

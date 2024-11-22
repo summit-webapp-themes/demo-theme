@@ -12,7 +12,7 @@ const BannerCarousel = ({ bannersList }: any) => {
   };
   console.log(bannersList, 'bannersList');
   return (
-    <Carousel interval={30000} controls={false}>
+    <Carousel controls={false}>
       {bannersList?.map((banners: any, index: number) => {
         return (
           <CarouselItem key={index}>

@@ -65,3 +65,113 @@ object-fit: cover;
 object-position: center center;
 
 }
+.masonryContainerImage {
+  position: relative;
+}
+.masonryContainerButton {
+  bottom: 20px;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+};
+
+.masonry_btn {
+  background-color: #ffff;
+  border-radius: 0;
+  border: none;
+  color:#222222;
+  font-weight: 700;
+  padding: 10px 32px;
+  box-shadow: 1px 1px #0000001a;
+}
+.categories_card {
+  height: 457px;
+  width: 415px;
+}
+.cardContainer {
+  height: 457px;
+  width: 415px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F6F6F6;
+  border: none;
+  border-radius: 0;
+}
+.imageContainer {
+  width: 320px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.categories_title {
+display: flex;
+justify-content: space-between;
+}
+.viewMoreLink {
+font-weight: 500;
+color: #000;
+}
+.brandCard {
+  height: 170px;
+  width: 270px;
+  border: 2px solid rgb(191, 191, 191);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lefttabButton, .tabProductTitle {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.activeTabButton {
+  border-bottom: 2px solid #000;
+}
+.tabContainerMargin {
+  margin-top: 3.5rem;
+}
+.tabcardContainer {
+  border: none;
+  display: flex;
+  align-items: center;
+}
+.tabimageContainer {
+height: 355px;
+width: 355px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.tabProductPrice {
+  margin-right: 15px;
+  font-size: 17px;
+
+}
+.tabProductmrpPrice {
+  color: #898888;
+  text-decoration:line-through;
+}
+.tabProductColor{
+  
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 0;
+  text-align: center;
+  background-size: cover;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.featuredCollectionTitle:after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 2px;
+  background: #222222;
+}

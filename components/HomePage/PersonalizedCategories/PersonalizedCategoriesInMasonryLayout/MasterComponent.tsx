@@ -4,7 +4,7 @@ import PersonalizedCategoriesLoading from './PersonalizedCategoriesLoading';
 import ErrorImage from '../../../../public/assets/images/error-icon.png';
 import useHomeTopCategories from '../../../../hooks/HomePageHooks/usePersonalizedCategories';
 
-const PersonalizedCategoriesMaster = () => {
+const MasterComponent = () => {
   const { homeTopCategories, isLoading, errorMessage } = useHomeTopCategories();
   if (isLoading) {
     return <PersonalizedCategoriesLoading />;
@@ -20,4 +20,4 @@ const PersonalizedCategoriesMaster = () => {
   return <></>;
 };
 
-export default PersonalizedCategoriesMaster;
+export default MasterComponent;
