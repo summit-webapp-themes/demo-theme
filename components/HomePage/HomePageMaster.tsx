@@ -3,6 +3,7 @@ import PersonalizedCategoriesInspiration1Master from './PersonalizedCategories/P
 import BrandsSectionInspiration1Master from './BrandSection/BrandsSectionInspiration1/BrandListingInspiration1Master';
 import FeaturedCollectionsInspiration1Master from './FeaturedCollections/FeaturedCollectionInspiration1/FeaturedCollectionsInspiration1Master';
 import style from '../../styles/components/home.module.scss';
+import ProductBannersMaster from './ProductBannerSection/ProductBannerMaster';
 
 interface PageData {
   name: string; // The name of the page section
@@ -24,7 +25,8 @@ const HomePageMaster = ({ componentsList }: ComponentsTypes) => {
         return <Component key={componentName?.component} />;
       });
     } else {
-      return "Couldn't load components.";
+      // return "Couldn't load components.";
+      return <ProductBannersMaster />;
     }
   };
   return <>{homePageComponentsRenderer()}</>;
