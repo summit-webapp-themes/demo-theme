@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Carousel } from 'react-bootstrap';
 import CarouselCaption from 'react-bootstrap/CarouselCaption';
 import CarouselItem from 'react-bootstrap/CarouselItem';
-import style from '../../../../styles/components/home.module.scss';
+import style from '../../../../styles/components/banner.module.scss';
 import { imageLoader } from '../../../../utils/image_loader';
 
 const BannerCarousel = ({ bannersList }: any) => {

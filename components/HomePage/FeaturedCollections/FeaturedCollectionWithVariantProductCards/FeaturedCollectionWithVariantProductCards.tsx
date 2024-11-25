@@ -3,7 +3,6 @@ import style from '../../../../styles/components/home.module.scss';
 import FeaturedCollectionWithProductCards from '../../../../cards/FeaturedCollectionWithVariantProductCards';
 
 const FeaturedCollectionWithVariantProductCards = ({ allTagsData, cartData, addToCartItem, getPartyName, wishlistData }: any) => {
-  console.log(allTagsData, 'FeaturedCollectionWithVariantProductCards');
   return (
     <div className="container slider-container mt-4">
       {allTagsData?.length > 0 &&

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
@@ -10,8 +9,8 @@ import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
 import { FaCheckCircle } from 'react-icons/fa';
-import styles from '../styles/components/home.module.scss';
-import { CONSTANTS } from '../services/config/app-config';
+import styles from '../styles/components/variantProductCards.module.scss';
+import { imageLoader } from '../utils/image_loader';
 
 const FeaturedCollectionWithProductCards = ({
   data,
@@ -26,9 +25,7 @@ const FeaturedCollectionWithProductCards = ({
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
-  const imageLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
-  };
+
   let wishProducts: any;
   const handleRenderIcon = () => {
     {
@@ -144,18 +141,10 @@ const FeaturedCollectionWithProductCards = ({
 
   return (
     <>
-      {/* // <div className={`row ${styles.tabContainerMargin} `}>
-    //   <div className="col-md-3 mb-2"> */}
       <Card className={`${styles.tabcardContainer}`}>
         <div className={`${styles.tabimageContainer}`}>
           <Image src={data?.image} alt="Banner Images" loading="eager" priority={true} width={303} height={303} loader={imageLoader} />
         </div>
-        {/* <div className="product-action-horizontal">
-          <a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>
-          <a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a>
-          <a href="#" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>
-          <a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a>
-        </div> */}
       </Card>
       <h6 className={styles.tabProductTitle}>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</h6>
       <div>
@@ -175,8 +164,6 @@ const FeaturedCollectionWithProductCards = ({
           Black
         </div>
       </div>
-      {/* </div>
-    </div> */}
     </>
   );
 };

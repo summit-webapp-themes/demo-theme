@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { Poppins } from 'next/font/google';
+import { Nunito } from 'next/font/google';
 import dynamic from 'next/dynamic';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -15,7 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
 
-const poppins = Poppins({
+const nunito = Nunito({
   subsets: ['latin'],
   weight: ['400', '700'],
   display: 'swap',
@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
   return (
-    <div className={poppins.className}>
+    <div className={nunito.className}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ErrorBoundary>

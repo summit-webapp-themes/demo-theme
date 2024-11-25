@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import style from '../../../../styles/components/home.module.scss';
+import style from '../../../../styles/components/personalizedCategories.module.scss';
 import { Button } from 'react-bootstrap';
 import { imageLoader } from '../../../../utils/image_loader';
 

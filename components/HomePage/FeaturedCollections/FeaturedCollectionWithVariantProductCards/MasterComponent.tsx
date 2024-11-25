@@ -5,8 +5,8 @@ import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
 import useDisplayTagHooks from '../../../../hooks/HomePageHooks/useFeaturedCollections';
 import ErrorImage from '../../../../public/assets/images/error-icon.png';
 import { selectCart } from '../../../../store/slices/cart-slices/cart-local-slice';
-import FeaturedCollectionWithColorVariants from './FeaturedCollectionWithColorVariants';
-import FeaturedCollectionWithColorVariantsLoading from './FeaturedCollectionWithColorVariantsLoading';
+import FeaturedCollectionWithColorVariants from './FeaturedCollectionWithVariantProductCards';
+import FeaturedCollectionWithVariantProductCardsLoading from './FeaturedCollectionWithVariantProductCardsLoading';
 
 const MasterComponent = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
@@ -15,7 +15,7 @@ const MasterComponent = () => {
   const cartData = useSelector(selectCart).items;
 
   if (isLoading) {
-    return <FeaturedCollectionWithColorVariantsLoading />;
+    return <FeaturedCollectionWithVariantProductCardsLoading />;
   } else if (allTagsData?.length > 0) {
     return (
       <FeaturedCollectionWithColorVariants

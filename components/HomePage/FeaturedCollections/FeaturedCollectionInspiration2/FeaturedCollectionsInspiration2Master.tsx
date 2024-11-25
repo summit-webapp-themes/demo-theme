@@ -12,7 +12,6 @@ type Props = {};
 
 const FeaturedCollectionsInspiration2Master = (props: Props) => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useFeaturedCollections();
-  console.log(allTagsData, 'allTagsData');
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
 
