@@ -13,7 +13,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 import styles from '../styles/components/home.module.scss';
 import { CONSTANTS } from '../services/config/app-config';
 
-const ProductCardWithColorVariants = ({
+const FeaturedCollectionWithProductCards = ({
   data,
   wishlistData,
   cartData,
@@ -150,6 +150,12 @@ const ProductCardWithColorVariants = ({
         <div className={`${styles.tabimageContainer}`}>
           <Image src={data?.image} alt="Banner Images" loading="eager" priority={true} width={303} height={303} loader={imageLoader} />
         </div>
+        {/* <div className="product-action-horizontal">
+          <a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>
+          <a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a>
+          <a href="#" class="btn-product-icon btn-compare w-icon-compare" title="Compare"></a>
+          <a href="#" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a>
+        </div> */}
       </Card>
       <h6 className={styles.tabProductTitle}>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</h6>
       <div>
@@ -175,4 +181,4 @@ const ProductCardWithColorVariants = ({
   );
 };
 
-export default ProductCardWithColorVariants;
+export default FeaturedCollectionWithProductCards;

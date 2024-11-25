@@ -6,7 +6,6 @@ import ErrorImage from '../../../../public/assets/images/error-icon.png';
 
 const MasterComponent = () => {
   const { bannersList, isLoading, errorMessage } = useBanner();
-  console.log(bannersList, 'HomeBannerWithRightSideTitle');
   if (isLoading) {
     return <HomeBannerLoading />;
   } else if (bannersList?.length > 0) {

@@ -4,13 +4,9 @@ import { Carousel } from 'react-bootstrap';
 import CarouselCaption from 'react-bootstrap/CarouselCaption';
 import CarouselItem from 'react-bootstrap/CarouselItem';
 import style from '../../../../styles/components/home.module.scss';
-import { CONSTANTS } from '../../../../services/config/app-config';
+import { imageLoader } from '../../../../utils/image_loader';
 
 const BannerCarousel = ({ bannersList }: any) => {
-  const myLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
-  };
-  console.log(bannersList, 'bannersList');
   return (
     <Carousel controls={false}>
       {bannersList?.map((banners: any, index: number) => {
@@ -18,7 +14,7 @@ const BannerCarousel = ({ bannersList }: any) => {
           <CarouselItem key={index}>
             <Link href={`${banners.button_1_url}`}>
               <Image
-                loader={myLoader}
+                loader={imageLoader}
                 className={`d-block image-fluid ${style.catagoryImg}`}
                 src={banners?.img}
                 alt="Banner Images"
@@ -26,7 +22,6 @@ const BannerCarousel = ({ bannersList }: any) => {
                 priority={true}
                 width={1920}
                 height={700}
-                // style={{ width: '100%' }}
               />
               <CarouselCaption className="corousel-captionn">
                 <div className={``} key={index}>

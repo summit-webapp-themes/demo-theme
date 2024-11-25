@@ -1,17 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { CONSTANTS } from '../../../../services/config/app-config';
 import style from '../../../../styles/components/home.module.scss';
 import { Button } from 'react-bootstrap';
+import { imageLoader } from '../../../../utils/image_loader';
 
 const PersonalizedCategories = ({ homeTopCategories }: any) => {
-  console.log(homeTopCategories, 'homeTopCategories');
-  const imageLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS.API_BASE_URL}/${src}?w=${width}&q=${quality || 75}`;
-  };
   return (
-    <div className="container slider-container mt-4">
-      {/* <h4 className="mt-2 fw-bold">Our Handpicked Categories for You</h4> */}
+    <div className="container slider-container mt-2">
       <div className="row mt-3">
         <div className={`col-sm-12 col-md-6 col-lg-6 col-xl-5 ${style.masonryContainerImage}`}>
           <div>
@@ -24,7 +19,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                   loader={imageLoader}
                   className={`w-100 ${style.catagoryImg}`}
                   src={homeTopCategories?.length > 0 && homeTopCategories[0]?.product_img}
-                  alt="Picture of the author"
+                  alt={homeTopCategories[0]?.label}
                   width={570}
                   height={630}
                   loading="eager"
@@ -35,7 +30,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
           </div>
           <div className={style.masonryContainerButton}>
             <Button variant="dark" className={style.masonry_btn}>
-              Women
+              {homeTopCategories[0]?.label}
             </Button>
           </div>
         </div>
@@ -51,7 +46,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                     loader={imageLoader}
                     className={`w-100 ${style.catagoryImg}`}
                     src={homeTopCategories?.length > 0 && homeTopCategories[1]?.product_img}
-                    alt="Picture of the author"
+                    alt={homeTopCategories[1]?.label}
                     width={270}
                     height={303}
                     loading="eager"
@@ -62,7 +57,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
             </div>
             <div className={style.masonryContainerButton}>
               <Button variant="dark" className={style.masonry_btn}>
-                Accessories
+                {homeTopCategories[1]?.label}
               </Button>
             </div>
           </div>
@@ -77,7 +72,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                     loader={imageLoader}
                     className={`w-100 ${style.catagoryImg}`}
                     src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
-                    alt="Picture of the author"
+                    alt={homeTopCategories[2]?.label}
                     width={270}
                     height={303}
                     loading="eager"
@@ -88,7 +83,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
             </div>
             <div className={style.masonryContainerButton}>
               <Button variant="dark" className={style.masonry_btn}>
-                Footwear
+                {homeTopCategories[2]?.label}
               </Button>
             </div>
           </div>
@@ -104,7 +99,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                   loader={imageLoader}
                   className={`w-100 ${style.catagoryImg}`}
                   src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
-                  alt="Picture of the author"
+                  alt={homeTopCategories[3]?.label}
                   width={570}
                   height={630}
                   loading="eager"
@@ -115,7 +110,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
           </div>
           <div className={style.masonryContainerButton}>
             <Button variant="dark" className={style.masonry_btn}>
-              Watches
+              {homeTopCategories[3]?.label}
             </Button>
           </div>
         </div>
