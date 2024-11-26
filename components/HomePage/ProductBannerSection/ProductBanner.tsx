@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import style from '../../../styles/components/homeCategory.module.scss';
 import { CONSTANTS } from '../../../services/config/app-config';
+import Link from 'next/link';
 
 const ProductBanner = ({ bannersList }: any) => {
   const myLoader = ({ src, width, quality }: any) => {
@@ -18,7 +19,7 @@ const ProductBanner = ({ bannersList }: any) => {
                 loader={myLoader}
                 className={`d-block image-fluid ${style.catagoryImg}`}
                 src={category?.product_img}
-                alt="Electonic Banner Image"
+                alt="Electronic Banner Image"
                 loading="eager"
                 priority={true}
                 width={0}
@@ -32,7 +33,11 @@ const ProductBanner = ({ bannersList }: any) => {
                     <p className={`${style.electronics_description} fw-bold`}>{category?.description}</p>
                   </div>
                 </div>
-                <button className={`${style.electronics_btn} fw-bold`}>Buy now</button>
+                <button className={`${style.electronics_btn} fw-bold`}>
+                  <Link className="text-decoration-none text-black" href={`product-category/${category?.category_url || category?.slug}`}>
+                    Buy now
+                  </Link>
+                </button>
               </div>
             </div>
           </div>

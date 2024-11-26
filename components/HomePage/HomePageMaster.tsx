@@ -3,8 +3,9 @@ import PersonalizedCategoriesInspiration1Master from './PersonalizedCategories/P
 import BrandsSectionInspiration1Master from './BrandSection/BrandsSectionInspiration1/BrandListingInspiration1Master';
 import FeaturedCollectionsInspiration1Master from './FeaturedCollections/FeaturedCollectionInspiration1/FeaturedCollectionsInspiration1Master';
 import style from '../../styles/components/home.module.scss';
-import PersonalizedCategoriesMaster from './PersonalizedCategories/PersonalizedCategoriesInMasonryLayout/MasterComponent';
-import FeaturedCollectionsInspiration2Master from './FeaturedCollections/FeaturedCollectionInspiration2/FeaturedCollectionsInspiration2Master';
+import ProductBannersMaster from './ProductBannerSection/ProductBannerMaster';
+import HomeBannersMaster from './BannerSection/HomeBannersInspiration1/MasterComponent';
+import MasterHomeBanner from './HomeBanner/MasterHomeBanner';
 
 interface PageData {
   name: string; // The name of the page section
@@ -22,8 +23,8 @@ const HomePageMaster = ({ componentsList }: ComponentsTypes) => {
   const homePageComponentsRenderer = () => {
     if (componentsList?.length > 0) {
       return componentsList?.map((componentName: any) => {
-        const Component = require(`./${componentName.section_name}/${componentName?.component_name}/MasterComponent`).default;
-        return <Component key={componentName?.component_name} />;
+        const Component = require(`./${componentName.section_name}/${componentName?.component}/MasterComponent`).default;
+        return <Component key={componentName?.component} />;
       });
     } else {
       return "Couldn't load components.";
