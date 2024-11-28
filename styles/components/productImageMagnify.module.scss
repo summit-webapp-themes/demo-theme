@@ -1,0 +1,65 @@
+.product_img_container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.img_container {
+  display: flex;
+  height: 60vh;
+  gap: 10px;
+}
+.thumbnail_left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.img_container_column {
+  display: flex;
+  flex-direction: column; /* Change flex direction to column to stack image and thumbnails */
+  height: 80vh; /* Increase the container's height to make space for the thumbnails below */
+  gap: 10px; /* Add space between image and thumbnails */
+}
+.thumbnail_bottom {
+  display: flex;
+  gap: 10px;
+}
+
+.thumbnail_right {
+  display: flex; /* Align thumbnails */
+  flex-direction: column; /* Stack thumbnails vertically */
+  gap: 10px; /* Add space between thumbnails */
+  margin-left: 20px; /* Add space between the main image and thumbnails */
+  margin-right: 0; /* Remove any default right margin */
+  order: 2; /* Ensure this comes after the main image in flex order */
+}
+
+.img_wrap {
+  max-width: 80px !important;
+  max-height: 80px !important;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+.img_wrap img {
+  max-width: 70px !important;
+  max-height: 70px !important;
+  object-fit: contain;
+}
+.img_container img {
+  width: 500px;
+  height: 100%;
+  object-fit: contain;
+}
+.active {
+  border: 2px solid #e77600;
+}
+
+.magnified_image {
+  min-width: 300% !important;
+  min-height: 300% !important;
+  object-fit: contain !important;
+}
+.magnified_image_right {
+  min-width: 300% !important;
+  min-height: 300% !important;
+  object-fit: contain !important;
+  margin-left: 130px !important;
+}
