@@ -13,7 +13,7 @@ const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndT
 import styles from '../../styles/components/productDetail.module.scss';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
-import ProductDetailImageMaster from './ProductDetailImage/ProductDetailImageMaster';
+import ImageGalleryWithThumbnailMaster from './ProductDetailThumbnailImageGallery/ImageGalleryWithThumbnailMaster';
 
 function ProductPageMaster() {
   const {
@@ -58,7 +58,7 @@ function ProductPageMaster() {
             <div className="">
               {productDetailData?.slide_img && (
                 // <ProductDetailImageGallery data={productDetailData?.slide_img} />
-                <ProductDetailImageMaster data={productDetailData?.slide_img} />
+                <ImageGalleryWithThumbnailMaster data={productDetailData?.slide_img} />
               )}
             </div>
           </div>

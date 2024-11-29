@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
+import Image from 'next/image';
 import imageStyle from '../../../styles/components/productImageMagnify.module.scss';
+import { CONSTANTS } from '../../../services/config/app-config';
 
-const ProductDetailImage2 = ({ data }: any) => {
+const ImageGalleryWithRightThumbnail = ({ data }: any) => {
   const [img, setImg] = useState('');
   const [activeIndex, setActiveIndex] = useState(0); // Track the active thumbnail index
 
@@ -13,9 +15,9 @@ const ProductDetailImage2 = ({ data }: any) => {
 
   // Create srcSet for different screen resolutions
   const generateSrcSet = (image: string) => {
-    return `${process.env.NEXT_PUBLIC_API_URL}/${image} 600w,
-              ${process.env.NEXT_PUBLIC_API_URL}/${image} 1200w,
-              ${process.env.NEXT_PUBLIC_API_URL}/${image} 1800w`;
+    return `${CONSTANTS.API_BASE_URL}/${image} 600w,
+              ${CONSTANTS.API_BASE_URL}/${image} 1200w,
+              ${CONSTANTS.API_BASE_URL}/${image} 1800w`;
   };
 
   // Set the initial image on component mount or data change
@@ -36,7 +38,7 @@ const ProductDetailImage2 = ({ data }: any) => {
               key={i}
               onClick={() => hoverHandler(image, i)}
             >
-              <img src={`${process.env.NEXT_PUBLIC_API_URL}/${image}`} alt={`Thumbnail ${i + 1}`} />
+              <Image src={`${CONSTANTS.API_BASE_URL}/${image}`} alt={`Thumbnail image ${i + 1}`} width={100} height={100} />
             </div>
           ))}
         </div>
@@ -50,12 +52,12 @@ const ProductDetailImage2 = ({ data }: any) => {
                 isFluidWidth: true,
                 width: 600,
                 height: 600,
-                src: `${process.env.NEXT_PUBLIC_API_URL}/${img}`,
+                src: `${CONSTANTS.API_BASE_URL}/${img}`,
                 srcSet: generateSrcSet(img), // Use srcSet to provide multiple resolutions
                 sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 90vw, 90vw`, // Define sizes for different screen widths
               },
               largeImage: {
-                src: `${process.env.NEXT_PUBLIC_API_URL}/${img}`,
+                src: `${CONSTANTS.API_BASE_URL}/${img}`,
                 srcSet: generateSrcSet(img), // Use srcSet for large image as well
                 sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 30vw`,
                 width: 1200,
@@ -73,4 +75,4 @@ const ProductDetailImage2 = ({ data }: any) => {
   );
 };
 
-export default ProductDetailImage2;
+export default ImageGalleryWithRightThumbnail;
