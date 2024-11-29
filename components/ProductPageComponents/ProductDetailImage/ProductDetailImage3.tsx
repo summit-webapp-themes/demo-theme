@@ -1,28 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import imageStyle from '../../../styles/components/productImageMagnify.module.scss';
 
 const ProductDetailImage3 = ({ data }: any) => {
   const [img, setImg] = useState('');
-  const refs: any = useRef([]);
-
-  // Ensure refs array doesn't grow indefinitely
-  refs.current = [];
-
-  const addRefs = (el: any) => {
-    if (el && !refs.current.includes(el)) {
-      refs.current.push(el);
-    }
-  };
+  const [activeIndex, setActiveIndex] = useState(0); // Track the active thumbnail index
 
   const hoverHandler = (image: string, i: number) => {
     setImg(image);
-    refs.current[i]?.classList.add('active');
-    for (let j = 0; j < data?.length; j++) {
-      if (i !== j) {
-        refs.current[j]?.classList.remove('active');
-      }
-    }
+    setActiveIndex(i); // Update the active index
+  };
+
+  // Create srcSet for different screen resolutions
+  const generateSrcSet = (image: string) => {
+    return `${process.env.NEXT_PUBLIC_API_URL}/${image} 600w,
+              ${process.env.NEXT_PUBLIC_API_URL}/${image} 1200w,
+              ${process.env.NEXT_PUBLIC_API_URL}/${image} 1800w`;
   };
 
   // Set the initial image on component mount or data change
@@ -36,22 +29,27 @@ const ProductDetailImage3 = ({ data }: any) => {
     <div className={imageStyle.product_img_container}>
       <div className={imageStyle.img_container_column}>
         {/* Main Image */}
-        <div className={imageStyle.product_img}>
+        <div className={imageStyle.product_img_bottom}>
           <ReactImageMagnify
             {...{
               smallImage: {
                 alt: 'Product image',
-                isFluidWidth: false,
+                isFluidWidth: true,
                 width: 400,
                 height: 400,
                 src: `${process.env.NEXT_PUBLIC_API_URL}/${img}`,
+                srcSet: generateSrcSet(img), // Use srcSet to provide multiple resolutions
+                sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 10vw, 10vw `, // Define sizes for different screen widths
               },
               largeImage: {
                 src: `${process.env.NEXT_PUBLIC_API_URL}/${img}`,
+                srcSet: generateSrcSet(img), // Use srcSet for large image as well
+                sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 30vw`,
                 width: 1200,
                 height: 1200,
               },
-              enlargedImageClassName: `${imageStyle.magnified_image}`,
+              // enlargedImageClassName: `${imageStyle.magnified_image}`,
+              enlargedImagePosition: 'beside', // Ensure the image appears beside the main image
             }}
           />
         </div>
@@ -59,7 +57,11 @@ const ProductDetailImage3 = ({ data }: any) => {
         {/* Thumbnails */}
         <div className={imageStyle.thumbnail_bottom}>
           {data.map((image: string, i: number) => (
-            <div className={imageStyle.img_wrap} key={i} onClick={() => hoverHandler(image, i)} ref={addRefs}>
+            <div
+              className={`${imageStyle.img_wrap} ${i === activeIndex ? `${imageStyle.active}` : ''}`}
+              key={i}
+              onClick={() => hoverHandler(image, i)}
+            >
               <img src={`${process.env.NEXT_PUBLIC_API_URL}/${image}`} alt={`Thumbnail ${i + 1}`} />
             </div>
           ))}

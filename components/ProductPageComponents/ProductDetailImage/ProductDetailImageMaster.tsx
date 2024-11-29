@@ -7,8 +7,8 @@ const ProductDetailImageMaster = ({ data }: any) => {
   return (
     <>
       {/* <ProductDetailImage1 data={data} /> */}
-      <ProductDetailImage2 data={data} />
-      {/* <ProductDetailImage3 data={data} /> */}
+      {/* <ProductDetailImage2 data={data} /> */}
+      <ProductDetailImage3 data={data} />
     </>
   );
 };

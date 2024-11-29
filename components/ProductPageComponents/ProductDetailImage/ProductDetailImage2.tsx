@@ -1,28 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import imageStyle from '../../../styles/components/productImageMagnify.module.scss';
 
 const ProductDetailImage2 = ({ data }: any) => {
   const [img, setImg] = useState('');
-  const refs: any = useRef([]);
-
-  // Ensure refs array doesn't grow indefinitely
-  refs.current = [];
-
-  const addRefs = (el: any) => {
-    if (el && !refs.current.includes(el)) {
-      refs.current.push(el);
-    }
-  };
+  const [activeIndex, setActiveIndex] = useState(0); // Track the active thumbnail index
 
   const hoverHandler = (image: string, i: number) => {
     setImg(image);
-    refs.current[i]?.classList.add('active');
-    for (let j = 0; j < data?.length; j++) {
-      if (i !== j) {
-        refs.current[j]?.classList.remove('active');
-      }
-    }
+    setActiveIndex(i); // Update the active index
+  };
+
+  // Create srcSet for different screen resolutions
+  const generateSrcSet = (image: string) => {
+    return `${process.env.NEXT_PUBLIC_API_URL}/${image} 600w,
+              ${process.env.NEXT_PUBLIC_API_URL}/${image} 1200w,
+              ${process.env.NEXT_PUBLIC_API_URL}/${image} 1800w`;
   };
 
   // Set the initial image on component mount or data change
@@ -38,7 +31,11 @@ const ProductDetailImage2 = ({ data }: any) => {
         {/* Thumbnails */}
         <div className={imageStyle.thumbnail_right}>
           {data.map((image: string, i: number) => (
-            <div className={imageStyle.img_wrap} key={i} onClick={() => hoverHandler(image, i)} ref={addRefs}>
+            <div
+              className={`${imageStyle.img_wrap} ${i === activeIndex ? `${imageStyle.active}` : ''}`}
+              key={i}
+              onClick={() => hoverHandler(image, i)}
+            >
               <img src={`${process.env.NEXT_PUBLIC_API_URL}/${image}`} alt={`Thumbnail ${i + 1}`} />
             </div>
           ))}
@@ -50,17 +47,24 @@ const ProductDetailImage2 = ({ data }: any) => {
             {...{
               smallImage: {
                 alt: 'Product image',
-                isFluidWidth: false,
-                width: 400,
-                height: 400,
+                isFluidWidth: true,
+                width: 600,
+                height: 600,
                 src: `${process.env.NEXT_PUBLIC_API_URL}/${img}`,
+                srcSet: generateSrcSet(img), // Use srcSet to provide multiple resolutions
+                sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 90vw, 90vw`, // Define sizes for different screen widths
               },
               largeImage: {
                 src: `${process.env.NEXT_PUBLIC_API_URL}/${img}`,
+                srcSet: generateSrcSet(img), // Use srcSet for large image as well
+                sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 30vw`,
                 width: 1200,
                 height: 1200,
               },
-              enlargedImageClassName: `${imageStyle.magnified_image_right}`,
+              enlargedImageClassName: `${imageStyle.magnified_image}`,
+              enlargedImagePosition: 'beside', // Ensure the image appears beside the main image
+              enlargedImageContainerClassName: `${imageStyle.magnified_image_right}`,
+              // enlargedImageContainerDimensions: { width: '100%', height: '100%' },
             }}
           />
         </div>

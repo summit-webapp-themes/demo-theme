@@ -57,7 +57,7 @@ function ProductPageMaster() {
           <div className="col-lg-6 p-4">
             <div className="">
               {productDetailData?.slide_img && (
-                // <ProductDetailImageGallery data={productDetailData?.slide_img} />}
+                // <ProductDetailImageGallery data={productDetailData?.slide_img} />
                 <ProductDetailImageMaster data={productDetailData?.slide_img} />
               )}
             </div>
