@@ -1,17 +1,17 @@
 import React from 'react';
-import HomeBannerLoading from './HomeBannerLoading';
-import HomeBanner from './HomeBanner';
 import Image from 'next/image';
-import useBanner from '../../../hooks/HomePageHooks/useHomeBanners';
-import ErrorImage from '../../../public/assets/images/error-icon.png';
+import ErrorImage from '../../../../public/assets/images/error-icon.png';
+import useBanner from '../../../../hooks/HomePageHooks/useHomeBanners';
+import SingleHomeBanner from './SingleHomeBanner';
+import SingleHomeBannerLoading from './SingleHomeBannerLoading';
 
-const MasterHomeBanner = () => {
+const MasterComponent = () => {
   const { bannersList, isLoading, errorMessage } = useBanner();
 
   if (isLoading) {
-    return <HomeBannerLoading />;
+    return <SingleHomeBannerLoading />;
   } else if (bannersList?.length > 0) {
-    return <HomeBanner bannersList={bannersList} />;
+    return <SingleHomeBanner bannersList={bannersList} />;
   } else if (errorMessage) {
     return (
       <div className="p-3 d-flex justify-content-center align-items-center" style={{ fontSize: '40px' }}>
@@ -22,4 +22,4 @@ const MasterHomeBanner = () => {
   return <></>;
 };
 
-export default MasterHomeBanner;
+export default MasterComponent;

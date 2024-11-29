@@ -4,7 +4,7 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const ProductBannerLoading = () => {
+const PersonalizedCategoriesWithGridLayoutLoading = () => {
   return (
     <Container className="mt-3">
       <Row className="justify-content-center">
@@ -18,4 +18,4 @@ const ProductBannerLoading = () => {
   );
 };
 
-export default ProductBannerLoading;
+export default PersonalizedCategoriesWithGridLayoutLoading;

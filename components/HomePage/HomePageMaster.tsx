@@ -3,9 +3,7 @@ import PersonalizedCategoriesInspiration1Master from './PersonalizedCategories/P
 import BrandsSectionInspiration1Master from './BrandSection/BrandsSectionInspiration1/BrandListingInspiration1Master';
 import FeaturedCollectionsInspiration1Master from './FeaturedCollections/FeaturedCollectionInspiration1/FeaturedCollectionsInspiration1Master';
 import style from '../../styles/components/home.module.scss';
-import ProductBannersMaster from './ProductBannerSection/ProductBannerMaster';
 import HomeBannersMaster from './BannerSection/HomeBannersInspiration1/MasterComponent';
-import MasterHomeBanner from './HomeBanner/MasterHomeBanner';
 
 interface PageData {
   name: string; // The name of the page section

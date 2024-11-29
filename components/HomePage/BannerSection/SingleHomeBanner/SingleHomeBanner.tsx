@@ -1,14 +1,10 @@
 import React from 'react';
-import banner from '../../../public/assets/images/big-slider.png';
 import Image from 'next/image';
-import { CONSTANTS } from '../../../services/config/app-config';
 import Link from 'next/link';
-import style from '../../../styles/components/homeBanner.module.scss';
+import style from '../../../../styles/components/homeBanner.module.scss';
+import { imageLoader } from '../../../../utils/image_loader';
 
-const HomeBanner = ({ bannersList }: any) => {
-  const myLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS?.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
-  };
+const SingleHomeBanner = ({ bannersList }: any) => {
   return (
     <div className="container-fluid slider-container ">
       <div className="row">
@@ -16,7 +12,7 @@ const HomeBanner = ({ bannersList }: any) => {
           {bannersList?.map((banner: any, index: any) => (
             <div className={style.banner_wrapper} key={index}>
               <Image
-                loader={myLoader}
+                loader={imageLoader}
                 className={`d-block image-fluid`}
                 src={banner?.img}
                 alt="Electronic Banner Image"
@@ -48,4 +44,4 @@ const HomeBanner = ({ bannersList }: any) => {
   );
 };
 
-export default HomeBanner;
+export default SingleHomeBanner;

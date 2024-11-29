@@ -1,14 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-import style from '../../../styles/components/homeCategory.module.scss';
-import { CONSTANTS } from '../../../services/config/app-config';
 import Link from 'next/link';
+import style from '../../../../styles/components/homeCategory.module.scss';
+import { imageLoader } from '../../../../utils/image_loader';
 
-const ProductBanner = ({ bannersList }: any) => {
-  const myLoader = ({ src, width, quality }: any) => {
-    return `${CONSTANTS?.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
-  };
-
+const PersonalizedCategoriesWithGridLayout = ({ bannersList }: any) => {
   return (
     <div className="container ">
       <div className="row">
@@ -16,7 +12,7 @@ const ProductBanner = ({ bannersList }: any) => {
           <div className={`col-md-6 ${style.electornics_wrapper} mt-4`} key={index}>
             <div className={style.Electronics_image_container}>
               <Image
-                loader={myLoader}
+                loader={imageLoader}
                 className={`d-block image-fluid ${style.catagoryImg}`}
                 src={category?.product_img}
                 alt="Electronic Banner Image"
@@ -47,4 +43,4 @@ const ProductBanner = ({ bannersList }: any) => {
   );
 };
 
-export default ProductBanner;
+export default PersonalizedCategoriesWithGridLayout;
