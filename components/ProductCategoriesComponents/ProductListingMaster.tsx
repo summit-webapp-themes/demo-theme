@@ -14,6 +14,7 @@ import FloatingSortbyBtn from './FloatingBtns/FloatingSortbyBtn';
 import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
 import SortbyModal from './HorizantalFilter/SortbyModal';
 import ProductGridView from './ProductListingView/ProductGridView';
+import ProductListingWithLeftFilterDrawer from './ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawer';
 
 function ProductListingMaster() {
   const {
@@ -75,7 +76,7 @@ function ProductListingMaster() {
           </div>
           <HorizantalFilterMaster sortBy={sortBy} handleSortBy={handleSortBy} />
         </div>
-        <div className="container-fluid">
+        {/* <div className="container-fluid">
           <ProductGridView
             productListingData={productListingData}
             handlePaginationBtn={handlePaginationBtn}
@@ -89,7 +90,24 @@ function ProductListingMaster() {
             handleDeleteCatalogItem={handleDeleteCatalogItem}
             cartData={cartData}
           />
+        </div> */}
+
+        <div className="container-fluid">
+          <ProductListingWithLeftFilterDrawer
+            productListingData={productListingData}
+            handlePaginationBtn={handlePaginationBtn}
+            productListTotalCount={productListTotalCount}
+            pageOffset={pageOffset}
+            handlePageClick={handlePageClick}
+            isLoading={isLoading}
+            wishlistData={wishlistData}
+            isSuperAdmin={isSuperAdmin}
+            handleShowCatalogModal={handleShowCatalogModal}
+            handleDeleteCatalogItem={handleDeleteCatalogItem}
+            cartData={cartData}
+          />
         </div>
+
         <div className="sticky_filter_btn w-100  d-block d-sm-none">
           <div className="row">
             <div className="col-6 p-0 border">
