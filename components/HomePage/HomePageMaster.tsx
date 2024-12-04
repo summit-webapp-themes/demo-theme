@@ -5,6 +5,8 @@ import FeaturedCollectionsInspiration1Master from './FeaturedCollections/Feature
 import style from '../../styles/components/home.module.scss';
 import PersonalizedCategoriesMaster from './PersonalizedCategories/PersonalizedCategoriesInMasonryLayout/MasterComponent';
 import FeaturedCollectionsInspiration2Master from './FeaturedCollections/FeaturedCollectionInspiration2/FeaturedCollectionsInspiration2Master';
+import FeaturedCollectionWithVariantProductCards from './FeaturedCollections/FeaturedCollectionWithVariantProductCards/FeaturedCollectionWithVariantProductCards';
+import MasterComponent from './FeaturedCollections/FeaturedCollectionWithVariantProductCards/MasterComponent';
 
 interface PageData {
   name: string; // The name of the page section
@@ -19,6 +21,7 @@ interface ComponentsTypes {
 }
 
 const HomePageMaster = ({ componentsList }: ComponentsTypes) => {
+  console.log(componentsList, 'data111');
   const homePageComponentsRenderer = () => {
     if (componentsList?.length > 0) {
       return componentsList?.map((componentName: any) => {
@@ -29,6 +32,11 @@ const HomePageMaster = ({ componentsList }: ComponentsTypes) => {
       return "Couldn't load components.";
     }
   };
-  return <>{homePageComponentsRenderer()}</>;
+  return (
+    <>
+      <MasterComponent />
+      {homePageComponentsRenderer()}
+    </>
+  );
 };
 export default HomePageMaster;

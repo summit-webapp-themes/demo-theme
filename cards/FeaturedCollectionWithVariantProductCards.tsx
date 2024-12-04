@@ -2,13 +2,13 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { FaCartPlus, FaCircleCheck, FaHeart, FaRegHeart } from 'react-icons/fa6';
+import { FaCheckCircle } from 'react-icons/fa';
+import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
+import VariantProductCardsButton from '../components/ButtonComponent/VariantProductCardsButton';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
-import noImage from '../public/assets/images/no_image.png';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
-import { FaCheckCircle } from 'react-icons/fa';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
 
@@ -25,6 +25,19 @@ const FeaturedCollectionWithProductCards = ({
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
+
+  // State to track the selected image
+  const [selectedImage, setSelectedImage] = useState<string | null>(data?.image);
+
+  // Handle color click
+  const handleColorClick = (colour: string) => {
+    console.log(colour, 'data111');
+    // Find the first variant with the matching colour
+    const variant = data?.variant?.find((v: any) => v.colour_attr_colour === colour && v.image?.length > 0);
+    if (variant) {
+      setSelectedImage(variant.image[0]); // Set the first image of the matched variant
+    }
+  };
 
   let wishProducts: any;
   const handleRenderIcon = () => {
@@ -142,28 +155,36 @@ const FeaturedCollectionWithProductCards = ({
   return (
     <>
       <Card className={`${styles.tabcardContainer}`}>
-        <div className={`${styles.tabimageContainer}`}>
-          <Image src={data?.image} alt="Banner Images" loading="eager" priority={true} width={303} height={303} loader={imageLoader} />
+        {selectedImage && (
+          <div className={`${styles.tabimageContainer}`}>
+            <Image src={selectedImage} alt="Banner Images" loading="eager" priority={true} width={303} height={303} loader={imageLoader} />
+          </div>
+        )}
+        <VariantProductCardsButton />
+        <div className={styles.wishlistIcon}>
+          <FaRegHeart />
         </div>
       </Card>
-      <h6 className={styles.tabProductTitle}>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</h6>
+      <div className="mt-3">
+        <h6 className={styles.tabProductTitle}>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</h6>
+      </div>
       <div>
         <h6 className={styles.tabProductTitle}>
           <span className={styles.tabProductPrice}>₹{data?.price}</span>
           <span className={styles.tabProductmrpPrice}>₹{data?.mrp_price}</span>
         </h6>
       </div>
-      <div className="d-flex">
-        <div className={styles.tabProductColor} style={{ backgroundColor: '#ff6e28' }}>
-          red
+      {data?.attributes[0]?.hex_value?.length > 0 && (
+        <div className="d-flex">
+          {data?.attributes[0]?.hex_value?.map((attribute: any) => (
+            <>
+              <div className={styles.tabProductColor} style={{ backgroundColor: attribute }} onClick={() => handleColorClick(attribute)}>
+                {attribute}
+              </div>
+            </>
+          ))}
         </div>
-        <div className={styles.tabProductColor} style={{ backgroundColor: '#82b440' }}>
-          green
-        </div>
-        <div className={styles.tabProductColor} style={{ backgroundColor: 'black' }}>
-          Black
-        </div>
-      </div>
+      )}
     </>
   );
 };

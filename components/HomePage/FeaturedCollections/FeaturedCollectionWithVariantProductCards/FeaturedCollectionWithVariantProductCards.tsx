@@ -8,7 +8,7 @@ const FeaturedCollectionWithVariantProductCards = ({ allTagsData, cartData, addT
       {allTagsData?.length > 0 &&
         allTagsData.map((item: any, i: number) => (
           <div key={i}>
-            <h3 className="featuredCollectionTitle text-center">
+            <h3 className={`${style.featuredCollectionTitle} text-center`}>
               <span>{item?.tag_name}</span>
             </h3>
             {item.value.length > 0 && (
