@@ -52,7 +52,11 @@ export async function getServerSideProps(context: any) {
     fetchedDataFromServer.multiLingualListTranslationTextList = {};
   }
   let getComponentsList = await getHomePageComponentsList(SUMMIT_APP_CONFIG);
-  if (getComponentsList?.status === 200 && getComponentsList?.data?.message?.msg === 'success') {
+  if (
+    getComponentsList?.status === 200 &&
+    getComponentsList?.data?.message?.msg === 'success' &&
+    getComponentsList?.data?.message?.data?.length > 0
+  ) {
     fetchedDataFromServer.homePageComponents = getComponentsList?.data?.message?.data;
   } else {
     fetchedDataFromServer.homePageComponents = [];

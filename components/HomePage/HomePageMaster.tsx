@@ -1,11 +1,3 @@
-import HomeBannersInspiration1Master from './BannerSection/HomeBannersInspiration1/MasterComponent';
-import PersonalizedCategoriesInspiration1Master from './PersonalizedCategories/PersonalizedCategoriesInspiration1/MasterComponent';
-import BrandsSectionInspiration1Master from './BrandSection/BrandsSectionInspiration1/BrandListingInspiration1Master';
-import FeaturedCollectionsInspiration1Master from './FeaturedCollections/FeaturedCollectionInspiration1/FeaturedCollectionsInspiration1Master';
-import style from '../../styles/components/home.module.scss';
-import PersonalizedCategoriesMaster from './PersonalizedCategories/PersonalizedCategoriesInMasonryLayout/MasterComponent';
-import FeaturedCollectionsInspiration2Master from './FeaturedCollections/FeaturedCollectionInspiration2/FeaturedCollectionsInspiration2Master';
-
 interface PageData {
   name: string; // The name of the page section
   component: string; // The type of component used
@@ -19,6 +11,7 @@ interface ComponentsTypes {
 }
 
 const HomePageMaster = ({ componentsList }: ComponentsTypes) => {
+  console.log('componentsList', componentsList);
   const homePageComponentsRenderer = () => {
     if (componentsList?.length > 0) {
       return componentsList?.map((componentName: any) => {
