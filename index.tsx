@@ -17,6 +17,9 @@ const Home = ({ fetchedDataFromServer }: any) => {
     if (Object.keys(fetchedDataFromServer?.multiLingualListTranslationTextList)?.length > 0) {
       dispatch(setMultiLingualData(fetchedDataFromServer.multiLingualListTranslationTextList));
     }
+    if (fetchedDataFromServer?.homePageComponents?.length > 0) {
+      dispatch(fetchedDataFromServer?.homePageComponents);
+    }
   }, []);
   return (
     <>
