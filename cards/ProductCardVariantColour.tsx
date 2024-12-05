@@ -7,12 +7,13 @@ import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import VariantProductCardsButton from '../components/ButtonComponent/VariantProductCardsButton';
+import FeaturedCollectionWithVariantProductCardColour from '../components/HomePage/FeaturedCollections/FeaturedCollectionWithVariantColour/FeaturedCollectionWithVariantProductCardColour';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
 
-const FeaturedCollectionWithProductCards = ({
+const ProductCardVariantColour = ({
   data,
   wishlistData,
   cartData,
@@ -26,16 +27,22 @@ const FeaturedCollectionWithProductCards = ({
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
 
-  // State to track the selected image
-  const [selectedImage, setSelectedImage] = useState<string | null>(data?.image);
+  const [selectedItem, setSelectedItem] = useState<any>({});
 
-  // Handle color click
-  const handleColorClick = (colour: string) => {
-    console.log(colour, 'data111');
-    // Find the first variant with the matching colour
-    const variant = data?.variant?.find((v: any) => v.colour_attr_colour === colour && v.image?.length > 0);
+  const handleRedirectToProductDetailPage = () => {
+    if (selectedItem?.slug) {
+      const splitedUrl = data?.url?.split('/');
+      const removedSlug = splitedUrl?.pop();
+      router?.push(`${splitedUrl?.join('/')}/${selectedItem?.slug}`);
+    } else {
+      router?.push(data?.url);
+    }
+  };
+
+  const handleSelectVariant = (colour: string) => {
+    const variant = data?.variant?.find((v: any) => v.colour_attr_colour === colour);
     if (variant) {
-      setSelectedImage(variant.image[0]); // Set the first image of the matched variant
+      setSelectedItem(variant);
     }
   };
 
@@ -155,9 +162,18 @@ const FeaturedCollectionWithProductCards = ({
   return (
     <>
       <Card className={`${styles.tabcardContainer}`}>
-        {selectedImage && (
+        {(selectedItem?.image || data?.image) && (
           <div className={`${styles.tabimageContainer}`}>
-            <Image src={selectedImage} alt="Banner Images" loading="eager" priority={true} width={303} height={303} loader={imageLoader} />
+            <Image
+              src={selectedItem?.image ? selectedItem?.image[0] : data?.image}
+              className="w-100"
+              alt="Banner Images"
+              loading="eager"
+              priority={true}
+              width={303}
+              height={303}
+              loader={imageLoader}
+            />
           </div>
         )}
         <VariantProductCardsButton />
@@ -165,7 +181,7 @@ const FeaturedCollectionWithProductCards = ({
           <FaRegHeart />
         </div>
       </Card>
-      <div className="mt-3">
+      <div className="mt-3 cursor-pointer" onClick={() => handleRedirectToProductDetailPage()}>
         <h6 className={styles.tabProductTitle}>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</h6>
       </div>
       <div>
@@ -174,19 +190,14 @@ const FeaturedCollectionWithProductCards = ({
           <span className={styles.tabProductmrpPrice}>₹{data?.mrp_price}</span>
         </h6>
       </div>
-      {data?.attributes[0]?.hex_value?.length > 0 && (
-        <div className="d-flex">
-          {data?.attributes[0]?.hex_value?.map((attribute: any) => (
-            <>
-              <div className={styles.tabProductColor} style={{ backgroundColor: attribute }} onClick={() => handleColorClick(attribute)}>
-                {attribute}
-              </div>
-            </>
-          ))}
-        </div>
-      )}
+      <FeaturedCollectionWithVariantProductCardColour
+        data={data}
+        handleSelectVariant={handleSelectVariant}
+        handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
+        selectedItem={selectedItem}
+      />
     </>
   );
 };
 
-export default FeaturedCollectionWithProductCards;
+export default ProductCardVariantColour;

@@ -1,8 +1,8 @@
 import 'react-multi-carousel/lib/styles.css';
+import ProductCardVariantColour from '../../../../cards/ProductCardVariantColour';
 import style from '../../../../styles/components/home.module.scss';
-import FeaturedCollectionWithProductCards from '../../../../cards/FeaturedCollectionWithVariantProductCards';
 
-const FeaturedCollectionWithVariantProductCards = ({ allTagsData, cartData, addToCartItem, getPartyName, wishlistData }: any) => {
+const FeaturedCollectionWithVariantColourCardContainer = ({ allTagsData, cartData, addToCartItem, getPartyName, wishlistData }: any) => {
   return (
     <div className="container slider-container mt-4">
       {allTagsData?.length > 0 &&
@@ -15,9 +15,9 @@ const FeaturedCollectionWithVariantProductCards = ({ allTagsData, cartData, addT
               <div className="slider-container">
                 <div className="row">
                   {item.value.map((val: any, index: number) => (
-                    <div className="col-md-3 gap-3" key={index}>
+                    <div className="col-sm-6 col-md-4 col-lg-3 gap-3" key={index}>
                       <div className={style.cardMargin}>
-                        <FeaturedCollectionWithProductCards
+                        <ProductCardVariantColour
                           data={val}
                           cartData={cartData}
                           addToCartItem={addToCartItem}
@@ -35,4 +35,4 @@ const FeaturedCollectionWithVariantProductCards = ({ allTagsData, cartData, addT
     </div>
   );
 };
-export default FeaturedCollectionWithVariantProductCards;
+export default FeaturedCollectionWithVariantColourCardContainer;

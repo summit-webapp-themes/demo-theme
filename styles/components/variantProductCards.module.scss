@@ -17,9 +17,11 @@
   position: relative;
 }
 .tabimageContainer {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
 }
 .tabProductPrice {
   margin-right: 15px;
@@ -36,9 +38,15 @@
   border-radius: 50%;
   font-size: 0;
   text-align: center;
-  background-size: cover;
   margin-right: 8px;
+  padding: 2px;
   cursor: pointer;
+}
+.borderInactive {
+  border: 1px solid #ffffff77;
+}
+.borderActive {
+  border: 1px solid black;
 }
 .tabcardContainer:hover .varients_btns {
   opacity: 1;
