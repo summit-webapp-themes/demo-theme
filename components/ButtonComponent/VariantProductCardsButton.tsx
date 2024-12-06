@@ -5,18 +5,15 @@ import { IoEyeOutline, IoCartOutline } from 'react-icons/io5';
 const VariantProductCardsButton = () => {
   return (
     <div className={styles.varients_btns}>
-      <Link href=" " className={styles.quickShop_btn}>
-        <span className={styles.quickShop}>Quick View</span>
-        <span className={styles.quickIcon}>
-          <IoEyeOutline />
-        </span>
-      </Link>
-      <Link href=" " className={styles.quickShop_btn}>
-        <span className={styles.quickShop}>Quick Shop</span>
-        <span className={styles.quickIcon}>
-          <IoCartOutline />
-        </span>
-      </Link>
+      <span className={styles.quickShop}>Quick View</span>
+      <span className={styles.quickIcon}>
+        <IoEyeOutline />
+      </span>
+
+      <span className={styles.quickShop}>Quick Shop</span>
+      <span className={styles.quickIcon}>
+        <IoCartOutline />
+      </span>
     </div>
   );
 };

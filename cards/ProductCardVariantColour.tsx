@@ -13,6 +13,26 @@ import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
 
+interface Props {
+  data: any;
+  wishlistData: any;
+  cartData: any;
+  addToCartItem: (item: any, props: any) => void;
+  getPartyName: () => string;
+  isSuperAdmin?: string;
+  handleDeleteCatalogItem?: (category: string | string[] | undefined, name: string) => void;
+  handleShowCatalogModal?: (name: string) => void;
+}
+
+interface Variant {
+  variant_code?: string;
+  slug?: string;
+  Colour?: string;
+  colour_attr_colour?: string;
+  stock?: boolean;
+  image?: string[];
+}
+
 const ProductCardVariantColour = ({
   data,
   wishlistData,
@@ -22,12 +42,12 @@ const ProductCardVariantColour = ({
   isSuperAdmin,
   handleDeleteCatalogItem,
   handleShowCatalogModal,
-}: any) => {
+}: Props) => {
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
 
-  const [selectedItem, setSelectedItem] = useState<any>({});
+  const [selectedItem, setSelectedItem] = useState<Variant>({});
 
   const handleRedirectToProductDetailPage = () => {
     if (selectedItem?.slug) {
@@ -40,7 +60,7 @@ const ProductCardVariantColour = ({
   };
 
   const handleSelectVariant = (colour: string) => {
-    const variant = data?.variant?.find((v: any) => v.colour_attr_colour === colour);
+    const variant = data?.variant?.find((v: Variant) => v.colour_attr_colour === colour);
     if (variant) {
       setSelectedItem(variant);
     }
@@ -138,26 +158,26 @@ const ProductCardVariantColour = ({
     }
   };
 
-  const handleRenderAddToCatalogBtn: any = () => {
-    if (isSuperAdmin === 'true') {
-      return (
-        <div className="d-flex justify-content-center">
-          {router?.asPath?.startsWith('/catalog') ? (
-            <button
-              className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`}
-              onClick={() => handleDeleteCatalogItem(router?.query?.category, data?.name)}
-            >
-              <RiDeleteBin2Fill />
-            </button>
-          ) : (
-            <Button className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={() => handleShowCatalogModal(data?.name)}>
-              Add to catalog
-            </Button>
-          )}
-        </div>
-      );
-    }
-  };
+  // const handleRenderAddToCatalogBtn: any = () => {
+  //   if (isSuperAdmin === 'true') {
+  //     return (
+  //       <div className="d-flex justify-content-center">
+  //         {router?.asPath?.startsWith('/catalog') ? (
+  //           <button
+  //             className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`}
+  //             onClick={() => handleDeleteCatalogItem(router?.query?.category, data?.name)}
+  //           >
+  //             <RiDeleteBin2Fill />
+  //           </button>
+  //         ) : (
+  //           <Button className={`rounded me-2 fs-6 ${ProductCardStyles.carListingBtn}`} onClick={() => handleShowCatalogModal(data?.name)}>
+  //             Add to catalog
+  //           </Button>
+  //         )}
+  //       </div>
+  //     );
+  //   }
+  // };
 
   return (
     <>
