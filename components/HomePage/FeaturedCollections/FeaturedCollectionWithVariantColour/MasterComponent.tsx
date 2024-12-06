@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
-import { selectWishlist } from '../../../../store/slices/wishlist-slices/wishlist-local-slice';
 import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
 import useDisplayTagHooks from '../../../../hooks/HomePageHooks/useFeaturedCollections';
 import ErrorImage from '../../../../public/assets/images/error-icon.png';
 import { selectCart } from '../../../../store/slices/cart-slices/cart-local-slice';
-import FeaturedCollectionWithColorVariants from './FeaturedCollectionWithVariantProductCards';
-import FeaturedCollectionWithVariantProductCardsLoading from './FeaturedCollectionWithVariantProductCardsLoading';
+import { selectWishlist } from '../../../../store/slices/wishlist-slices/wishlist-local-slice';
+import FeaturedCollectionWithVariantColourCardContainer from './FeaturedCollectionWithVariantColourCardContainer';
+import FeaturedCollectionWithVariantColourLoading from './FeaturedCollectionWithVariantColourLoading';
 
 const MasterComponent = () => {
   const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
@@ -15,10 +15,10 @@ const MasterComponent = () => {
   const cartData = useSelector(selectCart).items;
 
   if (isLoading) {
-    return <FeaturedCollectionWithVariantProductCardsLoading />;
+    return <FeaturedCollectionWithVariantColourLoading />;
   } else if (allTagsData?.length > 0) {
     return (
-      <FeaturedCollectionWithColorVariants
+      <FeaturedCollectionWithVariantColourCardContainer
         allTagsData={allTagsData}
         cartData={cartData}
         addToCartItem={addToCartItem}
