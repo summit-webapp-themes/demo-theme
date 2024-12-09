@@ -186,7 +186,7 @@ const ProductCardVariantColour = ({
           <div className={`${styles.tabimageContainer}`}>
             <Image
               src={selectedItem?.image ? selectedItem?.image[0] : data?.image}
-              className="w-100"
+              className="w-100 img-fluid"
               alt="Banner Images"
               loading="eager"
               priority={true}
@@ -202,7 +202,9 @@ const ProductCardVariantColour = ({
         </div>
       </Card>
       <div className="mt-3 cursor-pointer" onClick={() => handleRedirectToProductDetailPage()}>
-        <h6 className={styles.tabProductTitle}>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</h6>
+        <h6 className={styles.tabProductTitle}>
+          <strong>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</strong>
+        </h6>
       </div>
       <div>
         <h6 className={styles.tabProductTitle}>

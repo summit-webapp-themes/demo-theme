@@ -6,9 +6,9 @@ import { imageLoader } from '../../../../utils/image_loader';
 
 const PersonalizedCategories = ({ homeTopCategories }: any) => {
   return (
-    <div className="container slider-container mt-2">
+    <div className="container-fluid slider-container mt-2">
       <div className="row mt-3">
-        <div className={`col-sm-12 col-md-6 col-lg-6 col-xl-5 ${style.masonryContainerImage}`}>
+        <div className={`col-12 col-md-5  pb-3 pb-md-0 ${style.masonryContainerImage}`}>
           <div>
             <Link
               href={`${homeTopCategories[0]?.category_url}`}
@@ -34,7 +34,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
             </Button>
           </div>
         </div>
-        <div className={`col-sm-12 col-md-4 d-md-none d-lg-block col-lg-3 col-xl-3`}>
+        <div className={`col-6 col-md-3  `}>
           <div className={`mb-4 ${style.masonryContainerImage}`}>
             <div>
               <Link
@@ -88,7 +88,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
             </div>
           </div>
         </div>
-        <div className={`col-sm-12 col-md-6 col-lg-3 col-xl-4 ${style.masonryContainerImage}`}>
+        <div className={`col-6 col-md-4  ${style.masonryContainerImage}`}>
           <div>
             <Link
               href={`${homeTopCategories[3]?.category_url}`}
