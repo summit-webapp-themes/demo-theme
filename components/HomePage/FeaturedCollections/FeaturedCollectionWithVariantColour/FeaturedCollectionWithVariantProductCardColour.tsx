@@ -1,28 +1,28 @@
 import styles from '../../../../styles/components/variantProductCards.module.scss';
 
-type ProductProps = {
+interface ProductPropsTypes {
   data: any;
   handleRedirectToProductDetailPage: () => void;
   handleSelectVariant: (variant: any) => void;
   selectedItem: any;
-};
+}
 
-type Attribute = {
+interface AttributeTypes {
   field_name: string;
   label: string;
   values: string[];
   default_value: string;
   hex_value: string[];
   display_thumbnail: boolean;
-};
+}
 
 const FeaturedCollectionWithVariantProductCardColour = ({
   data,
   handleRedirectToProductDetailPage,
   handleSelectVariant,
   selectedItem,
-}: ProductProps) => {
-  const colourAttribute = data?.attributes?.find((attr: Attribute) => attr.field_name === 'Colour');
+}: ProductPropsTypes) => {
+  const colourAttribute = data?.attributes?.find((attr: AttributeTypes) => attr.field_name === 'Colour');
   return (
     <>
       <div className="d-flex">

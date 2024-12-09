@@ -13,18 +13,18 @@ import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
 
-interface Props {
+interface ProductCardVariantPropsTypes {
   data: any;
   wishlistData: any;
   cartData: any;
   addToCartItem: (item: any, props: any) => void;
-  getPartyName: () => string;
+  getPartyName: string | null;
   isSuperAdmin?: string;
   handleDeleteCatalogItem?: (category: string | string[] | undefined, name: string) => void;
   handleShowCatalogModal?: (name: string) => void;
 }
 
-interface Variant {
+interface VariantTypes {
   variant_code?: string;
   slug?: string;
   Colour?: string;
@@ -42,12 +42,12 @@ const ProductCardVariantColour = ({
   isSuperAdmin,
   handleDeleteCatalogItem,
   handleShowCatalogModal,
-}: Props) => {
+}: ProductCardVariantPropsTypes) => {
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
 
-  const [selectedItem, setSelectedItem] = useState<Variant>({});
+  const [selectedItem, setSelectedItem] = useState<VariantTypes>({});
 
   const handleRedirectToProductDetailPage = () => {
     if (selectedItem?.slug) {
@@ -60,7 +60,7 @@ const ProductCardVariantColour = ({
   };
 
   const handleSelectVariant = (colour: string) => {
-    const variant = data?.variant?.find((v: Variant) => v.colour_attr_colour === colour);
+    const variant = data?.variant?.find((v: VariantTypes) => v.colour_attr_colour === colour);
     if (variant) {
       setSelectedItem(variant);
     }
