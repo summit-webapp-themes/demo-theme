@@ -6,6 +6,7 @@ import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
 import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
 import useWishlist from '../../hooks/WishlistHooks/useWishlistHook';
+import CustomWebNavbar from './CustomWebNavbar';
 
 function Navbar() {
   const { navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, isLoggedIn } = useNavbar();
@@ -13,17 +14,30 @@ function Navbar() {
   const { cartCount } = useFetchCartItems();
   const { wishlistCount } = useWishlist();
   return (
-    <WebNavBar
-      navbarData={navbarData}
-      isLoading={isLoading}
-      errorMessage={errorMessage}
-      selectedCurrencyValue={selectedCurrencyValue}
-      handleLogoutUser={handleLogoutUser}
-      selectedLanguageData={selectedLanguageData}
-      cartCount={cartCount}
-      wishlistCount={wishlistCount}
-      isLoggedIn={isLoggedIn}
-    />
+    <>
+      {/* <WebNavBar
+        navbarData={navbarData}
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+        selectedCurrencyValue={selectedCurrencyValue}
+        handleLogoutUser={handleLogoutUser}
+        selectedLanguageData={selectedLanguageData}
+        cartCount={cartCount}
+        wishlistCount={wishlistCount}
+        isLoggedIn={isLoggedIn}
+      /> */}
+      <CustomWebNavbar
+        navbarData={navbarData}
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+        selectedCurrencyValue={selectedCurrencyValue}
+        handleLogoutUser={handleLogoutUser}
+        selectedLanguageData={selectedLanguageData}
+        cartCount={cartCount}
+        wishlistCount={wishlistCount}
+        isLoggedIn={isLoggedIn}
+      />
+    </>
   );
 }
 
