@@ -11,22 +11,6 @@
 .nav-sidebar .accordion-button {
   padding: 1rem 0 !important;
 }
-.nav-sidebar2 .accordion {
-  // width: 90% !important;
-}
 .nav-sidebar2 .accordion-button {
   padding: 1rem 0 !important;
-}
-// .nav-sidebar {
-//   .accordion-button:after {
-//     background-image: 0 !important;
-//     width: 0px !important;
-//   }
-// }
-// .nav-sidebar .accordion-button:not(.collapsed):after {
-//   background-image: none !important;
-//   width: 0px !important;
-// }
-button:focus:not(:focus-visible) {
-  outline: 0;
 }
