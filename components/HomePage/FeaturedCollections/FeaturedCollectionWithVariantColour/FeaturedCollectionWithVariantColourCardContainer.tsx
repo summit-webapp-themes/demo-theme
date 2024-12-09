@@ -1,10 +1,13 @@
 import 'react-multi-carousel/lib/styles.css';
 import ProductCardVariantColour from '../../../../cards/ProductCardVariantColour';
-import TagDataProductTypes, { default as TagDataTypes } from '../../../../interfaces/tag-data-interface';
+import {
+  default as FeaturedCollectionProductTypes,
+  default as FeaturedCollectionTypes,
+} from '../../../../interfaces/featured-collection-interface';
 import style from '../../../../styles/components/home.module.scss';
 
 interface featuredCardContainerPropsTypes {
-  allTagsData: TagDataTypes[];
+  allTagsData: FeaturedCollectionTypes[];
   cartData: any;
   addToCartItem: (item: any, props: any) => void;
   getPartyName: string | null;
@@ -21,7 +24,7 @@ const FeaturedCollectionWithVariantColourCardContainer = ({
   return (
     <div className="container slider-container mt-4">
       {allTagsData?.length > 0 &&
-        allTagsData.map((item: TagDataTypes, i: number) => (
+        allTagsData.map((item: FeaturedCollectionTypes, i: number) => (
           <div key={i}>
             <h3 className={`${style.featuredCollectionTitle} text-center`}>
               <span>{item?.tag_name}</span>
@@ -29,7 +32,7 @@ const FeaturedCollectionWithVariantColourCardContainer = ({
             {item.value.length > 0 && (
               <div className="slider-container">
                 <div className="row">
-                  {item.value.map((val: TagDataProductTypes, index: number) => (
+                  {item.value.map((val: FeaturedCollectionProductTypes, index: number) => (
                     <div className="col-sm-6 col-md-4 col-lg-3 gap-3" key={index}>
                       <div className={style.cardMargin}>
                         <ProductCardVariantColour
