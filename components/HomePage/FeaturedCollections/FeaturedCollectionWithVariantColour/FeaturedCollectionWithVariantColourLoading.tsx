@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Placeholder } from 'react-bootstrap';
 import ProductCardSkeleton from '../../../../cards/ProductCardSkeleton';
 
-const FeaturedCollectionWithVariantProductCardsLoading = () => {
+const FeaturedCollectionWithVariantColourLoading = () => {
   return (
     <>
       {[...Array(3)].map((_, index) => (
@@ -20,4 +20,4 @@ const FeaturedCollectionWithVariantProductCardsLoading = () => {
     </>
   );
 };
-export default FeaturedCollectionWithVariantProductCardsLoading;
+export default FeaturedCollectionWithVariantColourLoading;

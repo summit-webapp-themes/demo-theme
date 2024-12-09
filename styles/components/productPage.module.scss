@@ -1,0 +1,62 @@
+.prodcut_title {
+  margin-bottom: 10px !important;
+  font-size: 16px;
+  font-weight: 600;
+  color: #222222;
+  text-transform: none;
+  line-height: 1;
+}
+.price {
+  font-size: 22px;
+  font-weight: 400;
+  color: #696969;
+}
+.rating {
+  font-size: 12px;
+}
+.attribute_name {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0.65em 0 0.5em;
+}
+.variant_btn {
+  border-color: #333;
+  color: #333;
+  background-color: #ffffff;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  display: inline-block;
+  padding: 6px 16px;
+  text-align: center;
+  border-radius: 3px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin: 5px;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.15s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+.variant_btn_active {
+  border-color: #333;
+  background: #333;
+  color: #ffffff;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  display: inline-block;
+  padding: 6px 16px;
+  text-align: center;
+  border-radius: 3px;
+  vertical-align: middle;
+  cursor: pointer;
+  margin: 5px;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.15s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}

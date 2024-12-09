@@ -4,6 +4,7 @@ import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import paginationStyle from '../../../styles/components/pagination.module.scss';
 import NoDataFound from '../../NoRecordFound';
+import ProductCardVariantColour from '../../../cards/ProductCardVariantColour';
 
 function ProductlistingGridViewMaster({
   isLoading,
@@ -37,8 +38,18 @@ function ProductlistingGridViewMaster({
         <>
           {productListingData?.map((data: any, i: any) => {
             return (
-              <div key={innerHeight * i} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4">
-                <ProductCard
+              <div key={innerHeight * i} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-start mb-4">
+                {/* <ProductCard
+                  data={data}
+                  addToCartItem={addToCartItem}
+                  getPartyName={getPartyName}
+                  wishlistData={wishlistData}
+                  isSuperAdmin={isSuperAdmin}
+                  handleDeleteCatalogItem={handleDeleteCatalogItem}
+                  handleShowCatalogModal={handleShowCatalogModal}
+                  cartData={cartData}
+                /> */}
+                <ProductCardVariantColour
                   data={data}
                   addToCartItem={addToCartItem}
                   getPartyName={getPartyName}
