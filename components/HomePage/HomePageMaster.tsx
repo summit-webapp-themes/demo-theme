@@ -5,7 +5,6 @@ import FeaturedCollectionsInspiration1Master from './FeaturedCollections/Feature
 import style from '../../styles/components/home.module.scss';
 import PersonalizedCategoriesMaster from './PersonalizedCategories/PersonalizedCategoriesInMasonryLayout/MasterComponent';
 import FeaturedCollectionsInspiration2Master from './FeaturedCollections/FeaturedCollectionInspiration2/FeaturedCollectionsInspiration2Master';
-import FeaturedCollectionWithVariantProductCards from './FeaturedCollections/FeaturedCollectionWithVariantColour/FeaturedCollectionWithVariantColourCardContainer';
 
 interface PageData {
   name: string; // The name of the page section
