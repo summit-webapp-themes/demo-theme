@@ -40,6 +40,9 @@
     box-shadow 0.25s ease,
     opacity 0.25s ease;
 }
+.variant_btn :hover {
+  border: 1px solid #000;
+}
 .variant_btn_active {
   border-color: #333;
   background: #333;
@@ -59,4 +62,9 @@
     border-color 0.15s ease,
     box-shadow 0.25s ease,
     opacity 0.25s ease;
+}
+.colour_variant {
+  width: 20px;
+  height: 20px;
+  margin: 0;
 }
