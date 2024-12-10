@@ -13,7 +13,7 @@ const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndT
 import styles from '../../styles/components/productDetail.module.scss';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
-import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
+import { componentsListFromReduxStore } from '../../store/slices/general_slices/components-slice';
 
 function ProductPageMaster() {
   const {
@@ -33,6 +33,7 @@ function ProductPageMaster() {
   const [tab, setTab] = useState('SPECIFICATION');
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const cartData = useSelector(selectCart).items;
+  const { componentsList }: any = useSelector(componentsListFromReduxStore);
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
   useEffect(() => {
     if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
