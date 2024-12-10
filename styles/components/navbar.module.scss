@@ -76,6 +76,16 @@
   flex: 1;
 }
 
+// Custom web navbar css
+.list_inline_item_custom {
+  width: 45px;
+}
+.badge_custom {
+  bottom: 13px !important;
+  // right: -1px !important;
+  left: 23px !important;
+}
+
 @media (max-width: 1070px) {
   .search_bar {
     width: 45%;
@@ -105,6 +115,9 @@
     padding-bottom: 1.0625rem;
     text-transform: uppercase;
     flex: 2;
+  }
+  .cart_icon_mob {
+    padding-right: 0.7rem !important;
   }
 }
 
