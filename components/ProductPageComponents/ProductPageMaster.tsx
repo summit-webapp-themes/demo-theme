@@ -14,6 +14,7 @@ import styles from '../../styles/components/productDetail.module.scss';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { componentsListFromReduxStore } from '../../store/slices/general_slices/components-slice';
+import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 
 function ProductPageMaster() {
   const {

@@ -15,7 +15,7 @@ function ProductGridView({
   cartData,
 }: any) {
   return (
-    <div className="row ps-lg-5 ps-sm-2 pe-lg-5">
+    <div className="row  ps-sm-2 ">
       <div className="col-12 col-md-2 px-sm-3 web-filter d-none d-sm-block ">
         <WebFilter />
       </div>
