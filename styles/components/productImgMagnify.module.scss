@@ -1,0 +1,126 @@
+.product_img_container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.img_container {
+  display: flex;
+  height: 70vh;
+  gap: 10px;
+}
+.thumbnail_left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.img_container_column {
+  display: flex;
+  flex-direction: column; /* Change flex direction to column to stack image and thumbnails */
+  height: 95vh; /* Increase the container's height to make space for the thumbnails below */
+  gap: 20px; /* Add space between image and thumbnails */
+}
+.thumbnail_bottom {
+  display: flex;
+  // margin-top: -90px;
+  z-index: 3;
+  margin-bottom: 40px;
+  gap: 10px;
+}
+
+.thumbnail_right {
+  display: flex; /* Align thumbnails */
+  flex-direction: column; /* Stack thumbnails vertically */
+  gap: 10px; /* Add space between thumbnails */
+  margin-left: 20px; /* Add space between the main image and thumbnails */
+  margin-right: 0; /* Remove any default right margin */
+  order: 2; /* Ensure this comes after the main image in flex order */
+}
+
+.img_wrap {
+  // max-width: 80px !important;
+  // max-height: 80px !important;
+  max-width: 100px !important; /* Increase thumbnail size */
+  max-height: 100px !important; /* Increase thumbnail size */
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+.img_wrap img {
+  // max-width: 70px !important;
+  // max-height: 70px !important;
+  max-width: 92px !important; /* Thumbnail inner image size */
+  max-height: 92px !important; /* Thumbnail inner image size */
+  object-fit: contain;
+}
+.img_container img {
+  width: 600px;
+  width: 800px; /* Larger product image */
+  height: 100%;
+  object-fit: contain;
+}
+.active {
+  border: 3px solid #e77600 !important;
+}
+
+.magnified_image {
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: contain !important;
+}
+.magnified_image_right {
+  margin-left: 150px !important;
+}
+
+.product_img_bottom {
+  width: 100%; /* Allow product image to take full width */
+  max-width: 80%;
+  height: 80%;
+}
+
+/* Media Query for Mobile View */
+@media (max-width: 768px) {
+  .product_img_container {
+    flex-direction: column; /* Stack product image and thumbnails vertically */
+    align-items: center;
+  }
+
+  .img_container {
+    flex-direction: column; /* Stack the images vertically */
+    align-items: center;
+  }
+  .thumbnail_left {
+    width: 100%; /* Make the thumbnail container take full width */
+    flex-direction: row; /* Arrange thumbnails in a row on mobile */
+    justify-content: space-around;
+    gap: 5px;
+    overflow-x: scroll; /* Allow scrolling for thumbnails */
+  }
+  .thumbnail_right {
+    width: 100%; /* Make the thumbnail container take full width */
+    flex-direction: row; /* Arrange thumbnails in a row on mobile */
+    justify-content: space-around;
+    gap: 5px;
+    overflow-x: scroll; /* Allow scrolling for thumbnails */
+  }
+
+  .img_wrap {
+    max-width: 100px; /* Adjust the size of thumbnails */
+    max-height: 100px;
+  }
+
+  .product_img {
+    width: 100%; /* Allow product image to take full width */
+    max-width: 100%;
+  }
+
+  .magnified_image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .magnified_image_right {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
