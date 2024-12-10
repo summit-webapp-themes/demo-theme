@@ -13,7 +13,7 @@ import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
 
-interface Props {
+interface ProductCardVariantPropsTypes {
   data: any;
   wishlistData: any;
   cartData: any;
@@ -24,7 +24,7 @@ interface Props {
   handleShowCatalogModal?: (name: string) => void;
 }
 
-interface Variant {
+interface VariantTypes {
   variant_code?: string;
   slug?: string;
   Colour?: string;
@@ -42,12 +42,12 @@ const ProductCardVariantColour = ({
   isSuperAdmin,
   handleDeleteCatalogItem,
   handleShowCatalogModal,
-}: Props) => {
+}: ProductCardVariantPropsTypes) => {
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
 
-  const [selectedItem, setSelectedItem] = useState<Variant>({});
+  const [selectedItem, setSelectedItem] = useState<VariantTypes>({});
 
   const handleRedirectToProductDetailPage = () => {
     if (selectedItem?.slug) {
@@ -60,7 +60,7 @@ const ProductCardVariantColour = ({
   };
 
   const handleSelectVariant = (colour: string) => {
-    const variant = data?.variant?.find((v: Variant) => v.colour_attr_colour === colour);
+    const variant = data?.variant?.find((v: VariantTypes) => v.colour_attr_colour === colour);
     if (variant) {
       setSelectedItem(variant);
     }
@@ -186,12 +186,12 @@ const ProductCardVariantColour = ({
           <div className={`${styles.tabimageContainer}`}>
             <Image
               src={selectedItem?.image ? selectedItem?.image[0] : data?.image}
-              className="w-100 img-fluid"
+              className="w-100"
               alt="Banner Images"
               loading="eager"
               priority={true}
-              width={600}
-              height={0}
+              width={303}
+              height={303}
               loader={imageLoader}
             />
           </div>

@@ -1,5 +1,6 @@
-import { IoCartOutline, IoEyeOutline } from 'react-icons/io5';
+import Link from 'next/link';
 import styles from '../../styles/components/variantProductCards.module.scss';
+import { IoEyeOutline, IoCartOutline } from 'react-icons/io5';
 
 const VariantProductCardsButton = () => {
   return (
