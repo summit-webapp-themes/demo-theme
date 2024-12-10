@@ -8,6 +8,8 @@ import { FaSquareInstagram } from 'react-icons/fa6';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
 import { toast } from 'react-toastify';
+import ProductPageVariants from './ProductPageVariants';
+import ProductPageHeading from './ProductPageHeading';
 const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
 const MultipleQuantityInputField = dynamic(() => import('./MultipleQuantityInputField'));
 const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
@@ -96,8 +98,9 @@ function ProductDetailDescribtionSection({
 
   return (
     <>
-      <div className="border-bottom">
-        <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
+      <div className="">
+        <ProductPageHeading productDetailData={productDetailData} />
+        {/* <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
         <div className="">{productDetailData?.rating && <StarRating rating={productDetailData?.rating} />}</div>
         <p className="mb-0">
           {selectedMultiLangData?.item_code}: {productDetailData?.name}
@@ -105,7 +108,7 @@ function ProductDetailDescribtionSection({
         <div>
           <span className={`text-dark  ${styles.price}`}>{`₹ ${productDetailData?.price}`}</span>
           <del className={`text-dark ps-2 ${styles.price}`}>{`₹ ${productDetailData?.mrp_price}`}</del>
-        </div>
+        </div> */}
         {Array.isArray(productDetailData?.features)
           ? ''
           : productDetailData?.features &&
@@ -126,15 +129,16 @@ function ProductDetailDescribtionSection({
         {/* <Link href="#" className={` ${styles.priceOnReq}`}>
           {selectedMultiLangData?.price_on_request}
         </Link> */}
-        <p className={`text-uppercase m-0 ${styles.detailSection}`}>
+        {/* <p className={`text-uppercase m-0 ${styles.detailSection}`}>
           {selectedMultiLangData?.brand} : <span> {productDetailData?.brand} </span>
         </p>
         <p className={`text-uppercase m-0 ${styles.detailSection}`}>
           {selectedMultiLangData?.hsn_code} : <span> {productDetailData?.gst_hsn_code} </span>
-        </p>
+        </p> */}
       </div>
       <div>
-        <ProductVariants productVariantData={productVariantData} />
+        {/* <ProductVariants productVariantData={productVariantData} /> */}
+        <ProductPageVariants productVariantData={productVariantData} />
         <MultipleQuantityInputField
           productVariantData={productVariantData}
           handleMultipleQtyChange={handleMultipleQtyChange}

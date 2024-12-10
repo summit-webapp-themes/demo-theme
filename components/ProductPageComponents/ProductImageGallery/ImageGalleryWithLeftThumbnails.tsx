@@ -4,6 +4,7 @@ import { CONSTANTS } from '../../../services/config/app-config';
 import { ProductSlideshowImages } from '../../../interfaces/product-slideshow-images';
 import imageStyle from '../../../styles/components/productImgMagnify.module.scss';
 import useImageGallery from '../../../hooks/ProductImageGalleryHandler/useImageGallery';
+import { imageLoader } from '../../../utils/image_loader';
 
 const ImageGalleryWithLeftThumbnails = ({ slideShowImages }: ProductSlideshowImages) => {
   const { enlargeImg, activeImgIndex, handleSelectedImage, generateSrcSet } = useImageGallery({ slideShowImages });
@@ -19,7 +20,7 @@ const ImageGalleryWithLeftThumbnails = ({ slideShowImages }: ProductSlideshowIma
               key={i}
               onClick={() => handleSelectedImage(image, i)}
             >
-              <Image src={`${CONSTANTS.API_BASE_URL}/${image}`} alt={`Thumbnail image ${i + 1}`} width={100} height={100} />
+              <Image src={image} loader={imageLoader} alt={`Thumbnail image ${i + 1}`} width={100} height={100} />
             </div>
           ))}
         </div>

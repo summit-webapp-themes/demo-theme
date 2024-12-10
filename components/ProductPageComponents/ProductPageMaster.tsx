@@ -13,6 +13,7 @@ const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndT
 import styles from '../../styles/components/productDetail.module.scss';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
+import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 
 function ProductPageMaster() {
   const {
@@ -54,7 +55,7 @@ function ProductPageMaster() {
         </div>
         <div className="row">
           <div className="col-lg-6 p-4">
-            <div className="">{productDetailData?.slide_img && <ProductDetailImageGallery data={productDetailData?.slide_img} />}</div>
+            <div className="">{productDetailData?.slide_img && <ImageGalleryMaster slideShowImages={productDetailData?.slide_img} />}</div>
           </div>
           <div className="col-lg-6 p-4">
             <ProductDetailDescribtionSection

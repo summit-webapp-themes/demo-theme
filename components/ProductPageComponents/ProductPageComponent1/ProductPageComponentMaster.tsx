@@ -5,8 +5,9 @@ import { selectCart } from '../../../store/slices/cart-slices/cart-local-slice';
 import { SelectedFilterLangDataFromStore } from '../../../store/slices/general_slices/selected-multilanguage-slice';
 import BreadCrumbs from '../../BreadCrumbs';
 import ProductDetailSkeleton from '../ProductDetailSkeleton';
-import ProductPageHeading from './ProductPageHeading';
-import ProductPageVariants from './ProductPageVariants';
+import ProductPageHeading from '../ProductPageHeading';
+import ImageGalleryWithLeftThumbnails from '../ProductImageGallery/ImageGalleryWithLeftThumbnails';
+import ProductPageVariants from '../ProductPageVariants';
 
 function ProductPageComponentMaster() {
   const {
@@ -46,7 +47,9 @@ function ProductPageComponentMaster() {
           <BreadCrumbs />
         </div>
         <div className="row">
-          <div className="col-lg-6 p-4"></div>
+          <div className="col-lg-6 p-4">
+            <ImageGalleryWithLeftThumbnails slideShowImages={productDetailData?.thumbnail_images} />
+          </div>
           <div className="col-lg-6 p-4">
             <ProductPageHeading productDetailData={productDetailData} />
             <ProductPageVariants productVariantData={productVariantData} />
