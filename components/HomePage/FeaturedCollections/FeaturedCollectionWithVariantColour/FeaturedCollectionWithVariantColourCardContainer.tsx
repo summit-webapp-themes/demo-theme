@@ -5,7 +5,6 @@ import {
   default as FeaturedCollectionTypes,
 } from '../../../../interfaces/featured-collection-interface';
 import style from '../../../../styles/components/home.module.scss';
-import { MdOutlineHorizontalRule } from 'react-icons/md';
 
 interface featuredCardContainerPropsTypes {
   allTagsData: FeaturedCollectionTypes[];
@@ -23,10 +22,10 @@ const FeaturedCollectionWithVariantColourCardContainer = ({
   wishlistData,
 }: featuredCardContainerPropsTypes) => {
   return (
-    <div className="container slider-container p-sm-0 mt-4 ">
+    <div className="container slider-container p-0 px-4 ">
       {allTagsData?.length > 0 &&
         allTagsData.map((item: FeaturedCollectionTypes, i: number) => (
-          <div key={i} className="mb-3">
+          <div key={i} className="mb-3 mt-5 pt-md-3">
             <h3 className={`${style.featuredCollectionTitle} text-center m-0 mt-2`}>
               <span className={style.horizontal_line}></span>
               <span className="px-2"> {item?.tag_name}</span>

@@ -196,7 +196,11 @@ const ProductCardVariantColour = ({
             />
           </div>
         )}
-        <VariantProductCardsButton />
+        <VariantProductCardsButton
+          handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
+          handleAddToProductData={handleAddToProductData}
+          addToCartLoaderBtn={addToCartLoaderBtn}
+        />
         <div className={styles.wishlistIcon}>
           <FaRegHeart />
         </div>
