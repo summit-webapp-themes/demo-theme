@@ -1,20 +1,16 @@
-interface PageData {
-  name: string; // The name of the page section
-  component: string; // The type of component used
-  page_name: string; // The name of the page (e.g., 'home-page')
-  section_name: string; // The section within the page (e.g., 'BannerSection')
-  image: string | null; // The image URL, which can be null if not provided
-}
+import { useSelector } from 'react-redux';
+import { componentsListFromReduxStore } from '../../store/slices/general_slices/components-slice';
+import { ComponentTypes } from '../../interfaces/components-types';
 
-interface ComponentsTypes {
-  componentsList: PageData[]; // An array of `PageData` objects
-}
+const HomePageMaster = () => {
+  const { componentsList }: any = useSelector(componentsListFromReduxStore);
 
-const HomePageMaster = ({ componentsList }: ComponentsTypes) => {
-  console.log('componentsList', componentsList);
   const homePageComponentsRenderer = () => {
-    if (componentsList?.length > 0) {
-      return componentsList?.map((componentName: any) => {
+    const filterHomePageComponentsFromAllComponentsList: ComponentTypes[] = componentsList?.filter(
+      (component: ComponentTypes) => component?.page_name === 'home-page'
+    );
+    if (filterHomePageComponentsFromAllComponentsList?.length > 0) {
+      return filterHomePageComponentsFromAllComponentsList?.map((componentName: any) => {
         const Component = require(`./${componentName.section_name}/${componentName?.component_name}/MasterComponent`).default;
         return <Component key={componentName?.component_name} />;
       });
