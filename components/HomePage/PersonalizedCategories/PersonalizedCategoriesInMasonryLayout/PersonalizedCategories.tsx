@@ -36,7 +36,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
         <div className="col-12 col-md-6">
           <div className="row">
             <div className={`col-6 `}>
-              <div className={`mb-3 mb-md-2 ${style.masonryContainerImage}`}>
+              <div className={`mb-3 pb-1 mb-md-2 pb-md-1 ${style.masonryContainerImage}`}>
                 <div>
                   <Link
                     href={`${homeTopCategories[1]?.category_url}`}
