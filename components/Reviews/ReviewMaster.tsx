@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import ReviewList from './ReviewList';
 import ReviewRatingBar from './ReviewRatingBar';
 import useCustomerReview from '../../hooks/ProductDetailPageHooks/useCustomerReview';
+import ReviewListPagination from './ReviewListPagination';
 const CustomerReviewModal = dynamic(() => import('./CustomerReviewModal'));
 
 const ReviewMaster = ({ selectedMultiLangData }: any) => {
@@ -32,10 +33,11 @@ const ReviewMaster = ({ selectedMultiLangData }: any) => {
                 {selectedMultiLangData?.write_a_review}
               </Button>
             </>
-           )}
+          )}
         </div>
         <div className="col-md-8">
-          <ReviewList reviewList={reviewList} isLoading={isLoading} />
+          {/* <ReviewList reviewList={reviewList} isLoading={isLoading} /> */}
+          <ReviewListPagination reviewList={reviewList} isLoading={isLoading} />
         </div>
       </div>
       <CustomerReviewModal
