@@ -41,7 +41,7 @@ const ReviewListPagination = ({ reviewList, isLoading }: any) => {
     if (reviewList?.length > 0) {
       return (
         <>
-          <div className="d-flex justify-content-between">
+          <div className={`d-flex justify-content-between ${style.customer_reviews_container}`}>
             <h5 className="mt-2 w-100">Customers Says</h5>
             <ReactPaginate
               previousLabel={'Prev'}
