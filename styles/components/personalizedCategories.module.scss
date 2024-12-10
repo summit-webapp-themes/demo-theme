@@ -1,24 +1,38 @@
 .masonryContainerImage {
+  position: relative;
+}
+.masonryContainerButton {
+  bottom: 20px;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.masonry_btn {
+  background-color: #ffff;
+  border-radius: 0;
+  border: none;
+  color: #222222;
+  font-weight: 700;
+  padding: 10px 32px;
+  box-shadow: 1px 1px #0000001a;
+}
+.catagoryImg {
+  height: 400px;
+  object-fit: cover;
+  object-position: center center;
+}
+.image_1 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0px;
+  object-fit: cover;
+  color: transparent;
+}
+@media only screen and (max-width: 767px) {
+  .image_1 {
     position: relative;
   }
-  .masonryContainerButton {
-    bottom: 20px;
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  };
-  
-  .masonry_btn {
-    background-color: #ffff;
-    border-radius: 0;
-    border: none;
-    color:#222222;
-    font-weight: 700;
-    padding: 10px 32px;
-    box-shadow: 1px 1px #0000001a;
-  }
-  .catagoryImg {
-    object-fit: cover;
-    object-position: center center;
-    }
+}

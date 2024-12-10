@@ -15,13 +15,14 @@ const BannerCarousel = ({ bannersList }: any) => {
             <Link href={`${banners.button_1_url}`}>
               <Image
                 loader={imageLoader}
-                className={`d-block image-fluid ${style.catagoryImg}`}
+                className={`image-fluid ${style.catagoryImg}`}
                 src={banners?.img}
                 alt="Banner Images"
                 loading="eager"
                 priority={true}
-                width={1920}
-                height={700}
+                layout="responsive"
+                width={100}
+                height={100}
               />
               <CarouselCaption className="corousel-captionn">
                 <div className={``} key={index}>
