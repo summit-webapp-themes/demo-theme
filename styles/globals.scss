@@ -158,6 +158,9 @@
   font-size: 14px;
   font-weight: 600;
 }
+.border-black {
+  border: 1px solid black;
+}
 @media (min-width: 768px) {
   .mobile-menu-toggle {
     display: none !important;
