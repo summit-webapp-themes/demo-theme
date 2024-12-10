@@ -33,85 +33,89 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
             </Button>
           </div>
         </div>
-        <div className={`col-6 col-md-3 p-0 px-2`}>
-          <div className={`mb-3 mb-md-2 ${style.masonryContainerImage}`}>
-            <div>
+        <div className="col-12 col-md-6">
+          <div className="row">
+            <div className={`col-6 `}>
+              <div className={`mb-3 mb-md-2 ${style.masonryContainerImage}`}>
+                <div>
+                  <Link
+                    href={`${homeTopCategories[1]?.category_url}`}
+                    className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
+                  >
+                    <div className="" style={{ maxWidth: '100%', height: '100% ' }}>
+                      <Image
+                        loader={imageLoader}
+                        className={`w-100 `}
+                        src={homeTopCategories?.length > 0 && homeTopCategories[1]?.product_img}
+                        alt={homeTopCategories[1]?.label}
+                        layout="responsive"
+                        width={270}
+                        height={303}
+                        loading="eager"
+                        priority={true}
+                      />
+                    </div>
+                  </Link>
+                </div>
+                <div className={style.masonryContainerButton}>
+                  <Button variant="dark" className={style.masonry_btn}>
+                    {homeTopCategories[1]?.label}
+                  </Button>
+                </div>
+              </div>
+              <div className={style.masonryContainerImage}>
+                <div>
+                  <Link
+                    href={`${homeTopCategories[2]?.category_url}`}
+                    className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
+                  >
+                    <div className=" " style={{ maxWidth: '100%', height: '100%' }}>
+                      <Image
+                        loader={imageLoader}
+                        className={`w-100 `}
+                        src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
+                        alt={homeTopCategories[2]?.label}
+                        layout="responsive"
+                        width={270}
+                        height={303}
+                        loading="eager"
+                        priority={true}
+                      />
+                    </div>
+                  </Link>
+                </div>
+                <div className={style.masonryContainerButton}>
+                  <Button variant="dark" className={style.masonry_btn}>
+                    {homeTopCategories[2]?.label}
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div className={`col-6 p-md-0  ${style.masonryContainerImage}`}>
               <Link
-                href={`${homeTopCategories[1]?.category_url}`}
+                href={`${homeTopCategories[3]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
               >
-                <div className="" style={{ maxWidth: '100%', height: '100% ' }}>
+                <div style={{ maxWidth: '100%', height: '100%' }}>
                   <Image
                     loader={imageLoader}
-                    className={`w-100 `}
-                    src={homeTopCategories?.length > 0 && homeTopCategories[1]?.product_img}
-                    alt={homeTopCategories[1]?.label}
-                    layout="responsive"
-                    width={270}
-                    height={303}
+                    className={`w-100`}
+                    style={{ maxWidth: '100%', height: '100%', objectFit: 'cover' }}
+                    src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
+                    alt={homeTopCategories[3]?.label}
+                    width={100}
+                    height={100}
                     loading="eager"
                     priority={true}
                   />
                 </div>
               </Link>
+              <div className={style.masonryContainerButton}>
+                <Button variant="dark" className={style.masonry_btn}>
+                  {homeTopCategories[3]?.label}
+                </Button>
+              </div>
             </div>
-            <div className={style.masonryContainerButton}>
-              <Button variant="dark" className={style.masonry_btn}>
-                {homeTopCategories[1]?.label}
-              </Button>
-            </div>
-          </div>
-          <div className={style.masonryContainerImage}>
-            <div>
-              <Link
-                href={`${homeTopCategories[2]?.category_url}`}
-                className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
-              >
-                <div className=" " style={{ maxWidth: '100%', height: '100%' }}>
-                  <Image
-                    loader={imageLoader}
-                    className={`w-100 `}
-                    src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
-                    alt={homeTopCategories[2]?.label}
-                    layout="responsive"
-                    width={270}
-                    height={303}
-                    loading="eager"
-                    priority={true}
-                  />
-                </div>
-              </Link>
-            </div>
-            <div className={style.masonryContainerButton}>
-              <Button variant="dark" className={style.masonry_btn}>
-                {homeTopCategories[2]?.label}
-              </Button>
-            </div>
-          </div>
-        </div>
-        <div className={`col-6 col-md-3 p-0 px-2 px-md-0 pe-md-1 ${style.masonryContainerImage}`}>
-          <Link
-            href={`${homeTopCategories[3]?.category_url}`}
-            className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
-          >
-            <div style={{ maxWidth: '100%', height: '100%' }}>
-              <Image
-                loader={imageLoader}
-                className={`w-100`}
-                style={{ maxWidth: '100%', height: '100%', objectFit: 'cover' }}
-                src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
-                alt={homeTopCategories[3]?.label}
-                width={100}
-                height={100}
-                loading="eager"
-                priority={true}
-              />
-            </div>
-          </Link>
-          <div className={style.masonryContainerButton}>
-            <Button variant="dark" className={style.masonry_btn}>
-              {homeTopCategories[3]?.label}
-            </Button>
           </div>
         </div>
       </div>
