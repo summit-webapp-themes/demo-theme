@@ -14,7 +14,6 @@ import FloatingSortbyBtn from './FloatingBtns/FloatingSortbyBtn';
 import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
 import SortbyModal from './HorizantalFilter/SortbyModal';
 import ProductGridView from './ProductListingView/ProductGridView';
-import ProductListingWithLeftFilterDrawer from './ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawer';
 
 function ProductListingMaster() {
   const {
