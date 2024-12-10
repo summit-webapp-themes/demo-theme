@@ -35,7 +35,6 @@ function ProductPageMaster() {
   const cartData = useSelector(selectCart).items;
   const { componentsList }: any = useSelector(componentsListFromReduxStore);
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
-  console.log('componentsList', componentsList);
   useEffect(() => {
     if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
