@@ -8,6 +8,7 @@ import { FaSquareInstagram } from 'react-icons/fa6';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
 import { toast } from 'react-toastify';
+import CustomQuantityInputField from './CustomQuantityInputField';
 const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
 const MultipleQuantityInputField = dynamic(() => import('./MultipleQuantityInputField'));
 const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
@@ -146,7 +147,14 @@ function ProductDetailDescribtionSection({
         <p className={`my-1 ${styles.detailPriceSection}`}>
           {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
         </p>
-        <QuantityInputField
+        {/* <QuantityInputField
+          productDetailData={productDetailData}
+          qty={qty}
+          handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
+          handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
+          selectedMultiLangData={selectedMultiLangData}
+        /> */}
+        <CustomQuantityInputField
           productDetailData={productDetailData}
           qty={qty}
           handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
