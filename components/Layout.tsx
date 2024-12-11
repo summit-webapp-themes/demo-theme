@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import Navbar from './Navbar/Navbar';
-
 function Layout({ children }: any) {
   const router = useRouter();
   const toShowHeader =
