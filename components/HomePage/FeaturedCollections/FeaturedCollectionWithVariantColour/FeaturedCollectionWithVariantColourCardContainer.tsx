@@ -22,18 +22,21 @@ const FeaturedCollectionWithVariantColourCardContainer = ({
   wishlistData,
 }: featuredCardContainerPropsTypes) => {
   return (
-    <div className="container slider-container mt-4">
+    <div className="container slider-container p-0 px-4 ">
       {allTagsData?.length > 0 &&
         allTagsData.map((item: FeaturedCollectionTypes, i: number) => (
-          <div key={i}>
-            <h3 className={`${style.featuredCollectionTitle} text-center`}>
-              <span>{item?.tag_name}</span>
+          <div key={i} className="mb-3 mt-5 pt-md-3">
+            <h3 className={`${style.featuredCollectionTitle} text-center m-0 mt-2`}>
+              <span className={style.horizontal_line}></span>
+              <span className="px-2"> {item?.tag_name}</span>
+              <span className={style.horizontal_line}></span>
             </h3>
+            <h6 className="text-secondary text-center mb-4 px-2">{item?.description}</h6>
             {item.value.length > 0 && (
-              <div className="slider-container">
+              <div className="slider-container p-0 ">
                 <div className="row">
                   {item.value.map((val: FeaturedCollectionProductTypes, index: number) => (
-                    <div className="col-sm-6 col-md-4 col-lg-3 gap-3" key={index}>
+                    <div className="col-6 col-md-4 col-lg-3 gap-2 p-0 p-md-2" key={index}>
                       <div className={style.cardMargin}>
                         <ProductCardVariantColour
                           data={val}
