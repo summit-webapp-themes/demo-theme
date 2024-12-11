@@ -1,19 +1,25 @@
 .reviewFormStyle {
-    background-color: #a6a8ab21;
-    padding: 1rem;
+  background-color: #a6a8ab21;
+  padding: 1rem;
 }
 .text_margin {
-    margin-left: 7px
+  margin-left: 7px;
 }
 .reviewForm {
-    appearance: none;
-    background-clip: padding-box;
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius);
-    display: block;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: .375rem .75rem;
-    width: 100%;
+  appearance: none;
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 0.375rem 0.75rem;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .customer_reviews_container {
+    display: block !important;
+  }
 }
