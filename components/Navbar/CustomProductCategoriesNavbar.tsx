@@ -1,8 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Overlay, OverlayTrigger, Placeholder, Popover } from 'react-bootstrap';
+import { Overlay, Placeholder, Popover } from 'react-bootstrap';
 import stylesHeader from '../../styles/components/header.module.scss';
-import LinguisticsAndForex from './LinguisticsAndForex';
 
 function CustomProductCategoriesNavbar({
   navbarData,
@@ -13,24 +12,39 @@ function CustomProductCategoriesNavbar({
   handleLanguageChange,
 }: any) {
   const [showPopoverIndex, setShowPopoverIndex] = useState<number | null>(null);
-  const [target, setTarget] = useState<HTMLElement | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
-  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>, index: number) => {
-    setTarget(e.currentTarget);
-    setShowPopoverIndex(index);
+
+  // Close popover when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setShowPopoverIndex(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleItemClick = (index: number) => {
+    setShowPopoverIndex((prevIndex) => (prevIndex === index ? null : index)); // Toggle popover
   };
-  const handleMouseLeave = () => {
-    setShowPopoverIndex(null);
-  };
+
   const popoverBottom = (item: any) => (
     <Popover
       id={`popover-${item.label}`}
-      className={`p-2  ${stylesHeader.category_popover} shadow rounded`}
-      onMouseLeave={handleMouseLeave}
+      className={`p-2 ${stylesHeader.category_popover} shadow rounded`}
+      style={{
+        width: '900px', // Fixed width for the popover
+        position: 'absolute', // Ensure consistent positioning
+        top: '100%', // Position below the nav bar
+        right: '0', // Align left
+        zIndex: 1050, // Ensure it's above other elements
+      }}
     >
       <div className="row">
         {item?.values?.length > 0 &&
-          item?.values !== null &&
           item?.values.map((itemL2: any, index: number) => {
             const columnCount = Math.ceil(itemL2?.values?.length / 8);
             return (
@@ -51,7 +65,7 @@ function CustomProductCategoriesNavbar({
                   {Array.from({ length: columnCount }, (_, columnIndex) => (
                     <div key={columnIndex} className={stylesHeader.column}>
                       {itemL2?.values?.slice(columnIndex * 8, (columnIndex + 1) * 8).map((itemL3: any, idx: number) => (
-                        <div key={idx} className=" p-1">
+                        <div key={idx} className="p-1">
                           <Link
                             href={{
                               pathname: `${itemL3?.url}`,
@@ -73,6 +87,7 @@ function CustomProductCategoriesNavbar({
       </div>
     </Popover>
   );
+
   const handleDataRendering = () => {
     if (isLoading) {
       return <h4>Loading</h4>;
@@ -80,35 +95,26 @@ function CustomProductCategoriesNavbar({
     if (navbarData?.length > 0) {
       return (
         <header>
-          <nav ref={ref} className="w-100">
-            <div className={`theme-blue fw-bold fs-18 `} onMouseLeave={handleMouseLeave}>
+          <nav ref={ref} className="w-100 position-relative">
+            <div className="theme-blue fw-bold fs-18">
               <div className="row w-100 d-flex justify-content-around">
-                <div className="col-xl-10 col-lg-12 ">
-                  <div className="d-flex ">
-                    {navbarData?.length > 0 &&
-                      navbarData.map((item: any, index: number) => (
-                        <div key={index} className="cursor-pointer">
-                          {navbarData === null ? (
-                            <Placeholder xs={6} bg="dark" />
-                          ) : (
-                            <div
-                              className={`px-xxl-4 px-3  ${showPopoverIndex === index && 'theme-gold'}`}
-                              onClick={(e) => handleMouseEnter(e, index)}
-                            >
-                              {item.label}
-                            </div>
-                          )}
-                          <Overlay
-                            show={showPopoverIndex === index && item?.values?.length > 0}
-                            target={target}
-                            placement="bottom"
-                            container={ref.current}
-                            containerPadding={20}
+                <div className="col-xl-10 col-lg-12">
+                  <div className="d-flex">
+                    {navbarData?.map((item: any, index: number) => (
+                      <div key={index} className="cursor-pointer">
+                        {navbarData === null ? (
+                          <Placeholder xs={6} bg="dark" />
+                        ) : (
+                          <div
+                            className={`px-xxl-4 px-3 ${showPopoverIndex === index && 'theme-gold'}`}
+                            onClick={() => handleItemClick(index)}
                           >
-                            {popoverBottom(item)}
-                          </Overlay>
-                        </div>
-                      ))}
+                            {item.label}
+                          </div>
+                        )}
+                        {showPopoverIndex === index && popoverBottom(item)}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

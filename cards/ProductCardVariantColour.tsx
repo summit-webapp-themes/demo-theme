@@ -12,6 +12,7 @@ import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
+import noImage from '../public/assets/images/no_image.png';
 
 interface ProductCardVariantPropsTypes {
   data: any;
@@ -182,17 +183,33 @@ const ProductCardVariantColour = ({
   return (
     <>
       <Card className={`${styles.tabcardContainer}`}>
-        {(selectedItem?.image || data?.image) && (
+        {selectedItem?.image || data?.image ? (
           <div className={`${styles.tabimageContainer}`}>
             <Image
               src={selectedItem?.image ? selectedItem?.image[0] : data?.image}
-              className="w-100 img-fluid"
+              className="w-100 h-100"
+              style={{ objectFit: 'cover', objectPosition: 'top' }}
               alt="Banner Images"
               loading="eager"
               priority={true}
+              // layout="responsive"
               width={303}
               height={303}
               loader={imageLoader}
+            />
+          </div>
+        ) : (
+          <div className={`${styles.tabimageContainer}`}>
+            <Image
+              src={noImage}
+              className="w-100 h-100"
+              style={{ objectFit: 'cover' }}
+              alt="Banner Images"
+              loading="eager"
+              priority={true}
+              // layout="responsive"
+              width={303}
+              height={303}
             />
           </div>
         )}

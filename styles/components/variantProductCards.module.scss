@@ -18,11 +18,13 @@
 }
 .tabimageContainer {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   object-fit: cover;
 }
+
 .tabProductPrice {
   margin-right: 15px;
   font-size: 17px;

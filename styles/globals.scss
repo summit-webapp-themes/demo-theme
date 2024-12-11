@@ -48,7 +48,17 @@
 .pop-over.show {
   display: block;
 }
-
+.popover {
+  max-width: 80vw !important;
+  min-width: 70% !important;
+  margin-top: 15px;
+  padding: 20px !important;
+  cursor: pointer;
+  border: 0;
+}
+.popover-arrow {
+  display: none !important;
+}
 .theme-gold {
   color: #ecd386;
 }

@@ -69,7 +69,7 @@ function ProductListingMaster() {
   return (
     <>
       <section className="listing-page position-realtive">
-        <div className="d-flex justify-content-between w-100 ps-lg-4 pe-lg-4 px-sm-4 ">
+        <div className="d-flex justify-content-between w-100 ps-lg-5 pe-lg-4 px-sm-4 ">
           <div className="w-50 list-toggle-rtl">
             <BreadCrumbs />
           </div>
