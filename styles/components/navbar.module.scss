@@ -85,6 +85,10 @@
   // right: -1px !important;
   left: 23px !important;
 }
+.inlineList {
+  display: flex;
+  align-items: center;
+}
 
 @media (max-width: 1070px) {
   .search_bar {

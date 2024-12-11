@@ -1,8 +1,9 @@
 .bannerTitle {
-  font-size: 57px;
+  font-size: 3.5rem;
   font-weight: 700;
   color: #222222;
   margin-bottom: 10px;
+  white-space: nowrap;
 }
 .banner_btn {
   background-color: #222222;
@@ -21,6 +22,31 @@
 }
 .catagoryImg {
   width: 100%;
+  min-height: 400px;
   object-fit: cover;
-  object-position: center center;
+  object-position: 45% 20%;
+}
+
+@media only screen and (max-width: 992px) {
+  .bannerTitle {
+    font-size: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .catagoryImg {
+    min-height: 250px;
+    object-fit: cover;
+    object-position: 45% 20%;
+  }
+  .bannerTitle {
+    font-size: 20px;
+    white-space: nowrap;
+  }
+  .banner_btn {
+    padding: 5px 12px;
+  }
+  .banner_p_tag {
+    font-size: 12px !important;
+  }
 }
