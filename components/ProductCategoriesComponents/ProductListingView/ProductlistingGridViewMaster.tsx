@@ -69,9 +69,9 @@ function ProductlistingGridViewMaster({
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
             containerClassName={`${paginationStyle.paginationBttns}`}
-            previousLinkClassName={pageOffset === 0 ? paginationStyle.paginationDisabled : paginationStyle.previousBttn}
+            previousLinkClassName={pageOffset === 0 ? 'd-none' : paginationStyle.previousBttn}
             disabledClassName={paginationStyle.paginationDisabled}
-            nextLinkClassName={isNextButtonDisabled ? paginationStyle.paginationDisabled : `${paginationStyle.nextBttn}`}
+            nextLinkClassName={isNextButtonDisabled ? 'd-none' : `${paginationStyle.nextBttn}`}
             activeClassName={`${paginationStyle.paginationActive}`}
             forcePage={pageOffset}
           />

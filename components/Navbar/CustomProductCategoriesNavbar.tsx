@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import Link from 'next/link';
-import { Overlay, Placeholder, Popover } from 'react-bootstrap';
+import { Overlay, OverlayTrigger, Placeholder, Popover } from 'react-bootstrap';
 import stylesHeader from '../../styles/components/header.module.scss';
 import LinguisticsAndForex from './LinguisticsAndForex';
 
@@ -87,13 +87,13 @@ function CustomProductCategoriesNavbar({
                   <div className="d-flex ">
                     {navbarData?.length > 0 &&
                       navbarData.map((item: any, index: number) => (
-                        <div key={index}>
+                        <div key={index} className="cursor-pointer">
                           {navbarData === null ? (
                             <Placeholder xs={6} bg="dark" />
                           ) : (
                             <div
                               className={`px-xxl-4 px-3  ${showPopoverIndex === index && 'theme-gold'}`}
-                              onMouseEnter={(e) => handleMouseEnter(e, index)}
+                              onClick={(e) => handleMouseEnter(e, index)}
                             >
                               {item.label}
                             </div>

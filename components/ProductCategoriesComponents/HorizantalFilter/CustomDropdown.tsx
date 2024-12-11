@@ -56,7 +56,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({ sortBy, handleSortBy })
           {['latest', 'oldest', 'low_to_high', 'high_to_low'].map((option, index) => (
             <div
               key={index}
-              className={`${styles.option} ${selectedOption === option ? styles.active : ''} ${
+              className={`${styles.option} ${selectedOption === option ? styles.optionActive : ''} ${
                 hoveredOption === option ? styles.hovered : ''
               }`}
               onClick={() => handleSelect(option)}

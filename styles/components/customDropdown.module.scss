@@ -6,7 +6,7 @@
 
 .input {
   padding: 8px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   color: #878787;
   border-radius: 20px;
   cursor: pointer;
@@ -15,10 +15,7 @@
   align-items: center;
   background-color: #fff;
   user-select: none;
-}
-
-.input:hover {
-  border-color: #888;
+  font-size: 15px;
 }
 
 .arrow {
@@ -45,6 +42,10 @@
 }
 
 .option:hover {
+  color: #56cfe1;
+  background-color: #56cfe114;
+}
+.optionActive {
   color: #56cfe1;
   background-color: #56cfe114;
 }
