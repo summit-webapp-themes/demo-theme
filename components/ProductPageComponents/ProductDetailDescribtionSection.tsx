@@ -7,7 +7,7 @@ import { FaSquareInstagram } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
-import AddToCartMaster from './ProductActionButtons/ProductActionButtonsMaster';
+import ProductActionButtonsMaster from './ProductActionButtons/ProductActionButtonsMaster';
 import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
 import ProductPageVariants from './ProductPageVariants';
 const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
@@ -157,11 +157,12 @@ function ProductDetailDescribtionSection({
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
           selectedMultiLangData={selectedMultiLangData}
         /> */}
-        {/* <AddToCartMaster /> */}
-        <AddToCartMaster
+
+        <ProductActionButtonsMaster
           qty={qty}
           handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
+          handleAddToSingleProductData={handleAddToSingleProductData}
         />
         <div className="py-3">
           <div>
