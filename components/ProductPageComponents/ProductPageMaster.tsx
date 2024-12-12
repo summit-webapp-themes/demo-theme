@@ -51,7 +51,7 @@ function ProductPageMaster() {
 
   if (Object?.keys(productDetailData)?.length > 0) {
     return (
-      <div className={`container-fluid ${styles.detailContainer} w-100 ps-lg-5 pe-lg-5 `}>
+      <div className={`container-fluid ${styles.detailContainer} w-100 ps-lg-5 pe-lg-4 `}>
         <div className="my-2">
           <BreadCrumbs />
         </div>

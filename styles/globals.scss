@@ -228,3 +228,19 @@
   padding-left: 12%;
   width: 57%;
 }
+.react-multiple-carousel__arrow {
+  top: 35% !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  border: 1px solid #000 !important;
+  background-color: transparent !important;
+}
+.react-multiple-carousel__arrow:before {
+  color: #000 !important;
+  font-size: 14px !important;
+}
+.react-multiple-carousel__arrow:hover {
+  color: #fff !important;
+  background-color: #56cfe1 !important;
+  border: 1px solid #56cfe1 !important;
+}

@@ -26,7 +26,7 @@ const MatchingProductsWithVariantsCard = () => {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1,
+      items: 2,
     },
   };
   const renderMatchingProducts: any = () => {
@@ -44,7 +44,7 @@ const MatchingProductsWithVariantsCard = () => {
     if (matchingProducts.length > 0) {
       return matchingProducts?.map((item: any, i: any) => (
         <div key={i} className="carousel-section">
-          {item?.values?.length > 0 && <h3 className="mb-5 mt-5 text-center">{`${item.name} Products`}</h3>}
+          {item?.values?.length > 0 && <h3 className="mb-4 mt-5 text-center">{`${item.name} Products`}</h3>}
           <Carousel responsive={responsive}>
             {item?.values?.map((val: any, j: any) => (
               <div key={`${i}-${j}`} className="card-wrapper px-2 h-100">
@@ -61,7 +61,7 @@ const MatchingProductsWithVariantsCard = () => {
       ));
     }
   };
-  return <div className="container-fluid w-100 ps-lg-5 pe-lg-5 mt-5 mb-3">{renderMatchingProducts()}</div>;
+  return <div className=" w-100 mt-5 mb-3">{renderMatchingProducts()}</div>;
 };
 
 export default MatchingProductsWithVariantsCard;

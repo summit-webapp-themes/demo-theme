@@ -163,6 +163,7 @@ function ProductDetailDescribtionSection({
           handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
           handleAddToSingleProductData={handleAddToSingleProductData}
+          addToCartLoaderBtn={addToCartLoaderBtn}
         />
         <div className="py-3">
           <div>
@@ -229,7 +230,7 @@ function ProductDetailDescribtionSection({
         </div>
         <div className="my-2">
           <label htmlFor="pincode" className="">
-            Enter Your Pincode Below To Check the Delievry
+            Enter Your Pincode Below To Check the Delivery
           </label>
           <input className="d-block form-control w-auto" id="pincode" defaultValue={pinCode} placeholder="Enter the Pincode" />
         </div>

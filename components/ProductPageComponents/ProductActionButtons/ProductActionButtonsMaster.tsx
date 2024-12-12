@@ -7,6 +7,7 @@ interface ProductActionButtonsMasterPropTypes {
   handleQtyModificationOnInputEdit: (e: any) => void;
   handleQtyModificationOnButtonClick: (action: string) => void;
   handleAddToSingleProductData: () => void;
+  addToCartLoaderBtn: boolean;
 }
 
 const ProductActionButtonsMaster = ({
@@ -14,6 +15,7 @@ const ProductActionButtonsMaster = ({
   handleQtyModificationOnInputEdit,
   handleQtyModificationOnButtonClick,
   handleAddToSingleProductData,
+  addToCartLoaderBtn,
 }: ProductActionButtonsMasterPropTypes) => {
   return (
     <div className="d-flex flex-wrap">
@@ -25,7 +27,7 @@ const ProductActionButtonsMaster = ({
         />
       </div>
       <div className="order-sm-2 order-3 ">
-        <AddToCartBtn handleAddToSingleProductData={handleAddToSingleProductData} />
+        <AddToCartBtn handleAddToSingleProductData={handleAddToSingleProductData} addToCartLoaderBtn={addToCartLoaderBtn} />
       </div>
       <div className="order-sm-2 order-2">
         <IconButton />
