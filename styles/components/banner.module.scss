@@ -22,20 +22,25 @@
 }
 .catagoryImg {
   width: 100%;
-  min-height: 400px;
+  min-height: 700px;
   object-fit: cover;
   object-position: 45% 20%;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1024px) {
   .bannerTitle {
     font-size: 2.5rem;
   }
+  .catagoryImg {
+    min-height: 550px;
+    object-fit: cover;
+    object-position: 45% 20%;
+  }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .catagoryImg {
-    min-height: 250px;
+    min-height: 300px;
     object-fit: cover;
     object-position: 45% 20%;
   }

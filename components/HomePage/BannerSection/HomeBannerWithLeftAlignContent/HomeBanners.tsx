@@ -11,16 +11,17 @@ const BannerCarousel = ({ bannersList }: any) => {
     <Carousel controls={false}>
       {bannersList?.map((banners: any, index: number) => {
         return (
-          <CarouselItem key={index}>
-            <Link href={`${banners.button_1_url}`}>
+          <CarouselItem key={index} className="h-100">
+            <Link href={`${banners.button_1_url}`} className=" h-100">
               <Image
                 loader={imageLoader}
-                className={`image-fluid ${style.catagoryImg}`}
+                className={` ${style.catagoryImg}`}
+                style={{ objectFit: 'cover', objectPosition: 'bottom' }}
                 src={banners?.img}
                 alt="Banner Images"
                 loading="eager"
                 priority={true}
-                // layout="responsive"
+                layout="responsive"
                 width={100}
                 height={100}
               />
