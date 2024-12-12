@@ -1,14 +1,15 @@
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useState } from 'react';
 import { Fade } from 'react-bootstrap';
 import { BsTwitterX } from 'react-icons/bs';
 import { FaCheckCircle, FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
+import { toast } from 'react-toastify';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import styles from '../../styles/components/productDetail.module.scss';
-import { toast } from 'react-toastify';
-import CustomQuantityInputField from './CustomQuantityInputField';
+import ProductActionButtonsMaster from './ProductActionButtons/ProductActionButtonsMaster';
+import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
+import ProductPageVariants from './ProductPageVariants';
 const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
 const MultipleQuantityInputField = dynamic(() => import('./MultipleQuantityInputField'));
 const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
@@ -97,8 +98,9 @@ function ProductDetailDescribtionSection({
 
   return (
     <>
-      <div className="border-bottom">
-        <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
+      <div className="">
+        <ProductDetailHeadingWithDescription productDetailData={productDetailData} />
+        {/* <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
         <div className="">{productDetailData?.rating && <StarRating rating={productDetailData?.rating} />}</div>
         <p className="mb-0">
           {selectedMultiLangData?.item_code}: {productDetailData?.name}
@@ -106,7 +108,7 @@ function ProductDetailDescribtionSection({
         <div>
           <span className={`text-dark  ${styles.price}`}>{`₹ ${productDetailData?.price}`}</span>
           <del className={`text-dark ps-2 ${styles.price}`}>{`₹ ${productDetailData?.mrp_price}`}</del>
-        </div>
+        </div> */}
         {Array.isArray(productDetailData?.features)
           ? ''
           : productDetailData?.features &&
@@ -127,26 +129,27 @@ function ProductDetailDescribtionSection({
         {/* <Link href="#" className={` ${styles.priceOnReq}`}>
           {selectedMultiLangData?.price_on_request}
         </Link> */}
-        <p className={`text-uppercase m-0 ${styles.detailSection}`}>
+        {/* <p className={`text-uppercase m-0 ${styles.detailSection}`}>
           {selectedMultiLangData?.brand} : <span> {productDetailData?.brand} </span>
         </p>
         <p className={`text-uppercase m-0 ${styles.detailSection}`}>
           {selectedMultiLangData?.hsn_code} : <span> {productDetailData?.gst_hsn_code} </span>
-        </p>
+        </p> */}
       </div>
       <div>
-        <ProductVariants productVariantData={productVariantData} />
-        <MultipleQuantityInputField
+        {/* <ProductVariants productVariantData={productVariantData} /> */}
+        <ProductPageVariants productVariantData={productVariantData} />
+        {/* <MultipleQuantityInputField
           productVariantData={productVariantData}
           handleMultipleQtyChange={handleMultipleQtyChange}
           itemList={itemList}
           selectedMultiLangData={selectedMultiLangData}
-        />
+        /> */}
       </div>
       <div>
-        <p className={`my-1 ${styles.detailPriceSection}`}>
+        {/* <p className={`my-1 ${styles.detailPriceSection}`}>
           {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
-        </p>
+        </p> */}
         {/* <QuantityInputField
           productDetailData={productDetailData}
           qty={qty}
@@ -154,14 +157,29 @@ function ProductDetailDescribtionSection({
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
           selectedMultiLangData={selectedMultiLangData}
         /> */}
-        <CustomQuantityInputField
-          productDetailData={productDetailData}
+
+        <ProductActionButtonsMaster
           qty={qty}
           handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
-          selectedMultiLangData={selectedMultiLangData}
+          handleAddToSingleProductData={handleAddToSingleProductData}
+          addToCartLoaderBtn={addToCartLoaderBtn}
         />
-        {productDetailData?.min_order_qty > 0 && (
+        <div className="py-3">
+          <div>
+            <span className="text-secondary">Availability</span>:{' '}
+            {productDetailData?.in_stock_status === true ? 'In Stock' : 'Out of Stock'}
+          </div>
+          <div>
+            <span className="text-secondary">Categories</span> : {productDetailData?.category}
+          </div>
+          {productDetailData?.display_tag?.length > 0 && (
+            <div>
+              <span className="text-secondary">Tags</span> : {productDetailData?.display_tag?.map((tag: string) => tag)}
+            </div>
+          )}
+        </div>
+        {/* {productDetailData?.min_order_qty > 0 && (
           <p className="my-1 fs-14">
             {selectedMultiLangData?.minimum_order_qty}:{' '}
             <span className={productDetailData?.min_order_qty > qty ? 'text-danger' : 'text-success'}>
@@ -179,7 +197,7 @@ function ProductDetailDescribtionSection({
             stockAvailabilityLoader={stockAvailabilityLoader}
             setStockAvailabilityLoader={setStockAvailabilityLoader}
           />
-        </div>
+        </div> */}
         {quantityAlert && (
           <Fade in={quantityAlert}>
             <div id="example-fade-text" className="text-danger">
@@ -187,34 +205,34 @@ function ProductDetailDescribtionSection({
             </div>
           </Fade>
         )}
-        <div className="d-flex my-1 ">
-          <div className="mx-2 my-1">
+        <div className="d-flex my-3 ">
+          <div className="me-3 my-1">
             <FaShareAlt fontSize={'20px'} />
           </div>
 
-          <div className="mx-2 my-1">
+          <div className="me-3 my-1">
             <a href={`https://wa.me/?text=${encodeURIComponent('Check this out!')}`} target="_blank" rel="noopener noreferrer">
               <FaWhatsapp color="#25D366" fontSize={'20px'} />
             </a>
           </div>
 
-          <div className="mx-2 my-1">
+          <div className="me-3 my-1">
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
               <FaSquareInstagram color="#C13584" fontSize={'20px'} />
             </a>
           </div>
 
-          <div className="mx-2 my-1">
+          <div className="me-3 my-1">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
               <BsTwitterX fontSize={'20px'} />
             </a>
           </div>
         </div>
-        <div className="my-1">
+        <div className="my-2">
           <label htmlFor="pincode" className="">
-            Enter Your Pincode Below To Check the Delievry
+            Enter Your Pincode Below To Check the Delivery
           </label>
-          <input className="d-block form-control w-50" id="pincode" defaultValue={pinCode} placeholder="Enter the Pincode" />
+          <input className="d-block form-control w-auto" id="pincode" defaultValue={pinCode} placeholder="Enter the Pincode" />
         </div>
       </div>
     </>

@@ -37,7 +37,7 @@ const FeaturedCollectionWithVariantColourCardContainer = ({
                 <div className="row">
                   {item.value.map((val: FeaturedCollectionProductTypes, index: number) => (
                     <div className="col-6 col-md-4 col-lg-3 gap-2 p-0 p-md-2" key={index}>
-                      <div className={style.cardMargin}>
+                      <div className={'h-100'}>
                         <ProductCardVariantColour
                           data={val}
                           cartData={cartData}

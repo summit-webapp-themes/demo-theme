@@ -4,6 +4,7 @@ import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import paginationStyle from '../../../styles/components/pagination.module.scss';
 import NoDataFound from '../../NoRecordFound';
+import ProductCardVariantColour from '../../../cards/ProductCardVariantColour';
 
 function ProductlistingGridViewMaster({
   isLoading,
@@ -24,7 +25,7 @@ function ProductlistingGridViewMaster({
       return (
         <div className="row">
           {[...Array(10)].map((_, index) => (
-            <div key={index} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4">
+            <div key={index} className="col-6 col-md-4 col-lg-3 gap-2 p-0 p-md-2 text-center mb-4">
               <ProductCardSkeleton />
             </div>
           ))}
@@ -35,10 +36,11 @@ function ProductlistingGridViewMaster({
     if (productListingData?.length > 0) {
       return (
         <>
-          {productListingData?.map((data: any, i: any) => {
-            return (
-              <div key={innerHeight * i} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4">
-                <ProductCard
+          <div className="row h-100">
+            {productListingData?.map((data: any, i: any) => {
+              return (
+                <div key={innerHeight * i} className="col-6 col-md-4 col-lg-3 gap-2 px-2 p-md-2 text-start mb-5">
+                  {/* <ProductCard
                   data={data}
                   addToCartItem={addToCartItem}
                   getPartyName={getPartyName}
@@ -47,10 +49,21 @@ function ProductlistingGridViewMaster({
                   handleDeleteCatalogItem={handleDeleteCatalogItem}
                   handleShowCatalogModal={handleShowCatalogModal}
                   cartData={cartData}
-                />
-              </div>
-            );
-          })}
+                /> */}
+                  <ProductCardVariantColour
+                    data={data}
+                    addToCartItem={addToCartItem}
+                    getPartyName={getPartyName}
+                    wishlistData={wishlistData}
+                    isSuperAdmin={isSuperAdmin}
+                    handleDeleteCatalogItem={handleDeleteCatalogItem}
+                    handleShowCatalogModal={handleShowCatalogModal}
+                    cartData={cartData}
+                  />
+                </div>
+              );
+            })}
+          </div>
           <ReactPaginate
             previousLabel={'Prev'}
             nextLabel={'Next'}
@@ -58,9 +71,9 @@ function ProductlistingGridViewMaster({
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
             containerClassName={`${paginationStyle.paginationBttns}`}
-            previousLinkClassName={pageOffset === 0 ? paginationStyle.paginationDisabled : paginationStyle.previousBttn}
+            previousLinkClassName={pageOffset === 0 ? 'd-none' : paginationStyle.previousBttn}
             disabledClassName={paginationStyle.paginationDisabled}
-            nextLinkClassName={isNextButtonDisabled ? paginationStyle.paginationDisabled : `${paginationStyle.nextBttn}`}
+            nextLinkClassName={isNextButtonDisabled ? 'd-none' : `${paginationStyle.nextBttn}`}
             activeClassName={`${paginationStyle.paginationActive}`}
             forcePage={pageOffset}
           />

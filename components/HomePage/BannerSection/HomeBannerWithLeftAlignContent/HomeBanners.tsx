@@ -20,7 +20,7 @@ const BannerCarousel = ({ bannersList }: any) => {
                 alt="Banner Images"
                 loading="eager"
                 priority={true}
-                layout="responsive"
+                // layout="responsive"
                 width={100}
                 height={100}
               />

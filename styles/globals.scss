@@ -48,7 +48,17 @@
 .pop-over.show {
   display: block;
 }
-
+.popover {
+  max-width: 80vw !important;
+  min-width: 70% !important;
+  margin-top: 15px;
+  padding: 20px !important;
+  cursor: pointer;
+  border: 0;
+}
+.popover-arrow {
+  display: none !important;
+}
 .theme-gold {
   color: #ecd386;
 }
@@ -217,4 +227,20 @@
   padding-bottom: 0;
   padding-left: 12%;
   width: 57%;
+}
+.react-multiple-carousel__arrow {
+  top: 35% !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  border: 1px solid #000 !important;
+  background-color: transparent !important;
+}
+.react-multiple-carousel__arrow:before {
+  color: #000 !important;
+  font-size: 14px !important;
+}
+.react-multiple-carousel__arrow:hover {
+  color: #fff !important;
+  background-color: #56cfe1 !important;
+  border: 1px solid #56cfe1 !important;
 }

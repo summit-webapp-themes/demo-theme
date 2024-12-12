@@ -18,11 +18,13 @@
 }
 .tabimageContainer {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   object-fit: cover;
 }
+
 .tabProductPrice {
   margin-right: 15px;
   font-size: 17px;
@@ -101,6 +103,7 @@
   padding: 0 15px;
   border-radius: 40px;
   margin: 5px 0;
+  cursor: pointer;
 }
 
 .quickShop_btn:hover .quickShop {
@@ -109,6 +112,7 @@
   display: none;
 }
 .quickShop_btn:hover .quickIcon {
+  display: block;
   transition: 0.5s ease 0s;
   opacity: 1;
   visibility: visible;
@@ -133,4 +137,7 @@
   width: 30px;
   height: 2px;
   background: var(--cl-heading);
+}
+.quickIcon {
+  display: none;
 }

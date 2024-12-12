@@ -68,7 +68,16 @@ function CustomWebNavbar({
               <div>
                 <Link href="/" legacyBehavior>
                   <a>
-                    <Image className=" " src={logo} alt="logo" width={250} priority={true} />
+                    <Image
+                      className=""
+                      style={{ maxWidth: '250px', maxHeight: '59px' }}
+                      src={logo}
+                      alt="logo"
+                      layout="responsive"
+                      width={100}
+                      height={100}
+                      priority={true}
+                    />
                   </a>
                 </Link>
               </div>
