@@ -11,7 +11,7 @@ const StoreDataProvider = ({ children }: any) => {
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
   const dispatch = useDispatch();
   const { componentsList }: any = useSelector(componentsListFromReduxStore);
-  const { selectedLanguageData } = useSelector(SelectedFilterLangDataFromStore);
+  const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
   const callComponentsAPIToGetListOfComponents = async () => {
     let fetchComponentsList: any = await getHomePageComponentsList(SUMMIT_APP_CONFIG);
     if (
