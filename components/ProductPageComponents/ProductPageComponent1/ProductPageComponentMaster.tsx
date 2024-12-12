@@ -5,7 +5,7 @@ import { selectCart } from '../../../store/slices/cart-slices/cart-local-slice';
 import { SelectedFilterLangDataFromStore } from '../../../store/slices/general_slices/selected-multilanguage-slice';
 import BreadCrumbs from '../../BreadCrumbs';
 import ProductDetailSkeleton from '../ProductDetailSkeleton';
-import ProductPageHeading from '../ProductPageHeading';
+import ProductPageHeading from '../ProductDetailHeadingWithDiscription';
 import ImageGalleryWithLeftThumbnails from '../ProductImageGallery/ImageGalleryWithLeftThumbnails';
 import ProductPageVariants from '../ProductPageVariants';
 

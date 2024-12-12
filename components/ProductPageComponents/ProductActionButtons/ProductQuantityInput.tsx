@@ -1,17 +1,21 @@
 import React from 'react';
-import styles from '../../styles/components/customQuantityInputField.module.scss';
+import styles from '../../../styles/components/customQuantityInputField.module.scss';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 
-const CustomQuantityInputField = ({
-  productDetailData,
+interface ProductQuantityInputPropTypes {
+  qty: number | string;
+  handleQtyModificationOnInputEdit: (e: any) => void;
+  handleQtyModificationOnButtonClick: (action: string) => void;
+}
+
+const ProductQuantityInput = ({
   qty,
   handleQtyModificationOnInputEdit,
   handleQtyModificationOnButtonClick,
-  selectedMultiLangData,
-}: any) => {
+}: ProductQuantityInputPropTypes) => {
   return (
     <>
-      <div className={`mb-1 mt-2`}>
+      <div className={`pb-2`}>
         <FaMinus className={`cursor-pointer ${styles.quantity_decrease}`} onClick={() => handleQtyModificationOnButtonClick('decrease')} />
         <input
           className={`rounded-5 fw-bold ${styles.quantity_input}`}
@@ -26,4 +30,4 @@ const CustomQuantityInputField = ({
   );
 };
 
-export default CustomQuantityInputField;
+export default ProductQuantityInput;

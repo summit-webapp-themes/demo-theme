@@ -133,3 +133,41 @@
   position: fixed;
   bottom: 0;
 }
+.filter-color .horizontal-line {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 70px;
+  height: 2px;
+  background: #222222;
+}
+.filter-color .colorContainer {
+  cursor: pointer;
+}
+.filter-color .colorContainer:hover {
+  .tabProductColor {
+    border: 1px solid #ffffff77;
+  }
+  .colorActive {
+    color: #56cfe1;
+  }
+}
+.filter-color .tabProductColor {
+  display: inline-block;
+  width: 25px !important;
+  height: 25px !important;
+  border-radius: 50%;
+  font-size: 0;
+  text-align: center;
+  margin-right: 8px;
+  padding: 2px;
+}
+.filter-color .borderInactive {
+  border: 1px solid #ffffff77;
+}
+.filter-color .borderActive {
+  border: 1px solid black;
+}
+.filter-color .colorInactive {
+  border: 1px solid #ffffff77;
+}

@@ -4,20 +4,19 @@ import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
-import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import VariantProductCardsButton from '../components/ButtonComponent/VariantProductCardsButton';
 import FeaturedCollectionWithVariantProductCardColour from '../components/HomePage/FeaturedCollections/FeaturedCollectionWithVariantColour/FeaturedCollectionWithVariantProductCardColour';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
+import noImage from '../public/assets/images/no_image.png';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
-import noImage from '../public/assets/images/no_image.png';
 
 interface ProductCardVariantPropsTypes {
   data: any;
   wishlistData: any;
-  cartData: any;
+  cartData?: any;
   addToCartItem: (item: any, props: any) => void;
   getPartyName: string | null;
   isSuperAdmin?: string;
@@ -26,12 +25,12 @@ interface ProductCardVariantPropsTypes {
 }
 
 interface VariantTypes {
+  image?: string[];
   variant_code?: string;
   slug?: string;
   Colour?: string;
   colour_attr_colour?: string;
   stock?: boolean;
-  image?: string[];
 }
 
 const ProductCardVariantColour = ({
@@ -79,20 +78,20 @@ const ProductCardVariantColour = ({
     }
     if (!wishProducts) {
       return (
-        <span className={`${ProductCardStyles.wishlist_icon} text-danger `}>
+        <span className={` text-black `}>
           <FaRegHeart onClick={() => handleAddToWishList(data)} />
         </span>
       );
     } else {
       if (router?.asPath?.startsWith('/wishlist')) {
         return (
-          <span className={`${ProductCardStyles.wishlist_icon} text-secondary `}>
+          <span className={` text-secondary `}>
             <RxCross2 onClick={() => handleRemoveFromWishList(data?.name)} />
           </span>
         );
       } else {
         return (
-          <span className={`${ProductCardStyles.wishlist_icon} text-danger `}>
+          <span className={` text-danger `}>
             <FaHeart onClick={() => handleRemoveFromWishList(data?.name)} />
           </span>
         );
@@ -182,44 +181,78 @@ const ProductCardVariantColour = ({
 
   return (
     <>
-      <Card className={`${styles.tabcardContainer}`}>
-        {selectedItem?.image || data?.image ? (
-          <div className={`${styles.tabimageContainer}`}>
-            <Image
-              src={selectedItem?.image ? selectedItem?.image[0] : data?.image}
-              className="w-100 h-100"
-              style={{ objectFit: 'cover', objectPosition: 'top' }}
-              alt="Banner Images"
-              loading="eager"
-              priority={true}
-              // layout="responsive"
-              width={303}
-              height={303}
-              loader={imageLoader}
-            />
-          </div>
+      <Card className={`${styles.tabcardContainer} h-75 `}>
+        {selectedItem?.image ? (
+          <>
+            {selectedItem?.image && selectedItem?.image?.length > 0 ? (
+              <div className={`${styles.tabimageContainer}`}>
+                <Image
+                  src={selectedItem?.image[0]}
+                  className="w-100 h-100"
+                  style={{ objectFit: 'cover', objectPosition: 'top' }}
+                  alt="Product Image"
+                  loading="eager"
+                  priority={true}
+                  width={303}
+                  height={303}
+                  loader={imageLoader}
+                />
+              </div>
+            ) : (
+              <div className={`${styles.tabimageContainer}`}>
+                <Image
+                  src={noImage}
+                  className="w-100 h-100"
+                  style={{ objectFit: 'cover' }}
+                  alt="Product Image"
+                  loading="eager"
+                  priority={true}
+                  width={303}
+                  height={303}
+                />
+              </div>
+            )}
+          </>
         ) : (
-          <div className={`${styles.tabimageContainer}`}>
-            <Image
-              src={noImage}
-              className="w-100 h-100"
-              style={{ objectFit: 'cover' }}
-              alt="Banner Images"
-              loading="eager"
-              priority={true}
-              // layout="responsive"
-              width={303}
-              height={303}
-            />
-          </div>
+          <>
+            {data?.image ? (
+              <div className={`${styles.tabimageContainer}`}>
+                <Image
+                  src={data?.image}
+                  className="w-100 h-100"
+                  style={{ objectFit: 'cover', objectPosition: 'top' }}
+                  alt="Product Image"
+                  loading="eager"
+                  priority={true}
+                  width={303}
+                  height={303}
+                  loader={imageLoader}
+                />
+              </div>
+            ) : (
+              <div className={`${styles.tabimageContainer}`}>
+                <Image
+                  src={noImage}
+                  className="w-100 h-100"
+                  style={{ objectFit: 'cover' }}
+                  alt="Product Image"
+                  loading="eager"
+                  priority={true}
+                  width={303}
+                  height={303}
+                />
+              </div>
+            )}
+          </>
         )}
         <VariantProductCardsButton
           handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
           handleAddToProductData={handleAddToProductData}
           addToCartLoaderBtn={addToCartLoaderBtn}
         />
-        <div className={styles.wishlistIcon}>
-          <FaRegHeart />
+        <div className={`${styles.wishlistIcon} cursor-pointer`}>
+          {/* <FaRegHeart /> */}
+          {handleRenderIcon()}
         </div>
       </Card>
       <div className="mt-3 cursor-pointer" onClick={() => handleRedirectToProductDetailPage()}>

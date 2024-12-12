@@ -14,15 +14,16 @@ const ImageGalleryWithLeftThumbnails = ({ slideShowImages }: ProductSlideshowIma
       <div className={imageStyle.img_container}>
         {/* Thumbnails */}
         <div className={imageStyle.thumbnail_left}>
-          {slideShowImages.map((image: string, i: number) => (
-            <div
-              className={`${imageStyle.img_wrap} ${i === activeImgIndex ? `${imageStyle.active}` : ''}`}
-              key={i}
-              onClick={() => handleSelectedImage(image, i)}
-            >
-              <Image src={image} loader={imageLoader} alt={`Thumbnail image ${i + 1}`} width={100} height={100} />
-            </div>
-          ))}
+          {slideShowImages?.length > 0 &&
+            slideShowImages?.map((image: string, i: number) => (
+              <div
+                className={`${imageStyle.img_wrap} ${i === activeImgIndex ? `${imageStyle.active}` : ''}`}
+                key={i}
+                onClick={() => handleSelectedImage(image, i)}
+              >
+                <Image src={image} loader={imageLoader} alt={`Thumbnail image ${i + 1}`} width={100} height={100} />
+              </div>
+            ))}
         </div>
 
         {/* Magnified Image */}

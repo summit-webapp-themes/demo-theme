@@ -69,13 +69,18 @@ function ProductListingMaster() {
   return (
     <>
       <section className="listing-page position-realtive">
-        <div className="d-flex justify-content-between w-100 ps-lg-5 pe-lg-4 px-sm-4 ">
-          <div className="w-50 list-toggle-rtl">
-            <BreadCrumbs />
+        <div className="row ps-lg-5 pe-lg-4 px-md-3 px-3 ">
+          <div className="col-12 col-sm-6  ">
+            <div className="list-toggle-rtl">
+              <BreadCrumbs />
+            </div>
           </div>
-          <HorizantalFilterMaster sortBy={sortBy} handleSortBy={handleSortBy} />
+          <div className="col-12 col-sm-6  d-flex justify-content-start justify-content-sm-end ">
+            <HorizantalFilterMaster sortBy={sortBy} handleSortBy={handleSortBy} />
+          </div>
         </div>
-        <div className="ps-lg-4 pe-lg-4 mt-4">
+
+        <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
           <ProductGridView
             productListingData={productListingData}
             handlePaginationBtn={handlePaginationBtn}

@@ -11,6 +11,12 @@
   font-weight: 400;
   color: #696969;
 }
+.mrpPrice {
+  font-size: 22px;
+  font-weight: 400;
+  color: #696969;
+  text-decoration: line-through;
+}
 .rating {
   font-size: 12px;
 }
@@ -32,7 +38,6 @@
   border-radius: 3px;
   vertical-align: middle;
   cursor: pointer;
-  margin: 5px;
   transition:
     color 0.25s ease,
     background-color 0.25s ease,
@@ -45,7 +50,7 @@
 }
 .variant_btn_active {
   border-color: #333;
-  background: #333;
+  background: #000000;
   color: #ffffff;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
@@ -55,7 +60,6 @@
   border-radius: 3px;
   vertical-align: middle;
   cursor: pointer;
-  margin: 5px;
   transition:
     color 0.25s ease,
     background-color 0.25s ease,
@@ -69,17 +73,26 @@
   margin: 0;
 }
 @keyframes moveLeftRight {
+  0% {
+    transform: translate(0px);
+  }
+  75% {
+    transform: translate(0px);
+  }
   80% {
     transform: translate(5px);
   }
   85% {
-    transform: translate(-5px);
+    transform: translate(0px);
   }
   90% {
     transform: translateX(5px);
   }
   95% {
-    transform: translateX(-5px);
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translate(0px);
   }
 }
 .addToCartBtn {
@@ -96,7 +109,7 @@
   width: 100%;
   text-transform: uppercase;
   transform: 0.3s;
-  // animation: moveLeftRight 5s infinite alternate ease-in-out;
+  animation: moveLeftRight 5s infinite ease-in-out;
 }
 .addToCartBtn:hover {
   background-color: #222222;

@@ -7,7 +7,7 @@ import ProductDetailSkeleton from './ProductDetailSkeleton';
 import ProductDetailImageGallery from './ProductDetailImageGallery';
 import ProductDetailDescribtionSection from './ProductDetailDescribtionSection';
 const ReviewMaster = dynamic(() => import('../Reviews/ReviewMaster'));
-const MatchingProducts = dynamic(() => import('./MatchingProducts'));
+const MatchingProductsWithVariantsCard = dynamic(() => import('./MatchingProductWithVariantCard'));
 const StockAvailabilityTable = dynamic(() => import('./StockAvailabilityTable'));
 const ProductDetailSpecsAndTech = dynamic(() => import('./ProductDetailSpecsAndTech'));
 import styles from '../../styles/components/productDetail.module.scss';
@@ -84,7 +84,7 @@ function ProductPageMaster() {
           </div>
         </div>
         <ReviewMaster selectedMultiLangData={selectedMultiLangData} />
-        <MatchingProducts />
+        <MatchingProductsWithVariantsCard />
       </div>
     );
   }

@@ -25,7 +25,7 @@ function ProductlistingGridViewMaster({
       return (
         <div className="row">
           {[...Array(10)].map((_, index) => (
-            <div key={index} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4">
+            <div key={index} className="col-6 col-md-4 col-lg-3 gap-2 p-0 p-md-2 text-center mb-4">
               <ProductCardSkeleton />
             </div>
           ))}
@@ -36,10 +36,11 @@ function ProductlistingGridViewMaster({
     if (productListingData?.length > 0) {
       return (
         <>
-          {productListingData?.map((data: any, i: any) => {
-            return (
-              <div key={innerHeight * i} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-start mb-5">
-                {/* <ProductCard
+          <div className="row h-100">
+            {productListingData?.map((data: any, i: any) => {
+              return (
+                <div key={innerHeight * i} className="col-6 col-md-4 col-lg-3 gap-2 px-2 p-md-2 text-start mb-5">
+                  {/* <ProductCard
                   data={data}
                   addToCartItem={addToCartItem}
                   getPartyName={getPartyName}
@@ -49,19 +50,20 @@ function ProductlistingGridViewMaster({
                   handleShowCatalogModal={handleShowCatalogModal}
                   cartData={cartData}
                 /> */}
-                <ProductCardVariantColour
-                  data={data}
-                  addToCartItem={addToCartItem}
-                  getPartyName={getPartyName}
-                  wishlistData={wishlistData}
-                  isSuperAdmin={isSuperAdmin}
-                  handleDeleteCatalogItem={handleDeleteCatalogItem}
-                  handleShowCatalogModal={handleShowCatalogModal}
-                  cartData={cartData}
-                />
-              </div>
-            );
-          })}
+                  <ProductCardVariantColour
+                    data={data}
+                    addToCartItem={addToCartItem}
+                    getPartyName={getPartyName}
+                    wishlistData={wishlistData}
+                    isSuperAdmin={isSuperAdmin}
+                    handleDeleteCatalogItem={handleDeleteCatalogItem}
+                    handleShowCatalogModal={handleShowCatalogModal}
+                    cartData={cartData}
+                  />
+                </div>
+              );
+            })}
+          </div>
           <ReactPaginate
             previousLabel={'Prev'}
             nextLabel={'Next'}

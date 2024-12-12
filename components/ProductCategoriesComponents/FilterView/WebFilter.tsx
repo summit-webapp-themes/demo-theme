@@ -2,6 +2,7 @@ import React from 'react';
 import useProductListingFilterHook from '../../../hooks/ProductListPageHooks/useProductListFilterHook';
 import { Accordion } from 'react-bootstrap';
 import FilterLoadingLayout from './FilterLoadingLayout';
+import FilterColour from './GenericFilters/FilterColour';
 
 function WebFilter() {
   const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters } = useProductListingFilterHook();
@@ -20,10 +21,25 @@ function WebFilter() {
         </div>
       );
     }
+
     if (filtersData?.filters?.length > 0) {
-      return filtersData?.filters?.map((filter: any, index: any) => {
+      return filtersData.filters.map((filter: any, index: any) => {
+        // Render FilterColour component for "color" section inside an Accordion
+        if (filter.section === 'Color') {
+          return (
+            <Accordion key={index} defaultActiveKey="0">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>{filter?.section}</Accordion.Header>
+                <Accordion.Body>
+                  <FilterColour key={index} filter={filter} handleFilterCheckFun={handleFilterCheckFun} selectedFilters={selectedFilters} />
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          );
+        }
+        // Render default accordion for other filters
         return (
-          <Accordion defaultActiveKey="0" key={index}>
+          <Accordion key={index} defaultActiveKey="0">
             <Accordion.Item eventKey="0">
               <Accordion.Header>{filter?.section}</Accordion.Header>
               <Accordion.Body>
@@ -50,6 +66,7 @@ function WebFilter() {
       });
     }
   };
+
   return (
     <div className="filter_section">
       <div className="filter_block">
