@@ -65,13 +65,13 @@ function CustomProductCategoriesNavbar({
                   {Array.from({ length: columnCount }, (_, columnIndex) => (
                     <div key={columnIndex} className={stylesHeader.column}>
                       {itemL2?.values?.slice(columnIndex * 8, (columnIndex + 1) * 8).map((itemL3: any, idx: number) => (
-                        <div key={idx} className="p-1">
+                        <div key={idx}>
                           <Link
                             href={{
                               pathname: `${itemL3?.url}`,
                               query: { page: '1', currency: 'INR' },
                             }}
-                            className={stylesHeader.heading_category_l3}
+                            className={`${stylesHeader.heading_category_l3} `}
                             onClick={() => setShowPopoverIndex(null)}
                           >
                             {itemL3?.label !== undefined ? itemL3?.label : `${idx}`}

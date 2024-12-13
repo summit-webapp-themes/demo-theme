@@ -32,7 +32,7 @@
   border: none;
 }
 .web-filter.accordion-body {
-  padding: 0.5rem 0;
+  padding: 0 !important;
 }
 .web-filter.accordion-button:focus {
   z-index: 3;
@@ -148,7 +148,7 @@
   .tabProductColor {
     border: 1px solid #ffffff77;
   }
-  .colorActive {
+  .colorInactive {
     color: #56cfe1;
   }
 }
@@ -169,5 +169,8 @@
   border: 1px solid black;
 }
 .filter-color .colorInactive {
-  border: 1px solid #ffffff77;
+  color: #222222;
+}
+.filter-color .colorActive {
+  color: #56cfe1;
 }
