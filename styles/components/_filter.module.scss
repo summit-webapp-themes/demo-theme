@@ -31,8 +31,11 @@
 .web-filter .accordion-item {
   border: none;
 }
-.web-filter.accordion-body {
-  padding: 0.5rem 0;
+.web-filter .accordion-body {
+  padding: 8px 12px !important;
+}
+.web-filter .accordion-button {
+  padding: 8px 12px !important;
 }
 .web-filter.accordion-button:focus {
   z-index: 3;
@@ -148,7 +151,7 @@
   .tabProductColor {
     border: 1px solid #ffffff77;
   }
-  .colorActive {
+  .colorInactive {
     color: #56cfe1;
   }
 }
@@ -169,5 +172,8 @@
   border: 1px solid black;
 }
 .filter-color .colorInactive {
-  border: 1px solid #ffffff77;
+  color: #222222;
+}
+.filter-color .colorActive {
+  color: #56cfe1;
 }

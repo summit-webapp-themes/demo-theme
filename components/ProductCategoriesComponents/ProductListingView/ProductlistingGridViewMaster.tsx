@@ -39,7 +39,7 @@ function ProductlistingGridViewMaster({
           <div className="row h-100">
             {productListingData?.map((data: any, i: any) => {
               return (
-                <div key={innerHeight * i} className="col-6 col-md-4 col-lg-3 gap-2 px-2 p-md-2 text-start mb-5">
+                <div key={innerHeight * i} className="col-6 col-md-4 col-lg-3 gap-2 px-2 p-md-2 text-start mb-3 mb-md-0 ">
                   {/* <ProductCard
                   data={data}
                   addToCartItem={addToCartItem}

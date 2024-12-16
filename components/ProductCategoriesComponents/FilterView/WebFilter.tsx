@@ -29,7 +29,7 @@ function WebFilter() {
           return (
             <Accordion key={index} defaultActiveKey="0">
               <Accordion.Item eventKey="0">
-                <Accordion.Header>{filter?.section}</Accordion.Header>
+                <Accordion.Header className="p-0">{filter?.section}</Accordion.Header>
                 <Accordion.Body>
                   <FilterColour key={index} filter={filter} handleFilterCheckFun={handleFilterCheckFun} selectedFilters={selectedFilters} />
                 </Accordion.Body>
