@@ -83,20 +83,7 @@ function ProductListingMaster() {
         </div>
 
         <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
-          {/* <ProductGridView
-            productListingData={productListingData}
-            handlePaginationBtn={handlePaginationBtn}
-            productListTotalCount={productListTotalCount}
-            pageOffset={pageOffset}
-            handlePageClick={handlePageClick}
-            isLoading={isLoading}
-            wishlistData={wishlistData}
-            isSuperAdmin={isSuperAdmin}
-            handleShowCatalogModal={handleShowCatalogModal}
-            handleDeleteCatalogItem={handleDeleteCatalogItem}
-            cartData={cartData}
-          /> */}
-          <ProductListingWithLeftFilterDrawer
+          <ProductGridView
             productListingData={productListingData}
             handlePaginationBtn={handlePaginationBtn}
             productListTotalCount={productListTotalCount}
@@ -109,6 +96,19 @@ function ProductListingMaster() {
             handleDeleteCatalogItem={handleDeleteCatalogItem}
             cartData={cartData}
           />
+          {/* <ProductListingWithLeftFilterDrawer
+            productListingData={productListingData}
+            handlePaginationBtn={handlePaginationBtn}
+            productListTotalCount={productListTotalCount}
+            pageOffset={pageOffset}
+            handlePageClick={handlePageClick}
+            isLoading={isLoading}
+            wishlistData={wishlistData}
+            isSuperAdmin={isSuperAdmin}
+            handleShowCatalogModal={handleShowCatalogModal}
+            handleDeleteCatalogItem={handleDeleteCatalogItem}
+            cartData={cartData}
+          /> */}
         </div>
         <div className="sticky_filter_btn w-100  d-block d-sm-none">
           <div className="row">

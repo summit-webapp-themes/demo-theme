@@ -72,12 +72,8 @@ function CustomProductCategoriesNavbar({
                               pathname: `${itemL3?.url}`,
                               query: { page: '1', currency: 'INR' },
                             }}
-<<<<<<< HEAD
                             prefetch={true}
-                            className={stylesHeader.heading_category_l3}
-=======
                             className={`${stylesHeader.heading_category_l3} `}
->>>>>>> upstream/develop
                             onClick={() => setShowPopoverIndex(null)}
                           >
                             {itemL3?.label !== undefined ? itemL3?.label : `${idx}`}
