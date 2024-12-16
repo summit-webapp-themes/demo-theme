@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
-import MultiLangApi from '../services/api/general-apis/multilanguage-api';
 import { CONSTANTS } from '../services/config/app-config';
 import { useDispatch } from 'react-redux';
-import { setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
 import MetaTag from '../services/api/general-apis/meta-tag-api';
 import useGoogleAnalyticsOperationsHandler from '../hooks/GoogleAnalytics/useGoogleAnalyticsOperationsHandler';
-import getHomePageComponentsList from '../services/api/home-page-apis/get-home-page-components';
-import { createComponentsList } from '../store/slices/general_slices/components-slice';
 import PageMetaData from '../components/PageMetaData';
 import HomePageMaster from '../components/HomePage/HomePageMaster';
 
@@ -15,12 +11,6 @@ const Home = ({ fetchedDataFromServer }: any) => {
   const { sendPageViewToGA } = useGoogleAnalyticsOperationsHandler();
   useEffect(() => {
     sendPageViewToGA(window.location.pathname + window.location.search, 'Home Page');
-    if (Object.keys(fetchedDataFromServer?.multiLingualListTranslationTextList)?.length > 0) {
-      dispatch(setMultiLingualData(fetchedDataFromServer.multiLingualListTranslationTextList));
-    }
-    if (fetchedDataFromServer?.homePageComponents?.length > 0) {
-      dispatch(createComponentsList(fetchedDataFromServer?.homePageComponents));
-    }
   }, []);
   return (
     <>
@@ -46,26 +36,6 @@ export async function getServerSideProps(context: any) {
       fetchedDataFromServer.metaTagsData = {};
     }
   }
-  const multiLangParams = {
-    appConfig: SUMMIT_APP_CONFIG,
-  };
-  const MultilanguageData = await MultiLangApi(multiLangParams.appConfig);
-  if (MultilanguageData?.length > 0) {
-    fetchedDataFromServer.multiLingualListTranslationTextList = MultilanguageData;
-  } else {
-    fetchedDataFromServer.multiLingualListTranslationTextList = {};
-  }
-  let getComponentsList = await getHomePageComponentsList(SUMMIT_APP_CONFIG);
-  if (
-    getComponentsList?.status === 200 &&
-    getComponentsList?.data?.message?.msg === 'success' &&
-    getComponentsList?.data?.message?.data?.length > 0
-  ) {
-    fetchedDataFromServer.homePageComponents = getComponentsList?.data?.message?.data;
-  } else {
-    fetchedDataFromServer.homePageComponents = [];
-  }
-
   return {
     props: {
       fetchedDataFromServer,
