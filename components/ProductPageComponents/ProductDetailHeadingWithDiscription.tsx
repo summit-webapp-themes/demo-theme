@@ -12,7 +12,7 @@ const ProductDetailHeadingWithDescription = ({ productDetailData }: any) => {
           <span className={` ps-3 ${styles.mrpPrice}`}>{`₹${productDetailData?.mrp_price}`}</span>
         </div>
         <div className={`col-8 d-flex align-items-center justify-content-end`}>
-          <Rating initialValue={productDetailData?.rating} size={25} readonly />
+          <Rating initialValue={productDetailData?.rating * 5} size={25} readonly iconsCount={5} allowFraction />
           <span>({productDetailData?.rating} reviews)</span>
         </div>
       </div>
