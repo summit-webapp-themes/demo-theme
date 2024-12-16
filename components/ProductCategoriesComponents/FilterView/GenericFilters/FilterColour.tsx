@@ -14,7 +14,6 @@ const FilterColour = ({ key, filter, handleFilterCheckFun, selectedFilters }: an
     const colorDataValues = await getColorData();
     setColorData(colorDataValues?.data?.data?.item_attribute_values);
   };
-  console.log(selectedFilters, 'data111');
 
   useEffect(() => {
     fetchColorData();
@@ -30,7 +29,7 @@ const FilterColour = ({ key, filter, handleFilterCheckFun, selectedFilters }: an
         );
         return (
           <div
-            className="d-flex align-items-center py-3 colorContainer"
+            className="d-flex align-items-center py-2 colorContainer"
             key={index}
             onClick={() => handleFilterCheckFun(null, true, !isActive, colour)}
           >

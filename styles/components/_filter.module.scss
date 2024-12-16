@@ -31,8 +31,11 @@
 .web-filter .accordion-item {
   border: none;
 }
-.web-filter.accordion-body {
-  padding: 0 !important;
+.web-filter .accordion-body {
+  padding: 8px 12px !important;
+}
+.web-filter .accordion-button {
+  padding: 8px 12px !important;
 }
 .web-filter.accordion-button:focus {
   z-index: 3;
