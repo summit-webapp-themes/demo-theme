@@ -55,6 +55,7 @@ function CustomProductCategoriesNavbar({
                       pathname: `${itemL2?.url}`,
                       query: { page: '1', currency: 'INR' },
                     }}
+                    prefetch={true}
                     className="label text-dark text-decoration-none navbar_category"
                     onClick={() => setShowPopoverIndex(null)}
                   >
@@ -71,6 +72,7 @@ function CustomProductCategoriesNavbar({
                               pathname: `${itemL3?.url}`,
                               query: { page: '1', currency: 'INR' },
                             }}
+                            prefetch={true}
                             className={`${stylesHeader.heading_category_l3} `}
                             onClick={() => setShowPopoverIndex(null)}
                           >

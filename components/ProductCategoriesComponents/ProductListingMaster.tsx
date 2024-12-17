@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import dynamic from 'next/dynamic';
 import useCatalogFunctions from '../../hooks/CatalogHooks/useCatalogFunctions';
 import useProductListing from '../../hooks/ProductListPageHooks/useProductsDataHook';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
@@ -7,13 +8,14 @@ import { selectCatalogList } from '../../store/slices/catalog-slice/catalog-loca
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
 import BreadCrumbs from '../BreadCrumbs';
-import AddToCatalogModal from '../Catalog/AddToCatalogModal';
-import FilterModal from './FilterView/FilterModal';
-import FloatingFilterBtn from './FloatingBtns/FloatingFilterBtn';
-import FloatingSortbyBtn from './FloatingBtns/FloatingSortbyBtn';
+const FloatingFilterBtn = dynamic(() => import('./FloatingBtns/FloatingFilterBtn'));
+const FloatingSortbyBtn = dynamic(() => import('./FloatingBtns/FloatingSortbyBtn'));
+const FilterModal = dynamic(() => import('./FilterView/FilterModal'));
+const SortbyModal = dynamic(() => import('./HorizantalFilter/SortbyModal'));
+const AddToCatalogModal = dynamic(() => import('../Catalog/AddToCatalogModal'));
 import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
-import SortbyModal from './HorizantalFilter/SortbyModal';
 import ProductGridView from './ProductListingView/ProductGridView';
+import ProductListingWithLeftFilterDrawer from './ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawer';
 
 function ProductListingMaster() {
   const {
@@ -94,6 +96,19 @@ function ProductListingMaster() {
             handleDeleteCatalogItem={handleDeleteCatalogItem}
             cartData={cartData}
           />
+          {/* <ProductListingWithLeftFilterDrawer
+            productListingData={productListingData}
+            handlePaginationBtn={handlePaginationBtn}
+            productListTotalCount={productListTotalCount}
+            pageOffset={pageOffset}
+            handlePageClick={handlePageClick}
+            isLoading={isLoading}
+            wishlistData={wishlistData}
+            isSuperAdmin={isSuperAdmin}
+            handleShowCatalogModal={handleShowCatalogModal}
+            handleDeleteCatalogItem={handleDeleteCatalogItem}
+            cartData={cartData}
+          /> */}
         </div>
         <div className="sticky_filter_btn w-100  d-block d-sm-none">
           <div className="row">
