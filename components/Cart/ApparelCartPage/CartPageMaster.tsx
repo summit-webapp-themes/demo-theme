@@ -1,6 +1,7 @@
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import useFetchCartItems from '../../../hooks/CartPageHook/useFetchCartItems';
 import NoDataFound from '../../NoRecordFound';
+import CartCardContainer from './CartCardContainer';
 
 const CartPageMaster = () => {
   const { cartListingItems, setCartListingItems, isLoading, errorMessage } = useFetchCartItems();
@@ -19,7 +20,13 @@ const CartPageMaster = () => {
       );
     }
     if (!isLoading && Object.keys(cartListingItems)?.length !== 0) {
-      return <div>Cart List</div>;
+      return (
+        <CartCardContainer
+          cartListingItems={cartListingItems}
+          RemoveItemCartAPIFunc={RemoveItemCartAPIFunc}
+          setCartListingItems={setCartListingItems}
+        />
+      );
     }
     if (!isLoading && Object.keys(cartListingItems)?.length === 0) {
       return <NoDataFound title={'YOUR CART IS EMPTY.'} const message={message} />;
