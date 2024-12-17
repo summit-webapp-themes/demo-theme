@@ -12,6 +12,7 @@ import noImage from '../public/assets/images/no_image.png';
 import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
+import { IoCartOutline } from 'react-icons/io5';
 
 interface ProductCardVariantPropsTypes {
   data: any;
@@ -110,34 +111,33 @@ const ProductCardVariantColour = ({
     }
     if (!cartProducts) {
       return (
-        <Button
-          type="button"
-          className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`}
-          onClick={handleAddToProductData}
-          disabled={addToCartLoaderBtn}
-        >
-          {!addToCartLoaderBtn ? (
-            <>
-              <span>ADD</span>
-              <FaCartPlus className={`${ProductCardStyles.cardBtn}`} />
-            </>
+        <>
+          {addToCartLoaderBtn ? (
+            <div className={`spinner-border spinner-border-sm `} role="status"></div>
           ) : (
-            <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+            <>
+              <span className={styles.quickShop}>Quick Shop</span>
+              <span className={styles.quickIcon}>
+                <IoCartOutline />
+              </span>
+            </>
           )}
-        </Button>
+        </>
       );
     } else {
       return (
-        <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn_added}`}>
-          {!addToCartLoaderBtn ? (
-            <>
-              <span>ADDED</span>
-              <FaCheckCircle className={`mb-1 ${ProductCardStyles.cardBtn}`} />
-            </>
+        <>
+          {addToCartLoaderBtn ? (
+            <div className={`spinner-border spinner-border-sm `} role="status"></div>
           ) : (
-            <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+            <>
+              <span className={styles.quickShop}>Added</span>
+              <span className={styles.quickIcon}>
+                <FaCheckCircle />
+              </span>
+            </>
           )}
-        </Button>
+        </>
       );
     }
   };
@@ -248,7 +248,7 @@ const ProductCardVariantColour = ({
         <VariantProductCardsButton
           handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
           handleAddToProductData={handleAddToProductData}
-          addToCartLoaderBtn={addToCartLoaderBtn}
+          handleRenderCartBtnText={handleRenderCartBtnText}
         />
         <div className={`${styles.wishlistIcon} cursor-pointer`}>
           {/* <FaRegHeart /> */}
