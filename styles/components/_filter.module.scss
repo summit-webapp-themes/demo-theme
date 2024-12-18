@@ -136,14 +136,15 @@
   position: fixed;
   bottom: 0;
 }
-.filter-color .horizontal-line {
+.web-filter .horizontal-line {
   content: '';
-  display: inline-block;
   vertical-align: middle;
-  width: 70px;
+  width: 60px;
   height: 2px;
   background: #222222;
+  margin-bottom: 8px;
 }
+
 .filter-color .colorContainer {
   cursor: pointer;
 }
@@ -176,4 +177,30 @@
 }
 .filter-color .colorActive {
   color: #56cfe1;
+}
+.web-filter {
+  .filter-scrollable {
+    max-height: 170px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 10px; /* Optional: add padding for better scrollbar visibility */
+  }
+
+  /* Scrollbar Styling */
+  .filter-scrollable::-webkit-scrollbar {
+    width: 6px; /* Set the width of the scrollbar */
+  }
+
+  .filter-scrollable::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Make the scrollbar thumb rounded */
+  }
+
+  .filter-scrollable::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa; /* Color when hovered */
+  }
+
+  .filter-scrollable::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Background color of the scrollbar track */
+    border-radius: 4px; /* Make the track rounded */
+  }
 }
