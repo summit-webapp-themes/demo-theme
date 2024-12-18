@@ -41,16 +41,16 @@ const CartCard = ({
   const handleProductView = () => {
     router.push('/');
   };
-
+  console.log(orderData, 'data111');
   return (
     <div className={`${styles.cart_card} mb-3 m-xl-0 w-100`}>
       <div className="row py-xl-3 px-xl-2 ">
         <div className="col-xl-5">
           <div className="d-flex align-items-center">
             <div>
-              {orderData?.image_url?.length > 0 && (
+              {orderData?.image_url && (
                 <Image
-                  src={orderData?.image_url[0]}
+                  src={orderData?.image_url}
                   className="img-fluid"
                   alt="product-image"
                   loader={imageLoader}
@@ -60,7 +60,13 @@ const CartCard = ({
               )}
             </div>
             <div className="ms-3 ">
-              <strong>{orderData?.item_name}</strong>
+              <p className="fw-bold m-0">{orderData?.item_name}</p>
+              {orderData?.variant_attributes?.length > 0 &&
+                orderData?.variant_attributes?.map((attr: any) => (
+                  <p className="m-0 text-secondary">
+                    {attr?.attribute} : <span className="fw-bold">{attr?.attribute_value}</span>
+                  </p>
+                ))}
               <div>
                 <span className={`${styles.cart_action_icons} pe-2`}>
                   <GrView />
