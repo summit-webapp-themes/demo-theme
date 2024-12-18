@@ -2,6 +2,7 @@ import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import useFetchCartItems from '../../../hooks/CartPageHook/useFetchCartItems';
 import NoDataFound from '../../NoRecordFound';
 import CartCardContainer from './CartCardContainer';
+import CartSubtotal from './CartSubtotal';
 
 const CartPageMaster = () => {
   const { cartListingItems, setCartListingItems, isLoading, errorMessage } = useFetchCartItems();
@@ -21,11 +22,20 @@ const CartPageMaster = () => {
     }
     if (!isLoading && Object.keys(cartListingItems)?.length !== 0) {
       return (
-        <CartCardContainer
-          cartListingItems={cartListingItems}
-          RemoveItemCartAPIFunc={RemoveItemCartAPIFunc}
-          setCartListingItems={setCartListingItems}
-        />
+        <>
+          <div className="text-uppercase py-5 text-center bg-blue text-light ">
+            <h5 className="m-0">Shopping Cart</h5>
+          </div>
+          <div className="container-xl p-lg-3">
+            <CartCardContainer
+              cartListingItems={cartListingItems}
+              RemoveItemCartAPIFunc={RemoveItemCartAPIFunc}
+              setCartListingItems={setCartListingItems}
+              addToCartItem={addToCartItem}
+            />
+            <CartSubtotal cartListingItems={cartListingItems} />
+          </div>
+        </>
       );
     }
     if (!isLoading && Object.keys(cartListingItems)?.length === 0) {

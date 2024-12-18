@@ -1,18 +1,31 @@
 import Image from 'next/image';
-import React from 'react';
-import { imageLoader } from '../utils/image_loader';
-import { FaRegEdit } from 'react-icons/fa';
+import { GrView } from 'react-icons/gr';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import CartQuantityInput from '../components/Cart/ApparelCartPage/CartQuantityInput';
 import styles from '../styles/components/cartlist.module.scss';
+import { imageLoader } from '../utils/image_loader';
+import { useRouter } from 'next/router';
 
 interface CartCardPropsTypes {
   orderData: any;
   RemoveItemCartAPIFunc: any;
   quotationId: string;
   setCartListingItems: any;
+  handleQtyBlur: any;
+  handleQtyInputChange: any;
+  handleQtyButtonClick: any;
 }
 
-const CartCard = ({ orderData, RemoveItemCartAPIFunc, quotationId, setCartListingItems }: any) => {
+const CartCard = ({
+  orderData,
+  RemoveItemCartAPIFunc,
+  quotationId,
+  setCartListingItems,
+  handleQtyBlur,
+  handleQtyInputChange,
+  handleQtyButtonClick,
+}: CartCardPropsTypes) => {
+  const router = useRouter();
   const getPriceFromDetails = (details: any) => {
     const priceDetail = details.find((detail: any) => detail.name === 'Price');
     return priceDetail ? priceDetail?.value : 'N/A';
@@ -25,11 +38,15 @@ const CartCard = ({ orderData, RemoveItemCartAPIFunc, quotationId, setCartListin
     RemoveItemCartAPIFunc(params, setCartListingItems);
   };
 
+  const handleProductView = () => {
+    router.push('/');
+  };
+
   return (
-    <>
-      <div className="row py-4">
+    <div className={`${styles.cart_card} mb-3 m-xl-0 w-100`}>
+      <div className="row py-xl-3 px-xl-2 ">
         <div className="col-xl-5">
-          <div className="d-flex">
+          <div className="d-flex align-items-center">
             <div>
               {orderData?.image_url?.length > 0 && (
                 <Image
@@ -42,11 +59,11 @@ const CartCard = ({ orderData, RemoveItemCartAPIFunc, quotationId, setCartListin
                 ></Image>
               )}
             </div>
-            <div className="ms-3 mt-3">
+            <div className="ms-3 ">
               <strong>{orderData?.item_name}</strong>
               <div>
                 <span className={`${styles.cart_action_icons} pe-2`}>
-                  <FaRegEdit />
+                  <GrView />
                 </span>
                 <span className={`${styles.cart_action_icons} pe-2`} onClick={() => handleRemoveItem(orderData?.item_code)}>
                   <RiDeleteBinLine />
@@ -54,22 +71,31 @@ const CartCard = ({ orderData, RemoveItemCartAPIFunc, quotationId, setCartListin
               </div>
             </div>
           </div>
+          <hr className="d-xl-none m-0 " />
         </div>
-        <div className="col-xl-2 text-secondary mt-3">
+        <div className="col-xl-2 col-4 py-sm-3 py-2 text-secondary d-flex align-items-center justify-content-xl-start justify-content-center">
           {orderData?.currency_symbol}
           {getPriceFromDetails(orderData?.details)}
         </div>
 
-        <div className="col-xl-3"></div>
-        <div className="col-xl-2 ">
-          <div className="text-end mt-3">
+        <div className="col-xl-3 col-4 py-sm-3 py-2 d-flex justify-content-center align-items-center">
+          <CartQuantityInput
+            orderData={orderData}
+            handleQtyInputChange={handleQtyInputChange}
+            handleQtyBlur={handleQtyBlur}
+            handleQtyButtonClick={handleQtyButtonClick}
+            handleRemoveItem={handleRemoveItem}
+          />
+        </div>
+        <div className="col-xl-2 col-4 py-sm-3 py-2 d-flex justify-content-xl-end justify-content-center align-items-center">
+          <div>
             {orderData?.currency_symbol}
             {orderData?.amount}
           </div>
         </div>
       </div>
-      <hr />
-    </>
+      <hr className="m-0 my-xl-3 d-none d-xl-block" />
+    </div>
   );
 };
 
