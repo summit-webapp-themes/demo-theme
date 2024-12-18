@@ -27,41 +27,41 @@ function WebFilter() {
         // Render FilterColour component for "color" section inside an Accordion
         if (filter.section === 'Color') {
           return (
-            <Accordion key={index} defaultActiveKey="0">
-              <Accordion.Item eventKey="0">
-                <Accordion.Header className="p-0">{filter?.section}</Accordion.Header>
-                <Accordion.Body>
-                  <FilterColour key={index} filter={filter} handleFilterCheckFun={handleFilterCheckFun} selectedFilters={selectedFilters} />
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
+            <div key={index}>
+              <div className="p-0">{filter?.section}</div>
+              <div className="horizontal-line"></div>
+              <div className="filter-scrollable">
+                <FilterColour key={index} filter={filter} handleFilterCheckFun={handleFilterCheckFun} selectedFilters={selectedFilters} />
+              </div>
+              <hr className="m-0 my-3" />
+            </div>
           );
         }
         // Render default accordion for other filters
         return (
-          <Accordion key={index} defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>{filter?.section}</Accordion.Header>
-              <Accordion.Body>
-                {filter.values.map((filterValue: any, innerIndex: any) => (
-                  <div className="form_check_filter checkbox-line-height d-flex align-items-center" key={innerIndex}>
-                    <input
-                      type="checkbox"
-                      name={filter.section}
-                      value={filterValue}
-                      checked={selectedFilters.some(
-                        (selectedFilter: any) => selectedFilter.name === filter.section && selectedFilter.value.includes(filterValue)
-                      )}
-                      onChange={handleFilterCheckFun}
-                    />
-                    <label className="form-check-label filter-label accordion-checkbox checkbox-margin" htmlFor="flexCheckDefault">
-                      {filterValue}
-                    </label>
-                  </div>
-                ))}
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+          <div key={index} className="pt-3">
+            <div className="filter-name">{filter?.section}</div>
+            <div className="horizontal-line"></div>
+            <div className="filter-scrollable">
+              {filter.values.map((filterValue: any, innerIndex: any) => (
+                <div className="form_check_filter checkbox-line-height d-flex align-items-center" key={innerIndex}>
+                  <input
+                    type="checkbox"
+                    name={filter.section}
+                    value={filterValue}
+                    checked={selectedFilters.some(
+                      (selectedFilter: any) => selectedFilter.name === filter.section && selectedFilter.value.includes(filterValue)
+                    )}
+                    onChange={handleFilterCheckFun}
+                  />
+                  <label className="accordion-checkbox checkbox-margin fs-14" htmlFor="flexCheckDefault">
+                    {filterValue}
+                  </label>
+                </div>
+              ))}
+            </div>
+            <hr className="m-0 my-3" />
+          </div>
         );
       });
     }
