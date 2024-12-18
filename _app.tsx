@@ -15,6 +15,7 @@ import StoreDataProvider from '../components/StoreDataProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
+import getMultiLingualTextFromAPI from '../services/api/general-apis/multilanguage-api';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -34,30 +35,30 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className={nunito.className}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <StoreDataProvider>
-            <ErrorBoundary>
-              <Layout>
-                <ToastContainer
-                  position="top-right"
-                  className="toast-container-below-navbar"
-                  autoClose={3000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  draggable={false}
-                  closeOnClick
-                  pauseOnHover
-                />
-                {/* Below condition is to check whether give complete access of site to guest user or user can access site only after authentication */}
-                {CONSTANTS.ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION ? (
+          <StoreDataProvider />
+          <ErrorBoundary>
+            <Layout>
+              <ToastContainer
+                position="top-right"
+                className="toast-container-below-navbar"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                draggable={false}
+                closeOnClick
+                pauseOnHover
+              />
+              {/* Below condition is to check whether give complete access of site to guest user or user can access site only after authentication */}
+              {CONSTANTS.ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION ? (
+                <Component {...pageProps} />
+              ) : (
+                <ProtectedRoute>
                   <Component {...pageProps} />
-                ) : (
-                  <ProtectedRoute>
-                    <Component {...pageProps} />
-                  </ProtectedRoute>
-                )}
-              </Layout>
-            </ErrorBoundary>
-          </StoreDataProvider>
+                </ProtectedRoute>
+              )}
+            </Layout>
+          </ErrorBoundary>
+          {/* </StoreDataProvider> */}
         </PersistGate>
       </Provider>
     </div>

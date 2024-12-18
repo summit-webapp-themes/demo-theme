@@ -16,6 +16,7 @@ const AddToCatalogModal = dynamic(() => import('../Catalog/AddToCatalogModal'));
 import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
 import ProductGridView from './ProductListingView/ProductGridView';
 import ProductListingWithLeftFilterDrawer from './ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawer';
+import LayoutRenderer from './ProductListPageLayout/LayoutRenderer';
 
 function ProductListingMaster() {
   const {
@@ -71,18 +72,8 @@ function ProductListingMaster() {
   return (
     <>
       <section className="listing-page position-realtive">
-        <div className="row ps-lg-5 pe-lg-4 px-md-3 px-3 ">
-          <div className="col-12 col-sm-6  ">
-            <div className="list-toggle-rtl">
-              <BreadCrumbs />
-            </div>
-          </div>
-          <div className="col-12 col-sm-6  d-flex justify-content-start justify-content-sm-end ">
-            <HorizantalFilterMaster sortBy={sortBy} handleSortBy={handleSortBy} />
-          </div>
-        </div>
-
         <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
+          <LayoutRenderer />
           <ProductGridView
             productListingData={productListingData}
             handlePaginationBtn={handlePaginationBtn}
@@ -129,7 +120,6 @@ function ProductListingMaster() {
         catalogListData={catalogListData}
         handleSaveCatalogName={handleSaveCatalogName}
       />
-      <div className="handle_display_mob_filter">{/* <MobileFilter /> */}</div>
     </>
   );
 }

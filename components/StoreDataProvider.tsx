@@ -7,43 +7,44 @@ import getHomePageComponentsList from '../services/api/home-page-apis/get-home-p
 import getMultiLingualTextFromAPI from '../services/api/general-apis/multilanguage-api';
 import { setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
 
-const StoreDataProvider = ({ children }: any) => {
-  const { SUMMIT_APP_CONFIG } = CONSTANTS;
-  const dispatch = useDispatch();
-  const { componentsList }: any = useSelector(componentsListFromReduxStore);
-  const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
-  const callComponentsAPIToGetListOfComponents = async () => {
-    let fetchComponentsList: any = await getHomePageComponentsList(SUMMIT_APP_CONFIG);
-    if (
-      fetchComponentsList?.status === 200 &&
-      fetchComponentsList?.data?.message?.msg === 'success' &&
-      fetchComponentsList?.data?.message?.data?.length > 0
-    ) {
-      dispatch(createComponentsList(fetchComponentsList?.data?.message?.data));
-    }
-  };
+const StoreDataProvider = ({}: any) => {
+  // const { SUMMIT_APP_CONFIG } = CONSTANTS;
+  // const dispatch = useDispatch();
+  // const { componentsList }: any = useSelector(componentsListFromReduxStore);
+  // const { selectedLanguageData }: any = useSelector(SelectedFilterLangDataFromStore);
+  // const callComponentsAPIToGetListOfComponents = async () => {
+  //   let fetchComponentsList: any = await getHomePageComponentsList(SUMMIT_APP_CONFIG);
+  //   if (
+  //     fetchComponentsList?.status === 200 &&
+  //     fetchComponentsList?.data?.message?.msg === 'success' &&
+  //     fetchComponentsList?.data?.message?.data?.length > 0
+  //   ) {
+  //     dispatch(createComponentsList(fetchComponentsList?.data?.message?.data));
+  //   }
+  // };
 
-  const callMultiLingualDataToFetchDynamicTexts = async () => {
-    const multilanguageData = await getMultiLingualTextFromAPI(SUMMIT_APP_CONFIG);
-    if (multilanguageData?.length > 0) {
-      dispatch(setMultiLingualData(multilanguageData));
-      const storedLang = localStorage.getItem('selectedLanguage');
-      const params = {
-        multilanguageData: multilanguageData,
-        selectedLanguage: storedLang ? storedLang : 'en',
-      };
-      dispatch(SelectedLangData(params) as any);
-    }
-  };
-  useEffect(() => {
-    if (componentsList?.length === 0) {
-      callComponentsAPIToGetListOfComponents();
-    }
-    if (selectedLanguageData?.length === 0) {
-      callMultiLingualDataToFetchDynamicTexts();
-    }
-  }, []);
-  return <>{children}</>;
+  // const callMultiLingualDataToFetchDynamicTexts = async () => {
+  //   const multilanguageData = await getMultiLingualTextFromAPI(SUMMIT_APP_CONFIG);
+  //   console.log('multilanguageData', multilanguageData);
+  //   if (multilanguageData?.length > 0) {
+  //     dispatch(setMultiLingualData(multilanguageData));
+  //     const storedLang = localStorage.getItem('selectedLanguage');
+  //     const params = {
+  //       multilanguageData: multilanguageData,
+  //       selectedLanguage: storedLang ? storedLang : 'en',
+  //     };
+  //     dispatch(SelectedLangData(params) as any);
+  //   }
+  // };
+  // useEffect(() => {
+  //   if (componentsList?.length === 0) {
+  //     callComponentsAPIToGetListOfComponents();
+  //   }
+  //   if (true) {
+  //     callMultiLingualDataToFetchDynamicTexts();
+  //   }
+  // }, []);
+  return <></>;
 };
 
 export default StoreDataProvider;
