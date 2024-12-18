@@ -16,7 +16,7 @@ function ProductGridView({
 }: any) {
   return (
     <div className="row">
-      <div className="col-12 col-md-2 px-sm-3 web-filter d-none d-sm-block ">
+      <div className="col-12 col-md-2  web-filter d-none d-sm-block ">
         <WebFilter />
       </div>
       <div className="container-md col-md-10">
