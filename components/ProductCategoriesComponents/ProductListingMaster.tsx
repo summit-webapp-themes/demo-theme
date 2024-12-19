@@ -14,8 +14,9 @@ const FilterModal = dynamic(() => import('./FilterView/FilterModal'));
 const SortbyModal = dynamic(() => import('./HorizantalFilter/SortbyModal'));
 const AddToCatalogModal = dynamic(() => import('../Catalog/AddToCatalogModal'));
 import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
-import ProductGridView from './ProductListingView/ProductGridView';
+import ProductGridView from './ProductGridView/ProductGridView';
 import ProductListingWithLeftFilterDrawer from './ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawer';
+import ProductListView from './ProductListView/ProductListView';
 
 function ProductListingMaster() {
   const {
@@ -84,6 +85,7 @@ function ProductListingMaster() {
 
         <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
           <ProductGridView
+            // <ProductListView
             productListingData={productListingData}
             handlePaginationBtn={handlePaginationBtn}
             productListTotalCount={productListTotalCount}
