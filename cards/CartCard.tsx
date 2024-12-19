@@ -41,7 +41,7 @@ const CartCard = ({
   const handleProductView = () => {
     router.push('/');
   };
-  console.log(orderData, 'data111');
+
   return (
     <div className={`${styles.cart_card} mb-3 m-xl-0 w-100`}>
       <div className="row py-xl-3 px-xl-2 ">
@@ -68,9 +68,9 @@ const CartCard = ({
                   </p>
                 ))}
               <div>
-                <span className={`${styles.cart_action_icons} pe-2`}>
+                {/* <span className={`${styles.cart_action_icons} pe-2`}>
                   <GrView />
-                </span>
+                </span> */}
                 <span className={`${styles.cart_action_icons} pe-2`} onClick={() => handleRemoveItem(orderData?.item_code)}>
                   <RiDeleteBinLine />
                 </span>
