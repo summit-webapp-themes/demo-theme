@@ -106,4 +106,10 @@
 .place_order_btn:disabled {
   background-color: #057586e1;
   color: #fff;
+  border: 1px solid #057586e1;
+}
+.place_order_btn:hover {
+  background-color: #53bfcf;
+  color: #fff;
+  border: 1px solid #53bfcf;
 }
