@@ -84,8 +84,8 @@ function ProductListingMaster() {
         </div>
 
         <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
-          <ProductGridView
-            // <ProductListView
+          {/* <ProductGridView */}
+          <ProductListView
             productListingData={productListingData}
             handlePaginationBtn={handlePaginationBtn}
             productListTotalCount={productListTotalCount}

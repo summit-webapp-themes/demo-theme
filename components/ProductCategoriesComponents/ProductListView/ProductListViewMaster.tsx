@@ -37,10 +37,10 @@ function ProductListViewMaster({
     if (productListingData?.length > 0) {
       return (
         <>
-          <div className="">
+          <div className="border">
             {productListingData?.map((data: any, i: any) => {
               return (
-                <div key={innerHeight * i} className="border">
+                <div key={innerHeight * i} className="border-bottom">
                   <ProductListViewCardVariantColour
                     data={data}
                     addToCartItem={addToCartItem}
