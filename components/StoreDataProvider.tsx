@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { componentsListFromReduxStore, createComponentsList } from '../store/slices/general_slices/components-slice';
 import { SelectedFilterLangDataFromStore, SelectedLangData } from '../store/slices/general_slices/selected-multilanguage-slice';
 import { CONSTANTS } from '../services/config/app-config';
-import getHomePageComponentsList from '../services/api/home-page-apis/get-home-page-components';
+import getHomePageComponentsList from '../services/api/home-page-apis/get-components-list';
 import getMultiLingualTextFromAPI from '../services/api/general-apis/multilanguage-api';
 import { setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
 

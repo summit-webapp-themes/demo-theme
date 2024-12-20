@@ -1,4 +1,3 @@
-import React from 'react';
 import useProductListPageHandlers from '../../../hooks/ProductListPageHooks/useProductListPageHandlers';
 import BreadCrumbs from '../../BreadCrumbs';
 import HorizantalFilterMaster from '../HorizantalFilter/HorizantalFilterMaster';
@@ -13,7 +12,7 @@ const ProductListHeaderWithBreadcrumbsAndSortByDropdown = () => {
         </div>
       </div>
       <div className="col-12 col-sm-6  d-flex justify-content-start justify-content-sm-end ">
-        <HorizantalFilterMaster sortBy={sortBy} handleSortBy={handleSortBy} />
+        <HorizantalFilterMaster />
       </div>
     </div>
   );

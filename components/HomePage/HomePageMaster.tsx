@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux';
 import { componentsListFromReduxStore } from '../../store/slices/general_slices/components-slice';
 import { ComponentTypes } from '../../interfaces/components-types';
-import getHomePageComponentsList from '../../services/api/home-page-apis/get-home-page-components';
+import getHomePageComponentsList from '../../services/api/home-page-apis/get-components-list';
 import { CONSTANTS } from '../../services/config/app-config';
 import { InferGetStaticPropsType } from 'next';
+import flattenComponentsList from '../../utils/handle-components-list';
 
 const HomePageMaster = ({ homePageComponents }: any) => {
-  const componentsListFlattenArray = homePageComponents[0].component_list?.length > 0 ? homePageComponents[0].component_list?.flat() : [];
+  const componentsListFlattenArray = flattenComponentsList(homePageComponents);
   if (homePageComponents?.length === 0) {
     return <p>No components to display for the home page.</p>;
   }

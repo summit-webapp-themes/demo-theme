@@ -5,27 +5,13 @@ import MetaTag from '../services/api/general-apis/meta-tag-api';
 import useGoogleAnalyticsOperationsHandler from '../hooks/GoogleAnalytics/useGoogleAnalyticsOperationsHandler';
 import PageMetaData from '../components/PageMetaData';
 import HomePageMaster from '../components/HomePage/HomePageMaster';
-import getHomePageComponentsList from '../services/api/home-page-apis/get-home-page-components';
+import getComponentsList from '../services/api/home-page-apis/get-components-list';
 import { ComponentTypes } from '../interfaces/components-types';
 
-const Home = ({ homePageComponents }: any) => {
-  console.log('homePage', homePageComponents);
-  const dispatch = useDispatch();
-  const { sendPageViewToGA } = useGoogleAnalyticsOperationsHandler();
-  useEffect(() => {
-    sendPageViewToGA(window.location.pathname + window.location.search, 'Home Page');
-  }, []);
-  return (
-    <>
-      {/* {CONSTANTS.ENABLE_META_TAGS && <PageMetaData meta_data={fetchedDataFromServer?.metaTagsData} />} */}
-      <HomePageMaster homePageComponents={homePageComponents} />
-    </>
-  );
-};
 export const getStaticProps = async () => {
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
   let componentsList: any;
-  let fetchComponentsList: any = await getHomePageComponentsList(SUMMIT_APP_CONFIG);
+  let fetchComponentsList: any = await getComponentsList(SUMMIT_APP_CONFIG);
   if (
     fetchComponentsList?.status === 200 &&
     fetchComponentsList?.data?.message?.msg === 'success' &&
@@ -43,6 +29,20 @@ export const getStaticProps = async () => {
       homePageComponents: filteredHomePageComponentsFromAllComponentsList || [],
     },
   };
+};
+const Home = ({ homePageComponents }: any) => {
+  console.log('homePage', homePageComponents);
+  const dispatch = useDispatch();
+  const { sendPageViewToGA } = useGoogleAnalyticsOperationsHandler();
+  useEffect(() => {
+    sendPageViewToGA(window.location.pathname + window.location.search, 'Home Page');
+  }, []);
+  return (
+    <>
+      {/* {CONSTANTS.ENABLE_META_TAGS && <PageMetaData meta_data={fetchedDataFromServer?.metaTagsData} />} */}
+      <HomePageMaster homePageComponents={homePageComponents} />
+    </>
+  );
 };
 // export async function getServerSideProps(context: any) {
 //   const { SUMMIT_APP_CONFIG } = CONSTANTS;

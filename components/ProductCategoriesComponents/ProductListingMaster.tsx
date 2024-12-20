@@ -17,8 +17,11 @@ import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
 import ProductGridView from './ProductListingView/ProductGridView';
 import ProductListingWithLeftFilterDrawer from './ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawer';
 import LayoutRenderer from './ProductListPageLayout/LayoutRenderer';
+import ProductListHeaderWithBreadcrumbsAndSortByDropdown from './ProductListHeader/ProductListHeaderWithBreadcrumbsAndSortByDropdown';
+import { ComponentsListTypes } from '../../interfaces/components-types';
+import flattenComponentsList from '../../utils/handle-components-list';
 
-function ProductListingMaster() {
+function ProductListingMaster({ componentsList }: any) {
   const {
     productListingData,
     productListTotalCount,
@@ -32,6 +35,21 @@ function ProductListingMaster() {
     sortBy,
     handleSortBy,
   } = useProductListing();
+
+  const layoutProps = {
+    productListingData,
+    productListTotalCount,
+    toggleProductListView,
+    handleToggleProductsListingView,
+    handleLoadMore,
+    handlePaginationBtn,
+    query,
+    isLoading,
+    errorMessage,
+    sortBy,
+    handleSortBy,
+  };
+  console.log('componentsList', componentsList);
   const wishlistData = useSelector(selectWishlist).items;
   const cartData = useSelector(selectCart).items;
   const isSuperAdmin = localStorage.getItem('isSuperAdmin');
@@ -69,49 +87,62 @@ function ProductListingMaster() {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore]);
+
+  const componentsListFlattenArray = flattenComponentsList(componentsList);
+  const getLayoutComponentsList =
+    componentsList[0]?.layout && componentsList[0]?.layout_component_list?.length > 0
+      ? componentsList[0]?.layout_component_list?.flat()
+      : [];
+
+  function renderProductListPageHeaderComponents() {
+    if (componentsListFlattenArray?.length === 0) return <p>No header components to display.</p>;
+
+    if (componentsListFlattenArray?.length > 0) {
+      console.log('componentsListFlattenArray', componentsListFlattenArray);
+      return componentsListFlattenArray?.map((componentName: any) => {
+        const Component = require(`./${componentName.section_name}/${componentName?.component_name}/MasterComponent`).default;
+        return (
+          <section className="listing-page position-realtive">
+            <Component key={componentName?.component_name} />;
+          </section>
+        );
+      });
+    }
+  }
+
+  function renderProductListPageLayoutComponents() {
+    if (getLayoutComponentsList?.length === 0) return <p>No layout components to display.</p>;
+
+    if (getLayoutComponentsList?.length > 0) {
+      console.log('getLayoutComponentsList', getLayoutComponentsList);
+      return (
+        <div className="container-fluid">
+          <LayoutRenderer
+            layoutName={componentsList[0]?.layout}
+            layoutComponents={componentsList[0]?.layout_component_list}
+            {...layoutProps}
+          />
+        </div>
+      );
+    }
+  }
+  if (componentsList?.length === 0) {
+    return <p> No components to display product list page.</p>;
+  }
   return (
     <>
-      <section className="listing-page position-realtive">
-        <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
-          <LayoutRenderer />
-          <ProductGridView
-            productListingData={productListingData}
-            handlePaginationBtn={handlePaginationBtn}
-            productListTotalCount={productListTotalCount}
-            pageOffset={pageOffset}
-            handlePageClick={handlePageClick}
-            isLoading={isLoading}
-            wishlistData={wishlistData}
-            isSuperAdmin={isSuperAdmin}
-            handleShowCatalogModal={handleShowCatalogModal}
-            handleDeleteCatalogItem={handleDeleteCatalogItem}
-            cartData={cartData}
-          />
-          {/* <ProductListingWithLeftFilterDrawer
-            productListingData={productListingData}
-            handlePaginationBtn={handlePaginationBtn}
-            productListTotalCount={productListTotalCount}
-            pageOffset={pageOffset}
-            handlePageClick={handlePageClick}
-            isLoading={isLoading}
-            wishlistData={wishlistData}
-            isSuperAdmin={isSuperAdmin}
-            handleShowCatalogModal={handleShowCatalogModal}
-            handleDeleteCatalogItem={handleDeleteCatalogItem}
-            cartData={cartData}
-          /> */}
-        </div>
-        <div className="sticky_filter_btn w-100  d-block d-sm-none">
-          <div className="row">
-            <div className="col-6 p-0 border">
-              <FloatingFilterBtn handleShow={handleShowFilterModal} selectedMultiLangData={selectedMultiLangData} />
-            </div>
-            <div className="col-6 p-0 border">
-              <FloatingSortbyBtn handleShow={handleShowSortbyModal} selectedMultiLangData={selectedMultiLangData} />
-            </div>
+      {renderProductListPageHeaderComponents()}
+      {renderProductListPageLayoutComponents()}
+      <div className="sticky_filter_btn w-100  d-block d-sm-none">
+        <div className="row">
+          <div className="col-6 p-0 border">
+            <FloatingFilterBtn handleShow={handleShowFilterModal} selectedMultiLangData={selectedMultiLangData} />
+          </div>
+          <div className="col-6 p-0 border">
+            <FloatingSortbyBtn handleShow={handleShowSortbyModal} selectedMultiLangData={selectedMultiLangData} />
           </div>
         </div>
-      </section>
+      </div>
       <FilterModal show={showFilterModal} handleClose={handleCloseFilterModal} title={selectedMultiLangData?.filter} />
       <SortbyModal show={showSortbyModal} handleClose={handleCloseSortbyModal} sortBy={sortBy} handleSortBy={handleSortBy} />
       <AddToCatalogModal

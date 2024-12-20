@@ -3,31 +3,16 @@ const DefaultLayout = dynamic(() => import('./DefaultLayout'));
 const CollapsibleLayout = dynamic(() => import('./CollapsibleLayout'));
 const TopFiltersLayout = dynamic(() => import('./TopFiltersLayout'));
 
-const LayoutRenderer = ({
-  ComponentsList,
-  isLoading,
-  productListingData,
-  handlePaginationBtn,
-  pageOffset,
-  handlePageClick,
-  productListTotalCount,
-  wishlistData,
-  isSuperAdmin,
-  handleShowCatalogModal,
-  handleDeleteCatalogItem,
-  cartData,
-}: any) => {
+const LayoutRenderer = (props: any) => {
+  console.log('props', props);
   const renderLayouts = () => {
-    switch (ComponentsList?.layout) {
+    switch (props.layoutName) {
       case 'DefaultLayout':
-        return <DefaultLayout />;
+        return <DefaultLayout layoutComponents={props.layoutComponents} {...props} />;
       case 'CollapsibleLayout':
         return <CollapsibleLayout />;
       case 'TopFiltersLayout':
         return <TopFiltersLayout />;
-
-      default:
-        break;
     }
   };
   return <>{renderLayouts()}</>;
