@@ -204,7 +204,7 @@ function ProductDetailDescribtionSection({
         </div>
         <div className="my-1">
           <label htmlFor="pincode" className="">
-            Enter Your Pincode Below To Check the Delievry
+            Enter Your Pincode Below To Check the Delivery
           </label>
           <input className="d-block form-control w-50" id="pincode" defaultValue={pinCode} placeholder="Enter the Pincode" />
         </div>
