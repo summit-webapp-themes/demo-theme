@@ -1,4 +1,4 @@
-import WebFilter from '../FilterView/WebFilter';
+import WebFilter from '../FilterComponents/WebFilter';
 
 const GenericFilters = () => {
   return (
