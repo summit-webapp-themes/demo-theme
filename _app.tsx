@@ -35,7 +35,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className={nunito.className}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <StoreDataProvider />
           <ErrorBoundary>
             <Layout>
               <ToastContainer
@@ -58,7 +57,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               )}
             </Layout>
           </ErrorBoundary>
-          {/* </StoreDataProvider> */}
         </PersistGate>
       </Provider>
     </div>
