@@ -4,7 +4,7 @@ import ProductCardSkeleton from '../../../../cards/ProductCardSkeleton';
 
 const FeaturedCollectionWithVariantColourLoading = () => {
   return (
-    <>
+    <div className="custom-container-xl">
       {[...Array(3)].map((_, index) => (
         <div className="row" key={index}>
           <Placeholder as={Card.Text} animation="glow">
@@ -17,7 +17,7 @@ const FeaturedCollectionWithVariantColourLoading = () => {
           ))}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 export default FeaturedCollectionWithVariantColourLoading;

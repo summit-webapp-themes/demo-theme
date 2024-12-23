@@ -45,7 +45,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({ sortBy, handleSortBy })
   };
 
   return (
-    <div className={`${styles.container}`} ref={dropdownRef}>
+    <div className={`${styles.container} p-0`} ref={dropdownRef}>
       <div className={`${styles.input} ${styles.sortBySelect}`} onClick={() => setIsOpen(!isOpen)}>
         <div className={styles.selectedOption}>{selectedOption ? optionLabels[selectedOption] : 'Sort By'}</div>
         <span className={styles.arrow}>{isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>

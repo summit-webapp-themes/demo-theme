@@ -22,7 +22,7 @@ const FeaturedCollectionWithVariantColourCardContainer = ({
   wishlistData,
 }: featuredCardContainerPropsTypes) => {
   return (
-    <div className="container slider-container p-0 px-4 ">
+    <div className="custom-container-xl slider-container p-0 px-4 ">
       {allTagsData?.length > 0 &&
         allTagsData.map((item: FeaturedCollectionTypes, i: number) => (
           <div key={i} className="mb-3 mt-5 pt-md-3">

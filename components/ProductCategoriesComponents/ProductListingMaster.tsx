@@ -70,15 +70,17 @@ function ProductListingMaster() {
   }, [SelectedLangDataFromStore]);
   return (
     <>
-      <section className="listing-page position-realtive">
-        <div className="row ps-lg-5 pe-lg-4 px-md-3 px-3 ">
-          <div className="col-12 col-sm-6  ">
-            <div className="list-toggle-rtl">
-              <BreadCrumbs />
+      <section className="listing-page position-realtive ">
+        <div className="w-100 ps-lg-5 pe-lg-4 px-md-3 px-3">
+          <div className="row  w-100 ">
+            <div className="col-12 col-sm-6  ">
+              <div className="list-toggle-rtl">
+                <BreadCrumbs />
+              </div>
             </div>
-          </div>
-          <div className="col-12 col-sm-6  d-flex justify-content-start justify-content-sm-end ">
-            <HorizantalFilterMaster sortBy={sortBy} handleSortBy={handleSortBy} />
+            <div className="col-12 col-sm-6 p-0 d-flex justify-content-start justify-content-sm-end ">
+              <HorizantalFilterMaster sortBy={sortBy} handleSortBy={handleSortBy} />
+            </div>
           </div>
         </div>
 
