@@ -3,7 +3,7 @@ import FilterLoadingLayout from '../../FilterComponents/FilterLoadingLayout';
 import FilterColour from '../../FilterComponents/ColorSectionUI';
 
 function WebFilter() {
-  const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters } = useProductListingFilterHook();
+  const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters, clearFilters } = useProductListingFilterHook();
 
   const renderFilters: any = () => {
     if (isLoading) {
@@ -37,7 +37,7 @@ function WebFilter() {
         }
         // Render default accordion for other filters
         return (
-          <div key={index} className="pt-3">
+          <div key={index}>
             <div className="filter-name">{filter?.section}</div>
             <div className="horizontal-line"></div>
             <div className="filter-scrollable">
@@ -66,8 +66,15 @@ function WebFilter() {
   };
 
   return (
-    <div className="filter_section">
+    <div className="filter_section pt-3">
       <div className="filter_block">
+        {selectedFilters?.length > 0 && (
+          <div className="text-start pb-3">
+            <button className="btn btn-link text-uppercase text-decoration-none fs-14 p-0" onClick={clearFilters}>
+              Clear filters
+            </button>
+          </div>
+        )}
         <div className="accordion accordion_custom" id="myAccordion">
           {renderFilters()}
         </div>
