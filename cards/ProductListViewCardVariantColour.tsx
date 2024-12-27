@@ -45,7 +45,6 @@ const ProductListViewCardVariantColour = ({
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
-  const [url, setUrl] = useState();
 
   const [selectedItem, setSelectedItem] = useState<VariantTypes>({});
 
