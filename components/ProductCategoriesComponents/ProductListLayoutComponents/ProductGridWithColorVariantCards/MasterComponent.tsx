@@ -23,7 +23,7 @@ function ProductlistingGridViewMaster({
     if (isLoading) {
       return (
         <div className="row">
-          {[...Array(10)].map((_, index) => (
+          {[...Array(20)].map((_, index) => (
             <div key={index} className="col-6 col-md-4 col-lg-3 gap-2 p-0 p-md-2 text-center mb-4">
               <ProductCardSkeleton />
             </div>
@@ -39,16 +39,6 @@ function ProductlistingGridViewMaster({
             {productListingData?.map((data: any, i: any) => {
               return (
                 <div key={innerHeight * i} className="col-6 col-md-4 col-lg-3 gap-2 px-2 p-md-2 text-start mb-3 mb-md-0 ">
-                  {/* <ProductCard
-                  data={data}
-                  addToCartItem={addToCartItem}
-                  getPartyName={getPartyName}
-                  wishlistData={wishlistData}
-                  isSuperAdmin={isSuperAdmin}
-                  handleDeleteCatalogItem={handleDeleteCatalogItem}
-                  handleShowCatalogModal={handleShowCatalogModal}
-                  cartData={cartData}
-                /> */}
                   <ProductCardVariantColour
                     data={data}
                     addToCartItem={addToCartItem}

@@ -9,6 +9,10 @@
 // importing Masonry carousel banner
 @import 'components/MasonryCarouselLayout.module.scss';
 
+input[type='text'] {
+  box-shadow: none !important;
+}
+
 // common font sizes
 .fs-12 {
   font-size: 12px;

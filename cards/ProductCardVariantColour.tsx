@@ -12,6 +12,7 @@ import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
+import Link from 'next/link';
 
 interface ProductCardVariantPropsTypes {
   data: any;
@@ -52,11 +53,10 @@ const ProductCardVariantColour = ({
   const handleRedirectToProductDetailPage = () => {
     if (selectedItem?.slug) {
       const splitedUrl = data?.url?.split('/');
-      const removedSlug = splitedUrl?.pop();
-      router?.push(`${splitedUrl?.join('/')}/${selectedItem?.slug}`);
-    } else {
-      router?.push(data?.url);
+      splitedUrl?.pop(); // Remove last segment (slug)
+      return `${splitedUrl?.join('/')}/${selectedItem?.slug}`;
     }
+    return data?.url;
   };
 
   const handleSelectVariant = (colour: string) => {
@@ -254,11 +254,11 @@ const ProductCardVariantColour = ({
           {handleRenderIcon()}
         </div>
       </Card>
-      <div className="mt-3 cursor-pointer" onClick={() => handleRedirectToProductDetailPage()}>
-        <h6 className={styles.tabProductTitle}>
+      <Link href={handleRedirectToProductDetailPage()} className="cursor-pointer text-decoration-none text-black">
+        <h6 className={`${styles.tabProductTitle} mt-3`}>
           <strong>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</strong>
         </h6>
-      </div>
+      </Link>
       <div>
         <h6 className={styles.tabProductTitle}>
           <span className={styles.tabProductPrice}>₹{data?.price}</span>
