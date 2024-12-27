@@ -25,13 +25,13 @@ const FeaturedCollectionWithVariantColourCardContainer = ({
     <div className="custom-container-xl slider-container p-0 px-4 ">
       {allTagsData?.length > 0 &&
         allTagsData.map((item: FeaturedCollectionTypes, i: number) => (
-          <div key={i} className="mb-3 mt-5 pt-md-3">
+          <div key={i} className="mt-5 pt-md-3">
             <h3 className={`${style.featuredCollectionTitle} text-center m-0 mt-2`}>
               <span className={style.horizontal_line}></span>
               <span className="px-2"> {item?.tag_name}</span>
               <span className={style.horizontal_line}></span>
             </h3>
-            <h6 className="text-secondary text-center mb-4 px-2">{item?.description}</h6>
+            <h6 className="text-secondary text-center mb-2 px-2">{item?.description}</h6>
             {item.value.length > 0 && (
               <div className="slider-container p-0 ">
                 <div className="row">
