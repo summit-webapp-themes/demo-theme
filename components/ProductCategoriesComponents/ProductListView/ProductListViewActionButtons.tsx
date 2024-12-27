@@ -1,8 +1,9 @@
 import React, { ReactNode } from 'react';
 import styles from '../../../styles/components/productCardListView.module.scss';
+import Link from 'next/link';
 
 interface ProductListViewActionButtonsPropTypes {
-  handleRedirectToProductDetailPage: () => void;
+  handleRedirectToProductDetailPage: any;
   handleAddToProductData: () => void;
   handleRenderCartBtnText: () => ReactNode;
 }
@@ -13,9 +14,11 @@ const ProductListViewActionButtons = ({
 }: ProductListViewActionButtonsPropTypes) => {
   return (
     <div>
-      <button className={`${styles.quick_shop_btn} mb-2 w-100`} onClick={handleRedirectToProductDetailPage}>
-        <span>Quick View</span>
-      </button>
+      <Link href={handleRedirectToProductDetailPage()}>
+        <button className={`${styles.quick_shop_btn} mb-2 w-100`}>
+          <span>Quick View</span>
+        </button>
+      </Link>
       <button className={`${styles.add_to_cart_btn} w-100`} onClick={handleAddToProductData}>
         {handleRenderCartBtnText()}
       </button>
