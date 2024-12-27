@@ -11,11 +11,6 @@ import ProductActionButtonsMaster from './ProductActionButtons/ProductActionButt
 import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
 import ProductPageVariants from './ProductPageVariants';
 const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
-const MultipleQuantityInputField = dynamic(() => import('./MultipleQuantityInputField'));
-const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
-const ProductVariants = dynamic(() => import('./ProductVariants'));
-const QuantityInputField = dynamic(() => import('./QuantityInputField'));
-const StarRating = dynamic(() => import('./StarRating'));
 
 function ProductDetailDescribtionSection({
   productDetailData,

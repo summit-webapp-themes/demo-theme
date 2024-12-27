@@ -17,7 +17,7 @@ function ProductlistingGridViewMaster({
   handleDeleteCatalogItem,
   cartData,
 }: any) {
-  const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 12).toString(), 10) === pageOffset;
+  const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 20).toString(), 10) === pageOffset;
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const handleDataRendering = () => {
     if (isLoading) {
@@ -66,7 +66,7 @@ function ProductlistingGridViewMaster({
           <ReactPaginate
             previousLabel={'Prev'}
             nextLabel={'Next'}
-            pageCount={productListTotalCount / 12}
+            pageCount={Math.ceil(productListTotalCount / 20)}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
             containerClassName={`${paginationStyle.paginationBttns}`}
