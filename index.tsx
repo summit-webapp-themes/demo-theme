@@ -7,6 +7,19 @@ import PageMetaData from '../components/PageMetaData';
 import HomePageMaster from '../components/HomePage/HomePageMaster';
 import getComponentsList from '../services/api/home-page-apis/get-components-list';
 import { ComponentTypes } from '../interfaces/components-types';
+import getBannerAPI from '../services/api/home-page-apis/banner-api';
+
+type BannerDataTypes = {
+  img: string;
+  button_1_title?: string;
+  sequence: string;
+  button_1_url?: string;
+  heading?: string;
+};
+
+type BannerArrayTypes = {
+  data: BannerDataTypes[];
+};
 
 export const getStaticProps = async () => {
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
@@ -18,21 +31,26 @@ export const getStaticProps = async () => {
     fetchComponentsList?.data?.message?.data?.length > 0
   ) {
     componentsList = fetchComponentsList?.data?.message?.data;
-    // dispatch(createComponentsList(fetchComponentsList?.data?.message?.data));
   }
   const filteredHomePageComponentsFromAllComponentsList: any = componentsList?.filter(
     (component: ComponentTypes) => component?.page_name === 'home-page'
   );
+  let bannerData: BannerArrayTypes;
+  let getBannerImgs: any = await getBannerAPI(SUMMIT_APP_CONFIG, undefined);
+  if (getBannerImgs?.status === 200 && getBannerImgs?.data?.msg === 'success') {
+    bannerData = { data: getBannerImgs?.data?.data };
+  } else {
+    bannerData = { data: [] };
+  }
 
   return {
     props: {
       homePageComponents: filteredHomePageComponentsFromAllComponentsList || [],
+      bannerData: bannerData || { data: [] },
     },
   };
 };
-const Home = ({ homePageComponents }: any) => {
-  console.log('homePage', homePageComponents);
-  const dispatch = useDispatch();
+const Home = ({ homePageComponents, bannerData }: any) => {
   const { sendPageViewToGA } = useGoogleAnalyticsOperationsHandler();
   useEffect(() => {
     sendPageViewToGA(window.location.pathname + window.location.search, 'Home Page');
@@ -40,7 +58,7 @@ const Home = ({ homePageComponents }: any) => {
   return (
     <>
       {/* {CONSTANTS.ENABLE_META_TAGS && <PageMetaData meta_data={fetchedDataFromServer?.metaTagsData} />} */}
-      <HomePageMaster homePageComponents={homePageComponents} />
+      <HomePageMaster homePageComponents={homePageComponents} bannerData={bannerData} />
     </>
   );
 };

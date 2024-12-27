@@ -1,5 +1,4 @@
 import useProductListingFilterHook from '../../../../hooks/ProductListPageHooks/useProductListFilterHook';
-import { Accordion } from 'react-bootstrap';
 import FilterLoadingLayout from '../../FilterComponents/FilterLoadingLayout';
 import FilterColour from '../../FilterComponents/ColorSectionUI';
 
