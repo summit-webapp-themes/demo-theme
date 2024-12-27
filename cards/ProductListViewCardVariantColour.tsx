@@ -45,17 +45,17 @@ const ProductListViewCardVariantColour = ({
   const router = useRouter();
   const { handleAddToWishList, handleRemoveFromWishList } = useAddToWishlist();
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
+  const [url, setUrl] = useState();
 
   const [selectedItem, setSelectedItem] = useState<VariantTypes>({});
 
   const handleRedirectToProductDetailPage = () => {
     if (selectedItem?.slug) {
       const splitedUrl = data?.url?.split('/');
-      const removedSlug = splitedUrl?.pop();
-      router?.push(`${splitedUrl?.join('/')}/${selectedItem?.slug}`);
-    } else {
-      router?.push(data?.url);
+      splitedUrl?.pop(); // Remove last segment (slug)
+      return `${splitedUrl?.join('/')}/${selectedItem?.slug}`;
     }
+    return data?.url;
   };
 
   const handleSelectVariant = (colour: string) => {

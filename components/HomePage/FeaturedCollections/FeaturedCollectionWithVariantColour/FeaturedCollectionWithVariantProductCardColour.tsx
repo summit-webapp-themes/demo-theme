@@ -1,8 +1,9 @@
+import Link from 'next/link';
 import styles from '../../../../styles/components/variantProductCards.module.scss';
 
 interface ProductPropsTypes {
   data: any;
-  handleRedirectToProductDetailPage: () => void;
+  handleRedirectToProductDetailPage: any;
   handleSelectVariant: (variant: any) => void;
   selectedItem: any;
 }
@@ -27,17 +28,17 @@ const FeaturedCollectionWithVariantProductCardColour = ({
     <>
       <div className="d-flex">
         {colourAttribute?.hex_value?.map((colour: string, index: number) => (
-          <div
+          <Link
+            href={handleRedirectToProductDetailPage()}
             key={index}
             className={`${styles.tabProductColor} ${
               selectedItem?.colour_attr_colour === colour ? styles?.borderActive : styles?.borderInactive
             }`}
             style={{ backgroundColor: colour }}
-            onClick={() => handleRedirectToProductDetailPage()}
             onMouseEnter={() => handleSelectVariant(colour)}
           >
             {colour}
-          </div>
+          </Link>
         ))}
       </div>
     </>
