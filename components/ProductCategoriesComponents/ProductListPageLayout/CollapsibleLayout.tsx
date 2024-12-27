@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Offcanvas, Button } from 'react-bootstrap';
 import WebFilter from '../FilterComponents/WebFilter';
-import ProductListingWithLeftFilterDrawerMaster from './ProductListingWithLeftFilterDrawerMaster';
+import ProductListingWithLeftFilterDrawerMaster from '../ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawerMaster';
 import { IoFilter, IoFunnel } from 'react-icons/io5';
-import LeftWebFilter from './LeftWebFilter';
+import LeftWebFilter from '../ProductListingViewWithLeftFilterDrawer/LeftWebFilter';
 
-function ProductListingWithLeftFilterDrawer({
+function CollapsibleLayout({
   isLoading,
   productListingData,
   handlePaginationBtn,
@@ -66,4 +66,4 @@ function ProductListingWithLeftFilterDrawer({
   );
 }
 
-export default ProductListingWithLeftFilterDrawer;
+export default CollapsibleLayout;

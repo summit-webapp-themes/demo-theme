@@ -100,15 +100,6 @@ function ProductDetailDescribtionSection({
     <>
       <div className="">
         <ProductDetailHeadingWithDescription productDetailData={productDetailData} />
-        {/* <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
-        <div className="">{productDetailData?.rating && <StarRating rating={productDetailData?.rating} />}</div>
-        <p className="mb-0">
-          {selectedMultiLangData?.item_code}: {productDetailData?.name}
-        </p>
-        <div>
-          <span className={`text-dark  ${styles.price}`}>{`₹ ${productDetailData?.price}`}</span>
-          <del className={`text-dark ps-2 ${styles.price}`}>{`₹ ${productDetailData?.mrp_price}`}</del>
-        </div> */}
         {Array.isArray(productDetailData?.features)
           ? ''
           : productDetailData?.features &&
@@ -125,39 +116,11 @@ function ProductDetailDescribtionSection({
                 </ul>
               </div>
             )}
-
-        {/* <Link href="#" className={` ${styles.priceOnReq}`}>
-          {selectedMultiLangData?.price_on_request}
-        </Link> */}
-        {/* <p className={`text-uppercase m-0 ${styles.detailSection}`}>
-          {selectedMultiLangData?.brand} : <span> {productDetailData?.brand} </span>
-        </p>
-        <p className={`text-uppercase m-0 ${styles.detailSection}`}>
-          {selectedMultiLangData?.hsn_code} : <span> {productDetailData?.gst_hsn_code} </span>
-        </p> */}
       </div>
       <div>
-        {/* <ProductVariants productVariantData={productVariantData} /> */}
         <ProductPageVariants productVariantData={productVariantData} />
-        {/* <MultipleQuantityInputField
-          productVariantData={productVariantData}
-          handleMultipleQtyChange={handleMultipleQtyChange}
-          itemList={itemList}
-          selectedMultiLangData={selectedMultiLangData}
-        /> */}
       </div>
       <div>
-        {/* <p className={`my-1 ${styles.detailPriceSection}`}>
-          {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
-        </p> */}
-        {/* <QuantityInputField
-          productDetailData={productDetailData}
-          qty={qty}
-          handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
-          handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
-          selectedMultiLangData={selectedMultiLangData}
-        /> */}
-
         <ProductActionButtonsMaster
           qty={qty}
           handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
@@ -179,25 +142,6 @@ function ProductDetailDescribtionSection({
             </div>
           )}
         </div>
-        {/* {productDetailData?.min_order_qty > 0 && (
-          <p className="my-1 fs-14">
-            {selectedMultiLangData?.minimum_order_qty}:{' '}
-            <span className={productDetailData?.min_order_qty > qty ? 'text-danger' : 'text-success'}>
-              {productDetailData?.min_order_qty}
-            </span>
-          </p>
-        )}
-        <div>
-          {productVariantData?.length > 0
-            ? handleRenderBtnText(handleAddMultipleProductData)
-            : handleRenderBtnText(handleAddToSingleProductData)}
-          <CheckStockAvailabilityBtn
-            handleStockAvailabilityData={handleStockAvailabilityData}
-            selectedMultiLangData={selectedMultiLangData}
-            stockAvailabilityLoader={stockAvailabilityLoader}
-            setStockAvailabilityLoader={setStockAvailabilityLoader}
-          />
-        </div> */}
         {quantityAlert && (
           <Fade in={quantityAlert}>
             <div id="example-fade-text" className="text-danger">

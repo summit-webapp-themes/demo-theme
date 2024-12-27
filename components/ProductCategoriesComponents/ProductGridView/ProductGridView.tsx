@@ -1,4 +1,4 @@
-import WebFilter from '../FilterView/WebFilter';
+import WebFilter from '../FilterComponents/WebFilter';
 import ProductlistingGridViewMaster from './ProductlistingGridViewMaster';
 
 function ProductGridView({

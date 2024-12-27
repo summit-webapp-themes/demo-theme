@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { CONSTANTS } from '../../../../services/config/app-config';
-import { callGetAPI } from '../../../../utils/http-methods';
+import { CONSTANTS } from '../../../services/config/app-config';
+import { callGetAPI } from '../../../utils/http-methods';
 
 const FilterColour = ({ key, filter, handleFilterCheckFun, selectedFilters }: any) => {
   const [colorData, setColorData] = useState([]);

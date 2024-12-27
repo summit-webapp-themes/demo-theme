@@ -2,7 +2,7 @@ import React from 'react';
 import useProductListingFilterHook from '../../../hooks/ProductListPageHooks/useProductListFilterHook';
 import { Accordion } from 'react-bootstrap';
 import FilterLoadingLayout from './FilterLoadingLayout';
-import FilterColour from './GenericFilters/FilterColour';
+import FilterColour from './ColorSectionUI';
 
 function WebFilter() {
   const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters } = useProductListingFilterHook();

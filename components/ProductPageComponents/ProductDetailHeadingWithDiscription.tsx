@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../../styles/components/productPage.module.scss';
 import { Rating } from 'react-simple-star-rating';
 
