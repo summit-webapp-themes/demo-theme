@@ -7,18 +7,12 @@ import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { selectCatalogList } from '../../store/slices/catalog-slice/catalog-local-slice';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
-import BreadCrumbs from '../BreadCrumbs';
 const FloatingFilterBtn = dynamic(() => import('./FloatingBtns/FloatingFilterBtn'));
 const FloatingSortbyBtn = dynamic(() => import('./FloatingBtns/FloatingSortbyBtn'));
-const FilterModal = dynamic(() => import('./FilterView/FilterModal'));
+const FilterModal = dynamic(() => import('./FilterComponents/FilterModal'));
 const SortbyModal = dynamic(() => import('./HorizantalFilter/SortbyModal'));
 const AddToCatalogModal = dynamic(() => import('../Catalog/AddToCatalogModal'));
-import HorizantalFilterMaster from './HorizantalFilter/HorizantalFilterMaster';
-import ProductGridView from './ProductListingView/ProductGridView';
-import ProductListingWithLeftFilterDrawer from './ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawer';
 import LayoutRenderer from './ProductListPageLayout/LayoutRenderer';
-import ProductListHeaderWithBreadcrumbsAndSortByDropdown from './ProductListHeader/ProductListHeaderWithBreadcrumbsAndSortByDropdown';
-import { ComponentsListTypes } from '../../interfaces/components-types';
 import flattenComponentsList from '../../utils/handle-components-list';
 
 function ProductListingMaster({ componentsList }: any) {
@@ -36,20 +30,6 @@ function ProductListingMaster({ componentsList }: any) {
     handleSortBy,
   } = useProductListing();
 
-  const layoutProps = {
-    productListingData,
-    productListTotalCount,
-    toggleProductListView,
-    handleToggleProductsListingView,
-    handleLoadMore,
-    handlePaginationBtn,
-    query,
-    isLoading,
-    errorMessage,
-    sortBy,
-    handleSortBy,
-  };
-  console.log('componentsList', componentsList);
   const wishlistData = useSelector(selectWishlist).items;
   const cartData = useSelector(selectCart).items;
   const isSuperAdmin = localStorage.getItem('isSuperAdmin');
@@ -88,6 +68,23 @@ function ProductListingMaster({ componentsList }: any) {
     }
   }, [SelectedLangDataFromStore]);
 
+  const layoutProps = {
+    productListingData,
+    productListTotalCount,
+    toggleProductListView,
+    handleToggleProductsListingView,
+    handleLoadMore,
+    handlePaginationBtn,
+    query,
+    isLoading,
+    errorMessage,
+    sortBy,
+    handleSortBy,
+    wishlistData,
+    cartData,
+    isSuperAdmin,
+    pageOffset,
+  };
   const componentsListFlattenArray = flattenComponentsList(componentsList);
   const getLayoutComponentsList =
     componentsList[0]?.layout && componentsList[0]?.layout_component_list?.length > 0
@@ -98,7 +95,6 @@ function ProductListingMaster({ componentsList }: any) {
     if (componentsListFlattenArray?.length === 0) return <p>No header components to display.</p>;
 
     if (componentsListFlattenArray?.length > 0) {
-      console.log('componentsListFlattenArray', componentsListFlattenArray);
       return componentsListFlattenArray?.map((componentName: any) => {
         const Component = require(`./${componentName.section_name}/${componentName?.component_name}/MasterComponent`).default;
         return (
@@ -114,13 +110,12 @@ function ProductListingMaster({ componentsList }: any) {
     if (getLayoutComponentsList?.length === 0) return <p>No layout components to display.</p>;
 
     if (getLayoutComponentsList?.length > 0) {
-      console.log('getLayoutComponentsList', getLayoutComponentsList);
       return (
-        <div className="container-fluid">
+        <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
           <LayoutRenderer
             layoutName={componentsList[0]?.layout}
             layoutComponents={componentsList[0]?.layout_component_list}
-            {...layoutProps}
+            productsGridProps={layoutProps}
           />
         </div>
       );

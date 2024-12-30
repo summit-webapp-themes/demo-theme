@@ -1,5 +1,4 @@
 import ReactPaginate from 'react-paginate';
-import ProductCard from '../../../cards/ProductCard';
 import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import paginationStyle from '../../../styles/components/pagination.module.scss';
@@ -40,16 +39,6 @@ function ProductlistingGridViewMaster({
             {productListingData?.map((data: any, i: any) => {
               return (
                 <div key={innerHeight * i} className="col-6 col-md-4 col-lg-3 gap-2 px-2 p-md-2 text-start mb-3 mb-md-0 ">
-                  {/* <ProductCard
-                  data={data}
-                  addToCartItem={addToCartItem}
-                  getPartyName={getPartyName}
-                  wishlistData={wishlistData}
-                  isSuperAdmin={isSuperAdmin}
-                  handleDeleteCatalogItem={handleDeleteCatalogItem}
-                  handleShowCatalogModal={handleShowCatalogModal}
-                  cartData={cartData}
-                /> */}
                   <ProductCardVariantColour
                     data={data}
                     addToCartItem={addToCartItem}

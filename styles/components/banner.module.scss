@@ -22,9 +22,23 @@
 }
 .catagoryImg {
   width: 100%;
-  min-height: 600px;
+  max-height: 1500px;
   object-fit: cover;
   object-position: 45% 20%;
+}
+@media only screen and (max-width: 3000px) {
+  .catagoryImg {
+    min-height: 1000px !important;
+    object-fit: cover;
+    object-position: 45% 20%;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .catagoryImg {
+    min-height: 600px !important;
+    object-fit: cover;
+    object-position: 45% 20%;
+  }
 }
 
 @media only screen and (max-width: 1024px) {

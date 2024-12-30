@@ -1,18 +1,17 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { FaCheckCircle } from 'react-icons/fa';
-import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
-import { RxCross2 } from 'react-icons/rx';
+import { FaHeart, FaRegHeart } from 'react-icons/fa6';
+import { IoCartOutline } from 'react-icons/io5';
+import { RiDeleteBinLine } from 'react-icons/ri';
 import VariantProductCardsButton from '../components/ButtonComponent/VariantProductCardsButton';
 import FeaturedCollectionWithVariantProductCardColour from '../components/HomePage/FeaturedCollections/FeaturedCollectionWithVariantColour/FeaturedCollectionWithVariantProductCardColour';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
-import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
-import { IoCartOutline } from 'react-icons/io5';
 
 interface ProductCardVariantPropsTypes {
   data: any;
@@ -87,12 +86,12 @@ const ProductCardVariantColour = ({
       if (router?.asPath?.startsWith('/wishlist')) {
         return (
           <span className={` text-secondary `}>
-            <RxCross2 onClick={() => handleRemoveFromWishList(data?.name)} />
+            <RiDeleteBinLine onClick={() => handleRemoveFromWishList(data?.name)} />
           </span>
         );
       } else {
         return (
-          <span className={` text-danger `}>
+          <span className={` text-black `}>
             <FaHeart onClick={() => handleRemoveFromWishList(data?.name)} />
           </span>
         );

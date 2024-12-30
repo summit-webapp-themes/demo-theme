@@ -1,7 +1,7 @@
 import React from 'react';
 import useProductListingFilterHook from '../../../hooks/ProductListPageHooks/useProductListFilterHook';
 import { Accordion } from 'react-bootstrap';
-import FilterLoadingLayout from '../FilterView/FilterLoadingLayout';
+import FilterLoadingLayout from '../FilterComponents/FilterLoadingLayout';
 
 function LeftWebFilter() {
   const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters } = useProductListingFilterHook();

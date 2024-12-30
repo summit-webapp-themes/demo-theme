@@ -11,11 +11,9 @@ import useInitializeGoogleAnalytics from '../hooks/GoogleAnalytics/useInitialize
 import ErrorBoundary from '../components/ErrorBoundary';
 const Layout = dynamic(() => import('../components/Layout'));
 const ProtectedRoute = dynamic(() => import('../routes/ProtectedRoute'));
-import StoreDataProvider from '../components/StoreDataProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
-import getMultiLingualTextFromAPI from '../services/api/general-apis/multilanguage-api';
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -35,7 +33,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className={nunito.className}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <StoreDataProvider />
           <ErrorBoundary>
             <Layout>
               <ToastContainer
@@ -58,7 +55,6 @@ function MyApp({ Component, pageProps }: AppProps) {
               )}
             </Layout>
           </ErrorBoundary>
-          {/* </StoreDataProvider> */}
         </PersistGate>
       </Provider>
     </div>
