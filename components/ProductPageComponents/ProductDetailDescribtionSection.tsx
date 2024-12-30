@@ -74,7 +74,7 @@ function ProductDetailDescribtionSection({
   };
 
   let cartProducts: any;
-  const handleRenderBtnText = (handleData: any) => {
+  const handleRenderBtnText = () => {
     {
       cartData?.length > 0 &&
         cartData?.map((item: any) => {
@@ -84,15 +84,9 @@ function ProductDetailDescribtionSection({
         });
     }
     if (!cartProducts) {
-      return (
-        <AddToCartBtn handleAddToCart={handleData} selectedMultiLangData={selectedMultiLangData} addToCartLoaderBtn={addToCartLoaderBtn} />
-      );
+      return 'Add to cart';
     } else {
-      return (
-        <button className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.detail_page_btn}`} style={{ background: '#184f2f', color: '#fff' }}>
-          {addToCartLoaderBtn ? <FaCheckCircle className={`mb-1`} /> : <>Added to cart</>}
-        </button>
-      );
+      return 'Added';
     }
   };
 
@@ -127,6 +121,7 @@ function ProductDetailDescribtionSection({
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
           handleAddToSingleProductData={handleAddToSingleProductData}
           addToCartLoaderBtn={addToCartLoaderBtn}
+          handleRenderBtnText={handleRenderBtnText}
         />
         <div className="py-3">
           <div>
