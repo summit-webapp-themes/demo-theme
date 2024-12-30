@@ -3,11 +3,14 @@ import { CONSTANTS } from '../services/config/app-config';
 import { useDispatch } from 'react-redux';
 import MetaTag from '../services/api/general-apis/meta-tag-api';
 import useGoogleAnalyticsOperationsHandler from '../hooks/GoogleAnalytics/useGoogleAnalyticsOperationsHandler';
-import PageMetaData from '../components/PageMetaData';
 import HomePageMaster from '../components/HomePage/HomePageMaster';
-import getComponentsList from '../services/api/home-page-apis/get-components-list';
-import { ComponentTypes } from '../interfaces/components-types';
+import { setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
+import MultiLangApi from '../services/api/general-apis/multilanguage-api';
 import getBannerAPI from '../services/api/home-page-apis/banner-api';
+import getComponentsList from '../services/api/home-page-apis/get-components-list';
+import PageMetaData from '../components/PageMetaData';
+import { ComponentTypes } from '../interfaces/components-types';
+import TranslationsList from '../components/TranslationsList';
 
 type BannerDataTypes = {
   img: string;
@@ -42,23 +45,36 @@ export const getStaticProps = async () => {
   } else {
     bannerData = { data: [] };
   }
-
+  let translationsList: any;
+  let getMultilanguageData: any = await MultiLangApi(SUMMIT_APP_CONFIG);
+  if (getMultilanguageData?.length > 0) {
+    translationsList = getMultilanguageData;
+  } else {
+    translationsList = [];
+  }
   return {
     props: {
       homePageComponents: filteredHomePageComponentsFromAllComponentsList || [],
       bannerData: bannerData || { data: [] },
+      translationsList,
     },
   };
 };
-const Home = ({ homePageComponents, bannerData }: any) => {
+const Home = ({ homePageComponents, bannerData, translationsList }: any) => {
+  const dispatch = useDispatch();
   const { sendPageViewToGA } = useGoogleAnalyticsOperationsHandler();
   useEffect(() => {
     sendPageViewToGA(window.location.pathname + window.location.search, 'Home Page');
+    if (translationsList) {
+      dispatch(setMultiLingualData(translationsList));
+    }
   }, []);
   return (
     <>
-      {/* {CONSTANTS.ENABLE_META_TAGS && <PageMetaData meta_data={fetchedDataFromServer?.metaTagsData} />} */}
-      <HomePageMaster homePageComponents={homePageComponents} bannerData={bannerData} />
+      <TranslationsList>
+        {/* {CONSTANTS.ENABLE_META_TAGS && <PageMetaData meta_data={fetchedDataFromServer?.metaTagsData} />} */}
+        <HomePageMaster homePageComponents={homePageComponents} bannerData={bannerData} />
+      </TranslationsList>
     </>
   );
 };
