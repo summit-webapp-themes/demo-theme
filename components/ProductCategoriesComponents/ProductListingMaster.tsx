@@ -84,6 +84,7 @@ function ProductListingMaster({ componentsList }: any) {
     cartData,
     isSuperAdmin,
     pageOffset,
+    handlePageClick,
   };
   const componentsListFlattenArray = flattenComponentsList(componentsList);
   const getLayoutComponentsList =

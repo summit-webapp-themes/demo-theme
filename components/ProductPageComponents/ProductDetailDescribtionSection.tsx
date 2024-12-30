@@ -1,8 +1,7 @@
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { Fade } from 'react-bootstrap';
 import { BsTwitterX } from 'react-icons/bs';
-import { FaCheckCircle, FaShareAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
@@ -10,30 +9,22 @@ import styles from '../../styles/components/productDetail.module.scss';
 import ProductActionButtonsMaster from './ProductActionButtons/ProductActionButtonsMaster';
 import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
 import ProductPageVariants from './ProductPageVariants';
-const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
-const MultipleQuantityInputField = dynamic(() => import('./MultipleQuantityInputField'));
-const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
-const ProductVariants = dynamic(() => import('./ProductVariants'));
-const QuantityInputField = dynamic(() => import('./QuantityInputField'));
-const StarRating = dynamic(() => import('./StarRating'));
 
 function ProductDetailDescribtionSection({
   productDetailData,
   pinCode,
-  handleMultipleQtyChange,
-  itemList,
+  validPinCode,
+  getPincodesList,
+  checkPinCodeExists,
   qty,
   handleQtyModificationOnInputEdit,
   productVariantData,
-  handleStockAvailabilityData,
   handleQtyModificationOnButtonClick,
   selectedMultiLangData,
-  cartData,
 }: any) {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
-  const [stockAvailabilityLoader, setStockAvailabilityLoader] = useState(false);
   const handleAddToSingleProductData = async () => {
     if (qty < productDetailData?.min_order_qty) {
       setQuantityAlert(true);
@@ -54,45 +45,6 @@ function ProductDetailDescribtionSection({
       toast.error('Failed to add product to cart. Please try again.');
     } finally {
       setAddToCartLoaderBtn(false);
-    }
-  };
-
-  const handleAddMultipleProductData = async () => {
-    const addToCartParams = {
-      currency: 'INR',
-      item_list: itemList,
-      party_name: getPartyName,
-    };
-    setAddToCartLoaderBtn(true);
-    try {
-      await addToCartItem(addToCartParams, null);
-    } catch (error) {
-      toast.error('');
-    } finally {
-      setAddToCartLoaderBtn(false);
-    }
-  };
-
-  let cartProducts: any;
-  const handleRenderBtnText = (handleData: any) => {
-    {
-      cartData?.length > 0 &&
-        cartData?.map((item: any) => {
-          if (item === productDetailData?.name) {
-            cartProducts = item;
-          }
-        });
-    }
-    if (!cartProducts) {
-      return (
-        <AddToCartBtn handleAddToCart={handleData} selectedMultiLangData={selectedMultiLangData} addToCartLoaderBtn={addToCartLoaderBtn} />
-      );
-    } else {
-      return (
-        <button className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.detail_page_btn}`} style={{ background: '#184f2f', color: '#fff' }}>
-          {addToCartLoaderBtn ? <FaCheckCircle className={`mb-1`} /> : <>Added to cart</>}
-        </button>
-      );
     }
   };
 
@@ -176,7 +128,28 @@ function ProductDetailDescribtionSection({
           <label htmlFor="pincode" className="">
             Enter Your Pincode Below To Check the Delivery
           </label>
-          <input className="d-block form-control w-auto" id="pincode" defaultValue={pinCode} placeholder="Enter the Pincode" />
+          <input
+            type="text"
+            className="d-block form-control w-auto mt-1"
+            name="pincode"
+            id="pincode"
+            value={pinCode}
+            placeholder="Enter the Pincode"
+            autoComplete="off"
+            onFocus={() => getPincodesList()}
+            onChange={(e: any) => {
+              if (/[a-zA-Z]/.test(e.target.value)) {
+                return;
+              }
+              if (/[^a-zA-Z0-9]/.test(e.target.value)) {
+                return;
+              } else {
+                checkPinCodeExists(e.target.value);
+              }
+            }}
+          />
+          {pinCode && validPinCode && <p className="text-success mt-2">Pincode is valid for delivery</p>}
+          {pinCode && !validPinCode && <p className="text-danger mt-2">Pincode is not valid for delivery</p>}
         </div>
       </div>
     </>
