@@ -48,6 +48,39 @@ function ProductDetailDescribtionSection({
     }
   };
 
+  const handleAddMultipleProductData = async () => {
+    const addToCartParams = {
+      currency: 'INR',
+      item_list: itemList,
+      party_name: getPartyName,
+    };
+    setAddToCartLoaderBtn(true);
+    try {
+      await addToCartItem(addToCartParams, null);
+    } catch (error) {
+      toast.error('');
+    } finally {
+      setAddToCartLoaderBtn(false);
+    }
+  };
+
+  let cartProducts: any;
+  const handleRenderBtnText = () => {
+    {
+      cartData?.length > 0 &&
+        cartData?.map((item: any) => {
+          if (item === productDetailData?.name) {
+            cartProducts = item;
+          }
+        });
+    }
+    if (!cartProducts) {
+      return 'Add to cart';
+    } else {
+      return 'Added';
+    }
+  };
+
   return (
     <>
       <div className="">
@@ -79,6 +112,7 @@ function ProductDetailDescribtionSection({
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
           handleAddToSingleProductData={handleAddToSingleProductData}
           addToCartLoaderBtn={addToCartLoaderBtn}
+          handleRenderBtnText={handleRenderBtnText}
         />
         <div className="py-3">
           <div>
