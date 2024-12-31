@@ -17,6 +17,8 @@ function ProductDetailDescribtionSection({
   getPincodesList,
   checkPinCodeExists,
   qty,
+  itemList,
+  cartData,
   handleQtyModificationOnInputEdit,
   productVariantData,
   handleQtyModificationOnButtonClick,
