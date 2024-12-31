@@ -100,7 +100,7 @@ function ProductListingMaster({ componentsList }: any) {
         const Component = require(`./${componentName.section_name}/${componentName?.component_name}/MasterComponent`).default;
         return (
           <section className="listing-page position-realtive">
-            <Component key={componentName?.component_name} />;
+            <Component key={componentName?.component_name} />
           </section>
         );
       });

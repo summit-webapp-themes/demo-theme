@@ -4,6 +4,7 @@ import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import paginationStyle from '../../../styles/components/pagination.module.scss';
 import NoDataFound from '../../NoRecordFound';
 import ProductCardVariantColour from '../../../cards/ProductCardVariantColour';
+import { CONSTANTS } from '../../../services/config/app-config';
 
 function ProductlistingGridViewMaster({
   isLoading,
@@ -17,7 +18,9 @@ function ProductlistingGridViewMaster({
   handleDeleteCatalogItem,
   cartData,
 }: any) {
-  const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 12).toString(), 10) === pageOffset;
+  const { PRODUCT_COUNT_ON_PRODUCT_CATEGORY_PAGE } = CONSTANTS;
+  const isNextButtonDisabled: boolean =
+    parseInt((productListTotalCount / PRODUCT_COUNT_ON_PRODUCT_CATEGORY_PAGE).toString(), 10) === pageOffset;
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const handleDataRendering = () => {
     if (isLoading) {
@@ -56,7 +59,7 @@ function ProductlistingGridViewMaster({
           <ReactPaginate
             previousLabel={'Prev'}
             nextLabel={'Next'}
-            pageCount={productListTotalCount / 12}
+            pageCount={productListTotalCount / PRODUCT_COUNT_ON_PRODUCT_CATEGORY_PAGE}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
             containerClassName={`${paginationStyle.paginationBttns}`}
