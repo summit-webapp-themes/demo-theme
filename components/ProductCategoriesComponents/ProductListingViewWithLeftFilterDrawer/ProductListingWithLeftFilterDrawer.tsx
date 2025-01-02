@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Offcanvas, Button } from 'react-bootstrap';
-import WebFilter from '../FilterView/WebFilter';
+import WebFilter from '../FilterComponents/WebFilter';
 import ProductListingWithLeftFilterDrawerMaster from './ProductListingWithLeftFilterDrawerMaster';
 import { IoFilter, IoFunnel } from 'react-icons/io5';
 import LeftWebFilter from './LeftWebFilter';

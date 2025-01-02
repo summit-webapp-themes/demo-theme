@@ -41,21 +41,22 @@ const MatchingProductsWithVariantsCard = () => {
         </div>
       );
     }
-    if (matchingProducts.length > 0) {
+    if (matchingProducts?.length > 0) {
       return matchingProducts?.map((item: any, i: any) => (
         <div key={i} className="carousel-section">
           {item?.values?.length > 0 && <h3 className="mb-4 mt-5 text-center">{`${item.name} Products`}</h3>}
           <Carousel responsive={responsive}>
-            {item?.values?.map((val: any, j: any) => (
-              <div key={`${i}-${j}`} className="card-wrapper px-2 h-100">
-                <ProductCardVariantColour
-                  data={val}
-                  addToCartItem={addToCartItem}
-                  getPartyName={getPartyName}
-                  wishlistData={wishlistData}
-                />
-              </div>
-            ))}
+            {item?.values?.length > 0 &&
+              item?.values?.map((val: any, j: any) => (
+                <div key={`${i}-${j}`} className="card-wrapper px-2 h-100">
+                  <ProductCardVariantColour
+                    data={val}
+                    addToCartItem={addToCartItem}
+                    getPartyName={getPartyName}
+                    wishlistData={wishlistData}
+                  />
+                </div>
+              ))}
           </Carousel>
         </div>
       ));

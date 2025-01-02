@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { CONSTANTS } from '../../../../services/config/app-config';
-import { callGetAPI } from '../../../../utils/http-methods';
+import { CONSTANTS } from '../../../services/config/app-config';
+import { callGetAPI } from '../../../utils/http-methods';
 
 const FilterColour = ({ key, filter, handleFilterCheckFun, selectedFilters }: any) => {
   const [colorData, setColorData] = useState([]);
@@ -35,7 +35,7 @@ const FilterColour = ({ key, filter, handleFilterCheckFun, selectedFilters }: an
           >
             <div className={`tabProductColor ${isActive ? 'borderActive' : 'borderInactive'}`} style={{ backgroundColor: colour }}></div>
             {/* Render attribute_value if match is found, otherwise fallback to colour */}
-            <span className={`${isActive ? 'colorActive' : 'colorInactive'}`}>{matchingAttribute?.attribute_value || colour}</span>
+            <span className={`fs-14 ${isActive ? 'colorActive' : 'colorInactive'}`}>{matchingAttribute?.attribute_value || colour}</span>
           </div>
         );
       })}

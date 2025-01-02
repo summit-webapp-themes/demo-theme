@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
 import BreadCrumbs from '../BreadCrumbs';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
-import ProductDetailImageGallery from './ProductDetailImageGallery';
 import ProductDetailDescribtionSection from './ProductDetailDescribtionSection';
 const ReviewMaster = dynamic(() => import('../Reviews/ReviewMaster'));
 const MatchingProductsWithVariantsCard = dynamic(() => import('./MatchingProductWithVariantCard'));
@@ -29,8 +28,12 @@ function ProductPageMaster() {
     handleQtyModificationOnButtonClick,
     handleStockAvailabilityData,
     stockAvailabilityData,
+    userEnteredPinCode,
+    getPincodesList,
+    checkPinCodeExists,
+
+    validPinCode,
   } = useProductDetail();
-  const [pinCode, setPinCode] = useState('');
   const [tab, setTab] = useState('SPECIFICATION');
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const cartData = useSelector(selectCart).items;
@@ -62,7 +65,10 @@ function ProductPageMaster() {
           <div className="col-md-6 p-4">
             <ProductDetailDescribtionSection
               productDetailData={productDetailData}
-              pinCode={pinCode}
+              pinCode={userEnteredPinCode}
+              getPincodesList={getPincodesList}
+              checkPinCodeExists={checkPinCodeExists}
+              validPinCode={validPinCode}
               handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
               handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
               productVariantData={productVariantData}

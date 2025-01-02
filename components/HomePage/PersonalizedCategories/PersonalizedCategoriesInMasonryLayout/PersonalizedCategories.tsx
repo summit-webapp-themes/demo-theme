@@ -6,7 +6,7 @@ import { imageLoader } from '../../../../utils/image_loader';
 
 const PersonalizedCategories = ({ homeTopCategories }: any) => {
   return (
-    <div className="container-xl slider-container mt-2 ">
+    <div className="custom-container-xl px-4  mt-2 ">
       <div className="row mt-3">
         <div className={`col-12 col-md-6 pb-3 pb-md-0 ${style.masonryContainerImage}`}>
           <Link

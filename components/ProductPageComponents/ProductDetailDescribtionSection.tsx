@@ -1,8 +1,7 @@
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { Fade } from 'react-bootstrap';
 import { BsTwitterX } from 'react-icons/bs';
-import { FaCheckCircle, FaShareAlt, FaWhatsapp } from 'react-icons/fa';
+import { FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
@@ -10,30 +9,24 @@ import styles from '../../styles/components/productDetail.module.scss';
 import ProductActionButtonsMaster from './ProductActionButtons/ProductActionButtonsMaster';
 import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
 import ProductPageVariants from './ProductPageVariants';
-const AddToCartBtn = dynamic(() => import('./AddToCartBtn'));
-const MultipleQuantityInputField = dynamic(() => import('./MultipleQuantityInputField'));
-const CheckStockAvailabilityBtn = dynamic(() => import('./CheckStockAvailabilityBtn'));
-const ProductVariants = dynamic(() => import('./ProductVariants'));
-const QuantityInputField = dynamic(() => import('./QuantityInputField'));
-const StarRating = dynamic(() => import('./StarRating'));
 
 function ProductDetailDescribtionSection({
   productDetailData,
   pinCode,
-  handleMultipleQtyChange,
-  itemList,
+  validPinCode,
+  getPincodesList,
+  checkPinCodeExists,
   qty,
+  itemList,
+  cartData,
   handleQtyModificationOnInputEdit,
   productVariantData,
-  handleStockAvailabilityData,
   handleQtyModificationOnButtonClick,
   selectedMultiLangData,
-  cartData,
 }: any) {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const [quantityAlert, setQuantityAlert] = useState(false);
   const [addToCartLoaderBtn, setAddToCartLoaderBtn] = useState<boolean>(false);
-  const [stockAvailabilityLoader, setStockAvailabilityLoader] = useState(false);
   const handleAddToSingleProductData = async () => {
     if (qty < productDetailData?.min_order_qty) {
       setQuantityAlert(true);
@@ -74,7 +67,7 @@ function ProductDetailDescribtionSection({
   };
 
   let cartProducts: any;
-  const handleRenderBtnText = (handleData: any) => {
+  const handleRenderBtnText = () => {
     {
       cartData?.length > 0 &&
         cartData?.map((item: any) => {
@@ -84,15 +77,9 @@ function ProductDetailDescribtionSection({
         });
     }
     if (!cartProducts) {
-      return (
-        <AddToCartBtn handleAddToCart={handleData} selectedMultiLangData={selectedMultiLangData} addToCartLoaderBtn={addToCartLoaderBtn} />
-      );
+      return 'Add to cart';
     } else {
-      return (
-        <button className={`border-0 px-5 py-2 rounded-1 my-3 ${styles.detail_page_btn}`} style={{ background: '#184f2f', color: '#fff' }}>
-          {addToCartLoaderBtn ? <FaCheckCircle className={`mb-1`} /> : <>Added to cart</>}
-        </button>
-      );
+      return 'Added';
     }
   };
 
@@ -100,15 +87,6 @@ function ProductDetailDescribtionSection({
     <>
       <div className="">
         <ProductDetailHeadingWithDescription productDetailData={productDetailData} />
-        {/* <b className={`${styles.name}`}>{productDetailData?.item_name}</b>
-        <div className="">{productDetailData?.rating && <StarRating rating={productDetailData?.rating} />}</div>
-        <p className="mb-0">
-          {selectedMultiLangData?.item_code}: {productDetailData?.name}
-        </p>
-        <div>
-          <span className={`text-dark  ${styles.price}`}>{`₹ ${productDetailData?.price}`}</span>
-          <del className={`text-dark ps-2 ${styles.price}`}>{`₹ ${productDetailData?.mrp_price}`}</del>
-        </div> */}
         {Array.isArray(productDetailData?.features)
           ? ''
           : productDetailData?.features &&
@@ -125,45 +103,18 @@ function ProductDetailDescribtionSection({
                 </ul>
               </div>
             )}
-
-        {/* <Link href="#" className={` ${styles.priceOnReq}`}>
-          {selectedMultiLangData?.price_on_request}
-        </Link> */}
-        {/* <p className={`text-uppercase m-0 ${styles.detailSection}`}>
-          {selectedMultiLangData?.brand} : <span> {productDetailData?.brand} </span>
-        </p>
-        <p className={`text-uppercase m-0 ${styles.detailSection}`}>
-          {selectedMultiLangData?.hsn_code} : <span> {productDetailData?.gst_hsn_code} </span>
-        </p> */}
       </div>
       <div>
-        {/* <ProductVariants productVariantData={productVariantData} /> */}
         <ProductPageVariants productVariantData={productVariantData} />
-        {/* <MultipleQuantityInputField
-          productVariantData={productVariantData}
-          handleMultipleQtyChange={handleMultipleQtyChange}
-          itemList={itemList}
-          selectedMultiLangData={selectedMultiLangData}
-        /> */}
       </div>
       <div>
-        {/* <p className={`my-1 ${styles.detailPriceSection}`}>
-          {selectedMultiLangData?.sku_code} : <span>{productDetailData?.sku_code}</span>
-        </p> */}
-        {/* <QuantityInputField
-          productDetailData={productDetailData}
-          qty={qty}
-          handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
-          handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
-          selectedMultiLangData={selectedMultiLangData}
-        /> */}
-
         <ProductActionButtonsMaster
           qty={qty}
           handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
           handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
           handleAddToSingleProductData={handleAddToSingleProductData}
           addToCartLoaderBtn={addToCartLoaderBtn}
+          handleRenderBtnText={handleRenderBtnText}
         />
         <div className="py-3">
           <div>
@@ -179,25 +130,6 @@ function ProductDetailDescribtionSection({
             </div>
           )}
         </div>
-        {/* {productDetailData?.min_order_qty > 0 && (
-          <p className="my-1 fs-14">
-            {selectedMultiLangData?.minimum_order_qty}:{' '}
-            <span className={productDetailData?.min_order_qty > qty ? 'text-danger' : 'text-success'}>
-              {productDetailData?.min_order_qty}
-            </span>
-          </p>
-        )}
-        <div>
-          {productVariantData?.length > 0
-            ? handleRenderBtnText(handleAddMultipleProductData)
-            : handleRenderBtnText(handleAddToSingleProductData)}
-          <CheckStockAvailabilityBtn
-            handleStockAvailabilityData={handleStockAvailabilityData}
-            selectedMultiLangData={selectedMultiLangData}
-            stockAvailabilityLoader={stockAvailabilityLoader}
-            setStockAvailabilityLoader={setStockAvailabilityLoader}
-          />
-        </div> */}
         {quantityAlert && (
           <Fade in={quantityAlert}>
             <div id="example-fade-text" className="text-danger">
@@ -232,7 +164,28 @@ function ProductDetailDescribtionSection({
           <label htmlFor="pincode" className="">
             Enter Your Pincode Below To Check the Delivery
           </label>
-          <input className="d-block form-control w-auto" id="pincode" defaultValue={pinCode} placeholder="Enter the Pincode" />
+          <input
+            type="text"
+            className="d-block form-control w-auto mt-1"
+            name="pincode"
+            id="pincode"
+            value={pinCode}
+            placeholder="Enter the Pincode"
+            autoComplete="off"
+            onFocus={() => getPincodesList()}
+            onChange={(e: any) => {
+              if (/[a-zA-Z]/.test(e.target.value)) {
+                return;
+              }
+              if (/[^a-zA-Z0-9]/.test(e.target.value)) {
+                return;
+              } else {
+                checkPinCodeExists(e.target.value);
+              }
+            }}
+          />
+          {pinCode && validPinCode && <p className="text-success mt-2">Pincode is valid for delivery</p>}
+          {pinCode && !validPinCode && <p className="text-danger mt-2">Pincode is not valid for delivery</p>}
         </div>
       </div>
     </>

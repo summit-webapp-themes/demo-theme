@@ -5,8 +5,9 @@ import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import paginationStyle from '../../../styles/components/pagination.module.scss';
 import NoDataFound from '../../NoRecordFound';
 import ProductCardVariantColour from '../../../cards/ProductCardVariantColour';
+import ProductListViewCardVariantColour from '../../../cards/ProductListViewCardVariantColour';
 
-function ProductlistingGridViewMaster({
+function ProductListViewMaster({
   isLoading,
   productListingData,
   productListTotalCount,
@@ -36,21 +37,11 @@ function ProductlistingGridViewMaster({
     if (productListingData?.length > 0) {
       return (
         <>
-          <div className="row h-100">
+          <div className="border">
             {productListingData?.map((data: any, i: any) => {
               return (
-                <div key={innerHeight * i} className="col-6 col-md-4 col-lg-3 gap-2 px-2 p-md-2 text-start mb-3 mb-md-0 ">
-                  {/* <ProductCard
-                  data={data}
-                  addToCartItem={addToCartItem}
-                  getPartyName={getPartyName}
-                  wishlistData={wishlistData}
-                  isSuperAdmin={isSuperAdmin}
-                  handleDeleteCatalogItem={handleDeleteCatalogItem}
-                  handleShowCatalogModal={handleShowCatalogModal}
-                  cartData={cartData}
-                /> */}
-                  <ProductCardVariantColour
+                <div key={innerHeight * i} className="border-bottom">
+                  <ProductListViewCardVariantColour
                     data={data}
                     addToCartItem={addToCartItem}
                     getPartyName={getPartyName}
@@ -88,4 +79,4 @@ function ProductlistingGridViewMaster({
   return <>{handleDataRendering()}</>;
 }
 
-export default ProductlistingGridViewMaster;
+export default ProductListViewMaster;

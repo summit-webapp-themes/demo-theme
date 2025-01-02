@@ -1,7 +1,7 @@
-import WebFilter from '../FilterView/WebFilter';
-import ProductlistingGridViewMaster from './ProductlistingGridViewMaster';
+import WebFilter from '../FilterComponents/WebFilter';
+import ProductListViewMaster from './ProductListViewMaster';
 
-function ProductGridView({
+function ProductListView({
   isLoading,
   productListingData,
   handlePaginationBtn,
@@ -16,12 +16,12 @@ function ProductGridView({
 }: any) {
   return (
     <div className="row">
-      <div className="col-12 col-md-2 px-sm-3 web-filter d-none d-sm-block ">
+      <div className="col-12 col-md-2  web-filter d-none d-sm-block ">
         <WebFilter />
       </div>
       <div className="container-md col-md-10">
         <div className=" mt-2 product-listing-row">
-          <ProductlistingGridViewMaster
+          <ProductListViewMaster
             productListingData={productListingData}
             handlePaginationBtn={handlePaginationBtn}
             productListTotalCount={productListTotalCount}
@@ -40,4 +40,4 @@ function ProductGridView({
   );
 }
 
-export default ProductGridView;
+export default ProductListView;

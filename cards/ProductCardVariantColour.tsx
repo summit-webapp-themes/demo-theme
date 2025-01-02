@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { FaCheckCircle } from 'react-icons/fa';
-import { FaCartPlus, FaHeart, FaRegHeart } from 'react-icons/fa6';
-import { RxCross2 } from 'react-icons/rx';
+import { FaHeart, FaRegHeart } from 'react-icons/fa6';
+import { IoCartOutline } from 'react-icons/io5';
+import { RiDeleteBinLine } from 'react-icons/ri';
 import VariantProductCardsButton from '../components/ButtonComponent/VariantProductCardsButton';
 import FeaturedCollectionWithVariantProductCardColour from '../components/HomePage/FeaturedCollections/FeaturedCollectionWithVariantColour/FeaturedCollectionWithVariantProductCardColour';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
-import ProductCardStyles from '../styles/components/productCard.module.scss';
 import styles from '../styles/components/variantProductCards.module.scss';
 import { imageLoader } from '../utils/image_loader';
+import Link from 'next/link';
 
 interface ProductCardVariantPropsTypes {
   data: any;
@@ -52,11 +53,10 @@ const ProductCardVariantColour = ({
   const handleRedirectToProductDetailPage = () => {
     if (selectedItem?.slug) {
       const splitedUrl = data?.url?.split('/');
-      const removedSlug = splitedUrl?.pop();
-      router?.push(`${splitedUrl?.join('/')}/${selectedItem?.slug}`);
-    } else {
-      router?.push(data?.url);
+      splitedUrl?.pop(); // Remove last segment (slug)
+      return `${splitedUrl?.join('/')}/${selectedItem?.slug}`;
     }
+    return data?.url;
   };
 
   const handleSelectVariant = (colour: string) => {
@@ -86,12 +86,12 @@ const ProductCardVariantColour = ({
       if (router?.asPath?.startsWith('/wishlist')) {
         return (
           <span className={` text-secondary `}>
-            <RxCross2 onClick={() => handleRemoveFromWishList(data?.name)} />
+            <RiDeleteBinLine onClick={() => handleRemoveFromWishList(data?.name)} />
           </span>
         );
       } else {
         return (
-          <span className={` text-danger `}>
+          <span className={` text-black `}>
             <FaHeart onClick={() => handleRemoveFromWishList(data?.name)} />
           </span>
         );
@@ -110,34 +110,33 @@ const ProductCardVariantColour = ({
     }
     if (!cartProducts) {
       return (
-        <Button
-          type="button"
-          className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn}`}
-          onClick={handleAddToProductData}
-          disabled={addToCartLoaderBtn}
-        >
-          {!addToCartLoaderBtn ? (
-            <>
-              <span>ADD</span>
-              <FaCartPlus className={`${ProductCardStyles.cardBtn}`} />
-            </>
+        <>
+          {addToCartLoaderBtn ? (
+            <div className={`spinner-border spinner-border-sm `} role="status"></div>
           ) : (
-            <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+            <>
+              <span className={styles.quickShop}>Quick Shop</span>
+              <span className={styles.quickIcon}>
+                <IoCartOutline />
+              </span>
+            </>
           )}
-        </Button>
+        </>
       );
     } else {
       return (
-        <Button type="button" className={`btn ml-3 fs-6 ${ProductCardStyles.carListingBtn_added}`}>
-          {!addToCartLoaderBtn ? (
-            <>
-              <span>ADDED</span>
-              <FaCheckCircle className={`mb-1 ${ProductCardStyles.cardBtn}`} />
-            </>
+        <>
+          {addToCartLoaderBtn ? (
+            <div className={`spinner-border spinner-border-sm `} role="status"></div>
           ) : (
-            <span className="spinner-border spinner-border-sm " role="status" aria-hidden="true"></span>
+            <>
+              <span className={styles.quickShop}>Added</span>
+              <span className={styles.quickIcon}>
+                <FaCheckCircle />
+              </span>
+            </>
           )}
-        </Button>
+        </>
       );
     }
   };
@@ -248,18 +247,18 @@ const ProductCardVariantColour = ({
         <VariantProductCardsButton
           handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
           handleAddToProductData={handleAddToProductData}
-          addToCartLoaderBtn={addToCartLoaderBtn}
+          handleRenderCartBtnText={handleRenderCartBtnText}
         />
         <div className={`${styles.wishlistIcon} cursor-pointer`}>
           {/* <FaRegHeart /> */}
           {handleRenderIcon()}
         </div>
       </Card>
-      <div className="mt-3 cursor-pointer" onClick={() => handleRedirectToProductDetailPage()}>
-        <h6 className={styles.tabProductTitle}>
+      <Link href={handleRedirectToProductDetailPage()} className="cursor-pointer text-decoration-none text-black">
+        <h6 className={`${styles.tabProductTitle} mt-3`}>
           <strong>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</strong>
         </h6>
-      </div>
+      </Link>
       <div>
         <h6 className={styles.tabProductTitle}>
           <span className={styles.tabProductPrice}>₹{data?.price}</span>
