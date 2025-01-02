@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import NoImage from '../../public/assets/images/no_image.png';
 import cartStyles from '../../styles/components/cartlist.module.scss';
+import Link from 'next/link';
 
 function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, RemoveItemCartAPIFunc, selectedMultiLangData }: any) {
   const router = useRouter();
@@ -116,52 +117,60 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
               </div>
               <div className="col-lg-12 col-md-6">
                 {category?.orders?.length > 0 &&
-                  category?.orders?.map((item: any, index: number) => (
-                    <div className="row mt-3 ms-2" key={index}>
-                      <div className="col-lg-2 col-md-12">
-                        {item?.image_url ? (
-                          <Image
-                            src={item?.image_url}
-                            alt="product image"
-                            width={400}
-                            height={400}
-                            loader={imageLoader}
-                            className={cartStyles.cart_image}
+                  category?.orders?.map((item: any, index: number) => {
+                    console.log('item', item);
+                    return (
+                      <div className="row mt-3 ms-2" key={index}>
+                        <div className="col-lg-2 col-md-12">
+                          {item?.image_url ? (
+                            <Image
+                              src={item?.image_url}
+                              alt="product image"
+                              width={400}
+                              height={400}
+                              loader={imageLoader}
+                              className={cartStyles.cart_image}
+                            />
+                          ) : (
+                            <Image src={NoImage} alt="product image" width={150} height={150} />
+                          )}
+                        </div>
+                        <div className="col-lg-7 col-md-12">
+                          <Link href={item?.product_url} className="link-tag-without-default-styles">
+                            {item?.item_name} <br />
+                          </Link>
+                          <b>
+                            {selectedMultiLangData?.item_code} : {item?.item_code}
+                          </b>
+                          <div>
+                            <button
+                              className="btn btn-link text-decoration-none p-0 fs-14"
+                              onClick={() => handleDeleteItem(item?.item_code)}
+                            >
+                              {selectedMultiLangData?.delete}
+                            </button>
+                          </div>
+                        </div>
+                        <div className="col-lg-1 col-md-12">
+                          {item?.currency_symbol}
+                          {item?.qty === 0 ? 0 : item?.amount}
+                        </div>
+                        <div className="col-lg-1 col-md-12">
+                          <input
+                            type="number"
+                            value={item?.qty}
+                            className="w-100 text-center border"
+                            onChange={(e) => handleQtyChange(item?.item_code, e.target.value)}
                           />
-                        ) : (
-                          <Image src={NoImage} alt="product image" width={150} height={150} />
-                        )}
-                      </div>
-                      <div className="col-lg-7 col-md-12">
-                        {item?.item_name} <br />
-                        <b>
-                          {selectedMultiLangData?.item_code} : {item?.item_code}
-                        </b>
-                        <div>
-                          <button className="btn btn-link text-decoration-none p-0 fs-14" onClick={() => handleDeleteItem(item?.item_code)}>
-                            {selectedMultiLangData?.delete}
-                          </button>
+                          {item?.qty === 0 && <p style={{ color: 'red', fontSize: '10px', whiteSpace: 'nowrap' }}>Minimum QTY Is 1</p>}
+                        </div>
+                        <div className="col-lg-1 col-md-12">
+                          {item?.currency_symbol}
+                          {item?.qty === 0 ? 0 : item?.amount}
                         </div>
                       </div>
-                      <div className="col-lg-1 col-md-12">
-                        {item?.currency_symbol}
-                        {item?.qty === 0 ? 0 : item?.amount}
-                      </div>
-                      <div className="col-lg-1 col-md-12">
-                        <input
-                          type="number"
-                          value={item?.qty}
-                          className="w-100 text-center border"
-                          onChange={(e) => handleQtyChange(item?.item_code, e.target.value)}
-                        />
-                        {item?.qty === 0 && <p style={{ color: 'red', fontSize: '10px', whiteSpace: 'nowrap' }}>Minimum QTY Is 1</p>}
-                      </div>
-                      <div className="col-lg-1 col-md-12">
-                        {item?.currency_symbol}
-                        {item?.qty === 0 ? 0 : item?.amount}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
               </div>
             </div>
             {category?.orders?.length > 0 &&
