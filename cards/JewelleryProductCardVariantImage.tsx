@@ -154,11 +154,11 @@ const JewelleryProductCardVariantImage = ({
 
   return (
     <>
-      <Card className={`${styles.tabcardContainer} h-100`}>
-        {selectedItem?.image ? (
-          <>
-            {selectedItem?.image && selectedItem?.image?.length > 0 ? (
-              <div className={`${styles.tabimageContainer}`}>
+      <Card className={`${styles.tabcardContainer}`}>
+        <div className={`${styles.tabimageContainer} `}>
+          {selectedItem?.image ? (
+            <>
+              {selectedItem?.image && selectedItem?.image?.length > 0 ? (
                 <Image
                   src={selectedItem?.image[0]}
                   className="w-100 h-100"
@@ -170,9 +170,7 @@ const JewelleryProductCardVariantImage = ({
                   height={303}
                   loader={imageLoader}
                 />
-              </div>
-            ) : (
-              <div className={`${styles.tabimageContainer}`}>
+              ) : (
                 <Image
                   src={noImage}
                   className="w-100 h-100"
@@ -183,16 +181,14 @@ const JewelleryProductCardVariantImage = ({
                   width={303}
                   height={303}
                 />
-              </div>
-            )}
-          </>
-        ) : (
-          <>
-            {data?.image ? (
-              <div className={`${styles.tabimageContainer}`}>
+              )}
+            </>
+          ) : (
+            <>
+              {data?.image ? (
                 <Image
                   src={data?.image}
-                  className="w-100 h-100"
+                  className="w-100 "
                   style={{ objectFit: 'cover', objectPosition: 'top' }}
                   alt="Product Image"
                   loading="eager"
@@ -201,9 +197,7 @@ const JewelleryProductCardVariantImage = ({
                   height={303}
                   loader={imageLoader}
                 />
-              </div>
-            ) : (
-              <div className={`${styles.tabimageContainer}`}>
+              ) : (
                 <Image
                   src={noImage}
                   className="w-100 h-100"
@@ -214,34 +208,36 @@ const JewelleryProductCardVariantImage = ({
                   width={303}
                   height={303}
                 />
-              </div>
-            )}
-          </>
-        )}
-        <JewelleryVariantImageCardActionButtons
-          handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
-          handleAddToProductData={handleAddToProductData}
-          handleRenderCartBtnText={handleRenderCartBtnText}
-          handleRenderIcon={handleRenderIcon}
-        />
+              )}
+            </>
+          )}
+          <JewelleryVariantImageCardActionButtons
+            handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
+            handleAddToProductData={handleAddToProductData}
+            handleRenderCartBtnText={handleRenderCartBtnText}
+            handleRenderIcon={handleRenderIcon}
+          />
+        </div>
+        <div className="mt-3 text-start w-100">
+          <Link href={handleRedirectToProductDetailPage()} className="cursor-pointer text-decoration-none text-black">
+            <h6 className={`${styles.tabProductTitle} `}>
+              <strong>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</strong>
+            </h6>
+          </Link>
+          <div>
+            <h6 className={styles.tabProductTitle}>
+              <span className={styles.tabProductPrice}>₹{data?.price}</span>
+              <span className={styles.tabProductmrpPrice}>₹{data?.mrp_price}</span>
+            </h6>
+          </div>
+          <FeaturedCollectionWithVariantProductCardColour
+            data={data}
+            handleSelectVariant={handleSelectVariant}
+            handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
+            selectedItem={selectedItem}
+          />
+        </div>
       </Card>
-      <Link href={handleRedirectToProductDetailPage()} className="cursor-pointer text-decoration-none text-black">
-        <h6 className={`${styles.tabProductTitle} mt-3`}>
-          <strong>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</strong>
-        </h6>
-      </Link>
-      <div>
-        <h6 className={styles.tabProductTitle}>
-          <span className={styles.tabProductPrice}>₹{data?.price}</span>
-          <span className={styles.tabProductmrpPrice}>₹{data?.mrp_price}</span>
-        </h6>
-      </div>
-      <FeaturedCollectionWithVariantProductCardColour
-        data={data}
-        handleSelectVariant={handleSelectVariant}
-        handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
-        selectedItem={selectedItem}
-      />
     </>
   );
 };

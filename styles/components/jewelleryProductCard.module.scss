@@ -1,10 +1,3 @@
-.imageContainer {
-  width: 320px;
-  height: 320px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .categories_title {
   display: flex;
   justify-content: space-between;
@@ -14,14 +7,12 @@
   border: none;
   display: flex;
   align-items: center;
-  position: relative;
+  height: 100%;
 }
 .tabimageContainer {
+  position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   object-fit: cover;
 }
 
@@ -50,7 +41,7 @@
 .borderActive {
   border: 1px solid black;
 }
-.tabcardContainer:hover .button_container {
+.tabimageContainer:hover .button_container {
   opacity: 1;
   visibility: visible;
   transform: translateY(40%);
@@ -68,7 +59,7 @@
   align-items: center;
   left: 0;
   right: 0;
-  top: 80%;
+  top: 70%;
   margin: auto;
   transform: translateY(-100%);
 }
@@ -90,4 +81,7 @@
   width: 30px;
   height: 2px;
   background: var(--cl-heading);
+}
+.product_data {
+  position: absolute;
 }

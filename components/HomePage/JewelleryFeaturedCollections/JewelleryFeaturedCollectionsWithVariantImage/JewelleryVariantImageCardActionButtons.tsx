@@ -1,11 +1,9 @@
 import Link from 'next/link';
-import styles from '../../../../styles/components/jewelleryProductCard.module.scss';
-import { IoEyeOutline, IoCartOutline } from 'react-icons/io5';
 import { ReactNode } from 'react';
-import { BsCart2 } from 'react-icons/bs';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { GrCatalogOption } from 'react-icons/gr';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { GrCatalogOption } from 'react-icons/gr';
+import { IoEyeOutline } from 'react-icons/io5';
+import styles from '../../../../styles/components/jewelleryProductCard.module.scss';
 
 interface JewelleryVariantImageCardActionButtonsPropTypes {
   handleRedirectToProductDetailPage: () => string;
