@@ -1,5 +1,5 @@
 import ReactPaginate from 'react-paginate';
-import ProductCard from '../../../cards/ProductCard';
+import JewelleryProductCardVariantImage from '../../../cards/JewelleryProductCardVariantImage';
 import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import paginationStyle from '../../../styles/components/pagination.module.scss';
@@ -38,7 +38,7 @@ function ProductListingWithLeftFilterDrawerMaster({
           {productListingData?.map((data: any, i: any) => {
             return (
               <div key={innerHeight * i} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4">
-                <ProductCard
+                <JewelleryProductCardVariantImage
                   data={data}
                   addToCartItem={addToCartItem}
                   getPartyName={getPartyName}

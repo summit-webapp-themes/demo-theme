@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Offcanvas, Button } from 'react-bootstrap';
-import WebFilter from '../FilterComponents/WebFilter';
-import ProductListingWithLeftFilterDrawerMaster from '../ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawerMaster';
-import { IoFilter, IoFunnel } from 'react-icons/io5';
+import { useState } from 'react';
+import { Offcanvas } from 'react-bootstrap';
+import { IoFunnel } from 'react-icons/io5';
 import LeftWebFilter from '../ProductListingViewWithLeftFilterDrawer/LeftWebFilter';
+import ProductListingWithLeftFilterDrawerMaster from '../ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawerMaster';
 
 function CollapsibleLayout({
   isLoading,
@@ -30,7 +29,6 @@ function CollapsibleLayout({
         <IoFunnel size={17} color="#595959" />
         <span className="ps-1 text-secondary fs-15 pt-1">Filter</span>
       </div>
-
       {/* Left Drawer for Filters */}
       <Offcanvas show={showFilterDrawer} onHide={handleFilterClose} placement="start">
         <Offcanvas.Header closeButton className="py-2 mt-1">
@@ -43,7 +41,6 @@ function CollapsibleLayout({
           <LeftWebFilter />
         </Offcanvas.Body>
       </Offcanvas>
-
       {/* Product Listing */}
       <div className="container-md col-12 p-lg-0">
         <div className="row mt-2 product-listing-row">

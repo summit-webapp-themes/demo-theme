@@ -1,11 +1,10 @@
 import ReactPaginate from 'react-paginate';
-import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
-import ProductCardSkeleton from '../../../../cards/ProductCardSkeleton';
-import ProductCardVariantColour from '../../../../cards/ProductCardVariantColour';
-import { CONSTANTS } from '../../../../services/config/app-config';
-import NoDataFound from '../../../NoRecordFound';
-import paginationStyle from '../../../../styles/components/pagination.module.scss';
 import JewelleryProductCardVariantImage from '../../../../cards/JewelleryProductCardVariantImage';
+import ProductCardSkeleton from '../../../../cards/ProductCardSkeleton';
+import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
+import { CONSTANTS } from '../../../../services/config/app-config';
+import paginationStyle from '../../../../styles/components/pagination.module.scss';
+import NoDataFound from '../../../NoRecordFound';
 
 function ProductlistingGridViewMaster({
   isLoading,
