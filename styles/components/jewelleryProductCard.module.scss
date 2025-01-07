@@ -11,15 +11,13 @@
 }
 .tabimageContainer {
   position: relative;
-  max-width: 100% !important;
-  max-height: 100% !important;
+  width: 100% !important;
+
   overflow: hidden;
 }
 
 .tabProductImage {
   width: 100% !important;
-  height: 100% !important;
-  min-height: 23rem;
   object-fit: cover !important;
   transition:
     transform 0.8s ease,
@@ -103,6 +101,28 @@
 }
 @media only screen and (max-width: 576px) {
   .tabProductImage {
-    min-height: 18rem;
+    height: 18rem !important;
+  }
+}
+@media only screen and (min-width: 576px) {
+  .tabProductImage {
+    height: 23rem;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .tabProductImage {
+    height: 30rem;
+  }
+}
+@media only screen and (min-width: 2500px) {
+  .tabProductImage {
+    height: 40rem;
+  }
+}
+
+@media only screen and (min-width: 4000px) {
+  .tabProductImage {
+    height: 45rem;
   }
 }

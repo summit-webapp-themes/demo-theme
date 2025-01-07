@@ -153,7 +153,7 @@ const JewelleryProductCardVariantImage = ({
   return (
     <>
       <Card className={`${styles.tabcardContainer} `}>
-        <div className={`${styles.tabimageContainer} h-100`}>
+        <div className={`${styles.tabimageContainer}`}>
           {selectedItem?.image ? (
             <>
               {selectedItem?.image && selectedItem?.image?.length > 0 ? (
