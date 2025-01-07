@@ -8,12 +8,12 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { IoCartOutline } from 'react-icons/io5';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import FeaturedCollectionWithVariantProductCardColour from '../components/HomePage/FeaturedCollections/FeaturedCollectionWithVariantColour/FeaturedCollectionWithVariantProductCardColour';
-import JewelleryVariantImageCardActionButtons from '../components/HomePage/JewelleryFeaturedCollections/JewelleryFeaturedCollectionsWithVariantImage/JewelleryVariantImageCardActionButtons';
+import JewelleryVariantImageCardActionButtons from '../components/HomePage/FeaturedCollections/JewelleryFeaturedCollectionsWithVariantImage/JewelleryVariantImageCardActionButtons';
 import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
 import styles from '../styles/components/jewelleryProductCard.module.scss';
 import { imageLoader } from '../utils/image_loader';
-import VariantsWithImages from '../components/HomePage/JewelleryFeaturedCollections/JewelleryFeaturedCollectionsWithVariantImage/VariantsWithImages';
+import VariantsWithImages from '../components/HomePage/FeaturedCollections/JewelleryFeaturedCollectionsWithVariantImage/VariantsWithImages';
 
 interface ProductCardVariantPropsTypes {
   data: any;
