@@ -1,5 +1,5 @@
 import styles from '../../styles/components/productPage.module.scss';
-import StarRating from './StarRating';
+import { Rating } from 'react-simple-star-rating';
 
 const ProductDetailHeadingWithDescription = ({ productDetailData }: any) => {
   return (
@@ -11,7 +11,7 @@ const ProductDetailHeadingWithDescription = ({ productDetailData }: any) => {
           <span className={` ps-3 ${styles.mrpPrice}`}>{`₹${productDetailData?.mrp_price}`}</span>
         </div>
         <div className={`col-8 d-flex align-items-center justify-content-end`}>
-          <StarRating rating={productDetailData?.rating} />
+          <Rating initialValue={productDetailData?.rating} size={25} readonly />
           <span>({productDetailData?.rating} reviews)</span>
         </div>
       </div>
