@@ -1,5 +1,4 @@
 import flattenComponentsList from '../../utils/handle-components-list';
-import MasterComponent from './FeaturedCollections/JewelleryFeaturedCollectionsWithVariantImage/MasterComponent';
 
 const HomePageMaster = ({ homePageComponents, bannerData }: any) => {
   const componentsListFlattenArray = flattenComponentsList(homePageComponents);
