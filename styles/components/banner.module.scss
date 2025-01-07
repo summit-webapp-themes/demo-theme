@@ -68,4 +68,59 @@
   .banner_p_tag {
     font-size: 12px !important;
   }
+
+  .corousel_caption_left {
+    padding-left: 2% !important;
+    white-space: wrap !important;
+    width: 100%;
+}
+
+.catagoryImg {
+  height: 100vh !important;
+}
+
+.bannerTitle_left{
+  font-size: 35px !important;
+}
+.bannerTitle_left{
+  white-space: wrap !important;
+ line-height: normal !important;
+}
+}
+
+.corousel_caption_left {
+    padding-left: 20%;
+    top: 30% !important;
+    color: white;
+}
+
+.corousel_caption_center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  top: 0% !important;
+  padding-left: 0%;
+
+}
+
+.banner_p_tag_left {
+  font-size: 20px !important;
+  font-weight: 500;
+  color: white;
+  line-height: 26px;
+  letter-spacing: 1px;
+  margin-bottom: 0px;
+  
+}
+
+.bannerTitle_left{
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 70px;
+    letter-spacing: 0px;
+    margin-bottom: 10px;
+    white-space: nowrap;
 }
