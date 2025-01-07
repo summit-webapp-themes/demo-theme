@@ -34,7 +34,7 @@ const JewelleryFeaturedCollectionWithVariantImageCardContainer = ({
               <div className="slider-container p-0 ">
                 <div className="row">
                   {item.value.map((val: FeaturedCollectionProductTypes, index: number) => (
-                    <div className="col-6 col-md-4 col-lg-3 gap-2 px-2 px-md-3 mt-3" key={index}>
+                    <div className="col-6 col-md-4 col-lg-4 col-xl-3 gap-2 px-2 px-md-3 mt-3" key={index}>
                       <div className={'h-100'}>
                         <JewelleryProductCardVariantImage
                           data={val}

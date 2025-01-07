@@ -13,6 +13,7 @@ import useAddToWishlist from '../hooks/WishlistHooks/useAddToWishlistHook';
 import noImage from '../public/assets/images/no_image.png';
 import styles from '../styles/components/jewelleryProductCard.module.scss';
 import { imageLoader } from '../utils/image_loader';
+import VariantsWithImages from '../components/HomePage/JewelleryFeaturedCollections/JewelleryFeaturedCollectionsWithVariantImage/VariantsWithImages';
 
 interface ProductCardVariantPropsTypes {
   data: any;
@@ -59,11 +60,8 @@ const JewelleryProductCardVariantImage = ({
     return data?.url;
   };
 
-  const handleSelectVariant = (colour: string) => {
-    const variant = data?.variant?.find((v: VariantTypes) => v.colour_attr_colour === colour);
-    if (variant) {
-      setSelectedItem(variant);
-    }
+  const handleSelectVariant = (data: any) => {
+    setSelectedItem(data);
   };
 
   let wishProducts: any;
@@ -154,14 +152,14 @@ const JewelleryProductCardVariantImage = ({
 
   return (
     <>
-      <Card className={`${styles.tabcardContainer}`}>
-        <div className={`${styles.tabimageContainer} `}>
+      <Card className={`${styles.tabcardContainer} `}>
+        <div className={`${styles.tabimageContainer} h-100`}>
           {selectedItem?.image ? (
             <>
               {selectedItem?.image && selectedItem?.image?.length > 0 ? (
                 <Image
                   src={selectedItem?.image[0]}
-                  className="w-100 h-100"
+                  className={styles.tabProductImage}
                   style={{ objectFit: 'cover', objectPosition: 'top' }}
                   alt="Product Image"
                   loading="eager"
@@ -173,7 +171,7 @@ const JewelleryProductCardVariantImage = ({
               ) : (
                 <Image
                   src={noImage}
-                  className="w-100 h-100"
+                  className={styles.tabProductImage}
                   style={{ objectFit: 'cover' }}
                   alt="Product Image"
                   loading="eager"
@@ -188,7 +186,7 @@ const JewelleryProductCardVariantImage = ({
               {data?.image ? (
                 <Image
                   src={data?.image}
-                  className="w-100 "
+                  className={styles.tabProductImage}
                   style={{ objectFit: 'cover', objectPosition: 'top' }}
                   alt="Product Image"
                   loading="eager"
@@ -200,7 +198,7 @@ const JewelleryProductCardVariantImage = ({
               ) : (
                 <Image
                   src={noImage}
-                  className="w-100 h-100"
+                  className={styles.tabProductImage}
                   style={{ objectFit: 'cover' }}
                   alt="Product Image"
                   loading="eager"
@@ -230,10 +228,12 @@ const JewelleryProductCardVariantImage = ({
               <span className={styles.tabProductmrpPrice}>₹{data?.mrp_price}</span>
             </h6>
           </div>
-          <FeaturedCollectionWithVariantProductCardColour
+        </div>
+        <div className="w-100 text-start">
+          <VariantsWithImages
             data={data}
-            handleSelectVariant={handleSelectVariant}
             handleRedirectToProductDetailPage={handleRedirectToProductDetailPage}
+            handleSelectVariant={handleSelectVariant}
             selectedItem={selectedItem}
           />
         </div>

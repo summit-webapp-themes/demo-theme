@@ -11,9 +11,24 @@
 }
 .tabimageContainer {
   position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden;
+}
+
+.tabProductImage {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 23rem;
+  object-fit: cover !important;
+  transition:
+    transform 0.8s ease,
+    filter 0.8s ease; /* Smooth transition for zoom and shade */
+}
+
+.tabimageContainer:hover .tabProductImage {
+  transform: scale(1.08); /* Zoom in slightly */
+  filter: brightness(0.8); /* Apply a grayish shade */
 }
 
 .tabProductPrice {
@@ -24,15 +39,16 @@
   color: #898888;
   text-decoration: line-through;
 }
-.tabProductColor {
+.tabProductVariantImage {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   font-size: 0;
   text-align: center;
   margin-right: 8px;
   padding: 2px;
+  padding-left: 0;
   cursor: pointer;
 }
 .borderInactive {
@@ -59,7 +75,7 @@
   align-items: center;
   left: 0;
   right: 0;
-  top: 70%;
+  top: 80%;
   margin: auto;
   transform: translateY(-100%);
 }
@@ -84,4 +100,9 @@
 }
 .product_data {
   position: absolute;
+}
+@media only screen and (max-width: 576px) {
+  .tabProductImage {
+    min-height: 18rem;
+  }
 }
