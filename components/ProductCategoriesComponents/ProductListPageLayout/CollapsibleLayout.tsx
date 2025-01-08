@@ -23,7 +23,7 @@ function CollapsibleLayout({
   const handleFilterClose = () => setShowFilterDrawer(false);
 
   return (
-    <div className="row w-100 ps-lg-5 pe-lg-4 px-sm-4">
+    <div className="row mx-sm-0">
       {/* Filter Button */}
       <div className="py-2 px-lg-0 d-flex align-items-center cursor-pointer" onClick={handleFilterOpen}>
         <IoFunnel size={17} color="#595959" />

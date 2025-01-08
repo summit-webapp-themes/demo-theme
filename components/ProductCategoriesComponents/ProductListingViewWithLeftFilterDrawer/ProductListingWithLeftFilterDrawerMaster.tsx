@@ -40,7 +40,7 @@ function ProductListingWithLeftFilterDrawerMaster({
         <>
           {productListingData?.map((data: any, i: any) => {
             return (
-              <div key={innerHeight * i} className="col-6 col-lg-3 col-xl-2 text-center mb-4">
+              <div key={innerHeight * i} className="col-6 col-md-4 col-xl-3 col-xxl-2 text-center mb-4">
                 <JewelleryProductCardVariantImage
                   data={data}
                   addToCartItem={addToCartItem}

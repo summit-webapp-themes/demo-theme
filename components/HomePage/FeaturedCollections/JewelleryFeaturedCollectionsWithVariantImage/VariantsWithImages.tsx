@@ -15,17 +15,14 @@ function VariantsWithImages({ data, handleRedirectToProductDetailPage, selectedI
       <div className="d-flex justify-content-start mb-4">
         {data?.variant?.length > 0 &&
           data?.variant?.map((variantItem: any) => (
-            <Link
-              href={handleRedirectToProductDetailPage()}
-              onMouseEnter={() => handleSelectVariant(variantItem)}
-              // className={`${styles.tabProductColor} ${
-              //   selectedItem?.colour_attr_colour === colour ? styles?.borderActive : styles?.borderInactive
-              // }`}
-            >
+            <Link href={handleRedirectToProductDetailPage()} onMouseEnter={() => handleSelectVariant(variantItem)}>
               {variantItem?.image && (
                 <Image
                   src={variantItem?.image[0]}
                   className={styles.tabProductVariantImage}
+                  // className={`${styles.tabProductVariantImage} ${
+                  //   selectedItem?.colour_attr_colour === colour ? styles?.borderActive : styles?.borderInactive
+                  // }`}
                   alt="variant-image"
                   width={0}
                   height={0}
