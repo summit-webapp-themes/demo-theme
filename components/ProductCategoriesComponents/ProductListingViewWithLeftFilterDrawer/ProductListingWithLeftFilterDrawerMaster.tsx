@@ -4,6 +4,7 @@ import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import paginationStyle from '../../../styles/components/pagination.module.scss';
 import NoDataFound from '../../NoRecordFound';
+import { CONSTANTS } from '../../../services/config/app-config';
 
 function ProductListingWithLeftFilterDrawerMaster({
   isLoading,
@@ -17,7 +18,9 @@ function ProductListingWithLeftFilterDrawerMaster({
   handleDeleteCatalogItem,
   cartData,
 }: any) {
-  const isNextButtonDisabled: boolean = parseInt((productListTotalCount / 12).toString(), 10) === pageOffset;
+  const { PRODUCT_COUNT_ON_PRODUCT_CATEGORY_PAGE } = CONSTANTS;
+  const isNextButtonDisabled: boolean =
+    parseInt((productListTotalCount / PRODUCT_COUNT_ON_PRODUCT_CATEGORY_PAGE).toString(), 10) === pageOffset;
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const handleDataRendering = () => {
     if (isLoading) {
@@ -37,7 +40,7 @@ function ProductListingWithLeftFilterDrawerMaster({
         <>
           {productListingData?.map((data: any, i: any) => {
             return (
-              <div key={innerHeight * i} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4">
+              <div key={innerHeight * i} className="col-6 col-lg-3 col-xl-2 text-center mb-4">
                 <JewelleryProductCardVariantImage
                   data={data}
                   addToCartItem={addToCartItem}
@@ -54,13 +57,13 @@ function ProductListingWithLeftFilterDrawerMaster({
           <ReactPaginate
             previousLabel={'Prev'}
             nextLabel={'Next'}
-            pageCount={productListTotalCount / 12}
+            pageCount={Math.ceil(productListTotalCount / PRODUCT_COUNT_ON_PRODUCT_CATEGORY_PAGE)}
             pageRangeDisplayed={3}
             onPageChange={handlePageClick}
             containerClassName={`${paginationStyle.paginationBttns}`}
-            previousLinkClassName={pageOffset === 0 ? paginationStyle.paginationDisabled : paginationStyle.previousBttn}
+            previousLinkClassName={pageOffset === 0 ? 'd-none' : paginationStyle.previousBttn}
             disabledClassName={paginationStyle.paginationDisabled}
-            nextLinkClassName={isNextButtonDisabled ? paginationStyle.paginationDisabled : `${paginationStyle.nextBttn}`}
+            nextLinkClassName={isNextButtonDisabled ? 'd-none' : `${paginationStyle.nextBttn}`}
             activeClassName={`${paginationStyle.paginationActive}`}
             forcePage={pageOffset}
           />
