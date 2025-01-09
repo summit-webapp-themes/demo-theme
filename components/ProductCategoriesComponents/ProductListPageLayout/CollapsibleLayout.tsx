@@ -3,6 +3,7 @@ import { Offcanvas } from 'react-bootstrap';
 import { IoFunnel } from 'react-icons/io5';
 import LeftWebFilter from '../ProductListingViewWithLeftFilterDrawer/LeftWebFilter';
 import ProductListingWithLeftFilterDrawerMaster from '../ProductListingViewWithLeftFilterDrawer/ProductListingWithLeftFilterDrawerMaster';
+import useProductListingFilterHook from '../../../hooks/ProductListPageHooks/useProductListFilterHook';
 
 function CollapsibleLayout({
   isLoading,
@@ -22,6 +23,8 @@ function CollapsibleLayout({
   const handleFilterOpen = () => setShowFilterDrawer(true);
   const handleFilterClose = () => setShowFilterDrawer(false);
 
+  const { filtersData, isLoading: filterLoading, errorMessage, handleFilterCheckFun, selectedFilters } = useProductListingFilterHook();
+
   return (
     <div className="row mx-sm-0">
       {/* Filter Button */}
@@ -38,7 +41,13 @@ function CollapsibleLayout({
         </Offcanvas.Header>
         <hr className="m-0" />
         <Offcanvas.Body className="px-0">
-          <LeftWebFilter />
+          <LeftWebFilter
+            filtersData={filtersData}
+            isLoading={filterLoading}
+            errorMessage={errorMessage}
+            handleFilterCheckFun={handleFilterCheckFun}
+            selectedFilters={selectedFilters}
+          />
         </Offcanvas.Body>
       </Offcanvas>
       {/* Product Listing */}

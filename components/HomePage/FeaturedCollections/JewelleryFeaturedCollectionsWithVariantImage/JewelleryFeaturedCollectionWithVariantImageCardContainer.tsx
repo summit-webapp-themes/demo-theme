@@ -26,7 +26,7 @@ const JewelleryFeaturedCollectionWithVariantImageCardContainer = ({
       {allTagsData?.length > 0 &&
         allTagsData.map((item: FeaturedCollectionTypes, i: number) => (
           <div key={i} className="mt-5 pt-md-3">
-            <h3 className={`${style.featuredCollectionTitle} text-center m-0 my-2`}>
+            <h3 className={`${style.featuredCollectionTitle} text-center m-0 my-2 fw-bold`}>
               <span className="px-2"> {item?.tag_name}</span>
             </h3>
             <h6 className="text-secondary text-center mb-2 px-2">{item?.description}</h6>

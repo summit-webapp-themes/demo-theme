@@ -6,11 +6,11 @@ import { imageLoader } from '../../../../utils/image_loader';
 
 const PersonalizedCategories = ({ homeTopCategories }: any) => {
   return (
-    <div className="custom-container-xl px-4  mt-2 ">
+    <div className="custom-container-xl px-5 mt-3 mt-md-5 ">
       <div className="row mt-3 mb-5" style={{ height: '528px' }}>
         <div className="col-lg-3">
           <div className="d-flex flex-lg-column ">
-            <div className="position-relative w-100 w-md-50" style={{ height: '252px' }}>
+            <div className="position-relative w-100 w-md-50 mb-lg-2" style={{ height: '252px' }}>
               <Link
                 href={`${homeTopCategories[0]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -57,8 +57,8 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
           </div>
         </div>
         <div className="col-lg-6">
-          <div className="d-flex flex-column ">
-            <div style={{ height: '252px' }}>
+          <div className="d-flex flex-column px-md-2">
+            <div style={{ height: '252px' }} className="mb-lg-2">
               <Link
                 href={`${homeTopCategories[2]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -99,7 +99,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
             </div>
           </div>
         </div>
-        <div className="col-lg-3 position-relative" style={{ height: '528px' }}>
+        <div className="col-lg-3 position-relative" style={{ height: '536px' }}>
           <Link
             href={`${homeTopCategories[4]?.category_url}`}
             className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"

@@ -218,12 +218,12 @@ const JewelleryProductCardVariantImage = ({
         </div>
         <div className="mt-3 text-start w-100">
           <Link href={handleRedirectToProductDetailPage()} className="cursor-pointer text-decoration-none text-black">
-            <h6 className={`${styles.tabProductTitle} `}>
+            <h6 className={`${styles.tabProductTitle} m-0 `}>
               <strong>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</strong>
             </h6>
           </Link>
           <div>
-            <h6 className={styles.tabProductTitle}>
+            <h6 className={`${styles.tabProductTitle}`}>
               <span className={styles.tabProductPrice}>₹{data?.price}</span>
               <span className={styles.tabProductmrpPrice}>₹{data?.mrp_price}</span>
             </h6>

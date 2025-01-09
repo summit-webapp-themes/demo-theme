@@ -12,10 +12,11 @@
 .tabimageContainer {
   position: relative;
   width: 100% !important;
-
   overflow: hidden;
 }
-
+.tabProductTitle {
+  font-size: 16px;
+}
 .tabProductImage {
   width: 100% !important;
   object-fit: cover !important;
@@ -31,7 +32,7 @@
 
 .tabProductPrice {
   margin-right: 15px;
-  font-size: 17px;
+  font-size: 14px;
 }
 .tabProductmrpPrice {
   color: #898888;
