@@ -1,6 +1,4 @@
 import flattenComponentsList from '../../utils/handle-components-list';
-import MasterComponent from './FeaturedCollections/FeaturedCollectionInspiration4/MasterComponent';
-// import MasterComponent from './BlogSection/BlogSectionInspiration1/MasterComponent';
 
 const HomePageMaster = ({ homePageComponents, bannerData }: any) => {
   const componentsListFlattenArray = flattenComponentsList(homePageComponents);
@@ -16,11 +14,6 @@ const HomePageMaster = ({ homePageComponents, bannerData }: any) => {
     }
     return <Component key={componentName?.component_name} />;
   });
-  return (
-    <>
-      {componentsToRender}
-      <MasterComponent />
-    </>
-  );
+  return <>{componentsToRender}</>;
 };
 export default HomePageMaster;
