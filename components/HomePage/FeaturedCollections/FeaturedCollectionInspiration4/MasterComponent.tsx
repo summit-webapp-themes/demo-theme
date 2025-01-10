@@ -1,5 +1,5 @@
 import React from 'react';
-import FeaturedCollectionCardContainer from './FeaturedCOllectionCardContainer';
+import FeaturedCollectionCardContainer from './FeaturedCollectionCardContainer';
 
 function MasterComponent() {
   return (
