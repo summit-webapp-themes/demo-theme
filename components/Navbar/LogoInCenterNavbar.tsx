@@ -31,7 +31,7 @@ function LogoInCenterNavbar({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const user = localStorage.getItem('party_name');
+  const path = router?.asPath;
   const handleSearch = (e: any) => {
     e.preventDefault();
     if (searchTerm !== '') {
@@ -61,7 +61,7 @@ function LogoInCenterNavbar({
   }, []);
   return (
     <>
-      <header className={scrolled ? stylesNavbar.scrolled_navbar : stylesNavbar.transperant_navbar}>
+      <header className={path === '/' ? (scrolled ? stylesNavbar.scrolled_navbar : stylesNavbar.transperant_navbar) : stylesNavbar?.header}>
         <nav>
           <div className={`${stylesNavbar.navbar} ps-lg-4 pe-lg-4`}>
             <div className="w-100 d-flex justify-content-between py-2 align-items-center">

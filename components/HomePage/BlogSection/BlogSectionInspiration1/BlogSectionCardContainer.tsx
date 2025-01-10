@@ -10,15 +10,11 @@ function BlogSectionCardContainer() {
           <p className="m-0">From The Blogs</p>
         </div>
         <div className="row px-1 ">
-          <div className="col-4 px-3">
-            <BlogCard />
-          </div>
-          <div className="col-4 px-3">
-            <BlogCard />
-          </div>
-          <div className="col-4 px-3">
-            <BlogCard />
-          </div>
+          {[...Array(3)].map((_, index: any) => (
+            <div className="col-4 px-3">
+              <BlogCard data={index} />
+            </div>
+          ))}
         </div>
       </div>
     </div>

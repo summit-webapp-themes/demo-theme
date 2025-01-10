@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import React from 'react';
-import bannerImage from '../../../../public/assets/images/featured-collection-banner.jpg';
+import bannerImage from '../../../../public/assets/images/promotional-banner-1.jpg';
+import bannerImage2 from '../../../../public/assets/images/promotional-banner-2.jpg';
 import styles from '../../../../styles/components/home.module.scss';
 import { FaArrowRightLong } from 'react-icons/fa6';
-
-function FeaturedCollectionCard() {
+function PromotionalBanners1Card({ data }: any) {
+  console.log(data, 'data111');
   return (
     <>
       <div className="position-relative">
-        <Image src={bannerImage} alt="banner-img" className="w-100 h-100" width={100} height={100} />
+        <Image src={data === 0 ? bannerImage : bannerImage2} alt="banner-img" className="w-100 h-100" width={100} height={100} />
         <div className={`${styles.featured_banner_info}`}>
           <p className="m-0 mb-2">The latest on-trend styles</p>
           <p className={`${styles.featured_banner_heading} fw-bold m-0 mb-2`}> Check out our latest range</p>
@@ -23,5 +24,4 @@ function FeaturedCollectionCard() {
     </>
   );
 }
-
-export default FeaturedCollectionCard;
+export default PromotionalBanners1Card;

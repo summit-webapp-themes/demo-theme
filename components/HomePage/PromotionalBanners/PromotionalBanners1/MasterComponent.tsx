@@ -1,10 +1,10 @@
 import React from 'react';
-import FeaturedCollectionCardContainer from './FeaturedCollectionCardContainer';
+import PromotionalBanners1CardContainer from './PromotionalBanners1CardContainer';
 
 function MasterComponent() {
   return (
     <div>
-      <FeaturedCollectionCardContainer />
+      <PromotionalBanners1CardContainer />
     </div>
   );
 }

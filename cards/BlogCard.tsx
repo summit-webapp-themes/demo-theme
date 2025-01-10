@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import React from 'react';
-import blogImage from '../public/assets/images/blog-1.webp';
+import blogImage1 from '../public/assets/images/blog-1.webp';
+import blogImage2 from '../public/assets/images/blog-2.webp';
+import blogImage3 from '../public/assets/images/blog-3.webp';
 import styles from '../styles/components/home.module.scss';
-function BlogCard() {
+function BlogCard({ data }: any) {
+  const images = [blogImage1, blogImage2, blogImage3];
   return (
     <>
       <div>
-        <Image src={blogImage} alt="blog-image" className="w-100 h-100" width={100} height={100} />
+        <Image src={images[data]} alt="blog-image" className="w-100 h-100 cursor-pointer" width={100} height={100} />
       </div>
       <div className="mt-3">
         <p className={`${styles.blog_headings} m-0 mb-2`}>

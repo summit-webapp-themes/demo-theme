@@ -1,6 +1,6 @@
 import BlogSectionCardContainer from './BlogSectionCardContainer';
 
-function MasterComponent() {
+function MasterComponent1() {
   return (
     <>
       <BlogSectionCardContainer />
@@ -8,4 +8,4 @@ function MasterComponent() {
   );
 }
 
-export default MasterComponent;
+export default MasterComponent1;

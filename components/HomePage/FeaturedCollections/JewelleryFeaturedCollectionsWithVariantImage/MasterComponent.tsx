@@ -13,7 +13,6 @@ const MasterComponent = () => {
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
   const cartData = useSelector(selectCart).items;
-  console.log(allTagsData, 'data111');
   if (isLoading) {
     return <JewelleryFeaturedCollectionWithVariantImageLoading />;
   } else if (allTagsData?.length > 0) {
