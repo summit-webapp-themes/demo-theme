@@ -64,14 +64,10 @@
   font-family: 'Playfair Display';
 }
 
-
 .follow_us_container .slider_image {
-  object-fit: cover;
-  object-position: center center;
   transition: all 1s;
-  border:none
 }
 
-.slider_image:hover {
+.follow_us_container .slider_image:hover {
   transform: scale(1.1);
 }

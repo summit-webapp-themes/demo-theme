@@ -65,15 +65,15 @@ const FollowUsSection = () => {
                 {Array.isArray(tabData) && tabData.length > 0 ? (
                     <Slider {...settings} ref={sliderRef}>
                         {infiniteTabData.map((ImageList, index) => (
-                            <div key={`image-slide-${index}`} className={`${style.image_container}`}>
+                            <div key={`image-slide-${index}`} className={`overflow-hidden ${style.image_container}`}>
                                 <Image
                                     className={`d-block image-fluid ${style.slider_image}`}
                                     src={ImageList.Image}
                                     alt="Instagram Image"
                                     loading="eager"
                                     priority={true}
-                                    width={1600}
-                                    height={400}
+                                    width={360}
+                                    height={360}
                                     style={{ width: '100%', height: 'auto' }}
                                 />
                             </div>
