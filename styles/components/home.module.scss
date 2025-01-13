@@ -10,6 +10,9 @@
   width: 96%;
   margin: 0 auto;
 }
+.featuredCollectionTitle {
+  font-size: 30px;
+}
 @media (max-width: 1024px) {
   .catagoryImg {
     height: auto !important;
@@ -45,4 +48,47 @@
   width: 30px;
   height: 2px;
   background: #222222;
+}
+//promotional banner css
+.featured_banner_info {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+.featured_banner_heading {
+  font-size: 36px;
+}
+.featured_shop_now_btn {
+  height: 42px;
+  background: #222222;
+  color: #f1f2f4;
+  border: 0;
+}
+.featured_shop_now_btn:hover {
+  background: #ec0101;
+}
+
+// Blog section css
+.blog_heading1 {
+  font-size: 14px;
+  color: #222222;
+}
+.blog_heading2 {
+  font-size: 16px;
+  color: #222222;
+  cursor: pointer;
+}
+.blog_heading2:hover {
+  color: #ec0101;
+}
+.blog_description {
+  color: #878787;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
 }

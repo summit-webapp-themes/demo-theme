@@ -133,3 +133,21 @@
 .order_list_items {
   padding: 3px 7px !important;
 }
+
+// Transperant navbar header
+.transperant_navbar {
+  position: fixed;
+  width: 100% !important;
+  top: 0;
+  background: transparent !important;
+  // padding: 15px 0 !important;
+  z-index: +5;
+}
+.scrolled_navbar {
+  position: fixed;
+  width: 100% !important;
+  top: 0;
+  background: white !important;
+  z-index: +5;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

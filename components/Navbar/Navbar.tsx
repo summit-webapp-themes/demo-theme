@@ -7,6 +7,7 @@ import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-loca
 import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
 import useWishlist from '../../hooks/WishlistHooks/useWishlistHook';
 import CustomWebNavbar from './CustomWebNavbar';
+import LogoInCenterNavbar from './LogoInCenterNavbar';
 
 function Navbar() {
   const { navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, isLoggedIn } = useNavbar();
@@ -26,7 +27,18 @@ function Navbar() {
         wishlistCount={wishlistCount}
         isLoggedIn={isLoggedIn}
       /> */}
-      <CustomWebNavbar
+      {/* <CustomWebNavbar
+        navbarData={navbarData}
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+        selectedCurrencyValue={selectedCurrencyValue}
+        handleLogoutUser={handleLogoutUser}
+        selectedLanguageData={selectedLanguageData}
+        cartCount={cartCount}
+        wishlistCount={wishlistCount}
+        isLoggedIn={isLoggedIn}
+      /> */}
+      <LogoInCenterNavbar
         navbarData={navbarData}
         isLoading={isLoading}
         errorMessage={errorMessage}

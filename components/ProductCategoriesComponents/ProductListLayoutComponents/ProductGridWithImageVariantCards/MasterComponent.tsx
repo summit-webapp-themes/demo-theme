@@ -1,12 +1,12 @@
 import ReactPaginate from 'react-paginate';
-import JewelleryProductCardVariantImage from '../../../cards/JewelleryProductCardVariantImage';
-import ProductCardSkeleton from '../../../cards/ProductCardSkeleton';
-import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
-import paginationStyle from '../../../styles/components/pagination.module.scss';
-import NoDataFound from '../../NoRecordFound';
-import { CONSTANTS } from '../../../services/config/app-config';
+import JewelleryProductCardVariantImage from '../../../../cards/JewelleryProductCardVariantImage';
+import ProductCardSkeleton from '../../../../cards/ProductCardSkeleton';
+import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
+import { CONSTANTS } from '../../../../services/config/app-config';
+import paginationStyle from '../../../../styles/components/pagination.module.scss';
+import NoDataFound from '../../../NoRecordFound';
 
-function ProductListingWithLeftFilterDrawerMaster({
+function ProductlistingGridViewMaster({
   isLoading,
   productListingData,
   productListTotalCount,
@@ -26,8 +26,8 @@ function ProductListingWithLeftFilterDrawerMaster({
     if (isLoading) {
       return (
         <div className="row">
-          {[...Array(10)].map((_, index) => (
-            <div key={index} className="col-sm-6 col-lg-4 col-xl-3 col-xxl-3 text-center mb-4">
+          {[...Array(20)].map((_, index) => (
+            <div key={index} className="col-6 col-md-4 col-lg-3 gap-2 p-0 p-md-2 text-center mb-4">
               <ProductCardSkeleton />
             </div>
           ))}
@@ -38,22 +38,24 @@ function ProductListingWithLeftFilterDrawerMaster({
     if (productListingData?.length > 0) {
       return (
         <>
-          {productListingData?.map((data: any, i: any) => {
-            return (
-              <div key={innerHeight * i} className="col-6 col-md-4 col-xl-3 col-xxl-2 text-center mb-4">
-                <JewelleryProductCardVariantImage
-                  data={data}
-                  addToCartItem={addToCartItem}
-                  getPartyName={getPartyName}
-                  wishlistData={wishlistData}
-                  isSuperAdmin={isSuperAdmin}
-                  handleDeleteCatalogItem={handleDeleteCatalogItem}
-                  handleShowCatalogModal={handleShowCatalogModal}
-                  cartData={cartData}
-                />
-              </div>
-            );
-          })}
+          <div className="row h-100">
+            {productListingData?.map((data: any, i: any) => {
+              return (
+                <div key={innerHeight * i} className="col-6 col-md-4 col-lg-3 gap-2 px-2 p-md-2 text-start mb-3 mb-md-0 ">
+                  <JewelleryProductCardVariantImage
+                    data={data}
+                    addToCartItem={addToCartItem}
+                    getPartyName={getPartyName}
+                    wishlistData={wishlistData}
+                    isSuperAdmin={isSuperAdmin}
+                    handleDeleteCatalogItem={handleDeleteCatalogItem}
+                    handleShowCatalogModal={handleShowCatalogModal}
+                    cartData={cartData}
+                  />
+                </div>
+              );
+            })}
+          </div>
           <ReactPaginate
             previousLabel={'Prev'}
             nextLabel={'Next'}
@@ -78,4 +80,4 @@ function ProductListingWithLeftFilterDrawerMaster({
   return <>{handleDataRendering()}</>;
 }
 
-export default ProductListingWithLeftFilterDrawerMaster;
+export default ProductlistingGridViewMaster;

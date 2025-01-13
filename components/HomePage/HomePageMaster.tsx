@@ -14,7 +14,6 @@ const HomePageMaster = ({ homePageComponents, bannerData }: any) => {
     }
     return <Component key={componentName?.component_name} />;
   });
-
   return <>{componentsToRender}</>;
 };
 export default HomePageMaster;
