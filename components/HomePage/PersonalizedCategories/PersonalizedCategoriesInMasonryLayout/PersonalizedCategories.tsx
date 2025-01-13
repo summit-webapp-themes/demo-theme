@@ -6,17 +6,17 @@ import { imageLoader } from '../../../../utils/image_loader';
 
 const PersonalizedCategories = ({ homeTopCategories }: any) => {
   return (
-    <div className="custom-container-xl px-4  mt-2 ">
-      <div className="row mt-3">
+    <div className="custom-container-xl px-4 mt-4 pt-2">
+      <div className="row">
         <div className={`col-12 col-md-6 pb-3 pb-md-0 ${style.masonryContainerImage}`}>
           <Link
             href={`${homeTopCategories[0]?.category_url}`}
-            className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
+            className="banner-title text-white text-capitalize ls-25 homecategory_btnlink "
           >
             <div style={{ width: '100%', height: '100%' }}>
               <Image
                 loader={imageLoader}
-                className={`w-100 ${style.image_1}`}
+                className={`w-100 ${style.image_1} px-lg-3`}
                 src={homeTopCategories?.length > 0 && homeTopCategories[0]?.product_img}
                 alt={homeTopCategories[0]?.label}
                 objectFit="cover"
@@ -35,8 +35,8 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
         </div>
         <div className="col-12 col-md-6">
           <div className="row">
-            <div className={`col-6 m-0 h-100`}>
-              <div className={`pb-3  mb-md-2 pb-md-1 ${style.masonryContainerImage}`}>
+            <div className={`col-6 m-0 h-100 p-0`}>
+              <div className={`pb-3 mb-md-4 pb-md-1 ${style.masonryContainerImage}`}>
                 <Link
                   href={`${homeTopCategories[1]?.category_url}`}
                   className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -44,7 +44,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                   <div className="" style={{ maxWidth: '100%', height: '100% ' }}>
                     <Image
                       loader={imageLoader}
-                      className={`w-100 `}
+                      className={`w-100 px-lg-3`}
                       src={homeTopCategories?.length > 0 && homeTopCategories[1]?.product_img}
                       alt={homeTopCategories[1]?.label}
                       layout="responsive"
@@ -62,7 +62,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                   </Button>
                 </div>
               </div>
-              <div className={style.masonryContainerImage}>
+              <div className={`${style.masonryContainerImage}`}>
                 <Link
                   href={`${homeTopCategories[2]?.category_url}`}
                   className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -70,7 +70,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                   <div className=" " style={{ maxWidth: '100%', height: '100%' }}>
                     <Image
                       loader={imageLoader}
-                      className={`w-100 `}
+                      className={`w-100 px-lg-3`}
                       src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
                       alt={homeTopCategories[2]?.label}
                       layout="responsive"
@@ -89,7 +89,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                 </div>
               </div>
             </div>
-            <div className={`col-6 p-md-0 w-50 ${style.masonryContainerImage}`}>
+            <div className={`col-6 p-md-0 w-50 ${style.masonryContainerImage} `}>
               <Link
                 href={`${homeTopCategories[3]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -97,7 +97,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                 <div style={{ maxWidth: '100%', height: '100%' }}>
                   <Image
                     loader={imageLoader}
-                    className={`w-100`}
+                    className={`w-100 px-lg-3`}
                     style={{ maxWidth: '100%', height: '100%', objectFit: 'cover' }}
                     src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
                     alt={homeTopCategories[3]?.label}

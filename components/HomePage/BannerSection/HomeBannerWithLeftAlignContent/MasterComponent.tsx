@@ -4,7 +4,6 @@ import HomeBanners from './HomeBanners';
 import ErrorImage from '../../../../public/assets/images/error-icon.png';
 
 const MasterComponent = ({ bannerData }: any) => {
-  console.log('bannerData', bannerData);
   if (bannerData?.data?.length > 0) {
     return <HomeBanners bannersList={bannerData?.data} />;
   }

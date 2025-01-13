@@ -276,6 +276,9 @@ input[type='text'] {
   padding-left: 12%;
   width: 57%;
 }
+.carousel-inner {
+  height: 100% !important;
+}
 
 .react-multiple-carousel__arrow {
   top: 35% !important;
