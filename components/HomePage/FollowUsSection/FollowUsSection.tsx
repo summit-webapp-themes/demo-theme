@@ -11,7 +11,7 @@ import Image4 from '../../../public/assets/images/FollowUs/IG-4.webp';
 import Image5 from '../../../public/assets/images/FollowUs/IG-5.webp';
 import Image6 from '../../../public/assets/images/FollowUs/IG-4.webp';
 
-const tabData = [
+const imageData = [
     { Image: Image1, slug: 'image-1' },
     { Image: Image2, slug: 'image-2' },
     { Image: Image3, slug: 'image-3' },
@@ -21,7 +21,7 @@ const tabData = [
 ];
 
 // Duplicate the array for seamless infinite scrolling
-const infiniteTabData = [...tabData, ...tabData];
+const infiniteImageData = [...imageData, ...imageData];
 
 const FollowUsSection = () => {
     const sliderRef = useRef<Slider | null>(null);
@@ -30,13 +30,13 @@ const FollowUsSection = () => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: tabData.length > 3 ? 3 : tabData.length,
+        slidesToShow: imageData.length > 3 ? 3 : imageData.length,
         slidesToScroll: 1,
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: tabData.length > 2 ? 2 : tabData.length,
+                    slidesToShow: imageData.length > 2 ? 2 : imageData.length,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: false,
@@ -62,10 +62,10 @@ const FollowUsSection = () => {
             </div>
             {/* Slider Section */}
             <div>
-                {Array.isArray(tabData) && tabData.length > 0 ? (
+                {Array.isArray(imageData) && imageData.length > 0 ? (
                     <Slider {...settings} ref={sliderRef}>
-                        {infiniteTabData.map((ImageList, index) => (
-                            <div key={`image-slide-${index}`} className={`overflow-hidden ${style.image_container}`}>
+                        {infiniteImageData.map((ImageList, index) => (
+                            <div key={`image-slide-${index}`} className={`overflow-hidden follow-us-image-container`}>
                                 <Image
                                     className={`d-block image-fluid ${style.slider_image}`}
                                     src={ImageList.Image}
