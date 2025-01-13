@@ -12,10 +12,10 @@ function BlogCard({ data }: any) {
         <Image src={images[data]} alt="blog-image" className="w-100 h-100 cursor-pointer" width={100} height={100} />
       </div>
       <div className="mt-3">
-        <p className={`${styles.blog_headings} m-0 mb-2`}>
+        <p className={`${styles.blog_heading1} m-0 mb-2`}>
           <span className="text-secondary">on</span> May 6, 2022
         </p>
-        <p className="m-0 mb-2">Unique First Anniversary Gift Ideas</p>
+        <p className={`m-0 mb-2 ${styles.blog_heading2}`}>Unique First Anniversary Gift Ideas</p>
       </div>
       <div className={`${styles?.blog_description} `}>
         <p>

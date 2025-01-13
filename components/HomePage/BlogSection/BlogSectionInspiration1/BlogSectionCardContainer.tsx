@@ -11,7 +11,7 @@ function BlogSectionCardContainer() {
         </div>
         <div className="row px-1 ">
           {[...Array(3)].map((_, index: any) => (
-            <div className="col-4 px-3">
+            <div className="col-md-4 col-sm-6 col-12 px-3">
               <BlogCard data={index} />
             </div>
           ))}

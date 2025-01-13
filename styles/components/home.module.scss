@@ -49,18 +49,7 @@
   height: 2px;
   background: #222222;
 }
-.blog_heading {
-  font-size: 14px;
-}
-.blog_description {
-  color: #878787;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  line-clamp: 3;
-}
+//promotional banner css
 .featured_banner_info {
   position: absolute;
   top: 50%;
@@ -78,5 +67,28 @@
   border: 0;
 }
 .featured_shop_now_btn:hover {
-  background: red;
+  background: #ec0101;
+}
+
+// Blog section css
+.blog_heading1 {
+  font-size: 14px;
+  color: #222222;
+}
+.blog_heading2 {
+  font-size: 16px;
+  color: #222222;
+  cursor: pointer;
+}
+.blog_heading2:hover {
+  color: #ec0101;
+}
+.blog_description {
+  color: #878787;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
 }

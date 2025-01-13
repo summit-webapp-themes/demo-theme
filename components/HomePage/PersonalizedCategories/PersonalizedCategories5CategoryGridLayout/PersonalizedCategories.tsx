@@ -6,7 +6,7 @@ import { imageLoader } from '../../../../utils/image_loader';
 
 const PersonalizedCategories = ({ homeTopCategories }: any) => {
   return (
-    <div className="custom-container-xl px-5 mt-3 mt-md-5 ">
+    <div className="custom-container-xl px-4 mt-3 mt-md-5 ">
       <div className="row mt-3 mb-5" style={{ height: '528px' }}>
         <div className="col-lg-3">
           <div className="d-flex flex-lg-column ">
