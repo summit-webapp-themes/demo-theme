@@ -2,10 +2,12 @@
   background-color: #f1f2f4;
   height: 100%;
 }
+
 .tag_section {
   background-color: #fff;
   padding: 16px;
 }
+
 .cardMargin {
   width: 96%;
   margin: 0 auto;
@@ -25,9 +27,11 @@
   background-color: #cd8825;
   font-size: 0.9rem;
 }
+
 .category_btn:focus {
   background-color: #cd8825 !important;
 }
+
 .category_btn:hover {
   background-color: #cd8825;
 }
@@ -40,6 +44,7 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
+
 // Featured Categories
 .horizontal_line {
   content: '';
@@ -49,6 +54,26 @@
   height: 2px;
   background: #222222;
 }
+
+// Follow Us section
+.follow_us_container .section_title {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 44px
+}
+
+.follow_us_container span {
+  font-family: 'Playfair Display';
+}
+
+.follow_us_container .slider_image {
+  transition: all 1s;
+}
+
+.follow_us_container .slider_image:hover {
+  transform: scale(1.1);
+}
+
 //promotional banner css
 .featured_banner_info {
   position: absolute;
