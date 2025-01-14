@@ -8,8 +8,8 @@ import { selectWishlist } from '../../../../store/slices/wishlist-slices/wishlis
 import FeaturedCollectionWithVariantColourCardContainer from './FeaturedCollectionWithVariantColourCardContainer';
 import FeaturedCollectionWithVariantColourLoading from './FeaturedCollectionWithVariantColourLoading';
 
-const MasterComponent = () => {
-  const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks();
+const MasterComponent = ({ componentProperties }: any) => {
+  const { allTagsData, fetchDisplayTagsDataFunction, isLoading, errorMessage } = useDisplayTagHooks(componentProperties);
   const { addToCartItem, getPartyName } = useAddToCartHook();
   const wishlistData = useSelector(selectWishlist).items;
   const cartData = useSelector(selectCart).items;
