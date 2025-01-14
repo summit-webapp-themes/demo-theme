@@ -341,7 +341,7 @@ input[type='text'] {
   }
 }
 
-//Follow us section slick slider
+//Follow us section 
 .slick-slide {
   padding: 0 !important;
 }
@@ -349,4 +349,12 @@ input[type='text'] {
 .follow-us-image-container:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+
+//Follow us section end
+
+.input-group>.form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #878787 !important;
 }

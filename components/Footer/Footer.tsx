@@ -2,8 +2,8 @@ import React from "react";
 import style from '../../styles/components/footer.module.scss'
 import { FaFacebookF, FaPinterestP, FaTelegramPlane, FaEnvelope } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6";;
-import { IoLocationSharp, IoCall } from "react-icons/io5";
-import { MdEmail } from "react-icons/md";
+import { IoLocationOutline, IoCallOutline } from "react-icons/io5";
+import { TfiEmail } from "react-icons/tfi";
 import kalles_logo from '../../public/assets/images/kalles.png'
 import securityLogo from '../../public/assets/images/security_image.png'
 import Image from "next/image";
@@ -48,11 +48,10 @@ const Footer = () => {
     return (
         <footer className={`bg-light text-dark ${style.footer_container}`}>
             <div className={`${style.footer_list_container}`}>
-                <div className="container px-xl-5">
+                <div className="container px-0 px-xl-5">
                     <div className="row">
                         {/* Company Info */}
                         <div className="col-xl-3 col-md-6 col-lg-6 mb-4">
-                            {/* <h5 className={`mb-4 ${style.footer_container}`}>Kalles</h5> */}
                             <div className="mb-4">
                                 <Image
                                     className={``}
@@ -63,17 +62,17 @@ const Footer = () => {
                                     height={30}
                                 />
                             </div>
-                            <p>
-                                <IoLocationSharp className="me-2" />
-                                184 Main Rd E, St Albans VIC 3021, Australia
+                            <p className="d-flex">
+                                <IoLocationOutline className="me-2 fs-1" />
+                                <span>184 Main Rd E, St Albans VIC 3021, Australia</span>
                             </p>
-                            <p className="text-secondary">
-                                <MdEmail className="me-2" />
-                                contact@company.com
+                            <p className="text-secondary d-flex">
+                                <TfiEmail className="me-2 fs-3" />
+                                <span>contact@company.com</span>
                             </p>
-                            <p>
-                                <IoCall className="me-2" />
-                                +001 2233 456
+                            <p className="d-flex">
+                                <IoCallOutline className="me-2 fs-3" />
+                                <span>+001 2233 456</span>
                             </p>
                             <div className="d-flex">
                                 <Link href="#" className="text-dark me-3">
@@ -165,8 +164,8 @@ const Footer = () => {
             </div>
 
             {/* Footer Bottom */}
-            <div className={`py-4 text-center ${style.footer_bottom}`}>
-                <div className={`d-flex justify-content-between mx-auto`} style={{ maxWidth: '1200px' }}>
+            <div className={`py-3 text-center ${style.footer_bottom}`}>
+                <div className={`d-flex justify-content-between align-items-center mx-auto px-3`} style={{ maxWidth: '1200px' }}>
                     <p className="mb-0">
                         <span className="text-secondary">All Rights Reserved © 2025</span>
                         <span className="fw-bold text-danger">Kalles</span>{" "}
@@ -175,7 +174,7 @@ const Footer = () => {
                     </p>
                     {/* links  */}
                     <div>
-                        <ul className="list-unstyled d-flex">
+                        <ul className="list-unstyled d-flex mb-0">
                             {footerData.bottomLinks.map((item, index) => (
                                 <li key={index}>
                                     <Link href="#" className="text-decoration-none text-secondary">
