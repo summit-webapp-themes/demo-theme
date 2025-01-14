@@ -1,11 +1,23 @@
-const DefaultLayout = ({ layoutComponents, productsGridData }: any) => {
+import filters from '../ProductListLayoutComponents/BasicFilters/MasterComponent';
+import card from '../ProductListLayoutComponents/ProductGridWithImageVariantCards/MasterComponent';
+const DefaultLayout = ({ filterComponent, CardsComponent, productsGridData }: any) => {
   const renderFilter = () => {
-    const Component = require(`../${layoutComponents[0].section_name}/${layoutComponents[0]?.component_name}/MasterComponent`).default;
-    return <Component key={layoutComponents[0]?.component_name} />;
+    switch (filterComponent) {
+      case 'Standard Filters':
+        const Component = require(`../ProductListLayoutComponents/BasicFilters/MasterComponent`).default;
+        return <Component key={'Standard Filters'} />;
+      default:
+        return;
+    }
   };
   const renderProducts = () => {
-    const Component = require(`../${layoutComponents[1].section_name}/${layoutComponents[1]?.component_name}/MasterComponent`).default;
-    return <Component key={layoutComponents[1]?.component_name} {...productsGridData} />;
+    switch (CardsComponent) {
+      case 'Card with Variant Images':
+        const Component = require(`../ProductListLayoutComponents/ProductGridWithImageVariantCards/MasterComponent`).default;
+        return <Component key={'CardsWithImgs'} {...productsGridData} />;
+      default:
+        return;
+    }
   };
   return (
     <div className="row">

@@ -4,14 +4,19 @@ const CollapsibleLayout = dynamic(() => import('./CollapsibleLayout'));
 const TopFiltersLayout = dynamic(() => import('./TopFiltersLayout'));
 
 const LayoutRenderer = (props: any) => {
-  console.log(props);
   const renderLayouts = () => {
     switch (props.layoutName) {
-      case 'DefaultLayout':
-        return <DefaultLayout layoutComponents={props.layoutComponents} productsGridData={props.productsGridProps} />;
-      case 'CollapsibleLayout':
+      case 'Default Layout':
+        return (
+          <DefaultLayout
+            filterComponent={props.filterComponentInLayout}
+            CardsComponent={props.productCardsInLayout}
+            productsGridData={props.productsGridProps}
+          />
+        );
+      case 'Collapsible Layout':
         return <CollapsibleLayout {...props.productsGridProps} />;
-      case 'TopFiltersLayout':
+      case 'Top Filters Layout':
         return <TopFiltersLayout />;
     }
   };
