@@ -33,10 +33,12 @@
 .tabProductPrice {
   margin-right: 15px;
   font-size: 14px;
+  color: #898888;
 }
 .tabProductmrpPrice {
   color: #898888;
   text-decoration: line-through;
+  font-size: 12px;
 }
 .tabProductVariantImage {
   display: inline-block;
@@ -107,7 +109,7 @@
 }
 @media only screen and (min-width: 576px) {
   .tabProductImage {
-    height: 23rem;
+    height: 22rem;
   }
 }
 
