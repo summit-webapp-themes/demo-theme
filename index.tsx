@@ -9,7 +9,6 @@ import MultiLangApi from '../services/api/general-apis/multilanguage-api';
 import getBannerAPI from '../services/api/home-page-apis/banner-api';
 import getComponentsList from '../services/api/home-page-apis/get-components-list';
 import PageMetaData from '../components/PageMetaData';
-import { ComponentTypes } from '../interfaces/components-types';
 import TranslationsList from '../components/TranslationsList';
 
 type BannerDataTypes = {
@@ -27,17 +26,10 @@ type BannerArrayTypes = {
 export const getStaticProps = async () => {
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
   let componentsList: any;
-  let fetchComponentsList: any = await getComponentsList(SUMMIT_APP_CONFIG);
-  if (
-    fetchComponentsList?.status === 200 &&
-    fetchComponentsList?.data?.message?.msg === 'success' &&
-    fetchComponentsList?.data?.message?.data?.length > 0
-  ) {
+  let fetchComponentsList: any = await getComponentsList('Home Page', SUMMIT_APP_CONFIG);
+  if (fetchComponentsList?.status === 200 && fetchComponentsList?.data?.message?.msg === 'success') {
     componentsList = fetchComponentsList?.data?.message?.data;
   }
-  const filteredHomePageComponentsFromAllComponentsList: any = componentsList?.filter(
-    (component: ComponentTypes) => component?.page_name === 'home-page'
-  );
   let bannerData: BannerArrayTypes;
   let getBannerImgs: any = await getBannerAPI(SUMMIT_APP_CONFIG, undefined);
   if (getBannerImgs?.status === 200 && getBannerImgs?.data?.msg === 'success') {
@@ -67,7 +59,7 @@ export const getStaticProps = async () => {
   }
   return {
     props: {
-      homePageComponents: filteredHomePageComponentsFromAllComponentsList || [],
+      homePageComponents: fetchComponentsList?.data?.message?.data || {},
       bannerData: bannerData || { data: [] },
       translationsList,
       metaTagsData,

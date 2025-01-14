@@ -86,17 +86,12 @@ function ProductListingMaster({ componentsList }: any) {
     pageOffset,
     handlePageClick,
   };
-  const componentsListFlattenArray = flattenComponentsList(componentsList);
-  const getLayoutComponentsList =
-    componentsList[0]?.layout && componentsList[0]?.layout_component_list?.length > 0
-      ? componentsList[0]?.layout_component_list?.flat()
-      : [];
 
   function renderProductListPageHeaderComponents() {
-    if (componentsListFlattenArray?.length === 0) return <p>No header components to display.</p>;
+    if (componentsList?.top_section_component?.length === 0) return;
 
-    if (componentsListFlattenArray?.length > 0) {
-      return componentsListFlattenArray?.map((componentName: any) => {
+    if (componentsList?.top_section_component?.length > 0) {
+      return componentsList?.top_section_component?.map((componentName: any) => {
         const Component = require(`./${componentName.section_name}/${componentName?.component_name}/MasterComponent`).default;
         return (
           <section className="listing-page position-realtive">
@@ -108,14 +103,15 @@ function ProductListingMaster({ componentsList }: any) {
   }
 
   function renderProductListPageLayoutComponents() {
-    if (getLayoutComponentsList?.length === 0) return <p>No layout components to display.</p>;
-
-    if (getLayoutComponentsList?.length > 0) {
+    if (!componentsList.product_category_page_layout && !componentsList.filters_component && !componentsList.product_card_components)
+      return <p>No layout components to display.</p>;
+    else {
       return (
-        <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
+        <div className="">
           <LayoutRenderer
-            layoutName={componentsList[0]?.layout}
-            layoutComponents={componentsList[0]?.layout_component_list}
+            layoutName={componentsList?.product_category_page_layout}
+            filterComponentInLayout={componentsList?.filters_component}
+            productCardsInLayout={componentsList?.product_card_components}
             productsGridProps={layoutProps}
           />
         </div>
