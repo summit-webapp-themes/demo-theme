@@ -11,6 +11,28 @@ import Link from "next/link";
 
 // Data for list items
 const footerData = {
+    socialLinks: [
+        {
+            href: "#",
+            icon: <FaFacebookF style={{ color: "#6c757d" }} />,
+        },
+        {
+            href: "#",
+            icon: <FaXTwitter style={{ color: "#6c757d" }} />,
+        },
+        {
+            href: "#",
+            icon: <FaPinterestP style={{ color: "#6c757d" }} />,
+        },
+        {
+            href: "#",
+            icon: <FaTelegramPlane style={{ color: "#6c757d" }} />,
+        },
+        {
+            href: "#",
+            icon: <FaEnvelope style={{ color: "#6c757d" }} />,
+        },
+    ],
     categories: ["Men", "Women", "Decor", "Dress", "Denim", "Wedding Decor"],
     information: [
         "About Us",
@@ -46,7 +68,7 @@ const securityLogos = [
 
 const Footer = () => {
     return (
-        <footer className={`bg-light text-dark ${style.footer_container}`}>
+        <footer className={`bg-light text-dark web_footer_container ${style.footer_container}`}>
             <div className={`${style.footer_list_container}`}>
                 <div className="container px-0 px-xl-5">
                     <div className="row">
@@ -75,21 +97,11 @@ const Footer = () => {
                                 <span>+001 2233 456</span>
                             </p>
                             <div className="d-flex">
-                                <Link href="#" className="text-dark me-3">
-                                    <FaFacebookF style={{ color: '#6c757d' }} />
-                                </Link>
-                                <Link href="#" className="text-dark me-3">
-                                    <FaXTwitter style={{ color: '#6c757d' }} />
-                                </Link>
-                                <Link href="#" className="text-dark me-3">
-                                    <FaPinterestP style={{ color: '#6c757d' }} />
-                                </Link>
-                                <Link href="#" className="text-dark me-3">
-                                    <FaTelegramPlane style={{ color: '#6c757d' }} />
-                                </Link>
-                                <Link href="#" className="text-dark">
-                                    <FaEnvelope style={{ color: '#6c757d' }} />
-                                </Link>
+                                {footerData.socialLinks.map((link, index) => (
+                                    <Link key={index} href={link.href} className="text-dark me-3">
+                                        {link.icon}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
 
