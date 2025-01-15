@@ -1,6 +1,4 @@
 import { useRouter } from 'next/router';
-// import Navbar from './Navbar/Navbar';
-import nav from './Navbar/NavbarMenuLeftAligned/MasterComponent';
 import layoutData from '../summit-settings.json';
 
 interface LayoutProps {
@@ -16,20 +14,19 @@ function Layout({ children, componentProps }: LayoutProps) {
   const toShowFooter =
     router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' ? false : true;
 
-  const LayoutRenderer = () => {
+  const HeaderRenderer = () => {
     const Component = require(`./Navbar/${layoutData?.data.header_component}/MasterComponent`).default;
     return <Component key="navbar-component" />;
   };
-  // return (
-  //   <>
-  //     {toShowHeader && <Navbar />}
-  //     {children}
-  //   </>
-  // );
+  const FooterRenderer = () => {
+    const Component = require(`./Footer/${layoutData?.data.footer_component}/MasterComponent`).default;
+    return <Component key="navbar-component" />;
+  };
   return (
     <>
-      {toShowHeader && LayoutRenderer()}
+      {toShowHeader && HeaderRenderer()}
       {children}
+      {FooterRenderer()}
     </>
   );
 }
