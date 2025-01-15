@@ -1,5 +1,7 @@
 @import '~react-image-gallery/styles/scss/image-gallery.scss';
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 200 to 1000
 
@@ -8,6 +10,8 @@
 @import 'components/sidebar.module';
 // importing Masonry carousel banner
 @import 'components/MasonryCarouselLayout.module.scss';
+// importing mobile footer accordian
+@import 'components/mobile_footer_accordian.module.scss';
 
 input[type='text'] {
   box-shadow: none !important;
@@ -46,7 +50,7 @@ input[type='text'] {
   cursor: pointer;
 }
 
-.heading-category-l1:hover + .popover,
+.heading-category-l1:hover+.popover,
 .pop-over:hover {
   display: block;
 }
@@ -276,6 +280,7 @@ input[type='text'] {
   padding-left: 12%;
   width: 57%;
 }
+
 .carousel-inner {
   height: 100% !important;
 }
@@ -303,10 +308,12 @@ input[type='text'] {
   margin-left: 150px !important;
   margin-right: 150px !important;
 }
+
 .custom-container-lg {
   margin-left: 250px !important;
   margin-right: 250px !important;
 }
+
 @media (min-width: 992px) {
   .productImgMagnify_product_img__mVrRB {
     width: 100% !important;
@@ -324,6 +331,7 @@ input[type='text'] {
     margin-right: 60px !important;
     margin-left: 60px !important;
   }
+
   .custom-container-lg {
     margin-left: 160px !important;
     margin-right: 160px !important;
@@ -335,13 +343,14 @@ input[type='text'] {
     margin-right: 0px !important;
     margin-left: 0px !important;
   }
+
   .custom-container-lg {
     margin-left: 0px !important;
     margin-right: 0px !important;
   }
 }
 
-//Follow us section slick slider
+//Follow us section 
 .slick-slide {
   padding: 0 !important;
 }
@@ -349,4 +358,20 @@ input[type='text'] {
 .follow-us-image-container:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+
+//Follow us section end
+
+// Footer css
+.mobile_footer_container .input-group > .form-control,
+.web_footer_container .input-group > .form-control {
+  border-radius: 0 !important;
+}
+
+.mobile_footer_container .input-group > .form-control:focus,
+.web_footer_container .input-group > .form-control:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #878787 !important;
+  border-radius: 0 !important;
 }
