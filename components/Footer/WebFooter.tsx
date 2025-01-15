@@ -1,72 +1,18 @@
 import React from "react";
-import style from '../../styles/components/footer.module.scss'
-import { FaFacebookF, FaPinterestP, FaTelegramPlane, FaEnvelope } from "react-icons/fa"
-import { FaXTwitter } from "react-icons/fa6";;
+import style from '../../styles/components/footer.module.scss';
 import { IoLocationOutline, IoCallOutline } from "react-icons/io5";
 import { TfiEmail } from "react-icons/tfi";
 import ProGearHub from '../../public/assets/images/logo.png'
 import securityLogo from '../../public/assets/images/security_image.png'
 import Image from "next/image";
 import Link from "next/link";
+import { FooterData } from '../../interfaces/footer-interface';
 
-// Data for list items
-const footerData = {
-    socialLinks: [
-        {
-            href: "#",
-            icon: <FaFacebookF style={{ color: "#6c757d" }} />,
-        },
-        {
-            href: "#",
-            icon: <FaXTwitter style={{ color: "#6c757d" }} />,
-        },
-        {
-            href: "#",
-            icon: <FaPinterestP style={{ color: "#6c757d" }} />,
-        },
-        {
-            href: "#",
-            icon: <FaTelegramPlane style={{ color: "#6c757d" }} />,
-        },
-        {
-            href: "#",
-            icon: <FaEnvelope style={{ color: "#6c757d" }} />,
-        },
-    ],
-    categories: ["Men", "Women", "Decor", "Dress", "Denim", "Wedding Decor"],
-    information: [
-        "About Us",
-        "Contact Us",
-        "Privacy Policy",
-        "Shipping & Delivery",
-        "Terms & Conditions",
-        "Returns & Exchanges",
-    ],
-    usefulLinks: [
-        "Store Location",
-        "Latest Posts",
-        "My Account",
-        "Size Guide",
-        "FAQs",
-        "FAQs 2",
-    ],
-    bottomLinks: [
-        "Shop",
-        "About Us",
-        "Contact Us",
-        "Blog"
-    ]
-};
+interface WebFooterProps {
+    footerData: FooterData;
+}
 
-// Data for images
-const securityLogos = [
-    {
-        src: securityLogo,
-        alt: "McAfee",
-    }
-];
-
-const WebFooter = () => {
+const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
     return (
         <footer className={`bg-light text-dark web_footer_container ${style.footer_container}`}>
             <div className={`${style.footer_list_container}`}>
@@ -159,7 +105,7 @@ const WebFooter = () => {
                                 </button>
                             </div>
                             <div className="d-flex">
-                                {securityLogos.map((logo, index) => (
+                                {footerData.securityLogos.map((logo, index) => (
                                     <Image
                                         key={index}
                                         src={securityLogo}
