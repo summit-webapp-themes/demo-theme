@@ -4,7 +4,7 @@ import { FaFacebookF, FaPinterestP, FaTelegramPlane, FaEnvelope } from "react-ic
 import { FaXTwitter } from "react-icons/fa6";;
 import { IoLocationOutline, IoCallOutline } from "react-icons/io5";
 import { TfiEmail } from "react-icons/tfi";
-import kalles_logo from '../../public/assets/images/kalles.png'
+import ProGearHub from '../../public/assets/images/logo.png'
 import securityLogo from '../../public/assets/images/security_image.png'
 import Image from "next/image";
 import Link from "next/link";
@@ -82,11 +82,11 @@ const MobileFooter = () => {
                                         <div className="mb-4">
                                             <Image
                                                 className={``}
-                                                src={kalles_logo}
-                                                alt="kalles_logo"
+                                                src={ProGearHub}
+                                                alt="logo"
                                                 loading="eager"
-                                                width={100}
-                                                height={30}
+                                                width={200}
+                                                height={50}
                                             />
                                         </div>
                                         <p className="d-flex">
@@ -201,8 +201,8 @@ const MobileFooter = () => {
                 <div className={`d-flex justify-content-center align-items-center flex-wrap mx-auto px-3`} style={{ maxWidth: '1200px' }}>
                     <p className="mb-0">
                         <span className="text-secondary">All Mobile Rights Reserved © 2025</span>
-                        <span className="fw-bold text-danger"> Kalles</span>{" "}
-                         store - Developed by
+                        <span className="fw-bold text-danger"> ProGearHub</span>{" "}
+                        store - Developed by
                         <span style={{ fontWeight: '600' }}> The4</span>
                     </p>
                     {/* links  */}
