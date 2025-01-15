@@ -84,19 +84,19 @@ const Footer = () => {
                                     height={50}
                                 />
                             </div>
-                            <p className="d-flex">
+                            <p className="d-flex px-2">
                                 <IoLocationOutline className="me-2 fs-1" />
                                 <span>184 Main Rd E, St Albans VIC 3021, Australia</span>
                             </p>
-                            <p className="text-secondary d-flex">
+                            <p className="text-secondary d-flex px-2">
                                 <TfiEmail className="me-2 fs-3" />
                                 <span>contact@company.com</span>
                             </p>
-                            <p className="d-flex">
+                            <p className="d-flex px-2">
                                 <IoCallOutline className="me-2 fs-3" />
                                 <span>+001 2233 456</span>
                             </p>
-                            <div className="d-flex">
+                            <div className="d-flex px-2">
                                 {footerData.socialLinks.map((link, index) => (
                                     <Link key={index} href={link.href} className="text-dark me-3">
                                         {link.icon}
