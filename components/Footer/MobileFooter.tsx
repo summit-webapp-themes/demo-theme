@@ -89,7 +89,7 @@ const MobileFooter = () => {
                                                 height={50}
                                             />
                                         </div>
-                                        <p className="d-flex px-2">
+                                        <p className="d-flex px-1">
                                             <IoLocationOutline className="me-2 fs-1" />
                                             <span>184 Main Rd E, St Albans VIC 3021, Australia</span>
                                         </p>

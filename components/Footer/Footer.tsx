@@ -84,7 +84,7 @@ const Footer = () => {
                                     height={50}
                                 />
                             </div>
-                            <p className="d-flex px-2">
+                            <p className="d-flex px-1">
                                 <IoLocationOutline className="me-2 fs-1" />
                                 <span>184 Main Rd E, St Albans VIC 3021, Australia</span>
                             </p>
@@ -177,15 +177,15 @@ const Footer = () => {
 
             {/* Footer Bottom */}
             <div className={`py-3 text-center ${style.footer_bottom}`}>
-                <div className={`d-flex justify-content-between align-items-center mx-auto px-3`} style={{ maxWidth: '1200px' }}>
-                    <p className="mb-0">
+                <div className={`d-flex justify-content-between align-items-center mx-auto`} style={{ maxWidth: '1200px' }}>
+                    <p className="mb-0 ps-md-5 ps-xl-0">
                         <span className="text-secondary">All Rights Reserved © 2025</span>
                         <span className="fw-bold text-danger">ProGearHub</span>{" "}
                         store - Developed by
                         <span style={{ fontWeight: '600' }}>The4</span>
                     </p>
                     {/* links  */}
-                    <div>
+                    <div className="pe-md-5 pe-xl-0">
                         <ul className="list-unstyled d-flex mb-0">
                             {footerData.bottomLinks.map((item, index) => (
                                 <li key={index}>

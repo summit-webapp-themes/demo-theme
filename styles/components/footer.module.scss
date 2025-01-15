@@ -6,7 +6,6 @@
 .footer_list_container {
   padding-top: 80px;
   padding-bottom: 80px;
-
 }
 
 .subscribe_btn {
@@ -30,4 +29,11 @@
 
 .footer_bottom {
   border-top: .3px solid lightgrey
+}
+
+@media (max-width: 768px) {
+  .footer_list_container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
 }
