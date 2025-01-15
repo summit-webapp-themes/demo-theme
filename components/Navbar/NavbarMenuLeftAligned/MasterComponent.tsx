@@ -1,13 +1,13 @@
-import useNavbar from '../../hooks/GeneralHooks/useNavbar';
-import WebNavBar from './WebNavBar';
-import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
+import useNavbar from '../../../hooks/GeneralHooks/useNavbar';
+import WebNavBar from '../WebNavBar';
+import { SelectedFilterLangDataFromStore } from '../../../store/slices/general_slices/selected-multilanguage-slice';
 import { useSelector } from 'react-redux';
-import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
-import { selectWishlist } from '../../store/slices/wishlist-slices/wishlist-local-slice';
-import useFetchCartItems from '../../hooks/CartPageHook/useFetchCartItems';
-import useWishlist from '../../hooks/WishlistHooks/useWishlistHook';
-import CustomWebNavbar from './CustomWebNavbar';
-import LogoInCenterNavbar from './LogoInCenterNavbar';
+import { selectCart } from '../../../store/slices/cart-slices/cart-local-slice';
+import { selectWishlist } from '../../../store/slices/wishlist-slices/wishlist-local-slice';
+import useFetchCartItems from '../../../hooks/CartPageHook/useFetchCartItems';
+import useWishlist from '../../../hooks/WishlistHooks/useWishlistHook';
+import CustomWebNavbar from '../CustomWebNavbar';
+import LogoInCenterNavbar from '../LogoInCenterNavbar';
 
 function Navbar() {
   const { navbarData, isLoading, errorMessage, selectedCurrencyValue, handleLogoutUser, isLoggedIn } = useNavbar();
