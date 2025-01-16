@@ -1,7 +1,5 @@
 @import '~react-image-gallery/styles/scss/image-gallery.scss';
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-
 // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 200 to 1000
 
@@ -50,7 +48,7 @@ input[type='text'] {
   cursor: pointer;
 }
 
-.heading-category-l1:hover+.popover,
+.heading-category-l1:hover + .popover,
 .pop-over:hover {
   display: block;
 }
@@ -350,7 +348,7 @@ input[type='text'] {
   }
 }
 
-//Follow us section 
+//Follow us section
 .slick-slide {
   padding: 0 !important;
 }
