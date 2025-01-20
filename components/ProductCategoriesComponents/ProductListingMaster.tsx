@@ -13,7 +13,6 @@ const FilterModal = dynamic(() => import('./FilterComponents/FilterModal'));
 const SortbyModal = dynamic(() => import('./HorizantalFilter/SortbyModal'));
 const AddToCatalogModal = dynamic(() => import('../Catalog/AddToCatalogModal'));
 import LayoutRenderer from './ProductListPageLayout/LayoutRenderer';
-import flattenComponentsList from '../../utils/handle-components-list';
 
 function ProductListingMaster({ componentsList }: any) {
   const {
