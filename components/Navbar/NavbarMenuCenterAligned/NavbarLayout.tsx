@@ -6,10 +6,11 @@ import { NavDropdown } from 'react-bootstrap';
 import { FaUserCircle } from 'react-icons/fa';
 import { FiHeart, FiShoppingCart, FiUser } from 'react-icons/fi';
 import { RiMenu2Line } from 'react-icons/ri';
-import logo from '../../public/assets/images/logo.png';
-import stylesNavbar from '../../styles/components/navbar.module.scss';
-import CustomProductCategoriesNavbar from './CustomProductCategoriesNavbar';
-import MobileProductCategories from './MobileProductCategories';
+// import logo from '../../public/assets/images/logo.png';
+import logo from '../../../public/assets/images/logo.png';
+import stylesNavbar from '../../../styles/components/navbar.module.scss';
+import CustomProductCategoriesNavbar from '../CustomProductCategoriesNavbar';
+import MobileProductCategories from '../MobileProductCategories';
 
 function CustomWebNavbar({
   navbarData,

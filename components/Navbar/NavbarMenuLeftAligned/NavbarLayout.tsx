@@ -3,14 +3,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { NavDropdown } from 'react-bootstrap';
-import { FaUserCircle } from 'react-icons/fa';
 import { FiHeart, FiShoppingCart, FiUser } from 'react-icons/fi';
 import { GoSearch } from 'react-icons/go';
 import { RiMenu2Line } from 'react-icons/ri';
-import logo from '../../public/assets/images/logo.png';
-import stylesNavbar from '../../styles/components/navbar.module.scss';
-import CustomProductCategoriesNavbar from './CustomProductCategoriesNavbar';
-import MobileProductCategories from './MobileProductCategories';
+import logo from '../../../public/assets/images/logo.png';
+import stylesNavbar from '../../../styles/components/navbar.module.scss';
+import CustomProductCategoriesNavbar from '../CustomProductCategoriesNavbar';
+import MobileProductCategories from '../MobileProductCategories';
 
 function LogoInCenterNavbar({
   navbarData,

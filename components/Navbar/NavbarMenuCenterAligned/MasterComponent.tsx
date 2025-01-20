@@ -1,6 +1,6 @@
-import useNavbar from '../../../hooks/GeneralHooks/useNavbar';
-import { SelectedFilterLangDataFromStore } from '../../../store/slices/general_slices/selected-multilanguage-slice';
 import { useSelector } from 'react-redux';
+import { SelectedFilterLangDataFromStore } from '../../../store/slices/general_slices/selected-multilanguage-slice';
+import useNavbar from '../../../hooks/GeneralHooks/useNavbar';
 import useFetchCartItems from '../../../hooks/CartPageHook/useFetchCartItems';
 import useWishlist from '../../../hooks/WishlistHooks/useWishlistHook';
 import NavbarLayout from './NavbarLayout';
