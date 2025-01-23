@@ -59,7 +59,7 @@
 .follow_us_container .section_title {
   font-size: 30px;
   font-weight: 700;
-  line-height: 44px
+  line-height: 44px;
 }
 
 .follow_us_container span {
@@ -72,27 +72,6 @@
 
 .follow_us_container .slider_image:hover {
   transform: scale(1.1);
-}
-
-//promotional banner css
-.featured_banner_info {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-}
-.featured_banner_heading {
-  font-size: 36px;
-}
-.featured_shop_now_btn {
-  height: 42px;
-  background: #222222;
-  color: #f1f2f4;
-  border: 0;
-}
-.featured_shop_now_btn:hover {
-  background: #ec0101;
 }
 
 // Blog section css
