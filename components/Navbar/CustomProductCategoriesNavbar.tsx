@@ -110,7 +110,7 @@ function CustomProductCategoriesNavbar({
                           <Placeholder xs={6} bg="dark" />
                         ) : (
                           <div
-                            className={`px-xxl-4 px-3 ${showPopoverIndex === index && 'theme-gold'}`}
+                            className={` d-flex align-items-center ${showPopoverIndex === index && 'theme-gold'} ${stylesHeader.navbar_category_items}`}
                             onClick={() => handleItemClick(index)}
                           >
                             {item.label}

@@ -39,6 +39,19 @@
   bottom: 6rem !important;
   left: 180px !important;
 }
+.navbar_category_items {
+  font-size: 14px;
+  font-weight: 400;
+  color: #222222;
+  line-height: 1;
+  padding-left: 17px;
+  padding-right: 17px;
+}
+
+.navbar_category_items:hover {
+  color: #56cfe1;
+}
+
 @media (max-width: 768px) {
   .heading_container {
     padding-left: 0;
