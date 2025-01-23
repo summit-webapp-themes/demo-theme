@@ -4,7 +4,8 @@ import blogImage1 from '../public/assets/images/blog-1.webp';
 import blogImage2 from '../public/assets/images/blog-2.webp';
 import blogImage3 from '../public/assets/images/blog-3.webp';
 import styles from '../styles/components/home.module.scss';
-function BlogCard({ data }: any) {
+import { dateFormat } from '../utils/dataFormat';
+function BlogCard({ blog, data }: any) {
   const images = [blogImage1, blogImage2, blogImage3];
   return (
     <>
@@ -13,15 +14,13 @@ function BlogCard({ data }: any) {
       </div>
       <div className="mt-3">
         <p className={`${styles.blog_heading1} m-0 mb-2`}>
-          <span className="text-secondary">on</span> May 6, 2022
+          <span className="text-secondary">on</span> {dateFormat(blog?.published_on)}
         </p>
-        <p className={`m-0 mb-2 ${styles.blog_heading2}`}>Unique First Anniversary Gift Ideas</p>
+        <p className={`m-0 mb-2 ${styles.blog_heading2}`}>{blog?.title}</p>
       </div>
       <div className={`${styles?.blog_description} `}>
         <p>
-          If you’ve been faced with the decision to reschedule or cancel your 2020 wedding, you’re not alone. If only th If you’ve been
-          faced with the decision to reschedule or cancel your 2020 wedding, you’re not alone. If only th...If you’ve been faced with the
-          decision to reschedule or cancel your 2020 wedding, you’re not alone. If only th...
+         {blog?.blog_intro}
         </p>
       </div>
     </>
