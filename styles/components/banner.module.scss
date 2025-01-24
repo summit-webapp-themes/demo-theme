@@ -5,13 +5,15 @@
   margin-bottom: 10px;
   white-space: nowrap;
 }
+
 .banner_btn {
   background-color: #222222;
   border-radius: 0;
   border: none;
   font-weight: 700;
-  padding: 10px 32px;
+  padding: 12px 35px;
 }
+
 .banner_p_tag {
   font-size: 19px !important;
   font-weight: 500;
@@ -20,12 +22,14 @@
   margin-bottom: 5px;
   letter-spacing: 1px;
 }
+
 .catagoryImg {
   width: 100%;
   max-height: 1500px;
   object-fit: cover;
   object-position: 45% 20%;
 }
+
 @media only screen and (max-width: 3000px) {
   .catagoryImg {
     min-height: 1000px !important;
@@ -33,6 +37,7 @@
     object-position: 45% 20%;
   }
 }
+
 @media only screen and (max-width: 1600px) {
   .catagoryImg {
     min-height: 600px !important;
@@ -45,6 +50,7 @@
   .bannerTitle {
     font-size: 2.5rem;
   }
+
   .catagoryImg {
     min-height: 550px;
     object-fit: cover;
@@ -58,13 +64,16 @@
     object-fit: cover;
     object-position: 45% 20%;
   }
+
   .bannerTitle {
     font-size: 20px;
     white-space: nowrap;
   }
+
   .banner_btn {
     padding: 5px 12px;
   }
+
   .banner_p_tag {
     font-size: 12px !important;
   }
@@ -82,6 +91,7 @@
   .bannerTitle_left {
     font-size: 35px !important;
   }
+
   .bannerTitle_left {
     white-space: wrap !important;
     line-height: normal !important;
@@ -105,6 +115,12 @@
   padding-left: 0%;
 }
 
+.banner_content_container {
+  padding-top: 12%;
+  padding-left: 9%;
+  font-family: "Poppins";
+}
+
 .banner_p_tag_left {
   font-size: 20px !important;
   font-weight: 500;
@@ -116,12 +132,13 @@
 
 .bannerTitle_left {
   font-size: 48px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 70px;
   letter-spacing: 0px;
   margin-bottom: 10px;
   white-space: nowrap;
 }
+
 .overlay {
   top: 0;
   left: 0;

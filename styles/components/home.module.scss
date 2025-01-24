@@ -12,9 +12,11 @@
   width: 96%;
   margin: 0 auto;
 }
+
 .featuredCollectionTitle {
   font-size: 30px;
 }
+
 @media (max-width: 1024px) {
   .catagoryImg {
     height: auto !important;
@@ -82,15 +84,23 @@
   transform: translate(-50%, -50%);
   color: #fff;
 }
+
+.featured_banner_info>p {
+  font-family: 'Poppins';
+}
+
 .featured_banner_heading {
   font-size: 36px;
 }
+
 .featured_shop_now_btn {
   height: 42px;
   background: #222222;
   color: #f1f2f4;
   border: 0;
+  font-family: 'Poppins';
 }
+
 .featured_shop_now_btn:hover {
   background: #ec0101;
 }
@@ -100,14 +110,17 @@
   font-size: 14px;
   color: #222222;
 }
+
 .blog_heading2 {
   font-size: 16px;
   color: #222222;
   cursor: pointer;
 }
+
 .blog_heading2:hover {
   color: #ec0101;
 }
+
 .blog_description {
   color: #878787;
   overflow: hidden;
