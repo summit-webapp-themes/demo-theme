@@ -1,6 +1,10 @@
 .footer_container {
-  // font-family: 'Poppins';
+  font-family: 'Poppins';
   border-top: 0.3px solid lightgrey;
+}
+
+.footer_container .footer_list_heading {
+  font-family: 'Playfair Display' !important;
 }
 
 .footer_list_container {

@@ -219,7 +219,7 @@ const JewelleryProductCardVariantImage = ({
         <div className="mt-3 text-start w-100">
           <Link href={handleRedirectToProductDetailPage()} className="cursor-pointer text-decoration-none text-black pb-2">
             <h6 className={`${styles.tabProductTitle} m-0 `}>
-              <strong>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</strong>
+              {data?.item_name?.split(' ').slice(0, 4).join(' ')}
             </h6>
           </Link>
           <div>
