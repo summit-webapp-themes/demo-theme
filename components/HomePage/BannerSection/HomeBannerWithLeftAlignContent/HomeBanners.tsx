@@ -26,9 +26,9 @@ const BannerCarousel = ({ bannersList }: any) => {
                 height={100}
               />
               <CarouselCaption className="corousel-captionn">
-                <div className={``} key={index}>
+                <div className={`px-3`} key={index}>
                   <p className={style.banner_p_tag}>Summer 2023</p>
-                  <h2 className={style.bannerTitle}>{banners?.heading}</h2>
+                  <h2 className={`${style.bannerTitle} p-0`}>{banners?.heading}</h2>
                   <a href={banners.button_1_url} className="text-white">
                     <span className={`btn btn-primary ${style.banner_btn}`}>
                       {banners?.button_1_title} &nbsp; <i className="fa fa-forward text-light align-items-center"></i>

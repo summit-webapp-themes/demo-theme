@@ -4,7 +4,7 @@ import styles from '../../../../styles/components/home.module.scss';
 
 function BlogSectionCardContainer({ blogData }: any) {
   return (
-    <div className="custom-container-xl px-4 ">
+    <div className="custom-container-xl ">
       <div className="my-5">
         <div className={`${styles.featuredCollectionTitle} fw-bold w-100 text-center mb-5`}>
           <p className="m-0">From The Blogs</p>

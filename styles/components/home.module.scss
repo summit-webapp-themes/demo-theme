@@ -59,7 +59,7 @@
 .follow_us_container .section_title {
   font-size: 30px;
   font-weight: 700;
-  line-height: 44px
+  line-height: 44px;
 }
 
 .follow_us_container span {
@@ -106,7 +106,8 @@
   cursor: pointer;
 }
 .blog_heading2:hover {
-  color: #ec0101;
+  // color: #ec0101;
+  color: #56cfe1;
 }
 .blog_description {
   color: #878787;
@@ -116,4 +117,10 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   line-clamp: 3;
+  font-size: 14px;
+}
+
+.blog_card_container {
+  padding-left: 15px;
+  padding-left: 15px;
 }

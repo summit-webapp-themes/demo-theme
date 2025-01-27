@@ -52,9 +52,9 @@ function CustomWebNavbar({
     <>
       <header className={stylesNavbar.header}>
         <nav>
-          <div className={`${stylesNavbar.navbar} ps-lg-4 pe-lg-4`}>
+          <div className={`${stylesNavbar.navbar} `}>
             <div className="w-100 d-flex justify-content-between py-2 align-items-center">
-              <div className="mobile-nav d-flex justify-content-sm-between px-3 px-sm-4 d-sm-block d-md-none">
+              <div className="mobile-nav d-flex justify-content-sm-between px-3 px-sm-4 d-sm-block d-md-none align-items-center">
                 <Link href="#" legacyBehavior>
                   <a
                     className="mobile-menu-toggle  w-icon-hamburger"
@@ -66,7 +66,7 @@ function CustomWebNavbar({
                 </Link>
               </div>
               {/* <div className="d-flex justify-content-between align-items-center w-100"> */}
-              <div>
+              <div className="d-flex align-items-center">
                 <Link href="/" legacyBehavior>
                   <a>
                     <Image
@@ -96,7 +96,7 @@ function CustomWebNavbar({
               </div>
 
               <div className={``}>
-                <ul className=" list-inline d-flex justify-content-end align-items-center m-0">
+                <ul className={` list-inline d-flex justify-content-end align-items-center m-0 ${stylesNavbar.list_inline_container}`}>
                   <li className={`${stylesNavbar.list_inline_item_custom} `}>
                     {isLoggedIn ? (
                       <>
