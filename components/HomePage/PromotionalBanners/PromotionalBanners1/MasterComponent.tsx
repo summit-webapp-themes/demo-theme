@@ -4,7 +4,7 @@ import usePromotionalBanner from '../../../../hooks/HomePageHooks/usePromotional
 
 function MasterComponent() {
   const { isLoading, promotionalBannerData, errorMessage } = usePromotionalBanner();
-  console.log('monika', promotionalBannerData);
+
   return (
     <div>
       <PromotionalBanners1CardContainer promotionalBannerData={promotionalBannerData} />
