@@ -6,6 +6,7 @@ import useHomeTopCategories from '../../../../hooks/HomePageHooks/usePersonalize
 
 const MasterComponent = () => {
   const { homeTopCategories, isLoading, errorMessage } = useHomeTopCategories();
+
   if (isLoading) {
     return <PersonalizedCategoriesLoading />;
   } else if (homeTopCategories?.length > 0) {

@@ -12,8 +12,11 @@
   width: 96%;
   margin: 0 auto;
 }
-.featuredCollectionTitle {
-  font-size: 30px;
+.featuredCollectionTitle p {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 34px;
 }
 @media (max-width: 1024px) {
   .catagoryImg {
@@ -104,6 +107,12 @@
   font-size: 16px;
   color: #222222;
   cursor: pointer;
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 22.4px;
+  font-optical-sizing: auto;
+  font-feature-settings: normal;
+  text-rendering: optimizeLegibility;
 }
 .blog_heading2:hover {
   // color: #ec0101;
@@ -123,4 +132,71 @@
 .blog_card_container {
   padding-left: 15px;
   padding-left: 15px;
+}
+.blog_section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.blog_image_wrapper {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Border effect on hover */
+.blog_image_wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(255, 255, 255, 0);
+  transition: border 0.4s ease-in-out;
+  pointer-events: none; /* Ensures it doesn't interfere with clicks */
+}
+
+.blog_image_wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out;
+  transform: scale(1.1); /* Default zoomed-in effect */
+  // transform: scaleX(1.2) scaleY(1.1); /* Scale width more than height */
+  transition:
+    transform 0.3s ease-in-out,
+    border 0.3s ease-in-out;
+  border: 5px solid transparent; /* Transparent border initially */
+}
+
+.blog_image_wrapper:hover img {
+  transform: scale(1.1) translateY(-10px); /* Zoom and move up effect */
+}
+
+.blog_image_wrapper:hover {
+  opacity: 1;
+}
+.blog_image_wrapper {
+  padding: 10px; /* Padding around the image */
+  display: inline-block; /* To contain the image and its border */
+}
+
+.blog_image_wrapper img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition:
+    transform 0.4s ease-in-out,
+    border 0.3s ease-in-out;
+  transform: scale(1.1); /* Default zoomed-in effect */
+  border: 5px solid transparent; /* Transparent border initially */
+  box-sizing: border-box; /* Ensures padding doesn't affect the image size */
+}
+
+.blog_image_wrapper:hover img {
+  transform: scale(1.1); /* Keeps zoom effect even on hover */
+  border-color: #000; /* Change to the desired border color */
 }

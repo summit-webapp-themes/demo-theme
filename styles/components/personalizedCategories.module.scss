@@ -64,6 +64,10 @@
   // transform: scale(1.1); /* Zoom effect on hover */
 }
 
+.image_wrapper:hover {
+  // transform: scale(1.1);
+}
+
 @media only screen and (max-width: 767px) {
   .image_1 {
     position: relative;

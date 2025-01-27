@@ -8,6 +8,7 @@ const HomePageMaster = ({ homePageComponents, bannerData }: any) => {
     return <p>No components to display for the home page.</p>;
   }
   if (componentsListFlattenArray?.length === 0) return <p>No components to display for the home page.</p>;
+  console.log('monika', componentsListFlattenArray);
 
   const componentsToRender = componentsListFlattenArray?.map((componentName: any) => {
     const Component = require(`./${componentName.section_name}/${componentName?.component_name}/MasterComponent`).default;
@@ -15,6 +16,10 @@ const HomePageMaster = ({ homePageComponents, bannerData }: any) => {
       return <Component key={componentName?.component_name} bannerData={bannerData} />;
     }
     if (componentName?.section_name === 'FeaturedCollections') {
+      return <Component key={componentName?.component_name} componentProperties={JSON.parse(componentName?.properties)} />;
+    }
+    console.log('monika', componentName?.section_name !== 'PromotionalBanners');
+    if (componentName?.section_name !== 'PromotionalBanners') {
       return <Component key={componentName?.component_name} componentProperties={JSON.parse(componentName?.properties)} />;
     }
     return <Component key={componentName?.component_name} />;

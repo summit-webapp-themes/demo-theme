@@ -1,14 +1,15 @@
 import React from 'react';
 import PromotionalBanners1Card from './PromotionalBanners1Card';
 
-function PromotionalBanners1CardContainer() {
+function PromotionalBanners1CardContainer({ promotionalBannerData }: any) {
+  console.log('promotionalBannerData', promotionalBannerData);
   return (
     <div className="custom-container-xl px-4 h-100">
       <div className="py-5">
         <div className="row">
-          {[...Array(2)].map((item: any, index: any) => (
+          {promotionalBannerData.map((item: any, index: any) => (
             <div className="col-6 px-3">
-              <PromotionalBanners1Card data={index} />
+              <PromotionalBanners1Card data={item} />
             </div>
           ))}
         </div>

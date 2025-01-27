@@ -1,11 +1,12 @@
 .footer_container {
   // font-family: 'Poppins';
-  border-top: 0.3px solid lightgrey;
+  // border-top: 0.3px solid lightgrey;
 }
 
 .footer_list_container {
   padding-top: 80px;
   padding-bottom: 80px;
+  background-color: rgb(246, 246, 248);
 }
 
 .subscribe_btn {
@@ -28,7 +29,15 @@
 }
 
 .footer_bottom {
-  border-top: 0.3px solid lightgrey;
+  // border-top: 0.3px solid lightgrey;
+  background-color: white;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 23.8px;
+  letter-spacing: normal;
+}
+.footer_company_name {
+  color: rgb(86, 207, 225);
 }
 
 @media (max-width: 768px) {

@@ -1,2 +1,4 @@
 /node_modules
 /package-lock.json
+/styles/components/footer.module.scss
+/components/Footer/StandardFooter/WebFooter.tsx
