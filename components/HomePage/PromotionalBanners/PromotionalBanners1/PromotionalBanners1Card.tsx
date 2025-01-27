@@ -8,10 +8,10 @@ import { imageLoader } from '../../../../utils/image_loader';
 function PromotionalBanners1Card({ data }: any) {
   return (
     <>
-      <div className="position-relative">
+      <div className={`position-relative ${styles.promotional_banner_image_container}`}>
         <Image
           loader={imageLoader}
-          className={`w-100  `}
+          className={`w-100 ${styles.promotional_banner_image} `}
           src={data.image}
           alt={'banner_image'}
           objectFit="cover"

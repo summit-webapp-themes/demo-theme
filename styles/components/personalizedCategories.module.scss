@@ -68,6 +68,24 @@
   // transform: scale(1.1);
 }
 
+
+
+.women_image_container {
+  position: relative;
+  overflow: hidden;  // Ensures the image does not overflow when zoomed
+  width: 543px;
+  height: 635px;
+}
+.image_container {
+  position: relative;
+  overflow: hidden;  // Ensures the image does not overflow when zoomed
+ 
+}
+.image_wrapper:hover {
+  transform: scale(1.1);  // Zoom effect within the container
+}
+
+
 @media only screen and (max-width: 767px) {
   .image_1 {
     position: relative;
