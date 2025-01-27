@@ -65,7 +65,7 @@
 .follow_us_container .section_title {
   font-size: 30px;
   font-weight: 700;
-  line-height: 44px
+  line-height: 44px;
 }
 
 .follow_us_container span {
@@ -79,6 +79,7 @@
 .follow_us_container .slider_image:hover {
   transform: scale(1.1);
 }
+
 
 //promotional banner css
 .featured_banner_info {
@@ -125,7 +126,8 @@
 }
 
 .blog_heading2:hover {
-  color: #ec0101;
+  // color: #ec0101;
+  color: #56cfe1;
 }
 
 .blog_description {
@@ -137,4 +139,11 @@
   -webkit-box-orient: vertical;
   line-clamp: 3;
   font-family: 'Poppins';
+  font-size: 14px;
 }
+
+.blog_card_container {
+  padding-left: 15px;
+  padding-left: 15px;
+}
+

@@ -2,11 +2,16 @@
   background: transparent;
   width: 100%;
   border-bottom: 0.1rem solid #eee;
+  // height: 70px;
 }
 .navbar {
   padding: 0;
+  padding-left: 15px;
+  padding-right: 15px;
 }
-
+.navbar div {
+  height: 70px;
+}
 .search_bar {
   width: 60% !important;
   padding-bottom: 1.0625rem;
@@ -25,21 +30,26 @@
   align-items: center;
   cursor: pointer;
   text-decoration: none;
+  width: 22px !important;
 }
 .badge {
   background: #ff0000;
   border-radius: 50% !important;
-  bottom: 35px !important;
-  height: 1.1rem;
+  // bottom: 35px !important;
+  // height: 1.1rem;
   position: absolute;
-  right: 18px !important;
+  // right: 18px !important;
   text-align: center;
-  width: 1.1rem;
-  font-size: 12px;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
   font-weight: 600;
+  top: 20px;
+  left: 0;
 }
 .list_inline_margin {
-  margin-top: -2px;
+  // margin-top: -2px;
+  height: 70px;
 }
 .badge_warning[href] {
   background-color: #c67605;
@@ -75,15 +85,19 @@
 .logo {
   flex: 1;
 }
-
+.list_inline_container {
+  height: 70px;
+}
 // Custom web navbar css
 .list_inline_item_custom {
-  width: 45px;
+  // width: 45px;
+  padding: 8px;
 }
 .badge_custom {
   bottom: 13px !important;
   // right: -1px !important;
-  left: 23px !important;
+  // left: 23px !important;
+  left: 13px !important;
 }
 .inlineList {
   display: flex;
@@ -122,6 +136,9 @@
   }
   .cart_icon_mob {
     padding-right: 0.7rem !important;
+  }
+  .navbar {
+    padding: 0;
   }
 }
 
