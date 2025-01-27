@@ -29,8 +29,8 @@ const JewelleryFeaturedCollectionWithVariantImageCardContainer = ({
             <h3 className={`${style.featuredCollectionTitle} text-center m-0 my-2 fw-bold`}>
               <span className="px-2"> {item?.tag_name}</span>
             </h3>
-            <h6 className="text-secondary text-center mb-2 px-2">{item?.description}</h6>
-            {item.value.length > 0 && (
+            <h6 className={`${style.featured_collection_description} text-secondary text-center mb-2 px-2`}>{item?.description}</h6>
+            {item?.value?.length > 0 && (
               <div className="slider-container p-0 ">
                 <div className="row">
                   {item.value.map((val: FeaturedCollectionProductTypes, index: number) => (
