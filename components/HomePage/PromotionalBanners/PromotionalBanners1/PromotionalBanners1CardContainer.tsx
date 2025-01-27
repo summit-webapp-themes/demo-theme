@@ -4,7 +4,7 @@ import PromotionalBanners1Card from './PromotionalBanners1Card';
 function PromotionalBanners1CardContainer({ promotionalBannerData }: any) {
   console.log('promotionalBannerData', promotionalBannerData);
   return (
-    <div className="custom-container-xl  h-100">
+    <div className="custom-container-xl pt-5 h-100">
       <div className="py-5">
         <div className="row">
           {promotionalBannerData.map((item: any, index: any) => (
