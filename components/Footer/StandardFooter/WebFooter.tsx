@@ -45,7 +45,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Categories */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className="mb-4">Categories</h5>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>Categories</h5>
               <ul className="list-unstyled text-secondary">
                 {footerData.categories.map((item, index) => (
                   <Link href="#" className="text-decoration-none text-secondary">
@@ -59,7 +59,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Information */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className="mb-4">Information</h5>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>Information</h5>
               <ul className="list-unstyled text-secondary">
                 {footerData.information.map((item, index) => (
                   <Link href="#" className="text-decoration-none text-secondary">
@@ -73,7 +73,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Useful Links */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className="mb-4">Useful Links</h5>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>Useful Links</h5>
               <ul className="list-unstyled text-secondary">
                 {footerData.usefulLinks.map((item, index) => (
                   <Link href="#" className="text-decoration-none text-secondary">
@@ -87,7 +87,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Newsletter Signup */}
             <div className="col-xl-3 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className="mb-4">Newsletter Signup</h5>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>Newsletter Signup</h5>
               <p>Subscribe to our newsletter and get 10% off your first purchase</p>
               <div className="input-group mb-3">
                 <input type="email" className="form-control" placeholder="Your email address" />
