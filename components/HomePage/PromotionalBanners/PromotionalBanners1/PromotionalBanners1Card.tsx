@@ -6,11 +6,9 @@ import styles from '../../../../styles/components/home.module.scss';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { imageLoader } from '../../../../utils/image_loader';
 function PromotionalBanners1Card({ data }: any) {
-  console.log(data, 'data');
   return (
     <>
       <div className="position-relative">
-        {/* <Image src={data === 0 ? bannerImage : bannerImage2} alt="banner-img" className="w-100 h-100" width={100} height={100} /> */}
         <Image
           loader={imageLoader}
           className={`w-100  `}

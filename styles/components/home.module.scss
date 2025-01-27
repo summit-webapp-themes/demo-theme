@@ -18,7 +18,7 @@
   font-weight: 600;
   letter-spacing: normal;
   line-height: 34px;
-
+}
 
 .featuredCollectionTitle {
   font-size: 30px;
@@ -87,7 +87,6 @@
   transform: scale(1.1);
 }
 
-
 //promotional banner css
 .featured_banner_info {
   position: absolute;
@@ -97,7 +96,7 @@
   color: #fff;
 }
 
-.featured_banner_info>p {
+.featured_banner_info > p {
   font-family: 'Poppins';
 }
 
@@ -226,4 +225,3 @@
   transform: scale(1.1); /* Keeps zoom effect even on hover */
   border-color: #000; /* Change to the desired border color */
 }
-
