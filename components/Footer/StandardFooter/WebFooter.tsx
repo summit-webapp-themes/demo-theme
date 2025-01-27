@@ -13,7 +13,7 @@ interface WebFooterProps {
 
 const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
   return (
-    <footer className={` text-dark web_footer_container ${style.footer_container}`}>
+    <footer className={`bg-light text-dark web_footer_container ${style.footer_container}`}>
       <div className={`${style.footer_list_container}`}>
         <div className="container custom-container-xl">
           <div className="row">
@@ -23,20 +23,20 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
                 <Image className={``} src={ProGearHub} alt="logo" loading="eager" width={200} height={50} />
               </div>
               <p className="d-flex px-1">
-                <IoLocationOutline className="me-2 fs-1 grey" />
-                <span className="grey fs-14 ">184 Main Rd E, St Albans VIC 3021, Australia</span>
+                <IoLocationOutline className="me-2 fs-1" />
+                <span>184 Main Rd E, St Albans VIC 3021, Australia</span>
               </p>
-              <p className="grey d-flex px-2">
-                <TfiEmail className="me-2 fs-3 grey" />
-                <span className="grey fs-14 ">contact@company.com</span>
+              <p className="text-secondary d-flex px-2">
+                <TfiEmail className="me-2 fs-3" />
+                <span>contact@company.com</span>
               </p>
               <p className="d-flex px-2">
-                <IoCallOutline className="me-2  grey fs-14 " />
-                <span className="grey fs-14 ">+001 2233 456</span>
+                <IoCallOutline className="me-2 fs-3" />
+                <span>+001 2233 456</span>
               </p>
               <div className="d-flex px-2">
                 {footerData.socialLinks.map((link, index) => (
-                  <Link key={index} href={link.href} className="text-dark me-3 fs-16">
+                  <Link key={index} href={link.href} className="text-dark me-3">
                     {link.icon}
                   </Link>
                 ))}
@@ -45,10 +45,10 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Categories */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className="mb-4">Categories</h5>
-              <ul className="list-unstyled grey">
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>Categories</h5>
+              <ul className="list-unstyled text-secondary">
                 {footerData.categories.map((item, index) => (
-                  <Link href="#" className="text-decoration-none grey">
+                  <Link href="#" className="text-decoration-none text-secondary">
                     <li className="mb-2" key={index}>
                       {item}
                     </li>
@@ -59,10 +59,10 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Information */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className="mb-4">Information</h5>
-              <ul className="list-unstyled grey">
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>Information</h5>
+              <ul className="list-unstyled text-secondary">
                 {footerData.information.map((item, index) => (
-                  <Link href="#" className="text-decoration-none grey">
+                  <Link href="#" className="text-decoration-none text-secondary">
                     <li className="mb-2" key={index}>
                       {item}
                     </li>
@@ -73,10 +73,10 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Useful Links */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className="mb-4">Useful Links</h5>
-              <ul className="list-unstyled grey">
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>Useful Links</h5>
+              <ul className="list-unstyled text-secondary">
                 {footerData.usefulLinks.map((item, index) => (
-                  <Link href="#" className="text-decoration-none grey">
+                  <Link href="#" className="text-decoration-none text-secondary">
                     <li className="mb-2" key={index}>
                       {item}
                     </li>
@@ -87,7 +87,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Newsletter Signup */}
             <div className="col-xl-3 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className="mb-4">Newsletter Signup</h5>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>Newsletter Signup</h5>
               <p>Subscribe to our newsletter and get 10% off your first purchase</p>
               <div className="input-group mb-3">
                 <input type="email" className="form-control" placeholder="Your email address" />
@@ -106,19 +106,18 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
       </div>
 
       {/* Footer Bottom */}
-      <div className={`py-3 text-center ${style.footer_bottom} custom-container-xl`}>
+      <div className={`py-3 text-center ${style.footer_bottom}`}>
         <div className={`d-flex justify-content-between align-items-center mx-auto`} style={{ maxWidth: '1200px' }}>
-          <p className={`mb-0 ps-md-5 ps-xl-0`}>
-            <span className="grey">All Rights Reserved © 2025</span> <span className={` ${style.footer_company_name}`}>ProGearHub</span>{' '}
-            <span className="grey">store - Developed by </span>
-            <span style={{ fontWeight: '400' }}>8848 Digital</span>
+          <p className="mb-0 ps-md-5 ps-xl-0">
+            <span className="text-secondary">All Rights Reserved © 2025</span> <span className="fw-bold text-danger">ProGearHub</span>{' '}
+            store - Developed by <span style={{ fontWeight: '600' }}>8848 Digital</span>
           </p>
           {/* links  */}
           <div className="pe-md-5 pe-xl-0">
             <ul className="list-unstyled d-flex mb-0">
               {footerData.bottomLinks.map((item, index) => (
                 <li key={index}>
-                  <Link href="#" className="text-decoration-none grey">
+                  <Link href="#" className="text-decoration-none text-secondary">
                     {item}
                   </Link>
                 </li>

@@ -27,7 +27,7 @@ const BannerCarousel = ({ bannersList }: any) => {
                   height={100}
                 />
                 <CarouselCaption className={` ${index === 1 ? style.corousel_caption_center : style.corousel_caption_left}`}>
-                  <div className={``} key={index}>
+                  <div className={`${style.banner_content_container}`} key={index}>
                     <p className={`${style.banner_p_tag_left}`}>{banners?.description}</p>
                     <h2 className={`${style.bannerTitle_left}`}>{banners?.heading}</h2>
                     <a href={banners.button_1_url} className="text-white">
