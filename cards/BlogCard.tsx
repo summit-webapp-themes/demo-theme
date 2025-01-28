@@ -13,7 +13,7 @@ function BlogCard({ blog }: any) {
           alt="blog-image"
           className={`w-100 cursor-pointer ${styles.blog_banner_image} `}
           width={100}
-          height={277}
+          height={277.5}
           objectFit="cover"
           loading="eager"
           priority={true}

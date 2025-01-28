@@ -13,12 +13,36 @@
   color: #cd8825 !important;
 }
 
+.sub_menu:hover {
+  color: #56cfe1 !important;
+}
+
+.heading_category_custom_l2 {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
 .heading_category_l3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #000000e7;
   text-decoration: none;
+  text-transform: capitalize;
+}
+
+.heading_category_custom_l3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: rgb(135, 135, 135);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19.5px;
+}
+.heading_category_custom_l3:hover {
+  color: #56cfe1;
 }
 .heading_category_l3:hover {
   color: #707089;

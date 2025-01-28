@@ -9,8 +9,9 @@ import { RiMenu2Line } from 'react-icons/ri';
 // import logo from '../../public/assets/images/logo.png';
 import logo from '../../../public/assets/images/logo.png';
 import stylesNavbar from '../../../styles/components/navbar.module.scss';
-import CustomProductCategoriesNavbar from '../CustomProductCategoriesNavbar';
+
 import MobileProductCategories from '../MobileProductCategories';
+import CustomProductCategoriesNavbar from './CustomProductCategoriesNavbar';
 
 function CustomWebNavbar({
   navbarData,
@@ -53,7 +54,7 @@ function CustomWebNavbar({
       <header className={stylesNavbar.header}>
         <nav>
           <div className={`${stylesNavbar.navbar} `}>
-            <div className="w-100 d-flex justify-content-between py-2 align-items-center">
+            <div className={`w-100 d-flex justify-content-between py-2 align-items-center ${stylesNavbar.navbar_wrapper}`}>
               <div className="mobile-nav d-flex justify-content-sm-between px-3 px-sm-4 d-sm-block d-md-none align-items-center">
                 <Link href="#" legacyBehavior>
                   <a

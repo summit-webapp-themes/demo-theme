@@ -9,7 +9,7 @@
   padding-left: 15px;
   padding-right: 15px;
 }
-.navbar div {
+.navbar .navbar_wrapper {
   height: 70px;
 }
 .search_bar {
@@ -44,7 +44,7 @@
   height: 15px;
   font-size: 10px;
   font-weight: 600;
-  top: 20px;
+  top: -1;
   left: 0;
 }
 .list_inline_margin {
@@ -93,7 +93,7 @@
   // width: 45px;
   padding: 8px;
 }
-.list_inline_item_user{
+.list_inline_item_user {
   height: 70px !important;
 }
 .badge_custom {
