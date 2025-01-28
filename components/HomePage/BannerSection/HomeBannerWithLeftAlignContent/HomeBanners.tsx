@@ -25,12 +25,12 @@ const BannerCarousel = ({ bannersList }: any) => {
                 width={100}
                 height={100}
               />
-              <CarouselCaption className="corousel-captionn">
+              <CarouselCaption className="carousel-caption">
                 <div className={`px-3`} key={index}>
-                  <p className={style.banner_p_tag}>Summer 2023</p>
-                  <h2 className={`${style.bannerTitle} p-0`}>{banners?.heading}</h2>
+                  <p className={`${style.banner_p_tag} font-poppins `}>Summer 2023</p>
+                  <h2 className={`${style.bannerTitle} font-poppins  p-0`}>{banners?.heading}</h2>
                   <a href={banners.button_1_url} className="text-white">
-                    <span className={`btn btn-primary ${style.banner_btn}`}>
+                    <span className={`btn btn-primary ${style.banner_btn} `}>
                       {banners?.button_1_title} &nbsp; <i className="fa fa-forward text-light align-items-center"></i>
                     </span>
                   </a>
