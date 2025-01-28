@@ -4,13 +4,12 @@ import BlogSectionLoader from './BlogSectionLoader';
 import ErrorImage from '../../../../public/assets/images/error-icon.png';
 import Image from 'next/image';
 function MasterComponent1() {
-  const { isLoading, blogData, errorMessage } = useHomeBlogData()
+  const { isLoading, blogData, errorMessage } = useHomeBlogData();
+
   if (isLoading) {
     return <BlogSectionLoader />;
   } else if (blogData?.length > 0) {
-    return (
-      <BlogSectionCardContainer blogData={blogData} />
-    );
+    return <BlogSectionCardContainer blogData={blogData} />;
   } else if (errorMessage) {
     return (
       <div className="p-3 d-flex justify-content-center align-items-center" style={{ fontSize: '40px' }}>

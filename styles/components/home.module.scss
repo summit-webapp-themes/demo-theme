@@ -28,7 +28,29 @@
   font-family: 'Poppins';
 }
 
+.featured_banner_title1 {
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  line-height: 24px;
+}
 
+.featured_banner_description1 {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 24px;
+}
+
+.featured_banner_title2 {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 24px;
+}
+
+.featured_banner_description2 {
+  font-size: 50px !important;
+  font-weight: 600 !important;
+  line-height: 50px;
+}
 
 .promotional_banner_image_container {
   position: relative;
@@ -38,7 +60,7 @@
 
 .promotional_banner_image {
   transition: transform 0.4s ease-in-out; // Smooth transition effect
-transition-duration: 0.6s;
+  transition-duration: 0.6s;
 }
 
 .promotional_banner_image:hover {
