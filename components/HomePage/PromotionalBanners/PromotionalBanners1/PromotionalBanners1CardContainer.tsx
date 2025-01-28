@@ -7,7 +7,7 @@ function PromotionalBanners1CardContainer({ promotionalBannerData }: any) {
       <div className="py-5">
         <div className="row">
           {promotionalBannerData.map((item: any, index: any) => (
-            <div className="col-6 px-3">
+            <div className="col-6 px-3" key={index}>
               <PromotionalBanners1Card data={item} />
             </div>
           ))}

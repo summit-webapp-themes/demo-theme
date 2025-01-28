@@ -39,12 +39,11 @@
   object-fit: cover;
   color: transparent;
 }
-.image_wrapper {
-  // padding-left: 30px !important;
-  // padding-right: 30px !important;
-}
-.masonryContainerImage_wrapper {
-  margin-top: 30px !important;
+.masonry_image_1 {
+  position: absolute;
+  height: 630px;
+  object-fit: cover;
+  color: transparent;
 }
 
 /* Add this to your personalizedCategories.module.scss */
@@ -60,28 +59,20 @@
   object-fit: cover;
 }
 
-.masonryContainerImage_wrapper:hover .image_wrapper {
-  // transform: scale(1.1); /* Zoom effect on hover */
-}
-
-.image_wrapper:hover {
-  // transform: scale(1.1);
-}
-.masonryContainerImage_wrapper_women {
-  // padding-right: 30px !important;
-}
 .women_image_container {
   position: relative;
   overflow: hidden; // Ensures the image does not overflow when zoomed
-  width: 560px;
-  height: 635px;
-  // height: 700px;
+  width: 100%;
+  height: 630px;
 }
 .image_container {
   position: relative;
   overflow: hidden; // Ensures the image does not overflow when zoomed
-  width: 270px !important;
-  height: 303px !important;
+  width: 100%;
+  height: 302px !important;
+}
+.watch_image_container {
+  height: 630px;
 }
 .image_wrapper:hover {
   transform: scale(1.1); // Zoom effect within the container

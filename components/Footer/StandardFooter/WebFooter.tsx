@@ -117,7 +117,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
             <ul className="list-unstyled d-flex mb-0">
               {footerData.bottomLinks.map((item, index) => (
                 <li key={index}>
-                  <Link href="#" className="text-decoration-none text-secondary me-2">
+                  <Link href="#" className="text-decoration-none text-secondary">
                     {item}
                   </Link>
                 </li>

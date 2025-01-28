@@ -6,10 +6,10 @@ import { imageLoader } from '../../../../utils/image_loader';
 
 const PersonalizedCategories = ({ homeTopCategories }: any) => {
   return (
-    <div className="custom-container-xl">
+    <div className="custom-container-xl  pt-4">
       <div className="row">
         <div
-          className={`col-12 col-md-6 pb-3 pb-md-0 px-0 ${style.masonryContainerImage} ${style.masonryContainerImage_wrapper}  ${style.masonryContainerImage_wrapper_women} `}
+          className={`col-12 col-md-6 pb-3 pb-md-0 pe-0 ${style.masonryContainerImage} ${style.masonryContainerImage_wrapper}  ${style.masonryContainerImage_wrapper_women} `}
         >
           <Link
             href={`${homeTopCategories[0]?.category_url}`}
@@ -19,12 +19,12 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
               <div className={style.image_wrapper}>
                 <Image
                   loader={imageLoader}
-                  className={`w-100 ${style.image_1} `}
+                  className={`w-100 ${style.masonry_image_1} `}
                   src={homeTopCategories?.length > 0 && homeTopCategories[0]?.product_img}
                   alt={homeTopCategories[0]?.label}
                   objectFit="cover"
                   width={100}
-                  height={100}
+                  height={630}
                   loading="eager"
                   priority={true}
                 />
@@ -40,7 +40,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
 
         <div className="col-12 col-md-6">
           <div className="row">
-            <div className={`col-6 m-0 h-100 p-0`}>
+            <div className={`col-6 m-0 px-4`}>
               <div className={` mb-md-4  ${style.masonryContainerImage_wrapper} ${style.masonryContainerImage}`}>
                 <Link
                   href={`${homeTopCategories[1]?.category_url}`}
@@ -78,7 +78,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                     <div className={style.image_wrapper}>
                       <Image
                         loader={imageLoader}
-                        className={`w-100 `}
+                        className={`w-100 h-100`}
                         src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
                         alt={homeTopCategories[2]?.label}
                         layout="responsive"
@@ -98,7 +98,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                 </div>
               </div>
             </div>
-            <div className={`col-6 p-md-0 w-50 ${style.masonryContainerImage} ${style.masonryContainerImage_wrapper} `}>
+            <div className={`col-6 p-md-0 w-50  ${style.masonryContainerImage} ${style.masonryContainerImage_wrapper} `}>
               <Link
                 href={`${homeTopCategories[3]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -112,7 +112,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                       src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
                       alt={homeTopCategories[3]?.label}
                       width={270}
-                      height={635}
+                      height={630}
                       loading="eager"
                       priority={true}
                     />
