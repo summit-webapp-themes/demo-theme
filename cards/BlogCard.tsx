@@ -6,14 +6,17 @@ import { imageLoader } from '../utils/image_loader';
 function BlogCard({ blog }: any) {
   return (
     <>
-      <div className={`position-relative ${styles.blog_banner_image_container}`}>
+      <div className={`${styles.blog_banner_image_container}`}>
         <Image
           src={blog.custom_image}
           loader={imageLoader}
           alt="blog-image"
-          className={`w-100 h-100 cursor-pointer ${styles.blog_banner_image} `}
+          className={`w-100 cursor-pointer ${styles.blog_banner_image} `}
           width={100}
-          height={300}
+          height={277}
+          objectFit="cover"
+          loading="eager"
+          priority={true}
         />
       </div>
       <div className="mt-3">
