@@ -40,8 +40,8 @@
   color: transparent;
 }
 .image_wrapper {
-  padding-left: 15px !important;
-  padding-right: 15px !important;
+  // padding-left: 30px !important;
+  // padding-right: 30px !important;
 }
 .masonryContainerImage_wrapper {
   margin-top: 30px !important;
@@ -67,24 +67,25 @@
 .image_wrapper:hover {
   // transform: scale(1.1);
 }
-
-
-
+.masonryContainerImage_wrapper_women {
+  // padding-right: 30px !important;
+}
 .women_image_container {
   position: relative;
-  overflow: hidden;  // Ensures the image does not overflow when zoomed
-  width: 543px;
+  overflow: hidden; // Ensures the image does not overflow when zoomed
+  width: 560px;
   height: 635px;
+  // height: 700px;
 }
 .image_container {
   position: relative;
-  overflow: hidden;  // Ensures the image does not overflow when zoomed
- 
+  overflow: hidden; // Ensures the image does not overflow when zoomed
+  width: 270px !important;
+  height: 303px !important;
 }
 .image_wrapper:hover {
-  transform: scale(1.1);  // Zoom effect within the container
+  transform: scale(1.1); // Zoom effect within the container
 }
-
 
 @media only screen and (max-width: 767px) {
   .image_1 {

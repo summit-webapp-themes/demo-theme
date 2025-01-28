@@ -97,10 +97,10 @@ function CustomWebNavbar({
 
               <div className={``}>
                 <ul className={` list-inline d-flex justify-content-end align-items-center m-0 ${stylesNavbar.list_inline_container}`}>
-                  <li className={`${stylesNavbar.list_inline_item_custom} ${stylesNavbar.list_inline_item_user} d-flex align-items-center`} >
+                  <li className={`${stylesNavbar.list_inline_item_custom} ${stylesNavbar.list_inline_item_user} d-flex align-items-center`}>
                     {isLoggedIn ? (
                       <>
-                        <div className={stylesNavbar.icon_container} onClick={handleShowDropDown} >
+                        <div className={stylesNavbar.icon_container} onClick={handleShowDropDown}>
                           <FaUserCircle className="icon" />
                           <span className={`d-none d-md-inline-block theme-blue ${stylesNavbar.order_list_dropdown}`}>{user}</span>
                         </div>
@@ -171,7 +171,7 @@ function CustomWebNavbar({
                         )}
                       </>
                     ) : (
-                      <Link href={'/login'} className={stylesNavbar.icon_container} onClick={handleShowDropDown} >
+                      <Link href={'/login'} className={stylesNavbar.icon_container} onClick={handleShowDropDown}>
                         <FiUser className="icon" />
                       </Link>
                     )}
