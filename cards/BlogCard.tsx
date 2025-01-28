@@ -23,7 +23,7 @@ function BlogCard({ blog }: any) {
         <p className={`${styles.blog_heading1} m-0 mb-2`}>
           <span className="text-secondary">on</span> {dateFormat(blog?.published_on)}
         </p>
-        <p className={`m-0 mb-2 ${styles.blog_heading2}`}>{blog?.title}</p>
+        <p className={`m-0 mb-2 ${styles.blog_heading2} font-poppins`}>{blog?.title}</p>
       </div>
       <div className={`${styles?.blog_description} `}>
         <p>{blog?.blog_intro}</p>

@@ -33,7 +33,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
           </Link>
           <div className={`${style.masonryContainerButton} `}>
             <Button variant="dark" className={style.masonry_btn}>
-              <div className={style.masonry_btn_text}>{homeTopCategories[0]?.label}</div>
+              <div className={`${style.masonry_btn_text} font-poppins`}>{homeTopCategories[0]?.label}</div>
             </Button>
           </div>
         </div>
@@ -65,7 +65,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
 
                 <div className={style.masonryContainerButton}>
                   <Button variant="dark" className={style.masonry_btn}>
-                    <div className={style.masonry_btn_text}>{homeTopCategories[1]?.label}</div>
+                    <div className={`${style.masonry_btn_text} font-poppins`}>{homeTopCategories[1]?.label}</div>
                   </Button>
                 </div>
               </div>
@@ -93,7 +93,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
 
                 <div className={style.masonryContainerButton}>
                   <Button variant="dark" className={style.masonry_btn}>
-                    <div className={style.masonry_btn_text}>{homeTopCategories[2]?.label}</div>
+                    <div className={`${style.masonry_btn_text} font-poppins`}>{homeTopCategories[2]?.label}</div>
                   </Button>
                 </div>
               </div>
@@ -121,7 +121,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
               </Link>
               <div className={style.masonryContainerButton}>
                 <Button variant="dark" className={style.masonry_btn}>
-                  <div className={style.masonry_btn_text}>{homeTopCategories[3]?.label}</div>
+                  <div className={`${style.masonry_btn_text} font-poppins`}>{homeTopCategories[3]?.label}</div>
                 </Button>
               </div>
             </div>

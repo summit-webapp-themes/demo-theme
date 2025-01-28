@@ -7,7 +7,7 @@ function BlogSectionCardContainer({ blogData }: any) {
     <div className="custom-container-xl ">
       <div className="my-5">
         <div className={`${styles.featuredCollectionTitle} fw-bold w-100 text-center mb-5`}>
-          <p className="m-0">From The Blogs</p>
+          <p className="m-0 font-poppins text-uppercase">From The Blogs</p>
         </div>
         <div className="row ">
           {blogData?.length > 0 &&
