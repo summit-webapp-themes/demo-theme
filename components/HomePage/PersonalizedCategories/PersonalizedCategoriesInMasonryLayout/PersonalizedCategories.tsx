@@ -13,10 +13,11 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
             href={`${homeTopCategories[0]?.category_url}`}
             className="banner-title text-white text-capitalize ls-25 homecategory_btnlink "
           >
-            <div style={{ width: '100%', height: '100%' }} className={style.image_container}>
+            <div  className={style.women_image_container}>
+              <div className={style.image_wrapper}>
               <Image
                 loader={imageLoader}
-                className={`w-100 ${style.image_1} ${style.image_wrapper}`}
+                className={`w-100 ${style.image_1} `}
                 src={homeTopCategories?.length > 0 && homeTopCategories[0]?.product_img}
                 alt={homeTopCategories[0]?.label}
                 objectFit="cover"
@@ -25,6 +26,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                 loading="eager"
                 priority={true}
               />
+              </div>
             </div>
           </Link>
           <div className={style.masonryContainerButton}>
@@ -41,10 +43,11 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                   href={`${homeTopCategories[1]?.category_url}`}
                   className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
                 >
-                  <div style={{ maxWidth: '100%', height: '100% ' }} className={style.image_container}>
+                  <div className={style.image_container}>
+                  <div className={style.image_wrapper}>
                     <Image
                       loader={imageLoader}
-                      className={`w-100 ${style.image_wrapper}`}
+                      className={`w-100 `}
                       src={homeTopCategories?.length > 0 && homeTopCategories[1]?.product_img}
                       alt={homeTopCategories[1]?.label}
                       layout="responsive"
@@ -52,7 +55,9 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                       height={300}
                       loading="eager"
                       priority={true}
+                      style={{inset:"0px", height:"100%", width:"100%", objectFit:"cover"}}
                     />
+                    </div>
                   </div>
                 </Link>
 
@@ -67,10 +72,11 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                   href={`${homeTopCategories[2]?.category_url}`}
                   className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
                 >
-                  <div className={style.image_container} style={{ maxWidth: '100%', height: '100%' }}>
+                  <div className={style.image_container}>
+                  <div className={style.image_wrapper}>
                     <Image
                       loader={imageLoader}
-                      className={`w-100 ${style.image_wrapper} `}
+                      className={`w-100`}
                       src={homeTopCategories?.length > 0 && homeTopCategories[2]?.product_img}
                       alt={homeTopCategories[2]?.label}
                       layout="responsive"
@@ -79,6 +85,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                       loading="eager"
                       priority={true}
                     />
+                    </div>
                   </div>
                 </Link>
 
@@ -94,18 +101,21 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                 href={`${homeTopCategories[3]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
               >
-                <div className={style.image_container} style={{ maxWidth: '100%', height: '100%' }}>
+                <div className={style.image_container} >
+                <div className={style.image_wrapper}>
                   <Image
                     loader={imageLoader}
-                    className={`w-100 ${style.image_wrapper}`}
-                    style={{ maxWidth: '100%', height: '100%', objectFit: 'cover' }}
+                    className={`w-100 `}
+                    style={{ maxWidth: '100%',  objectFit: 'cover' , zIndex:"3"}}
                     src={homeTopCategories?.length > 0 && homeTopCategories[3]?.product_img}
                     alt={homeTopCategories[3]?.label}
                     width={100}
-                    height={100}
+                    height={635}
                     loading="eager"
                     priority={true}
+                 
                   />
+                  </div>
                 </div>
               </Link>
               <div className={style.masonryContainerButton}>
