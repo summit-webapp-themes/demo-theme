@@ -279,7 +279,9 @@ input[type='text'] {
   padding-left: 12%;
   width: 57%;
 }
-
+.font-poppins {
+  font-family: Poppins !important;
+}
 .carousel-inner {
   height: 100% !important;
 }
@@ -325,7 +327,9 @@ input[type='text'] {
 .fs-16 {
   font-size: 16px;
 }
-
+.custom-margin-top {
+  margin-top: 32px;
+}
 @media (min-width: 992px) {
   .productImgMagnify_product_img__mVrRB {
     width: 100% !important;
