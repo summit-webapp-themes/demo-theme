@@ -11,11 +11,11 @@ const BannerCarousel = ({ bannersList }: any) => {
     <Carousel controls={false}>
       {bannersList?.map((banners: any, index: number) => {
         return (
-          <CarouselItem key={index} className="h-100">
-            <Link href={`${banners.button_1_url}`} className=" h-100">
+          <CarouselItem key={index} className={` h-100 ${style.catagory_item_container}`}>
+            <Link href={`${banners.button_1_url}`} className={` h-100 `}>
               <Image
                 loader={imageLoader}
-                className={` ${style.catagoryImg}`}
+                className={` ${style.catagoryImg} `}
                 style={{ objectFit: 'cover', objectPosition: 'bottom' }}
                 src={banners?.img}
                 alt="Banner Images"
@@ -25,10 +25,10 @@ const BannerCarousel = ({ bannersList }: any) => {
                 width={100}
                 height={100}
               />
-              <CarouselCaption className="carousel-caption">
+              <CarouselCaption className={`carousel-caption ${style.carousel_caption_container}`}>
                 <div className={`px-3`} key={index}>
                   <p className={`${style.banner_p_tag} font-poppins `}>Summer 2023</p>
-                  <h2 className={`${style.bannerTitle} font-poppins  p-0`}>{banners?.heading}</h2>
+                  <h2 className={`${style.bannerTitle} ${style.banner_title_wrapper} font-poppins  p-0`}>{banners?.heading}</h2>
                   <a href={banners.button_1_url} className="text-white">
                     <span className={`btn btn-primary ${style.banner_btn} `}>
                       {banners?.button_1_title} &nbsp; <i className="fa fa-forward text-light align-items-center"></i>

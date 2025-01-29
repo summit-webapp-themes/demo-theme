@@ -84,15 +84,47 @@
 .middle_margin {
   margin-bottom: 32px;
 }
-@media only screen and (max-width: 767px) {
+
+// Tablet Screen
+@media only screen and (max-width: 1024px) {
+  .masonry_image_1 {
+    height: 534px !important;
+  }
+  .women_image_container {
+    height: 534px !important;
+  }
+  .watch_image {
+    height: 534px !important;
+  }
+  .watch_image_container {
+    height: 534px !important;
+    padding-right: 12px;
+  }
+  .image_container {
+    height: 263px !important;
+  }
+  .small_image_wrapper {
+    height: 263px !important;
+  }
+  .center_image_wrapper {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .middle_margin {
+    margin-bottom: 10px;
+  }
+}
+
+// Mobile Screen
+@media only screen and (max-width: 600px) {
   .image_1 {
     position: relative;
   }
   .masonry_image_1 {
-    height: 381px !important;
+    height: 420px !important;
   }
   .women_image_container {
-    height: 381px !important;
+    height: 420px !important;
   }
   .masonryContainerImage_wrapper_women {
     padding-right: 12px !important;
@@ -115,5 +147,22 @@
   }
   .middle_margin {
     margin-bottom: 12px;
+  }
+  .masonry_btn {
+    padding: 5px 20px !important;
+  }
+  .masonry_btn_text {
+    width: 60px !important;
+    height: 34px !important;
+  }
+  .masonryContainerButton {
+    bottom: 10px;
+  }
+  .masonry_btn_last {
+    margin-right: 12px !important;
+  }
+  .masonry_btn_first {
+    margin-right: 12px !important;
+    margin-bottom: 14px !important;
   }
 }
