@@ -9,9 +9,8 @@ import { RiMenu2Line } from 'react-icons/ri';
 // import logo from '../../public/assets/images/logo.png';
 import logo from '../../../public/assets/images/logo.png';
 import stylesNavbar from '../../../styles/components/navbar.module.scss';
-
-import MobileProductCategories from '../MobileProductCategories';
 import CustomProductCategoriesNavbar from './CustomProductCategoriesNavbar';
+import MobileProductCategories from './MobileProductCategories';
 
 function CustomWebNavbar({
   navbarData,
