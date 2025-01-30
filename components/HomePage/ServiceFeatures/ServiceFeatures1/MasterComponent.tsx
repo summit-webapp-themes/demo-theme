@@ -30,9 +30,9 @@ const ServiceFeatures = () => {
 
   return (
     <div className="container py-4 border-bottom">
-      <div className="row text-center text-md-start">
+      <div className="row  text-md-start">
         {features.map((feature, index) => (
-          <div key={index} className="col-12 col-md-6 col-lg-6 mb-4 mb-lg-5 d-flex">
+          <div key={index} className="col-12 col-md-6 col-lg-3 mb-4 mb-lg-5 d-flex">
             <div className={`me-3 text-secondary d-flex ${styles.service_icon}`}>{feature.icon}</div>
             <div className="">
               <h6 className={`${styles.service_title}`}>{feature.title}</h6>
