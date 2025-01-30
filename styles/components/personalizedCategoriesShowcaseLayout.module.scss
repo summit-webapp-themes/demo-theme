@@ -45,8 +45,20 @@
   object-fit: cover;
   color: transparent;
 }
+.jewellery_personalized_categories_main_container {
+  height: 528px;
+}
+.jewellery_personalized_categories_small_container {
+  height: 252px;
+}
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 900px) {
+  .jewellery_personalized_categories_main_container {
+    height: 1262px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .showcase_image_1 {
     position: relative;
     object-fit: contain;
@@ -60,5 +72,13 @@
   .showCaseContainerButton {
     bottom: 40px;
   }
+}
 
+@media only screen and (max-width: 600px) {
+  .jewellery_personalized_categories_main_container {
+    height: 1052px;
+  }
+  .jewellery_personalized_categories_small_container {
+    height: 170px;
+  }
 }

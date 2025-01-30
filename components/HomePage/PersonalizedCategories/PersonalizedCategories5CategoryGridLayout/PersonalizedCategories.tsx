@@ -7,10 +7,10 @@ import { imageLoader } from '../../../../utils/image_loader';
 const PersonalizedCategories = ({ homeTopCategories }: any) => {
   return (
     <div className="custom-container-xl px-4 mt-3 mt-md-5 ">
-      <div className="row mt-3 mb-5" style={{ height: '528px' }}>
+      <div className={`row mt-3 mb-5 ${style.jewellery_personalized_categories_main_container}`}>
         <div className="col-lg-3">
           <div className="d-flex flex-lg-column ">
-            <div className="position-relative w-100 w-md-50 mb-lg-2" style={{ height: '252px' }}>
+            <div className={`position-relative w-100 w-md-50 mb-lg-2 ${style.jewellery_personalized_categories_small_container}`}>
               <Link
                 href={`${homeTopCategories[0]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -32,7 +32,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                 </Button>
               </div>
             </div>
-            <div className="position-relative mt-lg-4 w-100 w-md-50" style={{ height: '252px' }}>
+            <div className={`position-relative mt-lg-4 w-100 w-md-50  ${style.jewellery_personalized_categories_small_container}`}>
               <Link
                 href={`${homeTopCategories[1]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -58,7 +58,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
         </div>
         <div className="col-lg-6">
           <div className="d-flex flex-column px-md-2">
-            <div style={{ height: '252px' }} className="mb-lg-2">
+            <div className={`mb-lg-2  ${style.jewellery_personalized_categories_small_container}`}>
               <Link
                 href={`${homeTopCategories[2]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
@@ -75,7 +75,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                 />
               </Link>
             </div>
-            <div className="position-relative mt-lg-4" style={{ height: '252px' }}>
+            <div className={`position-relative mt-lg-4 ${style.jewellery_personalized_categories_small_container}`}>
               <Link
                 href={`${homeTopCategories[3]?.category_url}`}
                 className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
