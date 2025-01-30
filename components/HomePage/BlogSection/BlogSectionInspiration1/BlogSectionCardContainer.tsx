@@ -12,7 +12,7 @@ function BlogSectionCardContainer({ blogData }: any) {
         <div className="row ">
           {blogData?.length > 0 &&
             blogData?.map((blog: any, index: any) => (
-              <div className="col-md-4 col-sm-6 col-12 px-3">
+              <div className="col-md-4 col-sm-6 col-12 px-3" key={index}>
                 <BlogCard blog={blog} />
               </div>
             ))}
