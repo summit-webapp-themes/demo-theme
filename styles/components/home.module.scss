@@ -21,7 +21,11 @@
 }
 
 .featuredCollectionTitle {
-  font-size: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 34px;
+  text-transform: uppercase;
+  letter-spacing: normal;
 }
 
 .featured_collection_description {
@@ -113,7 +117,7 @@
   content: '';
   display: inline-block;
   vertical-align: middle;
-  width: 30px;
+  width: 60px;
   height: 2px;
   background: #222222;
 }
@@ -387,6 +391,15 @@
 .blog_carousel_main_container {
   display: none;
 }
+
+.featured_collection_container {
+  margin-top: 2rem;
+}
+
+.horizontal_space {
+  padding-left: 30px;
+  padding-right: 30px;
+}
 // Tablet Screen
 @media (max-width: 1024px) {
   .blog_main_container {
@@ -421,5 +434,23 @@
   .carousel_blog_banner_image {
     transform: scaleX(1);
     aspect-ratio: auto 1920 / 1281;
+  }
+  .featured_collection_product_container {
+    padding-right: 0.3rem !important;
+    padding-left: 0.3rem !important;
+  }
+  .featured_collection_product_main_container {
+    margin-top: 2rem !important;
+  }
+  .featuredCollectionTitle {
+    font-size: 18px;
+    font-weight: 600 !important;
+  }
+  .horizontal_line {
+    width: 30px;
+  }
+  .horizontal_space {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
