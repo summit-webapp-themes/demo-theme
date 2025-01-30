@@ -23,23 +23,27 @@ const FeaturedCollectionWithVariantProductCardColour = ({
   handleSelectVariant,
   selectedItem,
 }: ProductPropsTypes) => {
-  const colourAttribute = data?.attributes?.find((attr: AttributeTypes) => attr.field_name === 'Colour');
   return (
     <>
       <div className="d-flex">
-        {colourAttribute?.hex_value?.map((colour: string, index: number) => (
-          <Link
-            href={handleRedirectToProductDetailPage()}
-            key={index}
-            className={`${styles.tabProductColor} ${
-              selectedItem?.colour_attr_colour === colour ? styles?.borderActive : styles?.borderInactive
-            }`}
-            style={{ backgroundColor: colour }}
-            onMouseEnter={() => handleSelectVariant(colour)}
-          >
-            {colour}
-          </Link>
-        ))}
+        {data?.variant?.length > 0 &&
+          data?.variant?.map(
+            (variantItem: any, index: number) =>
+              variantItem.Colour && (
+                <Link
+                  href={handleRedirectToProductDetailPage()}
+                  key={index}
+                  className={`${styles.tabProductColor} ${
+                    selectedItem?.colour_attr_colour === variantItem?.colour_attr_colour ? styles?.borderActive : styles?.borderInactive
+                  }`}
+                  style={{ backgroundColor: variantItem?.colour_attr_colour }}
+                  onMouseEnter={() => handleSelectVariant(variantItem?.colour_attr_colour)}
+                >
+                  hello
+                  {variantItem?.colour_attr_colour}
+                </Link>
+              )
+          )}
       </div>
     </>
   );
