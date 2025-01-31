@@ -48,7 +48,7 @@ const PersonalizedCategories = ({ homeTopCategories }: any) => {
                     className="banner-title text-white text-capitalize ls-25 homecategory_btnlink"
                   >
                     <div className={style.image_container}>
-                      <div className={style.image_wrapper}>
+                      <div className={`${style.image_wrapper} ${style.bag_image_container}`}>
                         <Image
                           loader={imageLoader}
                           className={`w-100 h-100 ${style.small_image_wrapper}`}

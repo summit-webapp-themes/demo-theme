@@ -66,6 +66,9 @@
   width: 100%;
   height: 630px;
 }
+.bag_image_container img {
+  transform: scaleX(1.1);
+}
 .image_container {
   position: relative;
   overflow: hidden; // Ensures the image does not overflow when zoomed
