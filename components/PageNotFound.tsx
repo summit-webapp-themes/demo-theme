@@ -9,7 +9,7 @@ function PageNotFound() {
 
   return (
     <>
-      <div className={`d-flex justify-content-center align-items-center ${pageNotFoundStyles.page_not_found_main_container}`}>
+      <div className={`d-flex justify-content-center align-items-center my-5 py-5 ${pageNotFoundStyles.page_not_found_main_container}`}>
         <div className="container d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-md-start">
           {/* Error Image (Left - Centered) */}
           <div className={`d-flex justify-content-end  ${pageNotFoundStyles.error_img_container}`} style={{ flex: 1 }}>
