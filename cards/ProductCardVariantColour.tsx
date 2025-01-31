@@ -255,12 +255,12 @@ const ProductCardVariantColour = ({
         </div>
       </Card>
       <Link href={handleRedirectToProductDetailPage()} className="cursor-pointer text-decoration-none text-black">
-        <h6 className={`${styles.tabProductTitle} fs-14 font-poppins mt-3`}>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</h6>
+        <h6 className={`${styles.tabProductTitle} fs-14 font-poppins `}>{data?.item_name?.split(' ').slice(0, 4).join(' ')}</h6>
       </Link>
       <div>
-        <h6 className={styles.tabProductTitle}>
-          <span className={`${styles.tabProductPrice} fs-14`}>₹{data?.price}</span>
-          <span className={`${styles.tabProductmrpPrice} fs-14`}>₹{data?.mrp_price}</span>
+        <h6 className={`${styles.tabProductTitle} ${styles.tabProductPrice}`}>
+          <span className={`${styles.tabProductPrice} fs-14 font-poppins`}>₹{data?.price}</span>
+          <span className={`${styles.tabProductmrpPrice} fs-14 font-poppins`}>₹{data?.mrp_price}</span>
         </h6>
       </div>
       <FeaturedCollectionWithVariantProductCardColour
