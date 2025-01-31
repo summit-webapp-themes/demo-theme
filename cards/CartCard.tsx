@@ -27,7 +27,7 @@ const CartCard = ({
 }: CartCardPropsTypes) => {
   const router = useRouter();
   const getPriceFromDetails = (details: any) => {
-    const priceDetail = details.find((detail: any) => detail.name === 'Price');
+    const priceDetail = details?.find((detail: any) => detail.name === 'Price');
     return priceDetail ? priceDetail?.value : 'N/A';
   };
   const handleRemoveItem = (itemCode: any) => {
