@@ -44,8 +44,11 @@
   height: 15px;
   font-size: 10px;
   font-weight: 600;
-  top: -1;
+  top: -2;
   left: 0;
+  z-index: 2;
+  line-height: 15px;
+  font-family: poppins;
 }
 .list_inline_margin {
   // margin-top: -2px;
