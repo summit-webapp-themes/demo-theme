@@ -15,7 +15,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
   return (
     <footer className={`bg-light text-dark web_footer_container ${style.footer_container}`}>
       <div className={`${style.footer_list_container}`}>
-        <div className="container custom-container-xl">
+        <div className="container-fuild custom-container-xl">
           <div className="row">
             {/* Company Info */}
             <div className="col-xl-3 col-md-6 col-lg-6 mb-4">
