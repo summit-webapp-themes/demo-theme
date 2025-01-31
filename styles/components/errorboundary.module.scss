@@ -1,12 +1,14 @@
-#error_page {
-  position: absolute;
-  top: 10%;
-  bottom: 10%;
-  width: 100vw;
+.error_page {
+  // position: absolute;
+  // top: 10%;
+  // bottom: 10%;
+  width: 100vw !important;
+  // height: 100vh !important;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
+  margin: auto !important;
 }
 .error_content {
   display: flex;
@@ -38,7 +40,7 @@
   text-transform: capitalize;
   color: #000;
   font-size: 2em;
-  max-width: 600px;
+  // max-width: 600px;
   position: relative;
   font-weight: 700;
 }
@@ -85,19 +87,40 @@
   height: 52px !important;
   border: none !important;
   font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: poppins;
 }
 .error_button:hover {
   background-color: #8c9291;
 }
+.error_main_container {
+  // height: 100vh;
+}
+.page_not_found_main_container {
+  // height: 90vh;
+}
+.error_img_container {
+  padding-right: 32px;
+}
 
+@media only screen and (max-width: 1024px) {
+  .error_main_container {
+    // height: 65vh !important;
+  }
+}
 // Mobile Screen
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .error_img_container img {
     width: 200px !important;
-    height: 250px !important;
+    height: 230px !important;
   }
   .error_content h4 {
     font-size: 28px !important;
+    margin: 4px !important;
   }
   .error_content p {
     font-size: 14px !important;
@@ -106,5 +129,30 @@
     margin-top: 1rem;
     display: flex !important;
     justify-content: center !important;
+    align-items: center !important;
+  }
+  .error_content p {
+    text-align: center !important;
+  }
+  .error_main_container {
+    // height: 50vh !important;
+  }
+  .page_not_found_main_container {
+    // height: 65vh !important;
+  }
+  .error_img_container {
+    padding: 0 !important;
+  }
+  .error_button {
+    font-size: 14px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .error_main_container {
+    // height: 85vh !important;
+  }
+  .page_not_found_main_container {
+    // height: 85vh !important;
   }
 }
