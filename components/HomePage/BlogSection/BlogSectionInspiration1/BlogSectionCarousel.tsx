@@ -22,9 +22,12 @@ const BlogSectionCarousel = ({ blogData }: any) => {
   };
   return (
     <>
-      <div className={`${styles.featuredCollectionTitle} fw-bold w-100 `}>
-        <p className=" text-center  font-poppins text-uppercase">From The Blogs</p>
+      <div className={`${styles.featuredCollectionTitle} text-center fw-bold w-100 mt-3`}>
+        <span className={styles.horizontal_line}></span>
+        <span className=" text-center  font-poppins text-uppercase px-2">From The Blogs</span>
+        <span className={styles.horizontal_line}></span>
       </div>
+      <h6 className="text-secondary text-center mb-4 px-2 fs-14">The freshest and most exciting news</h6>
       <div className={`${styles.carousel_blog_container} mb-5`}>
         <Carousel
           responsive={responsive}
@@ -61,8 +64,8 @@ const BlogSectionCarousel = ({ blogData }: any) => {
                 />
               </div>
               <div className="mt-3">
-                <p className={`m-0 mb-2 ${styles.blog_heading2} font-poppins`}>{blog?.title}</p>
-                <p className={`${styles.blog_heading1} m-0 mb-2`}>
+                <p className={`m-0 mb-1 ${styles.blog_heading2} font-poppins`}>{blog?.title}</p>
+                <p className={`${styles.blog_heading1} m-0 mb-3`}>
                   <span className="text-secondary">By</span> admin <span className="text-secondary">on</span>{' '}
                   {dateFormat(blog?.published_on)}
                 </p>
