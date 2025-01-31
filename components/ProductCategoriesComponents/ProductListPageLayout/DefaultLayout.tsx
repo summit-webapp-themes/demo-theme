@@ -13,7 +13,7 @@ const DefaultLayout = ({ filterComponent, CardsComponent, productsGridData }: an
   const renderProducts = () => {
     switch (CardsComponent) {
       case 'Card with Color Variants':
-        const ColorComponent = require(`../ProductListLayoutComponents/ProductGridWithImageVariantCards/MasterComponent`).default;
+        const ColorComponent = require(`../ProductListLayoutComponents/ProductGridWithColorVariantCards/MasterComponent`).default;
         return <ColorComponent key={'CardsWithColors'} {...productsGridData} />;
       case 'Card with Variant Images':
         const ImageComponent = require(`../ProductListLayoutComponents/ProductGridWithImageVariantCards/MasterComponent`).default;
