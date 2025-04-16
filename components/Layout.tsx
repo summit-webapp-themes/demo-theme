@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import layoutData from '../summit-settings.json';
+// import layoutData from '../summit-settings.json';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -13,26 +13,26 @@ function Layout({ children, componentProps }: LayoutProps) {
   const toShowFooter =
     router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' ? false : true;
 
-  const HeaderRenderer = () => {
-    if ('header_component' in layoutData?.data && layoutData?.data.header_component !== '') {
-      const Component = require(`./Navbar/${layoutData?.data.header_component}/MasterComponent`).default;
-      return <Component key="navbar-component" />;
-    }
-    return null;
-  };
-  const FooterRenderer = () => {
-    if ('footer_component' in layoutData?.data && layoutData?.data.footer_component !== '') {
-      const Component = require(`./Footer/${layoutData?.data.footer_component}/MasterComponent`).default;
-      return <Component key="footer-component" />;
-    }
-    return null;
-  };
+  // const HeaderRenderer = () => {
+  //   if ('header_component' in layoutData?.data && layoutData?.data.header_component !== '') {
+  //     const Component = require(`./Navbar/${layoutData?.data.header_component}/MasterComponent`).default;
+  //     return <Component key="navbar-component" />;
+  //   }
+  //   return null;
+  // };
+  // const FooterRenderer = () => {
+  //   if ('footer_component' in layoutData?.data && layoutData?.data.footer_component !== '') {
+  //     const Component = require(`./Footer/${layoutData?.data.footer_component}/MasterComponent`).default;
+  //     return <Component key="footer-component" />;
+  //   }
+  //   return null;
+  // };
 
   return (
     <>
-      {toShowHeader && <HeaderRenderer />}
+      {/* {toShowHeader && <HeaderRenderer />} */}
       {children}
-      {toShowFooter && <FooterRenderer />}
+      {/* {toShowFooter && <FooterRenderer />} */}
     </>
   );
 }
