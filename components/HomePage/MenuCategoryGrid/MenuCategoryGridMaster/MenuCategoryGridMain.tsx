@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from '../../../../styles/components/collectionsGrid.module.scss';
+import styles from '../../../../styles/components/menuCategoryGrid.module.scss';
 import Image from 'next/image';
 
-const CollectionGrid = ({ collectionData }: any) => {
+const MenuCategoryGridMain = ({ collectionData }: any) => {
   const spanClasses = [
     styles.fullSpan,
     styles.span2fr,
@@ -31,4 +31,4 @@ const CollectionGrid = ({ collectionData }: any) => {
   );
 };
 
-export default CollectionGrid;
+export default MenuCategoryGridMain;

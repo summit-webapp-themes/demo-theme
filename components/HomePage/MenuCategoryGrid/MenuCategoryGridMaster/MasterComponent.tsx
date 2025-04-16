@@ -1,19 +1,19 @@
 import React from 'react';
 import useNavbar from '../../../../hooks/GeneralHooks/useNavbar';
-import CollectionGrid from './CollectionGrid';
-import GridCollectionsLoader from './GridCollectionsLoader';
+import MenuCategoryGridLoader from './MenuCategoryGridLoader';
+import MenuCategoryGridMain from './MenuCategoryGridMain';
 
 const MasterComponent = ({ componentProperties }: any) => {
   const { navbarData, isLoading, errorMessage } = useNavbar();
   if (isLoading) {
-    return <GridCollectionsLoader />;
+    return <MenuCategoryGridLoader />;
   }
   if (errorMessage) {
     return <div>{errorMessage}</div>;
   }
   return (
     <div>
-      <CollectionGrid collectionData={navbarData} />
+      <MenuCategoryGridMain collectionData={navbarData} />
     </div>
   );
 };

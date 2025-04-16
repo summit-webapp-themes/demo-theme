@@ -1,8 +1,8 @@
 import React from 'react';
 import Placeholder from 'react-bootstrap/Placeholder';
-import styles from '../../../../styles/components/collectionsGrid.module.scss';
+import styles from '../../../../styles/components/menuCategoryGrid.module.scss';
 
-const GridCollectionsLoader = () => {
+const MenuCategoryGridLoader = () => {
   return (
     <div className="container">
       <div className={styles.gridContainer}>
@@ -60,4 +60,4 @@ const GridCollectionsLoader = () => {
   );
 };
 
-export default GridCollectionsLoader;
+export default MenuCategoryGridLoader;
