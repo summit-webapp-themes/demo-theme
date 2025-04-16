@@ -1,0 +1,18 @@
+.filter_container {
+  height: 400px;
+}
+.filter_btn {
+  /* font-size: 12px; */
+  background: var(--brown-color);
+  color: #ffffff;
+  border-radius: 5px;
+}
+.extended_sidebar {
+  width: 400px !important;
+}
+/* Customer Section */
+.customer_input {
+  border: 1px solid;
+  border-color: var(--brown-color);
+  border-radius: 10px;
+}
