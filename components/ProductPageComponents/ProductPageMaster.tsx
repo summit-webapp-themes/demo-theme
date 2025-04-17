@@ -92,7 +92,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     if (productPageComponents?.product_information_component === 'Standard Product Information') {
       return (
         <div className="col-md-6 p-4">
-          <ProductDetails cart={cart} setCart={setCart} />
+          <ProductDetails productDetailData={productDetailData} cartData={cartData} cart={cart} setCart={setCart} />
         </div>
       );
     }
@@ -154,10 +154,10 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
               className="img-fluid rounded"
               style={{ objectFit: 'cover', height: '30px', width: '40px' }}
             /> */}
-                <h5 className="fw-bold">Your Cart for Jy-2025-001</h5>
+                <h5 className="fw-bold">Your Cart for {productDetailData?.name}</h5>
               </div>
 
-              <h6 className="fw-bold mb-0">Subtotal: €{cart.reduce((acc, item) => acc + (Number(item.total) || 0), 0).toFixed(2)}</h6>
+              <h6 className="fw-bold mb-0">Subtotal: ₹ {cart.reduce((acc, item) => acc + (Number(item.total) || 0), 0).toFixed(2)}</h6>
             </div>
 
             <CartTable cart={cart} handleCartQuantityChange={handleCartQuantityChange} />

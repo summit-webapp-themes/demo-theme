@@ -1,6 +1,9 @@
 import { FaSearch, FaUser, FaShoppingCart } from 'react-icons/fa';
+import Link from 'next/link';
+import useFetchCartItems from '../../../hooks/CartPageHook/useFetchCartItems';
 import styles from '../../../styles/components/navbarWithoutCategories.module.scss';
 const MasterComponent = () => {
+  const { cartCount } = useFetchCartItems();
   return (
     <header className={styles.header}>
       {/* Logo / Site Name */}
@@ -20,12 +23,27 @@ const MasterComponent = () => {
 
       {/* User & Cart Icons */}
       <div className={styles.actions}>
-        <button type="button" className={styles.iconButton}>
+        <Link href="/login" className={styles.iconButton} style={{ textDecoration: 'none', color: '#000' }}>
           <FaUser />
-        </button>
-        <button type="button" className={styles.iconButton}>
+        </Link>
+        <Link href="/cart" className={styles.iconButton} style={{ textDecoration: 'none', color: '#000' }}>
           <FaShoppingCart />
-        </button>
+          <span
+            style={{
+              position: 'absolute',
+              top: '2px',
+              right: '14px',
+              backgroundColor: 'red',
+              color: 'white',
+              borderRadius: '50%',
+              padding: '2px 6px',
+              fontSize: '12px',
+              fontWeight: 'bold',
+            }}
+          >
+            {cartCount}
+          </span>
+        </Link>
       </div>
     </header>
   );

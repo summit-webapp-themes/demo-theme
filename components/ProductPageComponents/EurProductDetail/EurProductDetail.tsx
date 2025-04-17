@@ -3,10 +3,12 @@ import { IoIosArrowBack } from 'react-icons/io';
 import { IoAddOutline, IoRemoveOutline } from 'react-icons/io5';
 import ProductInfoTable from './CustomTable';
 import CartTable from './CartTable';
+import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 
 // import productInformationStyle from '../../styles/components/productInformation.module.scss';
 
-export default function ProductDetails({ cart, setCart }: any) {
+export default function ProductDetails({ productDetailData, cart, setCart, cartData }: any) {
+  const { addToCartItem, getPartyName } = useAddToCartHook();
   const [selectedMetal, setSelectedMetal] = useState('Gold');
   const [selectedPurity, setSelectedPurity] = useState('');
   const [selectedTone, setSelectedTone] = useState('');
@@ -16,8 +18,19 @@ export default function ProductDetails({ cart, setCart }: any) {
   // const [cart, setCart] = useState<any[]>([]);
   const [error, setError] = useState('');
 
-  const handleMainQuantityChange = (delta: any) => {
+  const handleMainQuantityChange = (qty: number, delta: any) => {
     setQuantity((prev) => Math.max(1, prev + delta));
+  };
+
+  const handleItemAddToCart = () => {
+    const itemList: any = [{ item_code: productDetailData?.item_name, quantity: quantity }];
+
+    const addToCartParams = {
+      currency: 'INR',
+      item_list: itemList,
+      party_name: getPartyName,
+    };
+    addToCartItem(addToCartParams, null);
   };
 
   const handleAddToCart = () => {
@@ -45,17 +58,16 @@ export default function ProductDetails({ cart, setCart }: any) {
       diamond: selectedDiamond,
       size: selectedSize,
       quantity,
-      unitPrice,
-      total: unitPrice * quantity, // This is a number
+      unitPrice: productDetailData?.price,
+      total: productDetailData?.price * quantity, // This is a number
     };
-
+    handleItemAddToCart();
     setCart([...cart, newItem]);
 
     setSelectedPurity('');
     setSelectedTone('');
     setSelectedDiamond('');
     setSelectedSize('');
-    setQuantity(1);
   };
 
   const metalHeader = ['Kt', 'Colour', 'Wght', 'Rate', 'Value'];
@@ -136,6 +148,30 @@ export default function ProductDetails({ cart, setCart }: any) {
     ['Delivery Date'],
     ['Payment Terms'],
   ];
+  let cartProducts: any;
+  const handleRenderBtnText = () => {
+    {
+      cartData?.length > 0 &&
+        cartData?.map((item: any) => {
+          if (item === productDetailData?.name) {
+            cartProducts = item;
+          }
+        });
+    }
+    if (!cartProducts) {
+      return (
+        <button className="btn btn-light w-100" onClick={handleAddToCart}>
+          Add To Cart
+        </button>
+      );
+    } else {
+      return (
+        <button className={'btn btn-dark w-100'} onClick={handleAddToCart}>
+          Added to cart
+        </button>
+      );
+    }
+  };
 
   return (
     <div className="container py-4">
@@ -177,8 +213,9 @@ export default function ProductDetails({ cart, setCart }: any) {
         <div className="col-md-6" style={{ height: '450px' }}>
           <div className="py-2 h-100">
             <div className="d-flex justify-content-between align-items-center py-2 rounded mb-3">
-              <h4 className="mb-0 fw-bold">JY-2025-001</h4>
-              <h5 className="text-muted mb-0 fw-bold">€{selectedMetal === 'Gold' ? '211.22' : '311.22'}</h5>
+              <h4 className="mb-0 fw-bold">{productDetailData?.item_name}</h4>
+              {/* <h5 className="text-muted mb-0 fw-bold">€{selectedMetal === 'Gold' ? '211.22' : '311.22'}</h5> */}
+              <h5 className="text-muted mb-0 fw-bold">₹{productDetailData?.price}</h5>
             </div>
 
             {error && <div className="alert alert-danger py-1">{error}</div>}
@@ -307,31 +344,30 @@ export default function ProductDetails({ cart, setCart }: any) {
             </div>
 
             <div className="mb-3 row g-0 d-flex align-items-center">
-              {/* Quantity Selector */}
               <div className="col-md-4">
                 <label className={`product-text`}>Quantity:</label>
                 <div className="d-flex align-items-center shadow-sm border rounded overflow-hidden">
                   <button
                     className="d-flex align-items-center justify-content-center flex-fill py-2 border-0 bg-transparent"
-                    onClick={() => handleMainQuantityChange(-1)}
+                    onClick={() => handleMainQuantityChange(quantity, -1)}
                   >
                     <IoRemoveOutline size={18} />
                   </button>
                   <div className="flex-fill text-center fw-bold py-2 border-start border-end">{quantity}</div>
                   <button
                     className="d-flex align-items-center justify-content-center flex-fill py-2 border-0 bg-transparent"
-                    onClick={() => handleMainQuantityChange(1)}
+                    onClick={() => handleMainQuantityChange(quantity, 1)}
                   >
                     <IoAddOutline size={18} />
                   </button>
                 </div>
               </div>
 
-              {/* Add to Cart Button */}
               <div className="col-md-8 d-flex align-items-center mt-4 ">
-                <button className="btn btn-dark w-100" onClick={handleAddToCart}>
+                {handleRenderBtnText()}
+                {/* <button className="btn btn-dark w-100" onClick={handleAddToCart}>
                   Add To Cart
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
