@@ -2,8 +2,8 @@ import ReactSelectDropdown from './ReactSelectDropdown';
 import SidebarExtensionActionButtons from './SidebarExtensionActionButtons';
 
 interface Customercode {
-  CmCd: string;
-  CmName: string | number;
+  label: string;
+  value: string | number;
 }
 
 interface CustomerSectionProps {
@@ -19,6 +19,10 @@ function CustomerSection({
   setSelectedCustomerCode,
   handleAcceptIndivisualFilter,
 }: CustomerSectionProps) {
+  const handleReset = () => {
+    setSelectedCustomerCode(null);
+  };
+
   return (
     <>
       <div className="w-10" style={{ width: '83%' }}>
@@ -30,8 +34,10 @@ function CustomerSection({
           onChange={setSelectedCustomerCode}
         />
       </div>
+
       <SidebarExtensionActionButtons
         handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ customer: selectedCustomerCode })}
+        handleReset={handleReset}
       />
     </>
   );

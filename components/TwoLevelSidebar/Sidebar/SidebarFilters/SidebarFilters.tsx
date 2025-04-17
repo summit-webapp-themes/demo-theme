@@ -18,80 +18,35 @@ function SidebarFilters({ isSidebarVisible, openSidebar, filters }: SidebarFilte
           <span className="text-base">Database</span>
         </p>
         <hr className="text-brown m-0 mt-2" />
-        <div className="text-base">
-          <p className="pl-10 pt-4 m-0 cursor-pointer" onClick={() => openSidebar('Customer')}>
+
+        <div style={{ display: 'flex', gap: '0.2rem', flexDirection: 'column', marginTop: '0.5rem', fontSize: '14px' }}>
+          <p className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar('Work Scope')}>
+            Work Scope
+          </p>
+
+          <p className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar('Customer')}>
             Customer
           </p>
-          <div className="h-2rem">
-            {filters?.customer && <div className={`text-brown ${styles.selected_filter_display}`}>{filters?.customer?.label}</div>}
-          </div>
-          <p className="pl-10 m-0 cursor-pointer" onClick={() => openSidebar('Source')}>
+
+          <p className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar('Source')}>
             Source
           </p>
-          <div className="h-2rem">
-            {filters?.source && <div className={`text-brown ${styles.selected_filter_display}`}>{filters?.source?.label}</div>}
-          </div>
-          <p className="pl-10 m-0 cursor-pointer" onClick={() => openSidebar('Category')}>
+
+          <p className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar('Category')}>
             Category
           </p>
-          <div className="h-2rem">
-            {filters?.category?.length > 0 && (
-              <>
-                {filters?.category?.map((data: any, index: number) => (
-                  <span key={index} className={`text-brown ${styles.selected_filter_display}`}>
-                    {data?.label},{' '}
-                  </span>
-                ))}
-              </>
-            )}
-          </div>
-          <p className="pl-10 m-0 cursor-pointer" onClick={() => openSidebar('Price & Weight')}>
+
+          <p className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar('Price & Weight')}>
             Price & Weight
           </p>
-          <div className="h-2rem">
-            {(filters?.priceRange || filters?.diamond || filters?.grossWtRange || filters?.designColors) && (
-              <div className={`text-brown ${styles.selected_filter_display} d-flex flex-wrap`}>
-                {filters?.priceRange}, {filters?.diamond}, {filters?.grossWtRange},{' '}
-                {filters?.designColor?.length > 0 && (
-                  <>
-                    {filters?.designColor?.map((data: any, index: number) => (
-                      <span key={index} className={`text-brown ${styles.selected_filter_display}`}>
-                        {data?.label},{' '}
-                      </span>
-                    ))}
-                  </>
-                )}
-              </div>
-            )}
-          </div>
-          {/* <p
-            className="pl-10 m-0 cursor-pointer"
-            onClick={() => openSidebar("Style & Tracking")}
-          >
-            Style & Tracking
+
+          <p className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar('Analysis')}>
+            Analysis
           </p>
-          <div className="h-2rem">
-            {selectedCustomerCode && (
-              <div className={`text-brown ${styles.selected_filter_display}`}>
-                {selectedCustomerCode?.name}
-              </div>
-            )}
-          </div> */}
-          <p className="pl-10 m-0 cursor-pointer" onClick={() => openSidebar('Display Options')}>
+
+          <p className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar('Display Options')}>
             Display Options
           </p>
-          <div className="h-2rem">
-            {filters?.displayQuality?.length > 0 && (
-              <>
-                {filters?.displayQuality?.map((data: any, index: number) => (
-                  <span key={index} className={`text-brown ${styles.selected_filter_display}`}>
-                    {data?.label},{' '}
-                  </span>
-                ))}
-              </>
-            )}
-          </div>
-          <div className="h-2rem"></div>
         </div>
       </div>
 
@@ -100,10 +55,6 @@ function SidebarFilters({ isSidebarVisible, openSidebar, filters }: SidebarFilte
           Apply Filter
         </button>
       </div>
-      {/* <SidebarExtensionMaster
-        visible={isSidebarVisible}
-        setVisible={setSidebarVisible}
-      /> */}
     </div>
   );
 }

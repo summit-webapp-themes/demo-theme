@@ -3,7 +3,10 @@ import ReactMultiselectDropdown from './ReactMultiselectDropdown';
 import SidebarExtensionActionButtons from './SidebarExtensionActionButtons';
 
 function CategorySection({ designList, salesList, designTags, setDesignTags, salesTags, setSalesTags, handleAcceptIndivisualFilter }: any) {
-  console.log('CategorySection', designList, salesList);
+  const handleReset = () => {
+    setDesignTags([]);
+    setSalesTags([]);
+  };
   return (
     <>
       <div className="w-10" style={{ width: '83%' }}>
@@ -24,7 +27,10 @@ function CategorySection({ designList, salesList, designTags, setDesignTags, sal
           />
         </div>
       </div>
-      <SidebarExtensionActionButtons handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ category: salesTags })} />
+      <SidebarExtensionActionButtons
+        handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ category: salesTags })}
+        handleReset={handleReset}
+      />
     </>
   );
 }

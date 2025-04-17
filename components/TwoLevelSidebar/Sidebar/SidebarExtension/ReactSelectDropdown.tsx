@@ -1,8 +1,8 @@
 import SingleSelectComponent from './SingleSelect';
 
 interface Option {
-  CmCd: string;
-  CmName: string | number;
+  label: string;
+  value: string | number;
 }
 
 interface Props {

@@ -17,6 +17,14 @@ function PriceAndWeightSection({
   selectedColorStone,
   setSelectedColorStone,
 }: any) {
+  const handleReset = () => {
+    setPriceRange([0, 0]);
+    setDiamondCtsRange([0, 0]);
+    setGrossWtRange([0, 0]);
+    setSelectedColorStone(null);
+    setDesignColourTags([]);
+  };
+
   return (
     <div style={{ overflowY: 'auto', maxHeight: '70vh' }}>
       <div
@@ -39,6 +47,7 @@ function PriceAndWeightSection({
           <InputRange title="Diamond Cts" unit="" value={diamondCtsRange} setValue={setDiamondCtsRange} />
           <InputRange title="Gross Wt" unit="g" value={grossWtRange} setValue={setGrossWtRange} />
         </div>
+
         <ReactSelectDropdown
           label="Colour Stone"
           options={[
@@ -61,13 +70,14 @@ function PriceAndWeightSection({
         <SidebarExtensionActionButtons
           handleAcceptIndivisualFilter={() =>
             handleAcceptIndivisualFilter({
-              priceRange: priceRange,
+              priceRange,
               diamond: diamondCtsRange,
-              grossWtRange: grossWtRange,
+              grossWtRange,
               colorStone: selectedColorStone,
               designColor: designColourTags,
             })
           }
+          handleReset={handleReset}
         />
       </div>
     </div>

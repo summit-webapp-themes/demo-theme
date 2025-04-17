@@ -5,6 +5,8 @@ import CustomerSection from './CustomerSection';
 import Display from './Display';
 import PriceAndWeightSection from './PriceAndWeightSection';
 import SourceSection from './SourceSection/SourceSection';
+import Analysis from './Analysis';
+import WorkScope from './Workscope';
 
 function SidebarExtensionMaster({
   visible,
@@ -12,6 +14,10 @@ function SidebarExtensionMaster({
   statusList,
   originList,
   typeList,
+  inspirationList,
+  targetList,
+  collectionList,
+  verticalList,
   salesCategoryList,
   designCategoryList,
   designColorList,
@@ -55,6 +61,17 @@ function SidebarExtensionMaster({
   bagNoList,
   selectedColorStone,
   setSelectedColorStone,
+  collectionTags,
+  setCollectionTags,
+  targetTags,
+  setTargetTags,
+  inspirationTags,
+  setInspirationTags,
+  verticalTags,
+  setVerticalTags,
+  workScopeList,
+  selectedScope,
+  setSelectedWorkScope,
 }: any) {
   return (
     <Offcanvas show={visible} onHide={closeSidebar}>
@@ -64,6 +81,14 @@ function SidebarExtensionMaster({
       <Offcanvas.Body className="px-4">
         <hr className="m-0" />
         <div className="py-4">
+          {selectedFilter === 'Work Scope' && (
+            <WorkScope
+              workScopeList={workScopeList}
+              selectedScope={selectedScope}
+              setSelectedScope={setSelectedWorkScope}
+              handleAcceptIndivisualFilter={handleAcceptIndivisualFilter}
+            ></WorkScope>
+          )}
           {selectedFilter === 'Customer' && (
             <CustomerSection
               customerCodeList={customerCodeList}
@@ -115,6 +140,23 @@ function SidebarExtensionMaster({
               selectedColorStone={selectedColorStone}
               setSelectedColorStone={setSelectedColorStone}
             />
+          )}
+          {selectedFilter === 'Analysis' && (
+            <Analysis
+              inspirationList={inspirationList}
+              targetList={targetList}
+              collectionList={collectionList}
+              verticalList={verticalList}
+              inspirationTags={inspirationTags}
+              setInspirationTags={setInspirationTags}
+              targetTags={targetTags}
+              setTargetTags={setTargetTags}
+              collectionTags={collectionTags}
+              setCollectionTags={setCollectionTags}
+              verticalTags={verticalTags}
+              setVerticalTags={setVerticalTags}
+              handleAcceptIndivisualFilter={handleAcceptIndivisualFilter}
+            ></Analysis>
           )}
           {selectedFilter === 'Display Options' && (
             <Display

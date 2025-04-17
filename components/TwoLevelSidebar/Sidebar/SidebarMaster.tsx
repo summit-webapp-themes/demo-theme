@@ -8,6 +8,14 @@ function SidebarMaster() {
   const {
     isSidebarVisible,
     selectedFilter,
+    targetTags,
+    setTargetTags,
+    collectionTags,
+    setCollectionTags,
+    inspirationTags,
+    setInspirationTags,
+    verticalTags,
+    setVerticalTags,
     filters,
     openSidebar,
     closeSidebar,
@@ -57,8 +65,14 @@ function SidebarMaster() {
     setPriceRange,
     selectedColorStone,
     setSelectedColorStone,
+    inspirationList,
+    targetList,
+    collectionList,
+    verticalList,
+    workScopeList,
+    selectedScope,
+    setSelectedScope,
   }: any = useFiltersHook();
-  console.log('customerCodeList', customerCodeList);
   return (
     <>
       <div className="sidebar-container">
@@ -69,6 +83,9 @@ function SidebarMaster() {
       </div>
 
       <SidebarExtensionMaster
+        workScopeList={workScopeList}
+        selectedScope={selectedScope}
+        setSelectedScope={setSelectedScope}
         visible={isSidebarVisible}
         selectedFilter={selectedFilter}
         selectedCustomerCode={selectedCustomerCode}
@@ -77,6 +94,10 @@ function SidebarMaster() {
         statusList={statusList}
         originList={originList}
         typeList={typeList}
+        inspirationList={inspirationList}
+        targetList={targetList}
+        collectionList={collectionList}
+        verticalList={verticalList}
         salesCategoryList={salesCategoryList}
         designCategoryList={designCategoryList}
         displayQualityList={displayQualityList}
@@ -91,7 +112,6 @@ function SidebarMaster() {
         closeSidebar={closeSidebar}
         selectedColorStone={selectedColorStone}
         setSelectedColorStone={setSelectedColorStone}
-        // Lifted states
         designTags={designTags}
         setDesignTags={setDesignTags}
         salesTags={salesTags}
@@ -111,6 +131,14 @@ function SidebarMaster() {
         originTags={originTags}
         setOriginTags={setOriginTags}
         typeTags={typeTags}
+        targetTags={targetTags}
+        setTargetTags={setTargetTags}
+        collectionTags={collectionTags}
+        setCollectionTags={setCollectionTags}
+        inspirationTags={inspirationTags}
+        setInspirationTags={setInspirationTags}
+        verticalTags={verticalTags}
+        setVerticalTags={setVerticalTags}
         setTypeTags={setTypeTags}
         priceRange={priceRange}
         setPriceRange={setPriceRange}

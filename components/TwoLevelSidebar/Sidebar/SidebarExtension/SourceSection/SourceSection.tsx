@@ -19,6 +19,12 @@ function SourceSection({
   statusTags,
   setStatusTags,
 }: any) {
+  const handleReset = () => {
+    setOriginTags([]);
+    setTypeTags([]);
+    setStatusTags([]);
+    setSelectedSourceType(null);
+  };
   const renderFieldsBasedOnSourceType = () => {
     if (selectedSourceType?.value === 'DB') {
       return (
@@ -75,7 +81,10 @@ function SourceSection({
         />
         <div>{renderFieldsBasedOnSourceType()}</div>
       </div>
-      <SidebarExtensionActionButtons handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ source: selectedSourceType })} />
+      <SidebarExtensionActionButtons
+        handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ source: selectedSourceType })}
+        handleReset={handleReset}
+      />
     </>
   );
 }
