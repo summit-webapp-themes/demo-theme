@@ -1,8 +1,8 @@
 import TwoLevelSidebar from '../../../TwoLevelSidebar/Sidebar/SidebarMaster';
-const MasterComponent = () => {
+const MasterComponent = ({ getProductsData }: any) => {
   return (
     <>
-      <TwoLevelSidebar />
+      <TwoLevelSidebar getProductsData={getProductsData} />
     </>
   );
 };

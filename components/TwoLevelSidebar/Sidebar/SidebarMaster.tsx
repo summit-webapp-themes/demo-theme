@@ -4,7 +4,7 @@ import SidebarExtensionMaster from './SidebarExtension/SidebarExtensionMaster';
 import SidebarFilters from './SidebarFilters/SidebarFilters';
 import SidebarHeader from './SidebarHeader';
 
-function SidebarMaster() {
+function SidebarMaster({ getProductsData }: any) {
   const {
     isSidebarVisible,
     selectedFilter,
@@ -66,19 +66,26 @@ function SidebarMaster() {
     selectedColorStone,
     setSelectedColorStone,
     inspirationList,
-    targetList,
+    targetShowList,
     collectionList,
     verticalList,
     workScopeList,
     selectedScope,
     setSelectedScope,
-  }: any = useFiltersHook();
+    handleApplyFilters,
+  }: any = useFiltersHook(getProductsData);
+
   return (
     <>
       <div className="sidebar-container">
         <div className="p-4">
           <SidebarHeader />
-          <SidebarFilters isSidebarVisible={isSidebarVisible} openSidebar={openSidebar} filters={filters} />
+          <SidebarFilters
+            isSidebarVisible={isSidebarVisible}
+            openSidebar={openSidebar}
+            filters={filters}
+            handleApplyFilters={handleApplyFilters}
+          />
         </div>
       </div>
 
@@ -95,7 +102,7 @@ function SidebarMaster() {
         originList={originList}
         typeList={typeList}
         inspirationList={inspirationList}
-        targetList={targetList}
+        targetList={targetShowList}
         collectionList={collectionList}
         verticalList={verticalList}
         salesCategoryList={salesCategoryList}

@@ -5,9 +5,10 @@ interface SidebarFilterProps {
   isSidebarVisible: boolean;
   openSidebar: (value: string | null) => void;
   filters: any;
+  handleApplyFilters: () => void;
 }
 
-function SidebarFilters({ isSidebarVisible, openSidebar, filters }: SidebarFilterProps) {
+function SidebarFilters({ isSidebarVisible, openSidebar, filters, handleApplyFilters }: SidebarFilterProps) {
   return (
     <div className="pt-4 px-2">
       <div className={styles.filter_container}>
@@ -51,7 +52,7 @@ function SidebarFilters({ isSidebarVisible, openSidebar, filters }: SidebarFilte
       </div>
 
       <div className="pl-10">
-        <button className={`px-3 py-2 border border-1 rounded cursor-pointer bg-brown text-white`} disabled={isSidebarVisible}>
+        <button className={`px-3 py-2 border border-1 rounded cursor-pointer bg-brown text-white`} onClick={handleApplyFilters}>
           Apply Filter
         </button>
       </div>

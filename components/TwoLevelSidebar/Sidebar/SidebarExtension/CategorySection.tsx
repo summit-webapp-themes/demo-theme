@@ -28,7 +28,7 @@ function CategorySection({ designList, salesList, designTags, setDesignTags, sal
         </div>
       </div>
       <SidebarExtensionActionButtons
-        handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ category: salesTags })}
+        handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ designCategory: designTags, salesCategory: salesTags })}
         handleReset={handleReset}
       />
     </>
