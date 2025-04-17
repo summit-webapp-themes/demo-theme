@@ -71,11 +71,11 @@ function SidebarExtensionMaster({
   setVerticalTags,
   workScopeList,
   selectedScope,
-  setSelectedWorkScope,
+  setSelectedScope,
 }: any) {
   return (
     <Offcanvas show={visible} onHide={closeSidebar}>
-      <Offcanvas.Header closeButton className="p-0 px-4 pt-5 mt-2">
+      <Offcanvas.Header className="p-0 px-4 pt-5 mt-2">
         <Offcanvas.Title className="text-brown">{selectedFilter}</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body className="px-4">
@@ -85,7 +85,7 @@ function SidebarExtensionMaster({
             <WorkScope
               workScopeList={workScopeList}
               selectedScope={selectedScope}
-              setSelectedScope={setSelectedWorkScope}
+              setSelectedScope={setSelectedScope}
               handleAcceptIndivisualFilter={handleAcceptIndivisualFilter}
             ></WorkScope>
           )}

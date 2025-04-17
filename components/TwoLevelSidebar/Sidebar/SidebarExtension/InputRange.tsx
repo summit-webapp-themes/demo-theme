@@ -10,29 +10,37 @@ type InputRangeProps = {
 };
 
 function InputRange({ title, unit, value, setValue }: InputRangeProps) {
+  
   const [localValues, setLocalValues] = useState<[string, string]>([
-    value[0] ? value[0].toString() : '',
-    value[1] ? value[1].toString() : '',
+    value[0] === 0 ? "" : value[0].toString(),
+    value[1] === 0 ? "" : value[1].toString(),
   ]);
+  
+  const [isInternalUpdate, setIsInternalUpdate] = useState(false);
+  
+  const min = parseFloat(localValues[0]) || 0;
+  const max = parseFloat(localValues[1]) || 0;
+  
+  
+  if (!isInternalUpdate && (value[0] !== min || value[1] !== max)) {
+    setLocalValues([
+      value[0] === 0 ? "" : value[0].toString(),
+      value[1] === 0 ? "" : value[1].toString(),
+    ]);
+  }
 
-  const isCurrencyUnit = unit && ['₹', '$', '€', '£'].includes(unit);
+  const isCurrencyUnit = unit && ["₹", "$", "€", "£"].includes(unit);
 
   const handleChange = (index: 0 | 1, val: string) => {
     if (/^[0-9]*\.?[0-9]*$/.test(val)) {
+      setIsInternalUpdate(true);
       const updated = [...localValues] as [string, string];
       updated[index] = val;
       setLocalValues(updated);
-    }
-  };
-
-  const handleKeyDown = (index: 0 | 1, e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      const parsed = localValues.map((v) => parseFloat(v)) as [number, number];
-      if (!isNaN(parsed[0]) && !isNaN(parsed[1])) {
-        setValue(parsed);
-        const stateName = title === 'Price Range' ? 'priceRange' : title === 'Diamond Cts' ? 'diamondCtsRange' : 'grossWtRange';
-        console.log(`${stateName}:`, parsed);
-      }
+      const newValues = [...value] as [number, number];
+      newValues[index] = val === "" ? 0 : parseFloat(val) || 0;
+      setValue(newValues);
+      setTimeout(() => setIsInternalUpdate(false), 0);
     }
   };
 
@@ -52,11 +60,14 @@ function InputRange({ title, unit, value, setValue }: InputRangeProps) {
                 pattern="[0-9]*"
                 className={styles.rangeBox}
                 value={localValues[0]}
-                onChange={(e) => handleChange(0, e.target.value.replace(/[^0-9.]/g, ''))}
-                onKeyDown={(e) => handleKeyDown(0, e)}
+                onChange={(e) =>
+                  handleChange(0, e.target.value.replace(/[^0-9.]/g, ""))
+                }
                 placeholder="Min"
               />
-              {!isCurrencyUnit && unit && <span className={styles.unitSuffix}>{unit}</span>}
+              {!isCurrencyUnit && unit && (
+                <span className={styles.unitSuffix}>{unit}</span>
+              )}
             </div>
 
             <span className={styles.toText}>to</span>
@@ -70,11 +81,14 @@ function InputRange({ title, unit, value, setValue }: InputRangeProps) {
                 pattern="[0-9]*"
                 className={styles.rangeBox}
                 value={localValues[1]}
-                onChange={(e) => handleChange(1, e.target.value.replace(/[^0-9.]/g, ''))}
-                onKeyDown={(e) => handleKeyDown(1, e)}
+                onChange={(e) =>
+                  handleChange(1, e.target.value.replace(/[^0-9.]/g, ""))
+                }
                 placeholder="Max"
               />
-              {!isCurrencyUnit && unit && <span className={styles.unitSuffix}>{unit}</span>}
+              {!isCurrencyUnit && unit && (
+                <span className={styles.unitSuffix}>{unit}</span>
+              )}
             </div>
           </div>
         </div>
@@ -82,5 +96,6 @@ function InputRange({ title, unit, value, setValue }: InputRangeProps) {
     </div>
   );
 }
+
 
 export default InputRange;
