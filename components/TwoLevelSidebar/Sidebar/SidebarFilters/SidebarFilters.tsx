@@ -1,5 +1,4 @@
-import { GoDotFill } from 'react-icons/go';
-import styles from '../../../../styles/components/twoLevelSidebar.module.css';
+import styles from '../../../../styles/components/twoLevelSidebar.module.scss';
 
 interface SidebarFilterProps {
   isSidebarVisible: boolean;
@@ -19,12 +18,15 @@ function SidebarFilters({ isSidebarVisible, openSidebar, filters, setShowFilters
       }}
     >
       <div className={styles.filter_container}>
-        <p className="uppercase text-brown flex mt-3 m-0">
-          <span className=" pr-2">
-            <GoDotFill />
-          </span>
-          <span className="text-base">Database</span>
+        
+        <p className="uppercase text-brown flex mt-3 m-0" style={{display:"flex",paddingLeft:"15px",gap:"40px"}}>
+          <div className="text-base">{(filters && filters.selectedScope?.value) || 'Work Scope'}</div>
+
+          <div className="text-base" onClick={() => openSidebar('Work Scope')} style={{cursor:"pointer"}}>
+            Edit
+          </div>
         </p>
+
         <hr className="text-brown m-0 mt-2" />
 
         <div
@@ -36,7 +38,7 @@ function SidebarFilters({ isSidebarVisible, openSidebar, filters, setShowFilters
             fontSize: '14px',
           }}
         >
-          {['Work Scope', 'Customer', 'Source', 'Category', 'Price & Weight', 'Analysis', 'Display Options'].map((label) => (
+          {['Customer', 'Source', 'Category', 'Price & Weight', 'Analysis', 'Display Options'].map((label) => (
             <p key={label} className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar(label)}>
               {label}
             </p>

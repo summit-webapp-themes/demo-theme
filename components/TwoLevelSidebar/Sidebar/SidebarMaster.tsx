@@ -6,7 +6,6 @@ import SidebarFilters from './SidebarFilters/SidebarFilters';
 import SidebarHeader from './SidebarHeader';
 import FilterSummary from './FilterSummary';
 
-
 function SidebarMaster() {
   const {
     isSidebarVisible,
@@ -77,23 +76,18 @@ function SidebarMaster() {
     setSelectedScope,
   }: any = useFiltersHook();
 
-  console.log("filters", filters);
+  console.log('filters', filters);
 
   const [showFilters, setShowFilters] = useState(false);
-  
+
   return (
     <>
       <div className="sidebar-container">
         <div className="p-4">
           <SidebarHeader />
-          {/* <SidebarFilters isSidebarVisible={isSidebarVisible} openSidebar={openSidebar} filters={filters} /> */}
-          <SidebarFilters
-            isSidebarVisible={isSidebarVisible}
-            openSidebar={openSidebar}
-            filters={filters}
-            setShowFilters={setShowFilters}
-          />
-          {showFilters && filters && <FilterSummary filters={filters} />}
+          <SidebarFilters isSidebarVisible={isSidebarVisible} openSidebar={openSidebar} filters={filters} setShowFilters={setShowFilters} />
+          {/* {showFilters && filters && <FilterSummary filters={filters} />} */}
+          {showFilters && filters?.selectedScope?.value === 'Current Session' && <FilterSummary filters={filters} />}
         </div>
       </div>
 
