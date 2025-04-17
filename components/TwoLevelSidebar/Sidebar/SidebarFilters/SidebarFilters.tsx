@@ -19,7 +19,7 @@ function SidebarFilters({ isSidebarVisible, openSidebar, filters, setShowFilters
     >
       <div className={styles.filter_container}>
         
-        <p className="uppercase text-brown flex mt-3 m-0" style={{display:"flex",paddingLeft:"15px",gap:"40px"}}>
+        <p className="uppercase text-brown flex mt-3 m-0" style={{display:"flex",paddingLeft:"15px",gap:"45px"}}>
           <div className="text-base">{(filters && filters.selectedScope?.value) || 'Work Scope'}</div>
 
           <div className="text-base" onClick={() => openSidebar('Work Scope')} style={{cursor:"pointer"}}>

@@ -27,13 +27,13 @@ function Display({
   return (
     <>
       <div className={styles.wrapper} style={{ width: '83%' }}>
-        <ReactSelectDropdown
+        {/* <ReactSelectDropdown
           label="Display Quality"
           options={displayQualityList}
           value={displayQualityTags}
           placeholder="Select or Search"
           onChange={setDisplayQualityTags}
-        />
+        /> */}
 
         <ReactSelectDropdown
           label="Sort By"

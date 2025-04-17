@@ -29,14 +29,14 @@ function SourceSection({
     if (selectedSourceType?.value === 'DB') {
       return (
         <>
-          <ReactMultiselectDropdown
+          {/* <ReactMultiselectDropdown
             label="Design Bank"
             options={statusList}
             value={statusTags}
             placeholder="Select one or more"
             onChange={setStatusTags}
-          />
-          <DesignBank data={sourceTypeList} />
+          /> */}
+          {/* <DesignBank data={sourceTypeList} /> */}
         </>
       );
     }

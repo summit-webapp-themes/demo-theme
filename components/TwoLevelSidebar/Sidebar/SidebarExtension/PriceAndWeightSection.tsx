@@ -48,7 +48,7 @@ function PriceAndWeightSection({
           <InputRange title="Gross Wt" unit="g" value={grossWtRange} setValue={setGrossWtRange} />
         </div>
 
-        <ReactSelectDropdown
+        {/* <ReactSelectDropdown
           label="Colour Stone"
           options={[
             { label: 'Yes', value: 'yes' },
@@ -65,7 +65,7 @@ function PriceAndWeightSection({
           value={designColourTags}
           placeholder="Select one or more"
           onChange={setDesignColourTags}
-        />
+        /> */}
 
         <SidebarExtensionActionButtons
           handleAcceptIndivisualFilter={() =>
