@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
+import { Nunito } from 'next/font/google';
 import summitSettings from '../summit-settings.json'; // Import the settings file
 import { createFontImport } from '../utils/fontUtils'; // Helper function to dynamically import fonts
 import dynamic from 'next/dynamic';
@@ -17,8 +18,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
 
 // Dynamically import font based on settings
-const fontFamily = summitSettings.data.font_family || 'Nunito'; // Default to Nunito
-const dynamicFont = createFontImport(fontFamily); // Import font dynamically
+// const fontFamily = summitSettings.data.font_family || 'Nunito'; // Default to Nunito
+// const dynamicFont = createFontImport(fontFamily); // Import font dynamically
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+});
 
 // Specify Google Tracking Code for Google Analytics
 
@@ -29,30 +36,30 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
   return (
-    <div className={dynamicFont.className}>
+    <div className={nunito.className}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ErrorBoundary>
-            <Layout>
-              <ToastContainer
-                position="top-right"
-                className="toast-container-below-navbar"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                draggable={false}
-                closeOnClick
-                pauseOnHover
-              />
-              {/* Below condition is to check whether give complete access of site to guest user or user can access site only after authentication */}
-              {CONSTANTS.ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION ? (
+            {/* <Layout> */}
+            <ToastContainer
+              position="top-right"
+              className="toast-container-below-navbar"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              draggable={false}
+              closeOnClick
+              pauseOnHover
+            />
+            {/* Below condition is to check whether give complete access of site to guest user or user can access site only after authentication */}
+            {CONSTANTS.ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION ? (
+              <Component {...pageProps} />
+            ) : (
+              <ProtectedRoute>
                 <Component {...pageProps} />
-              ) : (
-                <ProtectedRoute>
-                  <Component {...pageProps} />
-                </ProtectedRoute>
-              )}
-            </Layout>
+              </ProtectedRoute>
+            )}
+            {/* </Layout> */}
           </ErrorBoundary>
         </PersistGate>
       </Provider>

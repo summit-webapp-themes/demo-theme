@@ -1,7 +1,10 @@
-import React from 'react';
-
+import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
 const FixedFiltersLayout = () => {
-  return <div>FixedFiltersLayout</div>;
+  return (
+    <div>
+      <FixedSidebar />
+    </div>
+  );
 };
 
 export default FixedFiltersLayout;
