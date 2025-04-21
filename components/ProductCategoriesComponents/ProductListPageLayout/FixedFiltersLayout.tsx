@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import fetchProductsData from '../../../services/api/get-emr-catalog-data/get-catalog-data-api';
 import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
-import { set } from 'zod';
 const FixedFiltersLayout = () => {
   const [productsData, setProductsData] = useState<any>([]);
   const [error, setError] = useState<any>(null);

@@ -11,7 +11,6 @@ function WorkScope({ workScopeList, selectedScope, setSelectedScope, handleAccep
     <>
       <div className="w-10" style={{ width: '83%' }}>
         <ReactSelectDropdown label="Scope" options={workScopeList} value={selectedScope} placeholder="Select" onChange={setSelectedScope} />
-        {/* database */}
       </div>
       <SidebarExtensionActionButtons
         handleAcceptIndivisualFilter={() =>

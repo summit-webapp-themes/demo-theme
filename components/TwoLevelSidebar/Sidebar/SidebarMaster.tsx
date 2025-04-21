@@ -1,8 +1,10 @@
 'use client';
+import { useState } from 'react';
 import useFiltersHook from '../../../hooks/TwoLevelSidebarHook/useTwoLevelSidebar';
 import SidebarExtensionMaster from './SidebarExtension/SidebarExtensionMaster';
 import SidebarFilters from './SidebarFilters/SidebarFilters';
 import SidebarHeader from './SidebarHeader';
+import FilterSummary from './FilterSummary';
 
 function SidebarMaster({ getProductsData }: any) {
   const {
@@ -66,14 +68,18 @@ function SidebarMaster({ getProductsData }: any) {
     selectedColorStone,
     setSelectedColorStone,
     inspirationList,
-    targetShowList,
+    targetList,
     collectionList,
     verticalList,
     workScopeList,
     selectedScope,
     setSelectedScope,
+    targetShowList,
+    showFilters,
     handleApplyFilters,
   }: any = useFiltersHook(getProductsData);
+
+  console.log('filters', filters);
 
   return (
     <>
@@ -86,6 +92,7 @@ function SidebarMaster({ getProductsData }: any) {
             filters={filters}
             handleApplyFilters={handleApplyFilters}
           />
+          {showFilters && filters?.selectedScope?.value === 'Current Session' && <FilterSummary filters={filters} />}
         </div>
       </div>
 

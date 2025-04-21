@@ -71,7 +71,7 @@ function SidebarExtensionMaster({
   setVerticalTags,
   workScopeList,
   selectedScope,
-  setSelectedWorkScope,
+  setSelectedScope,
 }: any) {
   return (
     <Offcanvas show={visible} onHide={closeSidebar}>
@@ -85,7 +85,7 @@ function SidebarExtensionMaster({
             <WorkScope
               workScopeList={workScopeList}
               selectedScope={selectedScope}
-              setSelectedScope={setSelectedWorkScope}
+              setSelectedScope={setSelectedScope}
               handleAcceptIndivisualFilter={handleAcceptIndivisualFilter}
             ></WorkScope>
           )}
