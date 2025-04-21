@@ -2,18 +2,21 @@ import { useState } from 'react';
 import fetchProductsData from '../../../services/api/get-emr-catalog-data/get-catalog-data-api';
 import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
 const FixedFiltersLayout = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [productsData, setProductsData] = useState<any>([]);
   const [error, setError] = useState<any>(null);
   const getProductsData = async (filtersData: any) => {
+    setIsLoading(true);
     const getProductsData = await fetchProductsData(filtersData);
-    console.log('getProductsData', getProductsData);
     if (getProductsData?.data?.msg === 'success') {
       const productsData = getProductsData?.data?.data;
       setProductsData(productsData);
+      setIsLoading(false);
     } else {
       const errorMessage = getProductsData?.data?.error || 'Error fetching data';
       setError(errorMessage);
       setProductsData([]);
+      setIsLoading(false);
     }
   };
   return (
@@ -23,7 +26,16 @@ const FixedFiltersLayout = () => {
       </div>
       <div className="col-10">
         <div className="ms-5">
-          {error ? (
+          {isLoading ? (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+              <div className="text-center">
+                <div className="spinner-border text-primary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+                <p>Loading products...</p>
+              </div>
+            </div>
+          ) : error ? (
             <div className="alert alert-danger mt-5 text-center" role="alert">
               {error}
             </div>
@@ -31,42 +43,13 @@ const FixedFiltersLayout = () => {
             <div className="container mt-4">
               {productsData?.map((item: any, index: any) => (
                 <div className="card shadow-sm mb-4" key={index}>
-                  <div className="card-header text-white" style={{ backgroundColor: '#fffaf2' }}>
+                  <div className="card-header text-black" style={{ backgroundColor: '#fffaf2' }}>
                     <strong>Order #{item.OdNo}</strong> — {item.OdDmCd}
                   </div>
                   <div className="card-body">
-                    <div className="row mb-2">
-                      <div className="col-md-4">
-                        <strong>Company Code:</strong> {item.OdCoCd}
-                      </div>
-                      <div className="col-md-4">
-                        <strong>Type Code:</strong> {item.OdTc}
-                      </div>
-                      <div className="col-md-4">
-                        <strong>Year:</strong> {item.OdYy}
-                      </div>
-                    </div>
-                    <div className="row mb-2">
-                      <div className="col-md-4">
-                        <strong>Char:</strong> {item.OdChr}
-                      </div>
-                      <div className="col-md-4">
-                        <strong>Order Sr:</strong> {item.OdSr}
-                      </div>
-                      <div className="col-md-4">
-                        <strong>Sale Price:</strong> ₹{item.OdSalPrc.toLocaleString()}
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-4">
-                        <strong>Gross Wt:</strong> {item.GrossWt}g
-                      </div>
-                      <div className="col-md-4">
-                        <strong>Diamond Wt:</strong> {item.DiaWt}ct
-                      </div>
-                      <div className="col-md-4">
-                        <strong>Stone Wt:</strong> {item.CsWt}ct
-                      </div>
+                    <div>
+                      <strong>Company Code:</strong> {item.OdCoCd} | <strong>Sale Price:</strong> ₹{item.OdSalPrc.toLocaleString()} |{' '}
+                      <strong>Od Kt:</strong> {item.OdKt} | <strong>Diamond Wt:</strong> {item.DiaWt}ct
                     </div>
                   </div>
                 </div>

@@ -77,6 +77,8 @@ function SidebarMaster({ getProductsData }: any) {
     targetShowList,
     showFilters,
     handleApplyFilters,
+    setFromDmCd,
+    setToDmCd,
   }: any = useFiltersHook(getProductsData);
 
   console.log('filters', filters);
@@ -160,6 +162,8 @@ function SidebarMaster({ getProductsData }: any) {
         setDiamondCtsRange={setDiamondCtsRange}
         grossWtRange={grossWtRange}
         setGrossWtRange={setGrossWtRange}
+        setFromDmCd={setFromDmCd}
+        setToDmCd={setToDmCd}
       />
     </>
   );

@@ -1,6 +1,5 @@
 import SidebarExtensionActionButtons from '../SidebarExtensionActionButtons';
 import DesignBank from './DesignBank';
-
 import ReactSelectDropdown from '../ReactSelectDropdown';
 import ReactMultiselectDropdown from '../ReactMultiselectDropdown';
 
@@ -18,6 +17,8 @@ function SourceSection({
   setSelectedSourceType,
   statusTags,
   setStatusTags,
+  setFromDmCd,
+  setToDmCd,
 }: any) {
   const handleReset = () => {
     setOriginTags([]);
@@ -36,7 +37,7 @@ function SourceSection({
             placeholder="Select one or more"
             onChange={setStatusTags}
           />
-          <DesignBank data={sourceTypeList} />
+          <DesignBank setFromDmCd={setFromDmCd} setToDmCd={setToDmCd} />
         </>
       );
     }

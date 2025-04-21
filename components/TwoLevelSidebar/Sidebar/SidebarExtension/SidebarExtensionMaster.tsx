@@ -72,6 +72,8 @@ function SidebarExtensionMaster({
   workScopeList,
   selectedScope,
   setSelectedScope,
+  setFromDmCd,
+  setToDmCd,
 }: any) {
   return (
     <Offcanvas show={visible} onHide={closeSidebar}>
@@ -112,6 +114,8 @@ function SidebarExtensionMaster({
               setOriginTags={setOriginTags}
               typeTags={typeTags}
               setTypeTags={setTypeTags}
+              setFromDmCd={setFromDmCd}
+              setToDmCd={setToDmCd}
             />
           )}
           {selectedFilter === 'Category' && (
