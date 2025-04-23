@@ -2,6 +2,8 @@ import { useState } from 'react';
 import fetchProductsData from '../../../services/api/get-emr-catalog-data/get-catalog-data-api';
 import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
 import KCGridCard from '../../../cards/KCGridCard';
+import KCListCard from '../../../cards/KCListCard';
+
 const FixedFiltersLayout = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [productsData, setProductsData] = useState<any>([]);
@@ -82,6 +84,7 @@ const FixedFiltersLayout = () => {
             </div>
           )}
           <KCGridCard productsData={testProduct} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
+          <KCListCard productsData={testProduct} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
         </div>
       </div>
     </div>
