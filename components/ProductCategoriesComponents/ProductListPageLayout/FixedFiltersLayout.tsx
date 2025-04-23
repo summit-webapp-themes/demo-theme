@@ -3,12 +3,16 @@ import fetchProductsData from '../../../services/api/get-emr-catalog-data/get-ca
 import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
 import KCGridCard from '../../../cards/KCGridCard';
 import KCListCard from '../../../cards/KCListCard';
+import { Button, ButtonGroup } from 'react-bootstrap';
+import { IoGrid } from 'react-icons/io5';
+import { HiOutlineMenu } from "react-icons/hi";
 
 const FixedFiltersLayout = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [productsData, setProductsData] = useState<any>([]);
   const [error, setError] = useState<any>(null);
   const [selectedProducts, setSelectedProducts] = useState<any>([]);
+  const [toggleProductView, setToggleProductView] = useState<'grid' | 'list'>('grid');
   const getProductsData = async (filtersData: any) => {
     setIsLoading(true);
     const getProductsData = await fetchProductsData(filtersData);
@@ -83,8 +87,21 @@ const FixedFiltersLayout = () => {
               <p className="text-center">Please adjust your filters.</p>
             </div>
           )}
-          <KCGridCard productsData={testProduct} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
-          <KCListCard productsData={testProduct} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
+          <div className=' container d-flex justify-content-end'>
+            <ButtonGroup className="pe-4">
+              <Button variant='outline-light' className='rounded-start py-1 px-3 d-flex align-middle' style={{ borderColor: '#C6C6C6'}} onClick={() => setToggleProductView('list')}>
+                <HiOutlineMenu size={18} style={{ color: toggleProductView === "list" ? "#A69476" : "black"}} />
+              </Button>
+              <Button variant='outline-light' className='rounded-end py-1 px-3 d-flex align-middle' style={{ borderColor: '#C6C6C6'}} onClick={() => setToggleProductView('grid')}>
+                <IoGrid size={16} style={{ color: toggleProductView === "grid" ? "#A69476" : "black"}} />
+              </Button>
+            </ButtonGroup>
+          </div>
+          {
+            toggleProductView === 'grid' ? 
+            <KCGridCard productsData={testProduct} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
+            : <KCListCard productsData={testProduct} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
+          }
         </div>
       </div>
     </div>
