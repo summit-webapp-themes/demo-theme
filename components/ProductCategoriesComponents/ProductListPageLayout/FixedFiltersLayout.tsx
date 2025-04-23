@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import fetchProductsData from '../../../services/api/get-emr-catalog-data/get-catalog-data-api';
 import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
+import KCGridCard from '../../../cards/KCGridCard';
+import KCListCard from '../../../cards/KCListCard';
+
 const FixedFiltersLayout = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [productsData, setProductsData] = useState<any>([]);
   const [error, setError] = useState<any>(null);
+  const [selectedProducts, setSelectedProducts] = useState<any>([]);
   const getProductsData = async (filtersData: any) => {
     setIsLoading(true);
     const getProductsData = await fetchProductsData(filtersData);
@@ -19,6 +23,24 @@ const FixedFiltersLayout = () => {
       setIsLoading(false);
     }
   };
+  const testProduct = [
+    {
+      OdNo: 'JY-2025-001',
+      OdId: 'ID-2025-001',
+      OdCoCd: 'VVS1',
+      OdSalPrc: 36521,
+      OdKt: 18,
+      DiaWt: 1.33
+    },
+    {
+      OdNo: 'JY-2025-002',
+      OdId: 'ID-2025-002',
+      OdCoCd: 'VVS2',
+      OdSalPrc: 36521,
+      OdKt: 18,
+      DiaWt: 1.33
+    },
+  ]
   return (
     <div className="row">
       <div className="col-2">
@@ -61,6 +83,8 @@ const FixedFiltersLayout = () => {
               <p className="text-center">Please adjust your filters.</p>
             </div>
           )}
+          <KCGridCard productsData={testProduct} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
+          <KCListCard productsData={testProduct} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
         </div>
       </div>
     </div>
