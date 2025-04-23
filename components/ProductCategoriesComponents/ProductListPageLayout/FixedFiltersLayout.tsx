@@ -21,7 +21,7 @@ const FixedFiltersLayout = () => {
       setProductsData(productsData);
       setIsLoading(false);
     } else {
-      const errorMessage = getProductsData?.data?.error || 'Error fetching data';
+      const errorMessage = getProductsData?.data?.message || 'Error fetching data';
       setError(errorMessage);
       setProductsData([]);
       setIsLoading(false);
