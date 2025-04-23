@@ -92,6 +92,7 @@ function SidebarMaster({ getProductsData }: any) {
             isSidebarVisible={isSidebarVisible}
             openSidebar={openSidebar}
             filters={filters}
+            selectedScope={selectedScope}
             handleApplyFilters={handleApplyFilters}
           />
           {showFilters && filters?.selectedScope?.value === 'Current Session' && <FilterSummary filters={filters} />}

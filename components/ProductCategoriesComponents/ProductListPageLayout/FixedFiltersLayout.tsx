@@ -44,7 +44,7 @@ const FixedFiltersLayout = () => {
               {productsData?.map((item: any, index: any) => (
                 <div className="card shadow-sm mb-4" key={index}>
                   <div className="card-header text-black" style={{ backgroundColor: '#fffaf2' }}>
-                    <strong>Order #{item.OdNo}</strong> — {item.OdDmCd}
+                    <strong> Style Code</strong> — {item.OdDmCd}
                   </div>
                   <div className="card-body">
                     <div>

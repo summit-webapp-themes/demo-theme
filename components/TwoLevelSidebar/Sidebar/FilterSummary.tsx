@@ -1,7 +1,6 @@
 import React from 'react';
 
 const FilterSummary = ({ filters }: { filters: any }) => {
-  console.log('filters in summary', filters);
   if (!filters) return null;
 
   const formatArray = (arr: any[]) => (Array.isArray(arr) ? arr.map((item) => item.label).join(', ') : '');

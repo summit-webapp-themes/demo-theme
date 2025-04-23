@@ -1,4 +1,3 @@
-import { set } from 'zod';
 import ReactSelectDropdown from './ReactSelectDropdown';
 import SidebarExtensionActionButtons from './SidebarExtensionActionButtons';
 
