@@ -39,6 +39,7 @@ const FixedFiltersLayout = () => {
     try {
       const postQuotation = await createVoucher(data, TokenFromStore?.token);
       if (postQuotation?.data?.msg === 'success') {
+        alert('Voucher created successfully!');
         console.log('Voucher created successfully:', postQuotation?.data?.data);
       } else {
         const errorMessage = postQuotation?.response?.data?.error || 'Error creating voucher';
