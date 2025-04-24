@@ -341,3 +341,38 @@
 .hide_scrollbar::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
 }
+
+.kcFilterInputBox { 
+  width: 80px; 
+  height: 20px; 
+  border: 1px solid #A69476;
+  border-radius: 0.25rem;
+  padding: 0px 4px;
+  font-size: 12px;
+}
+
+.kcFilterInputBox:focus-visible { 
+  outline: none; 
+  border: 1px solid #A69476;
+}
+
+.kcFilterButton {
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: 1px solid #A69476 !important;
+  height: 20px;
+  width: 20px;
+}
+
+.kcFilterButton:hover {
+  border: 1px solid #A69476;
+}
+
+.kcFilterButton:focus-visible {
+  outline: none;
+  border: 1px solid #A69476;
+}
