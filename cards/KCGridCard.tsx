@@ -16,7 +16,17 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
                   value={selectedProducts.filter((prodOdId: any) => (prodOdId === item.OdId ? '1' : '0'))}
                   onChange={(e) => {
                     if (e.target.checked) {
-                      setSelectedProducts([...selectedProducts, item.OdId]);
+                      setSelectedProducts([
+                        ...selectedProducts,
+                        {
+                          OdCoCd: item?.OdCoCd,
+                          OdTc: item?.OdTc,
+                          OdYy: item?.OdYy,
+                          OdChr: item?.OdChr,
+                          OdNo: item?.OdNo,
+                          OdSr: item?.OdSr,
+                        },
+                      ]);
                     } else {
                       setSelectedProducts(selectedProducts.filter((prodOdId: any) => prodOdId !== item.OdId));
                     }

@@ -1,13 +1,18 @@
-import { useState } from 'react';
-import fetchProductsData from '../../../services/api/get-emr-catalog-data/get-catalog-data-api';
+import { useEffect, useState } from 'react';
+import fetchProductsData from '../../../services/api/emr-apis/get-emr-catalog-data/get-catalog-data-api';
 import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
 import KCGridCard from '../../../cards/KCGridCard';
 import KCListCard from '../../../cards/KCListCard';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { IoGrid } from 'react-icons/io5';
 import { HiOutlineMenu } from 'react-icons/hi';
+import { useSelector } from 'react-redux';
+import { get_access_token } from '../../../store/slices/auth/token-login-slice';
+import MoveToVoucher from '../../TwoLevelSidebar/Sidebar/QuotationDropdown';
+import createVoucher from '../../../services/api/emr-apis/create-voucher/create-voucher-api';
 
 const FixedFiltersLayout = () => {
+  const TokenFromStore: any = useSelector(get_access_token);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [productsData, setProductsData] = useState<any>([]);
   const [error, setError] = useState<any>(null);
@@ -15,18 +20,39 @@ const FixedFiltersLayout = () => {
   const [toggleProductView, setToggleProductView] = useState<'grid' | 'list'>('grid');
   const getProductsData = async (filtersData: any) => {
     setIsLoading(true);
-    const getProductsData = await fetchProductsData(filtersData);
+    const getProductsData = await fetchProductsData(filtersData, TokenFromStore?.token);
+    console.log('getProductsData', getProductsData);
     if (getProductsData?.data?.msg === 'success') {
       const productsData = getProductsData?.data?.data;
       setProductsData(productsData);
       setIsLoading(false);
     } else {
-      const errorMessage = getProductsData?.data?.message || 'Error fetching data';
+      const errorMessage = getProductsData?.response?.data?.error || 'Error fetching data';
       setError(errorMessage);
       setProductsData([]);
       setIsLoading(false);
     }
   };
+
+  const handleMoveToQuotation = async (voucherName: string) => {
+    const data = { dsgList: selectedProducts, ToOdChr: voucherName === 'Quotation' ? 'QT' : 'CT' };
+    try {
+      const postQuotation = await createVoucher(data, TokenFromStore?.token);
+      if (postQuotation?.data?.msg === 'success') {
+        console.log('Voucher created successfully:', postQuotation?.data?.data);
+      } else {
+        const errorMessage = postQuotation?.response?.data?.error || 'Error creating voucher';
+        setError(errorMessage);
+      }
+    } catch (error) {
+      console.error('Error creating voucher:', error);
+      setError('An unexpected error occurred while creating the voucher');
+    }
+  };
+
+  useEffect(() => {
+    console.log('selectedProducts', selectedProducts);
+  }, [selectedProducts]);
   return (
     <div className="row">
       <div className="col-2">
@@ -48,6 +74,10 @@ const FixedFiltersLayout = () => {
               {error}
             </div>
           ) : null}
+
+          <div className="mt-5">
+            <MoveToVoucher handleMoveToQuotation={handleMoveToQuotation} />
+          </div>
           <div className="container mt-5 d-flex justify-content-end">
             <ButtonGroup className="pe-4">
               <Button

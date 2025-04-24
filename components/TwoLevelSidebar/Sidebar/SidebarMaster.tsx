@@ -8,6 +8,7 @@ import FilterSummary from './FilterSummary';
 
 function SidebarMaster({ getProductsData }: any) {
   const {
+    sessionLoader,
     isSidebarVisible,
     selectedFilter,
     targetTags,
@@ -89,12 +90,20 @@ function SidebarMaster({ getProductsData }: any) {
         <div className="p-4">
           <SidebarHeader />
           <SidebarFilters
+            sessionLoader={sessionLoader}
             isSidebarVisible={isSidebarVisible}
             openSidebar={openSidebar}
             filters={filters}
             selectedScope={selectedScope}
             handleApplyFilters={handleApplyFilters}
           />
+          {sessionLoader && (
+            <div className="mt-5 d-flex justify-content-center align-items-center ">
+              <div className="spinner-border spinner-border-sm" role="status" style={{ color: '#a69476' }}>
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          )}
           {showFilters && filters?.selectedScope?.value === 'Current Session' && <FilterSummary filters={filters} />}
         </div>
       </div>
