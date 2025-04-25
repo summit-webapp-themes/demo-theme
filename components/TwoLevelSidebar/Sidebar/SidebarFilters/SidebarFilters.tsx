@@ -1,6 +1,7 @@
 import styles from '../../../../styles/components/twoLevelSidebar.module.scss';
 
 interface SidebarFilterProps {
+  sessionLoader: boolean;
   isSidebarVisible: boolean;
   openSidebar: (value: string | null) => void;
   filters: any;
@@ -8,7 +9,7 @@ interface SidebarFilterProps {
   handleApplyFilters: () => void;
 }
 
-function SidebarFilters({ isSidebarVisible, openSidebar, filters, handleApplyFilters }: SidebarFilterProps) {
+function SidebarFilters({ sessionLoader, isSidebarVisible, openSidebar, filters, handleApplyFilters }: SidebarFilterProps) {
   return (
     <div
       className="pt-4 px-2"
@@ -20,7 +21,15 @@ function SidebarFilters({ isSidebarVisible, openSidebar, filters, handleApplyFil
     >
       <div className={styles.filter_container}>
         <p className="uppercase text-brown flex mt-3 m-0" style={{ display: 'flex', paddingLeft: '15px', gap: '45px' }}>
-          <div className="text-base">{filters?.selectedScope?.value}</div>
+          <div className="text-base">
+            {sessionLoader ? (
+              <div className="spinner-border spinner-border-sm" role="status" style={{ color: '#a69476' }}>
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              filters?.selectedScope?.value
+            )}
+          </div>
 
           <div className="text-base" onClick={() => openSidebar('Work Scope')} style={{ cursor: 'pointer' }}>
             Edit
