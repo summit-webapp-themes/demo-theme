@@ -6,6 +6,7 @@ import KCListCard from '../../../cards/KCListCard';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { IoGrid } from 'react-icons/io5';
 import { HiOutlineMenu } from 'react-icons/hi';
+import KCTopFilterSection from '../KCFilterComponents/KCTopFilterSection';
 import { useSelector } from 'react-redux';
 import { get_access_token } from '../../../store/slices/auth/token-login-slice';
 import MoveToVoucher from '../../TwoLevelSidebar/Sidebar/QuotationDropdown';
@@ -60,7 +61,9 @@ const FixedFiltersLayout = () => {
         <FixedSidebar getProductsData={getProductsData} />
       </div>
       <div className="col-10">
+        <hr className="m-0" style={{ borderColor: '#A69476' }} />
         <div className="ms-5">
+          <KCTopFilterSection />
           {isLoading ? (
             <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
               <div className="text-center">
@@ -75,7 +78,7 @@ const FixedFiltersLayout = () => {
               {error}
             </div>
           ) : null}
-
+          <div className="container mt-1 d-flex justify-content-end">
           <div className="mt-5">
             <MoveToVoucher handleMoveToQuotation={handleMoveToQuotation} />
           </div>
