@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from '../styles/components/twoLevelSidebarComponents.module.scss';
 
 export default function KCGridCard({ productsData, selectedProducts, setSelectedProducts }: any) {
+  console.log('selectedProducts', selectedProducts);
   return (
     <>
       {productsData && productsData.length > 0 ? (
@@ -13,12 +14,13 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
               <div className={`position-relative card ${styles.kcCardImgContainer}`} style={{ height: '228px' }}>
                 <Form.Check
                   type="checkbox"
-                  value={selectedProducts.filter((prodOdId: any) => (prodOdId === item.OdId ? '1' : '0'))}
+                  checked={selectedProducts.some((prod: any) => prod.OdId === item.OdId)}
                   onChange={(e) => {
                     if (e.target.checked) {
                       setSelectedProducts([
                         ...selectedProducts,
                         {
+                          OdId: item?.OdId,
                           OdCoCd: item?.OdCoCd,
                           OdTc: item?.OdTc,
                           OdYy: item?.OdYy,
@@ -28,7 +30,7 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
                         },
                       ]);
                     } else {
-                      setSelectedProducts(selectedProducts.filter((prodOdId: any) => prodOdId !== item.OdId));
+                      setSelectedProducts(selectedProducts.filter((prod: any) => prod.OdId !== item.OdId));
                     }
                   }}
                   className={`position-absolute z-3 ${styles.custom_check}`}

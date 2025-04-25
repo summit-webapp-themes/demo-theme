@@ -8,6 +8,7 @@ import FilterSummary from './FilterSummary';
 
 function SidebarMaster({ getProductsData }: any) {
   const {
+    applyFilterBtnLoader,
     sessionLoader,
     isSidebarVisible,
     selectedFilter,
@@ -90,6 +91,7 @@ function SidebarMaster({ getProductsData }: any) {
         <div className="p-4">
           <SidebarHeader />
           <SidebarFilters
+            applyFilterBtnLoader={applyFilterBtnLoader}
             sessionLoader={sessionLoader}
             isSidebarVisible={isSidebarVisible}
             openSidebar={openSidebar}

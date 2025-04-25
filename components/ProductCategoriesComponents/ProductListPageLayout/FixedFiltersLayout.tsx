@@ -9,7 +9,6 @@ import { HiOutlineMenu } from 'react-icons/hi';
 import KCTopFilterSection from '../KCFilterComponents/KCTopFilterSection';
 import { useSelector } from 'react-redux';
 import { get_access_token } from '../../../store/slices/auth/token-login-slice';
-import MoveToVoucher from '../../TwoLevelSidebar/Sidebar/QuotationDropdown';
 import createVoucher from '../../../services/api/emr-apis/create-voucher/create-voucher-api';
 
 const FixedFiltersLayout = () => {
@@ -19,14 +18,27 @@ const FixedFiltersLayout = () => {
   const [error, setError] = useState<any>(null);
   const [selectedProducts, setSelectedProducts] = useState<any>([]);
   const [toggleProductView, setToggleProductView] = useState<'grid' | 'list'>('grid');
-  const getProductsData = async (filtersData: any) => {
+  const [actionBtnLoader, setActionBtnLoader] = useState<boolean>(false);
+
+  const getProductsData = async (filtersData: any, isDBData: boolean) => {
     setIsLoading(true);
     const getProductsData = await fetchProductsData(filtersData, TokenFromStore?.token);
-    console.log('getProductsData', getProductsData);
     if (getProductsData?.data?.msg === 'success') {
       const productsData = getProductsData?.data?.data;
       setProductsData(productsData);
       setIsLoading(false);
+      if (isDBData) {
+        const filteredData = productsData?.map((item: any) => ({
+          OdCoCd: item.OdCoCd,
+          OdTc: item.OdTc,
+          OdYy: item.OdYy,
+          OdChr: item.OdChr,
+          OdNo: item.OdNo,
+          OdSr: item.OdSr,
+        }));
+        const apiBody = { dsgList: filteredData, ToOdChr: 'CS' };
+        const postQuotation = await createVoucher(apiBody, TokenFromStore?.token);
+      }
     } else {
       const errorMessage = getProductsData?.response?.data?.error || 'Error fetching data';
       setError(errorMessage);
@@ -35,15 +47,19 @@ const FixedFiltersLayout = () => {
     }
   };
 
-  const handleMoveToQuotation = async (voucherName: string) => {
-    const data = { dsgList: selectedProducts, ToOdChr: voucherName === 'Quotation' ? 'QT' : 'CT' };
+  const moveToActionHandler = async (voucherName: string) => {
+    const data = { dsgList: selectedProducts, ToOdChr: voucherName === 'quotation' ? 'QT' : 'CT' };
+    setActionBtnLoader(true);
+    setError(null);
     try {
       const postQuotation = await createVoucher(data, TokenFromStore?.token);
       if (postQuotation?.data?.msg === 'success') {
         alert('Voucher created successfully!');
-        console.log('Voucher created successfully:', postQuotation?.data?.data);
+        setActionBtnLoader(false);
+        setSelectedProducts([]);
       } else {
         const errorMessage = postQuotation?.response?.data?.error || 'Error creating voucher';
+        setActionBtnLoader(false);
         setError(errorMessage);
       }
     } catch (error) {
@@ -52,9 +68,6 @@ const FixedFiltersLayout = () => {
     }
   };
 
-  useEffect(() => {
-    console.log('selectedProducts', selectedProducts);
-  }, [selectedProducts]);
   return (
     <div className="row">
       <div className="col-2">
@@ -63,7 +76,7 @@ const FixedFiltersLayout = () => {
       <div className="col-10">
         <hr className="m-0" style={{ borderColor: '#A69476' }} />
         <div className="ms-5">
-          <KCTopFilterSection />
+          <KCTopFilterSection actionBtnLoader={actionBtnLoader} moveToActionHandler={moveToActionHandler} />
           {isLoading ? (
             <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
               <div className="text-center">
@@ -78,35 +91,33 @@ const FixedFiltersLayout = () => {
               {error}
             </div>
           ) : null}
-          <div className="container mt-1 d-flex justify-content-end">
-          <div className="mt-5">
-            <MoveToVoucher handleMoveToQuotation={handleMoveToQuotation} />
+          <div className="">
+            <div className="container mt-5 d-flex justify-content-end">
+              <ButtonGroup className="pe-4">
+                <Button
+                  variant="outline-light"
+                  className="rounded-start py-1 px-3 d-flex align-middle"
+                  style={{ borderColor: '#C6C6C6' }}
+                  onClick={() => setToggleProductView('list')}
+                >
+                  <HiOutlineMenu size={18} style={{ color: toggleProductView === 'list' ? '#A69476' : 'black' }} />
+                </Button>
+                <Button
+                  variant="outline-light"
+                  className="rounded-end py-1 px-3 d-flex align-middle"
+                  style={{ borderColor: '#C6C6C6' }}
+                  onClick={() => setToggleProductView('grid')}
+                >
+                  <IoGrid size={16} style={{ color: toggleProductView === 'grid' ? '#A69476' : 'black' }} />
+                </Button>
+              </ButtonGroup>
+            </div>
+            {toggleProductView === 'grid' ? (
+              <KCGridCard productsData={productsData} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
+            ) : (
+              <KCListCard productsData={productsData} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
+            )}
           </div>
-          <div className="container mt-5 d-flex justify-content-end">
-            <ButtonGroup className="pe-4">
-              <Button
-                variant="outline-light"
-                className="rounded-start py-1 px-3 d-flex align-middle"
-                style={{ borderColor: '#C6C6C6' }}
-                onClick={() => setToggleProductView('list')}
-              >
-                <HiOutlineMenu size={18} style={{ color: toggleProductView === 'list' ? '#A69476' : 'black' }} />
-              </Button>
-              <Button
-                variant="outline-light"
-                className="rounded-end py-1 px-3 d-flex align-middle"
-                style={{ borderColor: '#C6C6C6' }}
-                onClick={() => setToggleProductView('grid')}
-              >
-                <IoGrid size={16} style={{ color: toggleProductView === 'grid' ? '#A69476' : 'black' }} />
-              </Button>
-            </ButtonGroup>
-          </div>
-          {toggleProductView === 'grid' ? (
-            <KCGridCard productsData={productsData} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
-          ) : (
-            <KCListCard productsData={productsData} selectedProducts={selectedProducts} setSelectedProducts={setSelectedProducts} />
-          )}
         </div>
       </div>
     </div>

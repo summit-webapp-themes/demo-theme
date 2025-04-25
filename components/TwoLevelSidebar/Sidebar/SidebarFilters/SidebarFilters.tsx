@@ -1,6 +1,7 @@
 import styles from '../../../../styles/components/twoLevelSidebar.module.scss';
 
 interface SidebarFilterProps {
+  applyFilterBtnLoader: boolean;
   sessionLoader: boolean;
   isSidebarVisible: boolean;
   openSidebar: (value: string | null) => void;
@@ -9,7 +10,14 @@ interface SidebarFilterProps {
   handleApplyFilters: () => void;
 }
 
-function SidebarFilters({ sessionLoader, isSidebarVisible, openSidebar, filters, handleApplyFilters }: SidebarFilterProps) {
+function SidebarFilters({
+  applyFilterBtnLoader,
+  sessionLoader,
+  isSidebarVisible,
+  openSidebar,
+  filters,
+  handleApplyFilters,
+}: SidebarFilterProps) {
   return (
     <div
       className="pt-4 px-2"
@@ -58,14 +66,23 @@ function SidebarFilters({ sessionLoader, isSidebarVisible, openSidebar, filters,
       <div className="pl-10" style={{ marginTop: '-2rem', marginLeft: '16px' }}>
         <button
           className={`px-3 py-2 border border-1 rounded cursor-pointer text-white`}
-          disabled={isSidebarVisible}
+          disabled={isSidebarVisible || applyFilterBtnLoader}
           onClick={() => handleApplyFilters()}
           style={{
-            backgroundColor: isSidebarVisible ? '#9E9FA4' : '#A69476',
-            cursor: isSidebarVisible ? 'not-allowed' : 'pointer',
+            backgroundColor: isSidebarVisible || applyFilterBtnLoader ? '#9E9FA4' : '#A69476',
+            cursor: isSidebarVisible || applyFilterBtnLoader ? 'not-allowed' : 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          Apply Filter
+          {applyFilterBtnLoader ? (
+            <div className="spinner-border spinner-border-sm" role="status" style={{ color: '#a69476' }}>
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          ) : (
+            'Apply Filter'
+          )}
         </button>
       </div>
     </div>

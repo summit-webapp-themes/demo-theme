@@ -6,7 +6,7 @@ import Image from 'next/image';
 import useLoginHook from '../../hooks/AuthHooks/useLoginHook';
 
 const LoginForm: React.FC = () => {
-  const { fetchToken } = useLoginHook();
+  const { loginBtnLoader, fetchToken } = useLoginHook();
   const [userId, setUserId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState(false);
@@ -64,6 +64,11 @@ const LoginForm: React.FC = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyUp={(e) => {
+                  if (e.key === 'Enter') {
+                    fetchToken({ usr: userId, pwd: password });
+                  }
+                }}
                 placeholder="Enter Password"
                 style={{ fontSize: '14px', borderRadius: '10px 0 0 10px' }}
               />
@@ -94,8 +99,13 @@ const LoginForm: React.FC = () => {
               padding: '10px 0',
             }}
             onClick={() => fetchToken({ usr: userId, pwd: password })}
+            disabled={loginBtnLoader}
           >
-            Login
+            {loginBtnLoader ? (
+              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" style={{ color: '#d7cfc1' }}></span>
+            ) : (
+              'Login'
+            )}
           </button>
         </form>
       </div>
