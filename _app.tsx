@@ -16,8 +16,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
 
+const summitSettingsData: any = summitSettings;
 // Dynamically import font based on settings
-const fontFamily = summitSettings.data.font_family || 'Nunito'; // Default to Nunito
+const fontFamily = summitSettingsData?.data?.font_family || 'Nunito'; // Default to Nunito
 const dynamicFont = createFontImport(fontFamily); // Import font dynamically
 
 // Specify Google Tracking Code for Google Analytics

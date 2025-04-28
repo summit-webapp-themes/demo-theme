@@ -5,6 +5,7 @@ interface LayoutProps {
   children: React.ReactNode;
   componentProps?: any; // Define this properly if you know the structure
 }
+const apiResponseOfLayoutData: any = layoutData;
 function Layout({ children, componentProps }: LayoutProps) {
   const router = useRouter();
   const toShowHeader =
@@ -14,16 +15,20 @@ function Layout({ children, componentProps }: LayoutProps) {
     router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' ? false : true;
 
   const HeaderRenderer = () => {
-    if ('header_component' in layoutData?.data && layoutData?.data.header_component !== '') {
-      const Component = require(`./Navbar/${layoutData?.data.header_component}/MasterComponent`).default;
-      return <Component key="navbar-component" />;
+    if ('data' in apiResponseOfLayoutData) {
+      if ('header_component' in apiResponseOfLayoutData?.data && apiResponseOfLayoutData?.data.header_component !== '') {
+        const Component = require(`./Navbar/${apiResponseOfLayoutData?.data.header_component}/MasterComponent`).default;
+        return <Component key="navbar-component" />;
+      }
     }
     return null;
   };
   const FooterRenderer = () => {
-    if ('footer_component' in layoutData?.data && layoutData?.data.footer_component !== '') {
-      const Component = require(`./Footer/${layoutData?.data.footer_component}/MasterComponent`).default;
-      return <Component key="footer-component" />;
+    if ('data' in apiResponseOfLayoutData) {
+      if ('footer_component' in apiResponseOfLayoutData?.data && apiResponseOfLayoutData?.data.footer_component !== '') {
+        const Component = require(`./Footer/${apiResponseOfLayoutData?.data.footer_component}/MasterComponent`).default;
+        return <Component key="footer-component" />;
+      }
     }
     return null;
   };
