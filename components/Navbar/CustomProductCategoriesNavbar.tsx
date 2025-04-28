@@ -38,7 +38,6 @@ function CustomProductCategoriesNavbar({
       style={{
         maxWidth: '900px', // Maximum width for responsiveness
         width: '100%', // Full width for smaller screens
-        width: '100% ', // Full width for smaller screens
         position: 'absolute',
         top: '100%', // Position below the nav bar
         left: '50%', // Center horizontally
