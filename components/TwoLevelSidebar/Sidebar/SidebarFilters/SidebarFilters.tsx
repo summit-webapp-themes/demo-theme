@@ -8,6 +8,7 @@ interface SidebarFilterProps {
   filters: any;
   selectedScope: { label: string; value: string } | null;
   handleApplyFilters: () => void;
+  selectedFilter: string | null;
 }
 
 function SidebarFilters({
@@ -17,10 +18,11 @@ function SidebarFilters({
   openSidebar,
   filters,
   handleApplyFilters,
+  selectedFilter,
 }: SidebarFilterProps) {
   return (
     <div
-      className="pt-4 px-2"
+      className="pt-4 px-4"
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -28,20 +30,8 @@ function SidebarFilters({
       }}
     >
       <div className={styles.filter_container}>
-        <p className="uppercase text-brown flex mt-3 m-0" style={{ display: 'flex', paddingLeft: '15px', gap: '45px' }}>
-          <div className="text-base">
-            {sessionLoader ? (
-              <div className="spinner-border spinner-border-sm" role="status" style={{ color: '#a69476' }}>
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            ) : (
-              filters?.selectedScope?.value
-            )}
-          </div>
-
-          <div className="text-base" onClick={() => openSidebar('Work Scope')} style={{ cursor: 'pointer' }}>
-            Edit
-          </div>
+        <p className="m-0 fs-14 ps-3" style={{ color: '#2B2B2B80'}}>
+          Filters
         </p>
 
         <hr className="text-brown m-0 mt-2" />
@@ -56,16 +46,16 @@ function SidebarFilters({
           }}
         >
           {['Customer', 'Source', 'Category', 'Price & Weight', 'Analysis', 'Display Options'].map((label) => (
-            <p key={label} className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption}`} onClick={() => openSidebar(label)}>
+            <p key={label} className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption} ${selectedFilter === label && styles.sidebarOptionActive}`} onClick={() => openSidebar(label)}>
               {label}
             </p>
           ))}
         </div>
       </div>
 
-      <div className="pl-10" style={{ marginTop: '-2rem', marginLeft: '16px' }}>
+      <div className="mt-4">
         <button
-          className={`px-3 py-2 border border-1 rounded cursor-pointer text-white`}
+          className={`px-4 py-2 border border-1 rounded cursor-pointer fs-14 fw-medium text-white`}
           disabled={isSidebarVisible || applyFilterBtnLoader}
           onClick={() => handleApplyFilters()}
           style={{

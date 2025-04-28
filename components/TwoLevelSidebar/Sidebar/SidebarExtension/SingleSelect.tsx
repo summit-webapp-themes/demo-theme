@@ -14,7 +14,18 @@ interface Props {
 }
 
 const SingleSelectComponent: React.FC<Props> = ({ options, value, placeholder, onChange }) => (
-  <Select classNamePrefix="an-simple-select" options={options} value={value} placeholder={placeholder} onChange={onChange} isClearable />
+  <Select 
+    classNamePrefix="an-simple-select" 
+    styles={{
+      container: (baseStyles) => ({
+        ...baseStyles,
+        width: '100%',
+      }),
+    }} 
+    options={options} 
+    value={value} 
+    placeholder={placeholder} 
+    onChange={onChange} isClearable />
 );
 
 export default SingleSelectComponent;

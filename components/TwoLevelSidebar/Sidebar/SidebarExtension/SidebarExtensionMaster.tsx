@@ -74,21 +74,25 @@ function SidebarExtensionMaster({
   setSelectedScope,
   setFromDmCd,
   setToDmCd,
+  filters,
+  showFilters,
 }: any) {
   return (
     <Offcanvas show={visible} onHide={closeSidebar}>
-      <Offcanvas.Header closeButton className="p-0 px-4 pt-5 mt-2">
-        <Offcanvas.Title className="text-brown">{selectedFilter}</Offcanvas.Title>
+      <Offcanvas.Header closeButton className="" style={{ padding: '24px 36px 0px'}}>
+        <Offcanvas.Title className="text-brown fw-semibold">{selectedFilter === 'Work Scope' ? 'Scope' : selectedFilter}</Offcanvas.Title>
       </Offcanvas.Header>
-      <Offcanvas.Body className="px-4">
+      <Offcanvas.Body className="overflow-y-hidden" style={{ padding: '24px 36px 0px'}}>
         <hr className="m-0" />
-        <div className="py-4">
+        <div className="py-4" style={{ height: '100%'}}>
           {selectedFilter === 'Work Scope' && (
             <WorkScope
               workScopeList={workScopeList}
               selectedScope={selectedScope}
               setSelectedScope={setSelectedScope}
               handleAcceptIndivisualFilter={handleAcceptIndivisualFilter}
+              filters={filters}
+              showFilters={showFilters}
             ></WorkScope>
           )}
           {selectedFilter === 'Customer' && (

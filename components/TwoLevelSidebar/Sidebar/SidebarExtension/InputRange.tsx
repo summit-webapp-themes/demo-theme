@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import styles from '../../../../styles/components/twoLevelSidebarComponents.module.scss';
+import styles from '../../../../styles/components/twoLevelSidebarComponents.module.scss'
 
 type InputRangeProps = {
   title?: string;
@@ -31,7 +31,6 @@ function InputRange({ title, unit, value, setValue }: InputRangeProps) {
       if (!isNaN(parsed[0]) && !isNaN(parsed[1])) {
         setValue(parsed);
         const stateName = title === 'Price Range' ? 'priceRange' : title === 'Diamond Cts' ? 'diamondCtsRange' : 'grossWtRange';
-        console.log(`${stateName}:`, parsed);
       }
     }
   };
@@ -59,7 +58,7 @@ function InputRange({ title, unit, value, setValue }: InputRangeProps) {
               {!isCurrencyUnit && unit && <span className={styles.unitSuffix}>{unit}</span>}
             </div>
 
-            <span className={styles.toText}>to</span>
+            <span className={styles.toText}>To</span>
 
             {/* Input 1 */}
             <div className={styles.inputWrapper}>
