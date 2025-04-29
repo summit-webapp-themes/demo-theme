@@ -1,5 +1,5 @@
 const FallbackLayout = () => {
-  return <div>FallbackLayout Test 2</div>;
+  return <div>FallbackLayout</div>;
 };
 
 export default FallbackLayout;
