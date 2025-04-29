@@ -67,6 +67,12 @@ const FixedFiltersLayout = () => {
       setError('An unexpected error occurred while creating the voucher');
     }
   };
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(null), 3000);
+      return () => clearTimeout(timer); // cleanup on unmount or if error changes
+    }
+  }, [error]);
 
   return (
     <div className="row">
