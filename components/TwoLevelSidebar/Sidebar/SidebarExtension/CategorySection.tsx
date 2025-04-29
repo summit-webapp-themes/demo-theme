@@ -1,6 +1,7 @@
 'use client';
 import ReactMultiselectDropdown from './ReactMultiselectDropdown';
 import SidebarExtensionActionButtons from './SidebarExtensionActionButtons';
+import styles from '../../../../styles/components/twoLevelSidebarComponents.module.scss'
 
 function CategorySection({ designList, salesList, designTags, setDesignTags, salesTags, setSalesTags, handleAcceptIndivisualFilter }: any) {
   const handleReset = () => {
@@ -8,8 +9,8 @@ function CategorySection({ designList, salesList, designTags, setDesignTags, sal
     setSalesTags([]);
   };
   return (
-    <>
-      <div className="w-10" style={{ width: '83%' }}>
+    <div className=' d-flex flex-column justify-content-between h-100'>
+      <div className={`overflow-y-scroll w-100 h-100 ${styles.hide_scrollbar}`} >
         <div style={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
           <ReactMultiselectDropdown
             label="Design Category"
@@ -31,7 +32,7 @@ function CategorySection({ designList, salesList, designTags, setDesignTags, sal
         handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ designCategory: designTags, salesCategory: salesTags })}
         handleReset={handleReset}
       />
-    </>
+    </div>
   );
 }
 

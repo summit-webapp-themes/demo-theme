@@ -30,6 +30,12 @@ const MultiSelectComponent: React.FC<Props> = ({ options, value, placeholder, on
         classNamePrefix="an-simple-multiselect"
         controlShouldRenderValue={false}
         isClearable={false}
+        styles={{
+          container: (baseStyles) => ({
+            ...baseStyles,
+            width: '100%',
+          }),
+        }}
       />
 
       {/* Use TagGrid to show selected tags */}

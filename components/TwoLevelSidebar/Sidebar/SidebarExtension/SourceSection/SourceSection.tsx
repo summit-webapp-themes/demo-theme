@@ -2,6 +2,7 @@ import SidebarExtensionActionButtons from '../SidebarExtensionActionButtons';
 import DesignBank from './DesignBank';
 import ReactSelectDropdown from '../ReactSelectDropdown';
 import ReactMultiselectDropdown from '../ReactMultiselectDropdown';
+import styles from '../../../../../styles/components/twoLevelSidebarComponents.module.scss'
 
 function SourceSection({
   handleAcceptIndivisualFilter,
@@ -71,8 +72,8 @@ function SourceSection({
   };
 
   return (
-    <>
-      <div style={{ width: '83%' }}>
+    <div className=' d-flex flex-column justify-content-between h-100'>
+      <div className={`overflow-y-scroll h-100 ${styles.hide_scrollbar}`}>
         <ReactSelectDropdown
           label="Source Type"
           options={sourceTypeList}
@@ -86,7 +87,7 @@ function SourceSection({
         handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ source: selectedSourceType })}
         handleReset={handleReset}
       />
-    </>
+    </div>
   );
 }
 

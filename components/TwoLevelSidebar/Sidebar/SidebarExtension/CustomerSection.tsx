@@ -24,8 +24,8 @@ function CustomerSection({
   };
 
   return (
-    <>
-      <div className="w-10" style={{ width: '83%' }}>
+    <div className=' d-flex flex-column justify-content-between h-100'>
+      <div className="w-100">
         <ReactSelectDropdown
           label="Customer Code"
           options={customerCodeList}
@@ -39,7 +39,7 @@ function CustomerSection({
         handleAcceptIndivisualFilter={() => handleAcceptIndivisualFilter({ customer: selectedCustomerCode })}
         handleReset={handleReset}
       />
-    </>
+    </div>
   );
 }
 

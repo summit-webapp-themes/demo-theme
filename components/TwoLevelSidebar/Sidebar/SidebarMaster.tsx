@@ -83,13 +83,12 @@ function SidebarMaster({ getProductsData }: any) {
     setToDmCd,
   }: any = useFiltersHook(getProductsData);
 
-  console.log('filters', filters);
 
   return (
     <>
       <div className="sidebar-container">
-        <div className="p-4">
-          <SidebarHeader />
+        <div className="">
+          <SidebarHeader sessionLoader={sessionLoader} filters={filters} openSidebar={openSidebar} />
           <SidebarFilters
             applyFilterBtnLoader={applyFilterBtnLoader}
             sessionLoader={sessionLoader}
@@ -98,6 +97,7 @@ function SidebarMaster({ getProductsData }: any) {
             filters={filters}
             selectedScope={selectedScope}
             handleApplyFilters={handleApplyFilters}
+            selectedFilter={selectedFilter}
           />
           {sessionLoader && (
             <div className="mt-5 d-flex justify-content-center align-items-center ">
@@ -106,7 +106,7 @@ function SidebarMaster({ getProductsData }: any) {
               </div>
             </div>
           )}
-          {showFilters && filters?.selectedScope?.value === 'Current Session' && <FilterSummary filters={filters} />}
+          {/* {showFilters && filters?.selectedScope?.value === 'Current Session' && <FilterSummary filters={filters} />} */}
         </div>
       </div>
 
@@ -176,6 +176,8 @@ function SidebarMaster({ getProductsData }: any) {
         setGrossWtRange={setGrossWtRange}
         setFromDmCd={setFromDmCd}
         setToDmCd={setToDmCd}
+        filters={filters}
+        showFilters={showFilters}
       />
     </>
   );

@@ -15,7 +15,7 @@ interface Props {
 
 const ReactSelectDropdown: React.FC<Props> = ({ label, options, value, placeholder, onChange }) => {
   return (
-    <div className="mb-2 position-relative">
+    <div className="mb-2 position-relative w-100">
       <label className="form-label" style={{ fontSize: '14px', fontWeight: '500' }}>
         {label}
       </label>

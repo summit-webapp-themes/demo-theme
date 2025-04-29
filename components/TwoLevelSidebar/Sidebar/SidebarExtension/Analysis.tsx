@@ -30,8 +30,8 @@ function Analysis({
   };
 
   return (
-    <>
-      <div className={styles.wrapper} style={{ width: '83%' }}>
+    <div className=' d-flex flex-column justify-content-between h-100' >
+      <div className={styles.wrapper}>
         <ReactSelectDropdown
           label="Target Show"
           options={targetList}
@@ -76,7 +76,7 @@ function Analysis({
         }
         handleReset={handleReset}
       />
-    </>
+    </div>
   );
 }
 

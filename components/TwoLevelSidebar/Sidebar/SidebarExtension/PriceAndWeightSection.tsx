@@ -26,60 +26,51 @@ function PriceAndWeightSection({
   };
 
   return (
-    <div style={{ overflowY: 'auto', maxHeight: '70vh' }}>
+    <div className=' d-flex flex-column justify-content-between h-100' >
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
+          justifyContent: 'center',
           gap: '16px',
-          width: '83%',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            gap: '16px',
-          }}
-        >
-          <InputRange title="Price Range" unit="₹" value={priceRange} setValue={setPriceRange} />
-          <InputRange title="Diamond Cts" unit="" value={diamondCtsRange} setValue={setDiamondCtsRange} />
-          <InputRange title="Gross Wt" unit="g" value={grossWtRange} setValue={setGrossWtRange} />
-        </div>
-
-        {/* <ReactSelectDropdown
-          label="Colour Stone"
-          options={[
-            { label: 'Yes', value: 'yes' },
-            { label: 'No', value: 'no' },
-          ]}
-          value={selectedColorStone}
-          placeholder="Search or select"
-          onChange={setSelectedColorStone}
-        />
-
-        <ReactMultiselectDropdown
-          label="Design Color"
-          options={designColorList}
-          value={designColourTags}
-          placeholder="Select one or more"
-          onChange={setDesignColourTags}
-        /> */}
-
-        <SidebarExtensionActionButtons
-          handleAcceptIndivisualFilter={() =>
-            handleAcceptIndivisualFilter({
-              priceRange,
-              diamond: diamondCtsRange,
-              grossWtRange,
-              colorStone: selectedColorStone,
-              designColor: designColourTags,
-            })
-          }
-          handleReset={handleReset}
-        />
+        <InputRange title="Price Range" unit="" value={priceRange} setValue={setPriceRange} />
+        <InputRange title="Diamond Cts" unit="" value={diamondCtsRange} setValue={setDiamondCtsRange} />
+        <InputRange title="Gross Wt" unit="g" value={grossWtRange} setValue={setGrossWtRange} />
       </div>
+
+      {/* <ReactSelectDropdown
+        label="Colour Stone"
+        options={[
+          { label: 'Yes', value: 'yes' },
+          { label: 'No', value: 'no' },
+        ]}
+        value={selectedColorStone}
+        placeholder="Search or select"
+        onChange={setSelectedColorStone}
+      />
+
+      <ReactMultiselectDropdown
+        label="Design Color"
+        options={designColorList}
+        value={designColourTags}
+        placeholder="Select one or more"
+        onChange={setDesignColourTags}
+      /> */}
+
+      <SidebarExtensionActionButtons
+        handleAcceptIndivisualFilter={() =>
+          handleAcceptIndivisualFilter({
+            priceRange,
+            diamond: diamondCtsRange,
+            grossWtRange,
+            colorStone: selectedColorStone,
+            designColor: designColourTags,
+          })
+        }
+        handleReset={handleReset}
+      />
     </div>
   );
 }

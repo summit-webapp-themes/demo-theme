@@ -28,7 +28,7 @@ function FileUpload({ id }: FileUploadProps) {
   return (
     <div className={styles.container}>
       <label htmlFor={id} className={styles.file_upload_label}>
-        or Choose file
+        Choose File
       </label>
 
       <input ref={fileInputRef} id={id} type="file" onChange={handleFileChange} style={{ display: 'none' }} />
