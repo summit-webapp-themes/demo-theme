@@ -6,6 +6,7 @@ import { IoRefresh } from 'react-icons/io5';
 import { resetStore } from '../../../store/slices/auth/logout-slice';
 import styles from '../../../styles/components/twoLevelSidebarComponents.module.scss';
 import { useDispatch } from 'react-redux';
+import { FiLogOut } from 'react-icons/fi';
 
 type TopFilterComponentTypes = {
   actionBtnLoader: boolean;
@@ -98,7 +99,7 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
           </div>
         ))}
         <Button type="button" title="reset" variant="outline-light" className={styles.kcFilterButton} onClick={handleFilterReset}>
-          <IoRefresh color="#A69476" />
+          <IoRefresh size={16} />
         </Button>
       </div>
       <div className="d-flex flex-wrap gap-2 align-items-center" style={{ paddingRight: '20px'}}>
@@ -200,9 +201,9 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
           )}
         </Button>
         <Button
-          variant="danger"
-          className={styles.kcFilterButton}
-          style={{ backgroundColor: '#dc3545', width: '80px' }}
+          variant="outline-light"
+          className={styles.kcLogoutButton}
+          style={{ width: 'fit-content', padding: '0 12px' }}
           onClick={() => {
             dispatch(resetStore());
             localStorage.clear();
@@ -210,6 +211,7 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
           }}
         >
           Logout
+          <FiLogOut size={14} />
         </Button>
       </div>
     </div>
