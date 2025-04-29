@@ -4,14 +4,13 @@ import Image from 'next/image';
 import styles from '../styles/components/twoLevelSidebarComponents.module.scss';
 
 export default function KCGridCard({ productsData, selectedProducts, setSelectedProducts }: any) {
-  console.log('selectedProducts', selectedProducts);
   return (
     <>
       {productsData && productsData.length > 0 ? (
-        <div className="container mt-4 row">
+        <div className="container mt-4 row" style={{ padding: '0 12px 0 0'}}>
           {productsData?.map((item: any, index: any) => (
             <div key={`product-card-${item.OdId}-${index}`} className="w-full col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-              <div className={`position-relative card ${styles.kcCardImgContainer}`} style={{ height: '228px' }}>
+              <div className={`position-relative card ${styles.kcCardImgContainer} ${selectedProducts.some((prod: any) => prod.OdId === item.OdId) && styles.kcCardImgContainerActive}`} style={{ height: '228px' }}>
                 <Form.Check
                   type="checkbox"
                   checked={selectedProducts.some((prod: any) => prod.OdId === item.OdId)}
@@ -34,23 +33,23 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
                     }
                   }}
                   className={`position-absolute z-3 ${styles.custom_check}`}
-                  style={{ top: '0.25rem', right: '0.5rem' }}
+                  style={{ top: '0.5rem', right: '0.5rem' }}
                 />
                 <Image src={noImage} className="" style={{ objectFit: 'cover' }} alt="Product Image" fill />
               </div>
               <div className="p-2">
-                <p className="m-0 text-break fs-12" style={{ color: '#A69476' }}>
+                <p className="m-0 text-break fw-semibold" style={{ color: '#AE7F30', fontSize: '19px' }}>
                   &#8377;{item.OdSalPrc}
                 </p>
-                <p className="m-0 text-break fs-14 fw-semibold">
-                  {item.OdNo} | {item.OdKt} | {item.GrossWt}g
+                <p className="m-0 text-break fs-14 fw-medium">
+                  <span className='pe-2 border-end' style={{ borderColor: '#DADADA'}}>{item.OdNo}</span><span className='px-2 border-end' style={{ borderColor: '#DADADA'}}>{item.OdKt}</span><span className='px-2'>{item.GrossWt}g</span>
                 </p>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div>
+        <div style={{ marginRight: '36px'}}>
           <h2 className="text-center mt-5">No data available</h2>
           <p className="text-center">Please adjust your filters.</p>
         </div>
