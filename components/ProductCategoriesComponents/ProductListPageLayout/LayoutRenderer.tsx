@@ -4,6 +4,8 @@ const CollapsibleLayout = dynamic(() => import('./CollapsibleLayout'));
 const TopFiltersLayout = dynamic(() => import('./TopFiltersLayout'));
 const FixedFiltersLayout = dynamic(() => import('./FixedFiltersLayout'));
 
+let FallbackLayoutComponent: any = null;
+
 const LayoutRenderer = (props: any) => {
   const renderLayouts = () => {
     switch (props.layoutName) {
