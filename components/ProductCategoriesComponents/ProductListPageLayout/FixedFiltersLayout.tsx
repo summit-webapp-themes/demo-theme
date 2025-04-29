@@ -5,11 +5,12 @@ import KCGridCard from '../../../cards/KCGridCard';
 import KCListCard from '../../../cards/KCListCard';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { HiOutlineMenu } from 'react-icons/hi';
-import KCTopFilterSection from '../KCFilterComponents/KCTopFilterSection';
+import KCTopFilterSection from '../KCProductComponents/KCTopFilterSection';
 import { useSelector } from 'react-redux';
 import { get_access_token } from '../../../store/slices/auth/token-login-slice';
 import createVoucher from '../../../services/api/emr-apis/create-voucher/create-voucher-api';
 import { FiGrid } from 'react-icons/fi';
+import KCTopNavbar from '../KCProductComponents/KCTopNavbar';
 
 const FixedFiltersLayout = () => {
   const TokenFromStore: any = useSelector(get_access_token);
@@ -74,6 +75,7 @@ const FixedFiltersLayout = () => {
         <FixedSidebar getProductsData={getProductsData} />
       </div>
       <div className="col-10 p-0">
+        <KCTopNavbar />
         <KCTopFilterSection actionBtnLoader={actionBtnLoader} moveToActionHandler={moveToActionHandler} />
         <div className="ms-5">
           {isLoading ? (
@@ -93,10 +95,10 @@ const FixedFiltersLayout = () => {
           <div className="">
             <div className="d-flex justify-content-between align-items-center p-0 pt-3 pe-3">
               <p style={{ color: '#2B2B2B', fontSize: '18px', margin: 0, fontWeight: 600}}>{productsData.length === 0 || productsData.length > 1 ? `${productsData.length} Products` : `${productsData.length} Product`}</p>
-              <ButtonGroup style={{ paddingRight: '20px'}}>
+              <ButtonGroup className='z-0' style={{ paddingRight: '20px'}}>
                 <Button
                   variant="outline-light"
-                  className="rounded-start py-1 px-3 d-flex align-items-center"
+                  className="rounded-start py-1 px-3 d-flex align-items-center bg-white"
                   style={{ borderColor: '#C6C6C6' }}
                   onClick={() => setToggleProductView('list')}
                 >
@@ -104,7 +106,7 @@ const FixedFiltersLayout = () => {
                 </Button>
                 <Button
                   variant="outline-light"
-                  className="rounded-end py-1 px-3 d-flex align-items-center"
+                  className="rounded-end py-1 px-3 d-flex align-items-center bg-white"
                   style={{ borderColor: '#C6C6C6' }}
                   onClick={() => setToggleProductView('grid')}
                 >

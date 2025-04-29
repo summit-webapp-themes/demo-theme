@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import Select from 'react-select';
 import { Button } from 'react-bootstrap';
 import { IoRefresh } from 'react-icons/io5';
-import { resetStore } from '../../../store/slices/auth/logout-slice';
 import styles from '../../../styles/components/twoLevelSidebarComponents.module.scss';
-import { useDispatch } from 'react-redux';
-import { FiLogOut } from 'react-icons/fi';
 
 type TopFilterComponentTypes = {
   actionBtnLoader: boolean;
@@ -27,8 +23,6 @@ type OptionType = {
 };
 
 export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandler }: TopFilterComponentTypes) {
-  const router = useRouter();
-  const dispatch = useDispatch();
   const [goldRate, setGoldRate] = useState<string>('');
   const [kt, setKt] = useState<string>('');
   const [color, setColor] = useState<string>('');
@@ -81,7 +75,7 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
   };
 
   return (
-    <div className="d-flex flex-wrap justify-content-between align-middle ps-5 pe-3 py-2 gap-2" style={{ borderTop: '1px solid #EAE5DF', borderBottom: '1px solid #EAE5DF'}}>
+    <div className="d-flex flex-wrap justify-content-between align-middle bg-white ps-5 pe-3 py-2 gap-2" style={{ borderBottom: '1px solid #EAE5DF'}}>
       <div className="d-flex flex-wrap gap-2 align-middle">
         {filters.map((filter: FiltersType, index: number) => (
           <div key={`top-filter-${filter.id}-${index}`} className="d-flex gap-2 align-items-center ms-1">
@@ -144,7 +138,7 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
                 padding: '0px 6px',
                 width: '100%',
                 margin: '0px',
-                fontSize: '12px',
+                fontSize: '14px',
               }),
               dropdownIndicator: (baseStyles) => ({
                 ...baseStyles,
@@ -159,7 +153,7 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
                 ...baseStyles,
                 padding: '0px 6px',
                 margin: '0px',
-                fontSize: '12px',
+                fontSize: '14px',
               }),
               menu: (baseStyles) => ({
                 ...baseStyles,
@@ -168,13 +162,20 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
                 margin: '0px',
                 overflow: 'hidden',
               }),
+              menuList: (baseStyles) => ({
+                ...baseStyles,
+                borderRadius: '0px',
+              }),
               option: (baseStyles, state) => ({
                 ...baseStyles,
                 padding: '2px 6px',
                 margin: '0px',
-                fontSize: '12px',
+                fontSize: '14px',
                 backgroundColor: 'white',
                 color: state.isFocused ? 'black' : 'black',
+                '&:hover': {
+                  backgroundColor: '#F1F1F1',
+                },
                 '&:focus': {
                   backgroundColor: 'white',
                 },
@@ -199,19 +200,6 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
           ) : (
             <p className="m-0 lh-sm">Go</p>
           )}
-        </Button>
-        <Button
-          variant="outline-light"
-          className={styles.kcLogoutButton}
-          style={{ width: 'fit-content', padding: '0 12px' }}
-          onClick={() => {
-            dispatch(resetStore());
-            localStorage.clear();
-            router.push('/login');
-          }}
-        >
-          Logout
-          <FiLogOut size={14} />
         </Button>
       </div>
     </div>

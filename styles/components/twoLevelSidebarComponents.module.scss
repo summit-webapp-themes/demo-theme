@@ -408,7 +408,7 @@
   border: 1px solid #DADADA;
   border-radius: 0.25rem;
   padding: 0px 4px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .kcFilterInputBox:focus-visible { 
@@ -442,7 +442,7 @@
 
 .kcFilterActionButton {
   background-color: #A69476 !important; 
-  width: 60px;
+  width: 52px;
   color: #fff;
   font-size: 14px;
   display: flex;
@@ -476,8 +476,7 @@
   gap: 6px;
   padding: 0;
   border: 1px solid #A69476 !important;
-  height: 28px;
-  width: 28px;
+  height: 34px;
 }
 
 .kcLogoutButton:hover {
