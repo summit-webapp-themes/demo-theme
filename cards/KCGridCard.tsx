@@ -14,7 +14,7 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
               <div className={`position-relative card ${styles.kcCardImgContainer}`} style={{ height: '228px' }}>
                 <Form.Check
                   type="checkbox"
-                  checked={selectedProducts.some((prod: any) => prod.OdId === item.OdId)}
+                  checked={selectedProducts.some((prod: any) => prod.OdSr === item.OdSr)}
                   onChange={(e) => {
                     if (e.target.checked) {
                       setSelectedProducts([
@@ -30,7 +30,7 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
                         },
                       ]);
                     } else {
-                      setSelectedProducts(selectedProducts.filter((prod: any) => prod.OdId !== item.OdId));
+                      setSelectedProducts(selectedProducts.filter((prod: any) => prod.OdSr !== item.OdSr));
                     }
                   }}
                   className={`position-absolute z-3 ${styles.custom_check}`}
@@ -43,7 +43,7 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
                   &#8377;{item.OdSalPrc}
                 </p>
                 <p className="m-0 text-break fs-14 fw-semibold">
-                  {item.OdNo} | {item.OdKt} | {item.GrossWt}g
+                  {item.OdDmCd} | {item.OdKt} | {item.GrossWt}g
                 </p>
               </div>
             </div>

@@ -89,6 +89,7 @@ const FixedFiltersLayout = () => {
           ) : error ? (
             <div className="alert alert-danger mt-5 text-center" role="alert">
               {error}
+              {setTimeout(() => setError(null), 3000)}
             </div>
           ) : null}
           <div className="">
