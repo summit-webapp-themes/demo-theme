@@ -68,6 +68,12 @@ const FixedFiltersLayout = () => {
       setError('An unexpected error occurred while creating the voucher');
     }
   };
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(null), 3000);
+      return () => clearTimeout(timer); // cleanup on unmount or if error changes
+    }
+  }, [error]);
 
   return (
     <div className="row m-0">
@@ -90,6 +96,7 @@ const FixedFiltersLayout = () => {
           ) : error ? (
             <div className="alert alert-danger mt-5 text-center" role="alert" style={{ marginRight: '36px'}}>
               {error}
+              {setTimeout(() => setError(null), 3000)}
             </div>
           ) : null}
           <div className="">

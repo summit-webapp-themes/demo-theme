@@ -13,7 +13,7 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
               <div className={`position-relative card ${styles.kcCardImgContainer} ${selectedProducts.some((prod: any) => prod.OdId === item.OdId) && styles.kcCardImgContainerActive}`} style={{ height: '228px' }}>
                 <Form.Check
                   type="checkbox"
-                  checked={selectedProducts.some((prod: any) => prod.OdId === item.OdId)}
+                  checked={selectedProducts.some((prod: any) => prod.OdSr === item.OdSr)}
                   onChange={(e) => {
                     if (e.target.checked) {
                       setSelectedProducts([
@@ -29,7 +29,7 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
                         },
                       ]);
                     } else {
-                      setSelectedProducts(selectedProducts.filter((prod: any) => prod.OdId !== item.OdId));
+                      setSelectedProducts(selectedProducts.filter((prod: any) => prod.OdSr !== item.OdSr));
                     }
                   }}
                   className={`position-absolute z-3 ${styles.custom_check}`}

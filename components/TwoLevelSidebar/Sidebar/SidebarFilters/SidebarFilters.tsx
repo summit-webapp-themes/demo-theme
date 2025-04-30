@@ -30,7 +30,7 @@ function SidebarFilters({
       }}
     >
       <div className={styles.filter_container}>
-        <p className="m-0 fs-14 ps-3" style={{ color: '#2B2B2B80'}}>
+        <p className="m-0 fs-14 ps-3" style={{ color: '#2B2B2B80' }}>
           Filters
         </p>
 
@@ -46,7 +46,11 @@ function SidebarFilters({
           }}
         >
           {['Customer', 'Source', 'Category', 'Price & Weight', 'Analysis', 'Display Options'].map((label) => (
-            <p key={label} className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption} ${selectedFilter === label && styles.sidebarOptionActive}`} onClick={() => openSidebar(label)}>
+            <p
+              key={label}
+              className={`pl-10 m-0 cursor-pointer ${styles.sidebarOption} ${selectedFilter === label && styles.sidebarOptionActive}`}
+              onClick={() => openSidebar(label)}
+            >
               {label}
             </p>
           ))}

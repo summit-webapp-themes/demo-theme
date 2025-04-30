@@ -8,6 +8,8 @@ import FilterSummary from './FilterSummary';
 
 function SidebarMaster({ getProductsData }: any) {
   const {
+    isFilterApplied,
+    filtersSetOfAPI,
     applyFilterBtnLoader,
     sessionLoader,
     isSidebarVisible,
@@ -83,12 +85,13 @@ function SidebarMaster({ getProductsData }: any) {
     setToDmCd,
   }: any = useFiltersHook(getProductsData);
 
+  console.log('filterssetofapi', filtersSetOfAPI);
 
   return (
     <>
       <div className="sidebar-container">
         <div className="">
-          <SidebarHeader sessionLoader={sessionLoader} filters={filters} openSidebar={openSidebar} />
+          <SidebarHeader sessionLoader={sessionLoader} filters={isFilterApplied} openSidebar={openSidebar} />
           <SidebarFilters
             applyFilterBtnLoader={applyFilterBtnLoader}
             sessionLoader={sessionLoader}
