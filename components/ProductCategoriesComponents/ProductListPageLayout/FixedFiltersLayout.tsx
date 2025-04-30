@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import fetchProductsData from '../../../services/api/emr-apis/get-emr-catalog-data/get-catalog-data-api';
-import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
-import KCGridCard from '../../../cards/KCGridCard';
-import KCListCard from '../../../cards/KCListCard';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { HiOutlineMenu } from 'react-icons/hi';
-import KCTopFilterSection from '../KCProductComponents/KCTopFilterSection';
 import { useSelector } from 'react-redux';
+import fetchProductsData from '../../../services/api/emr-apis/get-emr-catalog-data/get-catalog-data-api';
+import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
+import KCTopFilterSection from '../KCProductComponents/KCTopFilterSection';
+import KCGridCard from '../../../cards/KCGridCard';
+import KCListCard from '../../../cards/KCListCard';
 import { get_access_token } from '../../../store/slices/auth/token-login-slice';
 import createVoucher from '../../../services/api/emr-apis/create-voucher/create-voucher-api';
 import { FiGrid } from 'react-icons/fi';
@@ -94,15 +94,19 @@ const FixedFiltersLayout = () => {
               </div>
             </div>
           ) : error ? (
-            <div className="alert alert-danger mt-5 text-center" role="alert" style={{ marginRight: '36px'}}>
+            <div className="alert alert-danger mt-5 text-center" role="alert" style={{ marginRight: '36px' }}>
               {error}
               {setTimeout(() => setError(null), 3000)}
             </div>
           ) : null}
           <div className="">
             <div className="d-flex justify-content-between align-items-center p-0 pt-3 pe-3">
-              <p style={{ color: '#2B2B2B', fontSize: '18px', margin: 0, fontWeight: 600}}>{productsData.length === 0 || productsData.length > 1 ? `${productsData.length} Products` : `${productsData.length} Product`}</p>
-              <ButtonGroup className='z-0' style={{ paddingRight: '20px'}}>
+              <p style={{ color: '#2B2B2B', fontSize: '18px', margin: 0, fontWeight: 600 }}>
+                {productsData.length === 0 || productsData.length > 1
+                  ? `${productsData.length} Products`
+                  : `${productsData.length} Product`}
+              </p>
+              <ButtonGroup className="z-0" style={{ paddingRight: '20px' }}>
                 <Button
                   variant="outline-light"
                   className="rounded-start py-1 px-3 d-flex align-items-center bg-white"
