@@ -4,12 +4,13 @@ import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
 import KCGridCard from '../../../cards/KCGridCard';
 import KCListCard from '../../../cards/KCListCard';
 import { Button, ButtonGroup } from 'react-bootstrap';
-import { IoGrid } from 'react-icons/io5';
 import { HiOutlineMenu } from 'react-icons/hi';
-import KCTopFilterSection from '../KCFilterComponents/KCTopFilterSection';
+import KCTopFilterSection from '../KCProductComponents/KCTopFilterSection';
 import { useSelector } from 'react-redux';
 import { get_access_token } from '../../../store/slices/auth/token-login-slice';
 import createVoucher from '../../../services/api/emr-apis/create-voucher/create-voucher-api';
+import { FiGrid } from 'react-icons/fi';
+import KCTopNavbar from '../KCProductComponents/KCTopNavbar';
 
 const FixedFiltersLayout = () => {
   const TokenFromStore: any = useSelector(get_access_token);
@@ -75,14 +76,14 @@ const FixedFiltersLayout = () => {
   }, [error]);
 
   return (
-    <div className="row">
+    <div className="row m-0">
       <div className="col-2">
         <FixedSidebar getProductsData={getProductsData} />
       </div>
-      <div className="col-10">
-        <hr className="m-0" style={{ borderColor: '#A69476' }} />
+      <div className="col-10 p-0">
+        <KCTopNavbar />
+        <KCTopFilterSection actionBtnLoader={actionBtnLoader} moveToActionHandler={moveToActionHandler} />
         <div className="ms-5">
-          <KCTopFilterSection actionBtnLoader={actionBtnLoader} moveToActionHandler={moveToActionHandler} />
           {isLoading ? (
             <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
               <div className="text-center">
@@ -93,29 +94,30 @@ const FixedFiltersLayout = () => {
               </div>
             </div>
           ) : error ? (
-            <div className="alert alert-danger mt-5 text-center" role="alert">
+            <div className="alert alert-danger mt-5 text-center" role="alert" style={{ marginRight: '36px'}}>
               {error}
               {setTimeout(() => setError(null), 3000)}
             </div>
           ) : null}
           <div className="">
-            <div className="container mt-5 d-flex justify-content-end">
-              <ButtonGroup className="pe-4">
+            <div className="d-flex justify-content-between align-items-center p-0 pt-3 pe-3">
+              <p style={{ color: '#2B2B2B', fontSize: '18px', margin: 0, fontWeight: 600}}>{productsData.length === 0 || productsData.length > 1 ? `${productsData.length} Products` : `${productsData.length} Product`}</p>
+              <ButtonGroup className='z-0' style={{ paddingRight: '20px'}}>
                 <Button
                   variant="outline-light"
-                  className="rounded-start py-1 px-3 d-flex align-middle"
+                  className="rounded-start py-1 px-3 d-flex align-items-center bg-white"
                   style={{ borderColor: '#C6C6C6' }}
                   onClick={() => setToggleProductView('list')}
                 >
-                  <HiOutlineMenu size={18} style={{ color: toggleProductView === 'list' ? '#A69476' : 'black' }} />
+                  <HiOutlineMenu size={17} style={{ color: toggleProductView === 'list' ? '#A69476' : '#797878' }} />
                 </Button>
                 <Button
                   variant="outline-light"
-                  className="rounded-end py-1 px-3 d-flex align-middle"
+                  className="rounded-end py-1 px-3 d-flex align-items-center bg-white"
                   style={{ borderColor: '#C6C6C6' }}
                   onClick={() => setToggleProductView('grid')}
                 >
-                  <IoGrid size={16} style={{ color: toggleProductView === 'grid' ? '#A69476' : 'black' }} />
+                  <FiGrid size={16} style={{ color: toggleProductView === 'grid' ? '#A69476' : '#797878' }} />
                 </Button>
               </ButtonGroup>
             </div>

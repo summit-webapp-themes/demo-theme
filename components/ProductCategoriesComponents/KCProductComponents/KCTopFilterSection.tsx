@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import Select from 'react-select';
 import { Button } from 'react-bootstrap';
 import { IoRefresh } from 'react-icons/io5';
-import { resetStore } from '../../../store/slices/auth/logout-slice';
 import styles from '../../../styles/components/twoLevelSidebarComponents.module.scss';
-import { useDispatch } from 'react-redux';
 
 type TopFilterComponentTypes = {
   actionBtnLoader: boolean;
@@ -26,8 +23,6 @@ type OptionType = {
 };
 
 export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandler }: TopFilterComponentTypes) {
-  const router = useRouter();
-  const dispatch = useDispatch();
   const [goldRate, setGoldRate] = useState<string>('');
   const [kt, setKt] = useState<string>('');
   const [color, setColor] = useState<string>('');
@@ -80,10 +75,10 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
   };
 
   return (
-    <div className="d-flex flex-wrap justify-content-between align-middle py-2 gap-2">
+    <div className="d-flex flex-wrap justify-content-between align-middle bg-white ps-5 pe-3 py-2 gap-2" style={{ borderBottom: '1px solid #EAE5DF'}}>
       <div className="d-flex flex-wrap gap-2 align-middle">
         {filters.map((filter: FiltersType, index: number) => (
-          <div key={`top-filter-${filter.id}-${index}`} className="d-flex gap-2 align-middle ms-1">
+          <div key={`top-filter-${filter.id}-${index}`} className="d-flex gap-2 align-items-center ms-1">
             <label htmlFor={filter.id} className="fs-14 fw-medium">
               {filter.label}
             </label>
@@ -98,17 +93,17 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
           </div>
         ))}
         <Button type="button" title="reset" variant="outline-light" className={styles.kcFilterButton} onClick={handleFilterReset}>
-          <IoRefresh color="#A69476" />
+          <IoRefresh size={16} />
         </Button>
       </div>
-      <div className="d-flex flex-wrap gap-2 align-middle me-5">
-        <div className="d-flex gap-2 align-middle ms-1">
+      <div className="d-flex flex-wrap gap-2 align-items-center" style={{ paddingRight: '20px'}}>
+        <div className="d-flex gap-2 align-items-center ms-1">
           <label className="fs-14 fw-medium">Move To</label>
           <Select
             styles={{
               container: (baseStyles) => ({
                 ...baseStyles,
-                height: '20px',
+                height: '28px',
                 width: '140px',
               }),
               control: (baseStyles, state) => ({
@@ -116,18 +111,18 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
                 backgroundColor: 'white',
                 padding: '0px',
                 margin: '0px',
-                height: '20px',
-                borderColor: state.isFocused ? '#A69476' : '#A69476',
-                borderRadius: state.isFocused ? '4px' : '4px',
+                height: '28px',
+                borderColor: state.isFocused ? '#A69476' : '#DADADA',
+                borderRadius: '4px',
                 boxShadow: 'none',
                 '&:hover': {
-                  borderColor: '#A69476',
+                  borderColor: state.isFocused ? '#A69476' : '#DADADA',
                 },
-                minHeight: '20px',
+                minHeight: '28px',
               }),
               indicatorsContainer: (baseStyles) => ({
                 ...baseStyles,
-                height: '20px',
+                height: '28px',
                 width: '20px',
                 padding: '0px px',
                 margin: '0px',
@@ -143,7 +138,7 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
                 padding: '0px 6px',
                 width: '100%',
                 margin: '0px',
-                fontSize: '12px',
+                fontSize: '14px',
               }),
               dropdownIndicator: (baseStyles) => ({
                 ...baseStyles,
@@ -152,13 +147,13 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
                 height: '16px',
                 width: '16px',
                 marginBottom: '4px',
-                color: 'black',
+                color: '#DADADA',
               }),
               singleValue: (baseStyles) => ({
                 ...baseStyles,
                 padding: '0px 6px',
                 margin: '0px',
-                fontSize: '12px',
+                fontSize: '14px',
               }),
               menu: (baseStyles) => ({
                 ...baseStyles,
@@ -167,13 +162,20 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
                 margin: '0px',
                 overflow: 'hidden',
               }),
+              menuList: (baseStyles) => ({
+                ...baseStyles,
+                borderRadius: '0px',
+              }),
               option: (baseStyles, state) => ({
                 ...baseStyles,
                 padding: '2px 6px',
                 margin: '0px',
-                fontSize: '12px',
+                fontSize: '14px',
                 backgroundColor: 'white',
                 color: state.isFocused ? 'black' : 'black',
+                '&:hover': {
+                  backgroundColor: '#F1F1F1',
+                },
                 '&:focus': {
                   backgroundColor: 'white',
                 },
@@ -189,9 +191,7 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
           />
         </div>
         <Button
-          variant="primary"
-          className={styles.kcFilterButton}
-          style={{ backgroundColor: '#A69476', width: '60px', pointerEvents: actionBtnLoader ? 'none' : 'auto' }}
+          className={styles.kcFilterActionButton}
           onClick={() => moveToActionHandler(moveTo.value as string)}
           disabled={actionBtnLoader}
         >
@@ -200,18 +200,6 @@ export default function KCTopFilterSection({ actionBtnLoader, moveToActionHandle
           ) : (
             <p className="m-0 lh-sm">Go</p>
           )}
-        </Button>
-        <Button
-          variant="danger"
-          className={styles.kcFilterButton}
-          style={{ backgroundColor: '#dc3545', width: '80px' }}
-          onClick={() => {
-            dispatch(resetStore());
-            localStorage.clear();
-            router.push('/login');
-          }}
-        >
-          Logout
         </Button>
       </div>
     </div>
