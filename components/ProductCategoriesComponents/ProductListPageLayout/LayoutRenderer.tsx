@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic';
+
 const DefaultLayout = dynamic(() => import('./DefaultLayout'));
 const CollapsibleLayout = dynamic(() => import('./CollapsibleLayout'));
 const TopFiltersLayout = dynamic(() => import('./TopFiltersLayout'));
 const FixedFiltersLayout = dynamic(() => import('./FixedFiltersLayout'));
-
-let FallbackLayoutComponent: any = null;
+const FallbackLayoutComponent = dynamic(() => import('./FallbackLayouts/FallbackLayout'));
 
 const LayoutRenderer = (props: any) => {
   const renderLayouts = () => {
@@ -23,8 +23,13 @@ const LayoutRenderer = (props: any) => {
         return <TopFiltersLayout />;
       case 'Fixed Filters Layout':
         return <FixedFiltersLayout />;
+      case 'Fallback Layout':
+        return <FallbackLayoutComponent />;
+      default:
+        return null;
     }
   };
+
   return <>{renderLayouts()}</>;
 };
 
