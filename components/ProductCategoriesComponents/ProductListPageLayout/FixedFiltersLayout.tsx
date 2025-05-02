@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { HiOutlineMenu } from 'react-icons/hi';
 import { FiGrid } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 import { get_access_token } from '../../../store/slices/auth/token-login-slice';
 import fetchProductsData from '../../../services/api/emr-apis/get-emr-catalog-data/get-catalog-data-api';
 import createVoucher from '../../../services/api/emr-apis/create-voucher/create-voucher-api';
@@ -56,11 +57,12 @@ const FixedFiltersLayout = () => {
     try {
       const postQuotation = await createVoucher(data, TokenFromStore?.token);
       if (postQuotation?.data?.msg === 'success') {
-        alert('Voucher created successfully!');
+        toast.success('Order placed successfully!');
         setActionBtnLoader(false);
         setSelectedProducts([]);
       } else {
         const errorMessage = postQuotation?.response?.data?.error || 'Error creating voucher';
+        toast.error(postQuotation?.response?.data?.error || 'Error creating voucher');
         setActionBtnLoader(false);
         setError(errorMessage);
       }
