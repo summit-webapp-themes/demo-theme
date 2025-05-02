@@ -1,0 +1,87 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 0.5rem 3rem;
+  box-shadow: rgba(0,0,0,0.1) 0px 4px 10px;
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+}
+
+.logo {
+  height: 48px;
+  width: 248px;
+  position: relative;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 400px;
+  margin: 0 1rem;
+  border: 1px solid #E3E3E3;
+  border-radius: 12px;
+  height: fit-content;
+  overflow: hidden;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 10px 10px 10px 0;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  color: #3F4646;
+  ::placeholder {
+    color: #3F4646;
+  }
+}
+
+.searchIcon {
+  padding: 10px;
+  border: none;
+  font-size: 18px;
+  background: #fff;
+  color: #3F4646;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconButton {
+  padding: 0.75rem;
+  position: relative;
+  border: none;
+  font-size: 18px;
+  background: #fff;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E3E3E3;
+  border-radius: 12px;
+}
+
+.iconButtonBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: #EE6E4E;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 5px;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
