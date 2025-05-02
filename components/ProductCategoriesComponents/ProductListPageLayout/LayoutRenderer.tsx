@@ -22,7 +22,8 @@ const LayoutRenderer = (props: any) => {
       case 'Top Filters Layout':
         return <TopFiltersLayout />;
       case 'Fixed Filters Layout':
-        return <FixedFiltersLayout />;
+        // return <FixedFiltersLayout />;
+        return <FallbackLayoutComponent />;
       case 'Fallback Layout':
         return <FallbackLayoutComponent />;
       default:

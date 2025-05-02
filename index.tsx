@@ -32,14 +32,15 @@ export const getStaticProps = async () => {
     componentsList = fetchComponentsList?.data?.message?.data;
   }
   let bannerData: BannerArrayTypes;
-  let getBannerImgs: any = await getBannerAPI(SUMMIT_APP_CONFIG, undefined);
+  let getBannerImgs: any = await getBannerAPI('GET', 'banner-api', undefined);
   if (getBannerImgs?.status === 200 && getBannerImgs?.data?.msg === 'success') {
     bannerData = { data: getBannerImgs?.data?.data };
   } else {
     bannerData = { data: [] };
   }
   let translationsList: any;
-  let getMultilanguageData: any = await MultiLangApi(SUMMIT_APP_CONFIG);
+  let getMultilanguageData: any = [];
+  // getMultilanguageData = await MultiLangApi(SUMMIT_APP_CONFIG);
   if (getMultilanguageData?.length > 0) {
     translationsList = getMultilanguageData;
   } else {
