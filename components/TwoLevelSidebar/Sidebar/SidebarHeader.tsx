@@ -4,11 +4,10 @@ import Image from 'next/image';
 interface SidebarHeaderProps {
   sessionLoader: boolean;
   openSidebar: (value: string | null) => void;
-  filters: any;
+  sessionType: any;
 }
 
-function SidebarHeader({ sessionLoader, openSidebar, filters }: SidebarHeaderProps) {
-  console.log('filters', filters);
+function SidebarHeader({ sessionLoader, openSidebar, sessionType }: SidebarHeaderProps) {
   return (
     <div className={`w-100 d-flex flex-column gap-4 align-items-center p-4`} style={{ backgroundColor: '#FFF3E1' }}>
       <Image src={KC_Logo} alt="logo" width={166} />
@@ -22,7 +21,7 @@ function SidebarHeader({ sessionLoader, openSidebar, filters }: SidebarHeaderPro
               <span className="visually-hidden">Loading...</span>
             </div>
           ) : (
-            filters
+            sessionType
           )}
         </div>
 

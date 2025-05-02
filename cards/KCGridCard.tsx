@@ -7,10 +7,13 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
   return (
     <>
       {productsData && productsData.length > 0 ? (
-        <div className="container mt-4 row" style={{ padding: '0 12px 0 0'}}>
+        <div className="container mt-4 row" style={{ padding: '0 12px 0 0' }}>
           {productsData?.map((item: any, index: any) => (
             <div key={`product-card-${item.OdId}-${index}`} className="w-full col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-              <div className={`position-relative card ${styles.kcCardImgContainer} ${selectedProducts.some((prod: any) => prod.OdId === item.OdId) && styles.kcCardImgContainerActive}`} style={{ height: '228px' }}>
+              <div
+                className={`position-relative card ${styles.kcCardImgContainer} ${selectedProducts.some((prod: any) => prod.OdId === item.OdId) && styles.kcCardImgContainerActive}`}
+                style={{ height: '228px' }}
+              >
                 <Form.Check
                   type="checkbox"
                   checked={selectedProducts.some((prod: any) => prod.OdSr === item.OdSr)}
@@ -42,14 +45,20 @@ export default function KCGridCard({ productsData, selectedProducts, setSelected
                   &#8377;{item.OdSalPrc}
                 </p>
                 <p className="m-0 text-break fs-14 fw-medium">
-                  <span className='pe-2 border-end' style={{ borderColor: '#DADADA'}}>{item.OdNo}</span><span className='px-2 border-end' style={{ borderColor: '#DADADA'}}>{item.OdKt}</span><span className='px-2'>{item.GrossWt}g</span>
+                  <span className="pe-2 border-end" style={{ borderColor: '#DADADA' }}>
+                    {item.OdDmCd}
+                  </span>
+                  <span className="px-2 border-end" style={{ borderColor: '#DADADA' }}>
+                    {item.OdKt}
+                  </span>
+                  <span className="px-2">{item.GrossWt}g</span>
                 </p>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div style={{ marginRight: '36px'}}>
+        <div style={{ marginRight: '36px' }}>
           <h2 className="text-center mt-5">No data available</h2>
           <p className="text-center">Please adjust your filters.</p>
         </div>

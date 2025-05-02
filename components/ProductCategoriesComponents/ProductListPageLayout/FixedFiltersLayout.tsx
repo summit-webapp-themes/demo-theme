@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { HiOutlineMenu } from 'react-icons/hi';
-import { useSelector } from 'react-redux';
+import { FiGrid } from 'react-icons/fi';
+import { get_access_token } from '../../../store/slices/auth/token-login-slice';
 import fetchProductsData from '../../../services/api/emr-apis/get-emr-catalog-data/get-catalog-data-api';
-import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
+import createVoucher from '../../../services/api/emr-apis/create-voucher/create-voucher-api';
 import KCTopFilterSection from '../KCProductComponents/KCTopFilterSection';
+import FixedSidebar from '../Sidebar/FixedSidebar/MasterComponent';
+import KCTopNavbar from '../KCProductComponents/KCTopNavbar';
 import KCGridCard from '../../../cards/KCGridCard';
 import KCListCard from '../../../cards/KCListCard';
-import { get_access_token } from '../../../store/slices/auth/token-login-slice';
-import createVoucher from '../../../services/api/emr-apis/create-voucher/create-voucher-api';
-import { FiGrid } from 'react-icons/fi';
-import KCTopNavbar from '../KCProductComponents/KCTopNavbar';
 
 const FixedFiltersLayout = () => {
   const TokenFromStore: any = useSelector(get_access_token);
@@ -22,6 +22,7 @@ const FixedFiltersLayout = () => {
   const [actionBtnLoader, setActionBtnLoader] = useState<boolean>(false);
 
   const getProductsData = async (filtersData: any, isDBData: boolean) => {
+    console.log('filtersData', filtersData);
     setIsLoading(true);
     const getProductsData = await fetchProductsData(filtersData, TokenFromStore?.token);
     if (getProductsData?.data?.msg === 'success') {
