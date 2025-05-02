@@ -3,4 +3,4 @@
 /components/addon-components/*
 /cards/addon-cards/*
 /styles/addon-styles/*
-/components/ProductCategoriesComponents/ProductListPageLayout/FallbackLayouts/FallbackLayout.tsx
+# /components/ProductCategoriesComponents/ProductListPageLayout/FallbackLayouts/FallbackLayout.tsx
