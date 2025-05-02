@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from '../../../styles/components/twoLevelSidebarComponents.module.scss';
+import { format } from 'path';
 
 const FilterSummary = ({ filters }: { filters: any }) => {
   if (!filters) return null;
 
-  const formatArray = (arr: any[]) => (Array.isArray(arr) ? arr.map((item) => item.label).join(', ') : '');
+  const formatArray = (arr: any[]) => arr?.length > 0 ? arr?.map((item) => item.label) : null;
 
   const filterItems = [
     { label: 'Customer Code', value: filters?.customer?.label || '', subLabels: [] },
@@ -77,19 +78,33 @@ const FilterSummary = ({ filters }: { filters: any }) => {
               className='row w-100'
             >
               <p className='col-6 fw-medium my-2'>{item?.label}</p> 
-              <div className='col-6 ps-0'>
-                {item?.value && <p className='px-2 rounded my-2' style={{ width: 'fit-content', fontWeight: 500, border: '1px solid #ECE2D4', color: '#95866F', backgroundColor: '#FFF9F1' }}>{item?.value}</p>}
-              </div>
-              {item?.subLabels?.length > 0 && item?.subLabels.filter((item) => item?.value !== '').map((subItem) => (
-                <div
-                  key={subItem?.label}
-                  className='row w-100'
-                >
-                  <p className='col-6 fw-medium mb-2' style={{ color: '#838383'}}>{subItem?.label}</p> 
-                  <div className='col-6'>
-                    <p className='px-2 rounded mb-2' style={{ width: 'fit-content', fontWeight: 500, border: '1px solid #ECE2D4', color: '#95866F', backgroundColor: '#FFF9F1' }}>{subItem?.value}</p>
-                  </div>
+              {item.value && (
+                <div className='col-6 ps-0'>
+                  {Array.isArray(item?.value)? (
+                    item?.value.map((val: any) => (
+                      <p key={`${item.label}-${val}`} className='px-2 rounded mb-2' style={{ width: 'fit-content', fontWeight: 500, border: '1px solid #ECE2D4', color: '#95866F', backgroundColor: '#FFF9F1' }}>{val}</p>
+                  ))) : (
+                    <p className='px-2 rounded mb-2' style={{ width: 'fit-content', fontWeight: 500, border: '1px solid #ECE2D4', color: '#95866F', backgroundColor: '#FFF9F1' }}>{item?.value}</p>
+                  )}
                 </div>
+              )}
+              {item?.subLabels?.length > 0 && item?.subLabels.filter((subItem: any) => subItem?.value !== '').map((subItem: any) => (
+                subItem?.value && (
+                  <div
+                    key={subItem?.label}
+                    className='row w-100'
+                  >
+                    <p className='col-6 fw-medium mb-2' style={{ color: '#838383'}}>{subItem?.label}</p> 
+                    <div className='col-6'>
+                      {Array.isArray(subItem?.value)? (
+                        subItem?.value.map((value: any) => (
+                          <p key={`${subItem.label}-${value}`} className='px-2 rounded mb-2' style={{ width: 'fit-content', fontWeight: 500, border: '1px solid #ECE2D4', color: '#95866F', backgroundColor: '#FFF9F1' }}>{value}</p>
+                      ))) : (
+                        <p className='px-2 rounded mb-2' style={{ width: 'fit-content', fontWeight: 500, border: '1px solid #ECE2D4', color: '#95866F', backgroundColor: '#FFF9F1' }}>{subItem?.value}</p>
+                      )}
+                    </div>
+                  </div>
+                )
               ))}
             </div>
           ) : null
