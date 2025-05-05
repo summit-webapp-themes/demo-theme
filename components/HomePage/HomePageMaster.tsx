@@ -3,7 +3,7 @@ import flattenComponentsList from '../../utils/handle-components-list';
 //refer to components-interface.ts inside interface folder for home page components understanding
 
 const HomePageMaster = ({ homePageComponents, bannerData }: any) => {
-  const componentsListFlattenArray = flattenComponentsList(homePageComponents);
+  const componentsListFlattenArray: any = flattenComponentsList(homePageComponents);
   if (Object.keys(homePageComponents)?.length === 0) {
     return <p>No components to display for the home page.</p>;
   }

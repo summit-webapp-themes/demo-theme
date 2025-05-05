@@ -1,0 +1,22 @@
+import React from 'react';
+import useNavbar from '../../../../hooks/GeneralHooks/useNavbar';
+import MenuCategoryGridLoader from './MenuCategoryGridLoader';
+import MenuCategoryGridMain from './MenuCategoryGridMain';
+import useCollection from '../../../../hooks/CollectionHooks/useCollection';
+
+const MasterComponent = ({ componentProperties }: any) => {
+  const { isLoading, collectionData, errorMessage } = useCollection();
+  if (isLoading) {
+    return <MenuCategoryGridLoader />;
+  }
+  if (errorMessage) {
+    return <div>{errorMessage}</div>;
+  }
+  return (
+    <div>
+      <MenuCategoryGridMain collectionData={collectionData} />
+    </div>
+  );
+};
+
+export default MasterComponent;
