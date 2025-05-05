@@ -5,15 +5,17 @@ import styles from '../../../styles/components/productPageV2Components.module.sc
 export default function ImageGallery() {
   return (
     <div className="w-100">
-      <div className={`w-100 ${styles.imgGalleryLgContainer}`}>
+      <div className={styles.imgGalleryLgContainer}>
         <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
       </div>
-      <div className="d-flex mt-3 gap-3 overflow-x-scroll w-100" style={{ width: '730px'}}>
-        {[1,2,3,4].map((i) => (
-          <div className={styles.imgGallerySmContainer}>
-            <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
-          </div>
-        ))}
+      <div className='overflow-x-scroll' style={{  maxWidth: '750px'}}>
+        <div className="d-flex mt-3 gap-3" style={{ width: 'fit-content'}}>
+          {[1,2,3,4].map((i) => (
+            <div className={styles.imgGallerySmContainer}>
+              <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

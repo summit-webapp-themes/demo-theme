@@ -40,7 +40,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
   const renderImageComponent = () => {
     if (productPageComponents?.magnified_image_component && productDetailData?.slide_img) {
       return (
-        <div className="col-md-7 px-4 h-100">
+        <div className="col-md-7 col-xxl-6 px-4 h-100">
           <ImageGallery />
         </div>
       );
@@ -51,7 +51,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
   const renderProductDetailComponent = () => {
     if (productPageComponents?.product_information_component === 'Standard Product Information') {
       return (
-        <div className="col-md-5 px-4">
+        <div className="col-md-5 col-xxl-6 px-4">
           <ProductDetails productDetailData={productDetailData} cartData={cartData} cart={cart} setCart={setCart} />
         </div>
       );
@@ -81,13 +81,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
             {renderProductInformationComponents()}
           </div>
           <div className="my-5">
-            <div className='d-flex align-items-center justify-content-start gap-4'>
-              <div style={{ position: 'relative', width: '66px', height: '66px', borderRadius: '10px', overflow: 'hidden'}}>
-                <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
-              </div>
-              <p className={`m-0 fw-bold ${styles.cartTableHeading}`}>Your Cart for - JY-2025-001</p>
-            </div>
-            {/* <CartDetailsTable /> */}
+            <CartDetailsTable label='Your Cart for - JY-2025-001' />
             <div className="text-end">
               <button className={`btn btn-outline ${styles.viewCartButton}`}>
                 View Cart
