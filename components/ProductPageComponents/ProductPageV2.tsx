@@ -81,13 +81,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
             {renderProductInformationComponents()}
           </div>
           <div className="my-5">
-            <div className='d-flex align-items-center justify-content-start gap-4'>
-              <div style={{ position: 'relative', width: '66px', height: '66px', borderRadius: '10px', overflow: 'hidden'}}>
-                <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
-              </div>
-              <p className={`m-0 fw-bold ${styles.cartTableHeading}`}>Your Cart for - JY-2025-001</p>
-            </div>
-            {/* <CartDetailsTable /> */}
+            <CartDetailsTable label='Your Cart for - JY-2025-001' />
             <div className="text-end">
               <button className={`btn btn-outline ${styles.viewCartButton}`}>
                 View Cart

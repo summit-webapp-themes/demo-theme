@@ -8,12 +8,14 @@ export default function ImageGallery() {
       <div className={`w-100 ${styles.imgGalleryLgContainer}`}>
         <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
       </div>
-      <div className="d-flex mt-3 gap-3 overflow-x-scroll w-100" style={{ width: '730px'}}>
-        {[1,2,3,4].map((i) => (
-          <div className={styles.imgGallerySmContainer}>
-            <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
-          </div>
-        ))}
+      <div className='overflow-x-scroll'>
+        <div className="d-flex mt-3 gap-3" style={{ width: 'fit-content'}}>
+          {[1,2,3,4].map((i) => (
+            <div className={styles.imgGallerySmContainer}>
+              <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
