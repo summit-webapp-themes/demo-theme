@@ -40,7 +40,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
   const renderImageComponent = () => {
     if (productPageComponents?.magnified_image_component && productDetailData?.slide_img) {
       return (
-        <div className="col-md-7 px-4 h-100">
+        <div className="col-md-7 col-xxl-6 px-4 h-100">
           <ImageGallery />
         </div>
       );
@@ -51,7 +51,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
   const renderProductDetailComponent = () => {
     if (productPageComponents?.product_information_component === 'Standard Product Information') {
       return (
-        <div className="col-md-5 px-4">
+        <div className="col-md-5 col-xxl-6 px-4">
           <ProductDetails productDetailData={productDetailData} cartData={cartData} cart={cart} setCart={setCart} />
         </div>
       );

@@ -66,10 +66,10 @@ export default function ProductDetails({ productDetailData, cart, setCart, cartD
   };
 
   return (
-    <div className="container">
+    <div className="pt-4 pt-md-0">
       <h3 className='fw-bold m-0' style={{ fontSize: '28px'}}>JY-2025-001</h3>
       <p className="fw-medium mb-2" style={{ fontSize: '26px', color: '#EE6E4E'}}>€211.22</p>
-      <div style={{ borderBottom: '1px solid #E3E3E3', paddingBottom: '8px'}}>
+      <div className={styles.productDetails} style={{ borderBottom: '1px solid #E3E3E3', paddingBottom: '8px'}}>
 
         {error && <div className="alert alert-danger py-1">{error}</div>}
 

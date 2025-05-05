@@ -7,7 +7,8 @@
 .addToCartButton {
   border: 1px solid #EF7759 !important; 
   color: white !important;
-  width: 300px; 
+  width: 100%; 
+  max-width: 300px;
   background-color: #EE6E4E !important; 
   font-size: 16px; 
   border-radius: 6px; 
@@ -24,7 +25,8 @@
   width: 100%;
   height: 434px;
   border-radius: 10px;
-  overflow: hidden
+  overflow: hidden;
+  max-width: 750px;
 }
 
 .imgGallerySmContainer {
@@ -32,7 +34,7 @@
   width: 200px;
   height: 200px;
   border-radius: 10px;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .cartTableHeading {
@@ -43,7 +45,8 @@
 .viewCartButton {
   border: 1px solid #EF7759 !important; 
   color: #EF7759 !important;
-  width: 300px; 
+  width: 100%; 
+  max-width: 300px;
   background-color: white !important; 
   font-size: 16px; 
   border-radius: 6px; 
@@ -52,11 +55,14 @@
 
 // cart table 
 
+.cartTableContainer {
+  margin: 1.5rem 0;
+  overflow-x: scroll;
+}
 .cartTable {
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
-  margin: 1.5rem 0;
   text-align: start;
 }
 
@@ -124,4 +130,10 @@
 
 .cartTableBody td:last-child {
   border-right: 1px solid #DADADA;
+}
+
+@media screen and (min-width: 1200px) {
+  .productDetails {
+    width: 75%;
+  }
 }
