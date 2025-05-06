@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import noImage from '../../public/assets/images/no_image.png';
 import CartDetailsTable from './ProductPageV2/CartDetailsTable';
+import PageHeader from './ProductPageV2/PageHeader';
 
 export default function ProductPageV2({ productPageComponents }: { productPageComponents: WebsiteInterfaceTypes}) {
   const [cart, setCart] = useState<any[]>([]);
@@ -73,10 +74,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
       <div className="w-100 ps-lg-5 pe-lg-4" >
         {renderHeaderComponents()}
         <div className="container-fluid">
-          <Link href="/product-category/" className="d-flex align-items-center text-decoration-none text-black">
-            <IoIosArrowBack className="me-2 m-0 h4 fw-bold" />
-            <h5 className="fw-bold mb-0">Product Details</h5>
-          </Link>
+          <PageHeader label="Product Details" href="/product-category/" />
           <div className="row mt-4">
             {renderProductInformationComponents()}
           </div>

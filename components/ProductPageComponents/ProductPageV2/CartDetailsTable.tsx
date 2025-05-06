@@ -75,7 +75,7 @@ export default function CartDetailsTable({ label }: { label: string }) {
               <th>Size</th>
               <th>Quantity</th>
               <th>Total</th>
-              <th style={{ width: '8%'}}></th>
+              <th style={{ width: '6%'}}></th>
             </tr>
           </thead>
           <tbody>
@@ -111,7 +111,7 @@ export default function CartDetailsTable({ label }: { label: string }) {
                   </div>
                 </td>
                 <td>€{(item.unitPrice * item.quantity).toFixed(2)}</td>
-                <td style={{ width: '8%'}}>
+                <td style={{ width: '6%'}}>
                   <button 
                     className="btn d-flex justify-content-center border-0 align-items-center" 
                     onClick={() => handleDeleteItem(index)}

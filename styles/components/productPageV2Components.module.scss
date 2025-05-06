@@ -137,3 +137,30 @@
     width: 75%;
   }
 }
+
+// cart page
+
+.cartTotalLabel {
+  color: #3D1D15;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.cartTotalValue {
+  color: #EF7759;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.placeOrderButton {
+  border: 1px solid #EF7759 !important; 
+  color: white !important;
+  width: 100%; 
+  max-width: 300px;
+  background-color: #EF7759 !important; 
+  font-size: 16px; 
+  border-radius: 6px; 
+  padding: 12px;
+}
