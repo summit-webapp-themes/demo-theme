@@ -20,6 +20,9 @@ const DefaultLayout = ({ filterComponent, CardsComponent, productsGridData }: an
       case 'Card with Variant Images':
         const ImageComponent = require(`../ProductListLayoutComponents/ProductGridWithImageVariantCards/MasterComponent`).default;
         return <ImageComponent key={'CardsWithImgs'} {...productsGridData} />;
+      case 'Fallback Cards':
+        const FallbackCards = require('../ProductListLayoutComponents/FallbackGrid/FallbackGrid').default;
+        return <FallbackCards key={'Fallback Cards'} />;
       default:
         return;
     }
