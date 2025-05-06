@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import noImage from '../../public/assets/images/no_image.png';
 import CartDetailsTable from './ProductPageV2/CartDetailsTable';
+import PageHeader from './ProductPageV2/PageHeader';
 
 export default function ProductPageV2({ productPageComponents }: { productPageComponents: WebsiteInterfaceTypes}) {
   const [cart, setCart] = useState<any[]>([]);
@@ -40,7 +41,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
   const renderImageComponent = () => {
     if (productPageComponents?.magnified_image_component && productDetailData?.slide_img) {
       return (
-        <div className="col-md-7 px-4 h-100">
+        <div className="col-md-7 col-xxl-6 px-4 h-100">
           <ImageGallery />
         </div>
       );
@@ -51,7 +52,7 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
   const renderProductDetailComponent = () => {
     if (productPageComponents?.product_information_component === 'Standard Product Information') {
       return (
-        <div className="col-md-5 px-4">
+        <div className="col-md-5 col-xxl-6 px-4">
           <ProductDetails productDetailData={productDetailData} cartData={cartData} cart={cart} setCart={setCart} />
         </div>
       );
@@ -73,21 +74,12 @@ export default function ProductPageV2({ productPageComponents }: { productPageCo
       <div className="w-100 ps-lg-5 pe-lg-4" >
         {renderHeaderComponents()}
         <div className="container-fluid">
-          <Link href="/product-category/" className="d-flex align-items-center text-decoration-none text-black">
-            <IoIosArrowBack className="me-2 m-0 h4 fw-bold" />
-            <h5 className="fw-bold mb-0">Product Details</h5>
-          </Link>
+          <PageHeader label="Product Details" href="/product-category/" />
           <div className="row mt-4">
             {renderProductInformationComponents()}
           </div>
           <div className="my-5">
-            <div className='d-flex align-items-center justify-content-start gap-4'>
-              <div style={{ position: 'relative', width: '66px', height: '66px', borderRadius: '10px', overflow: 'hidden'}}>
-                <Image src={noImage} alt="Ring Image" className=' object-fit-cover' fill />
-              </div>
-              <p className={`m-0 fw-bold ${styles.cartTableHeading}`}>Your Cart for - JY-2025-001</p>
-            </div>
-            {/* <CartDetailsTable /> */}
+            <CartDetailsTable label='Your Cart for - JY-2025-001' />
             <div className="text-end">
               <button className={`btn btn-outline ${styles.viewCartButton}`}>
                 View Cart
