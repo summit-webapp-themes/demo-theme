@@ -1,6 +1,6 @@
-import useProductListingFilterHook from '../../../../hooks/ProductListPageHooks/useProductListFilterHook';
-import FilterLoadingLayout from '../../FilterComponents/FilterLoadingLayout';
-import FilterColour from '../../FilterComponents/ColorSectionUI';
+import useProductListingFilterHook from '../../../../../hooks/ProductListPageHooks/useProductListFilterHook';
+import FilterLoadingLayout from '../../../FilterComponents/FilterLoadingLayout';
+import FilterColour from '../../../FilterComponents/ColorSectionUI';
 
 function WebFilter() {
   const { filtersData, isLoading, errorMessage, handleFilterCheckFun, selectedFilters, clearFilters } = useProductListingFilterHook();

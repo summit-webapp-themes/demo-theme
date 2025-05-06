@@ -1,11 +1,13 @@
-import filters from '../ProductListLayoutComponents/BasicFilters/MasterComponent';
-import card from '../ProductListLayoutComponents/ProductGridWithImageVariantCards/MasterComponent';
 const DefaultLayout = ({ filterComponent, CardsComponent, productsGridData }: any) => {
   const renderFilter = () => {
+    let Component: React.ComponentType<any>;
     switch (filterComponent) {
       case 'Standard Filters':
-        const Component = require(`../ProductListLayoutComponents/BasicFilters/MasterComponent`).default;
+        Component = require(`../ProductListLayoutComponents/FiltersComponent/BasicFilters/MasterComponent`).default;
         return <Component key={'Standard Filters'} />;
+      case 'Fallback Filters':
+        Component = require('../ProductListLayoutComponents/FiltersComponent/FallbackFilters/FallbackFilters').default;
+        return <Component key={'Fallback Filters'} />;
       default:
         return;
     }

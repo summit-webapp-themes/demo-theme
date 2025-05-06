@@ -1,5 +1,4 @@
 import React from 'react';
-import useNavbar from '../../../../hooks/GeneralHooks/useNavbar';
 import MenuCategoryGridLoader from './MenuCategoryGridLoader';
 import MenuCategoryGridMain from './MenuCategoryGridMain';
 import useCollection from '../../../../hooks/CollectionHooks/useCollection';
