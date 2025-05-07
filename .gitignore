@@ -5,4 +5,4 @@
 /styles/addon-styles/*
 /components/ProductCategoriesComponents/ProductListPageLayout/FallbackLayouts/FallbackLayout.tsx
 /components/ProductCategoriesComponents/ProductListLayoutComponents/FiltersComponent/FallbackFilters/*
-/components/Cart/PersonalisedCart/FallbackCartComponent/FallbackCartComponent.tsx
+/components/Cart/PersonalisedCart/FallbackCartComponent/*
