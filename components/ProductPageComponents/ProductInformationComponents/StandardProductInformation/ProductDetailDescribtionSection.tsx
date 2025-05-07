@@ -4,11 +4,11 @@ import { BsTwitterX } from 'react-icons/bs';
 import { FaShareAlt, FaWhatsapp } from 'react-icons/fa';
 import { FaSquareInstagram } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
-import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
-import styles from '../../styles/components/productDetail.module.scss';
-import ProductActionButtonsMaster from './ProductActionButtons/ProductActionButtonsMaster';
-import ProductDetailHeadingWithDescription from './ProductDetailHeadingWithDiscription';
-import ProductPageVariants from './ProductPageVariants';
+import styles from '../../../../styles/components/productDetail.module.scss';
+import useAddToCartHook from '../../../../hooks/CartPageHook/useAddToCart';
+import ProductActionButtonsMaster from '../../ProductActionButtons/ProductActionButtonsMaster';
+import ProductDetailHeadingWithDescription from '../../ProductDetailHeadingWithDiscription';
+import ProductPageVariants from '../../ProductPageVariants';
 
 function ProductDetailDescribtionSection({
   productDetailData,

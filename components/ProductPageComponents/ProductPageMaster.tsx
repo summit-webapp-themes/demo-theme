@@ -5,7 +5,6 @@ import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetai
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
-import ProductDetailDescribtionSection from './ProductDetailDescribtionSection';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
 import styles from '../../styles/components/productDetail.module.scss';
 
@@ -72,11 +71,14 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
           </div>
         </div>
       );
-    } else if (productPageComponents?.product_information_component) {
-      if (productPageComponents?.product_information_component === 'Standard Product Information') {
-        return (
-          <div className="col-md-6 p-4">
-            <ProductDetailDescribtionSection
+    }
+    if (productPageComponents?.product_information_component) {
+      switch (productPageComponents?.product_information_component) {
+        case 'Standard Product Information':
+          const StandardProductInformation = require(`./ProductInformationComponents/StandardProductInformation/ProductDetailDescribtionSection`).default;
+          return (
+            <StandardProductInformation 
+              key={'StandardProductInformation'}
               productDetailData={productDetailData}
               pinCode={userEnteredPinCode}
               getPincodesList={getPincodesList}
@@ -92,11 +94,13 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
               selectedMultiLangData={selectedMultiLangData}
               cartData={cartData}
             />
-          </div>
-        );
-      } else {
-        return null; // or a fallback component
-      }
+          );
+        case 'Fallback Product Information':
+          const FallbackProductInformation = require(`./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation`).default;
+          return <FallbackProductInformation key={'FallbackProductInformation'} />;
+        default:
+          return null;
+        }
     }
   }
 
