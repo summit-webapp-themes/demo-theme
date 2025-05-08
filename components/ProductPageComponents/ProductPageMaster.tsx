@@ -7,6 +7,7 @@ import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slic
 import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
 import styles from '../../styles/components/productDetail.module.scss';
+import CartTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
@@ -56,52 +57,66 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
       });
     }
   }
-
   function renderProductInformationComponents() {
-    if (productPageComponents?.magnified_image_component) {
-      return (
-        <div className="col-md-6 p-4 h-100">
-          <div className="">
-            {productDetailData?.slide_img && (
-              <ImageGalleryMaster
-                imageGalleryComponent={productPageComponents?.magnified_image_component}
-                slideShowImages={productDetailData?.slide_img}
-              />
-            )}
-          </div>
-        </div>
-      );
+    if (!productDetailData || !productPageComponents) return null;
+
+    const imageCol = productPageComponents?.magnified_image_component && (
+      <div className="col-md-7 col-xxl-6 px-4">
+        <ImageGalleryMaster
+          imageGalleryComponent={productPageComponents.magnified_image_component}
+          slideShowImages={productDetailData.slide_img ? productDetailData.slide_img : []}
+        />
+      </div>
+    );
+
+    let infoCol = null;
+    switch (productPageComponents.product_information_component) {
+      case 'Standard Product Information': {
+        const StandardProductInformation =
+          require('./ProductInformationComponents/StandardProductInformation/ProductDetailDescribtionSection').default;
+        infoCol = (
+          <StandardProductInformation
+            key="StandardProductInformation"
+            productDetailData={productDetailData}
+            pinCode={userEnteredPinCode}
+            getPincodesList={getPincodesList}
+            checkPinCodeExists={checkPinCodeExists}
+            validPinCode={validPinCode}
+            handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
+            handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
+            productVariantData={productVariantData}
+            handleStockAvailabilityData={handleStockAvailabilityData}
+            itemList={itemList}
+            handleMultipleQtyChange={handleMultipleQtyChange}
+            qty={qty}
+            selectedMultiLangData={selectedMultiLangData}
+            cartData={cartData}
+          />
+        );
+        break;
+      }
+      case 'Fallback Product Information': {
+        const UId: string = `${productDetailData?.OdCoCd}-${productDetailData?.OdTc}-${productDetailData?.OdYy}-${productDetailData?.OdChr}-${productDetailData?.OdNo}-${productDetailData?.OdSr}-${productDetailData?.OdDmCd}`;
+        const FallbackProductInformation =
+          require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
+        infoCol = (
+          <>
+            <div className="col-md-5 col-xxl-6 px-4">
+              <FallbackProductInformation key="FallbackProductInformation" productDetailData={productDetailData} />
+            </div>
+            <CartTable itemCode={UId} />
+          </>
+        );
+        break;
+      }
     }
-    if (productPageComponents?.product_information_component) {
-      switch (productPageComponents?.product_information_component) {
-        case 'Standard Product Information':
-          const StandardProductInformation = require(`./ProductInformationComponents/StandardProductInformation/ProductDetailDescribtionSection`).default;
-          return (
-            <StandardProductInformation 
-              key={'StandardProductInformation'}
-              productDetailData={productDetailData}
-              pinCode={userEnteredPinCode}
-              getPincodesList={getPincodesList}
-              checkPinCodeExists={checkPinCodeExists}
-              validPinCode={validPinCode}
-              handleQtyModificationOnInputEdit={handleQtyModificationOnInputEdit}
-              handleQtyModificationOnButtonClick={handleQtyModificationOnButtonClick}
-              productVariantData={productVariantData}
-              handleStockAvailabilityData={handleStockAvailabilityData}
-              itemList={itemList}
-              handleMultipleQtyChange={handleMultipleQtyChange}
-              qty={qty}
-              selectedMultiLangData={selectedMultiLangData}
-              cartData={cartData}
-            />
-          );
-        case 'Fallback Product Information':
-          const FallbackProductInformation = require(`./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation`).default;
-          return <FallbackProductInformation key={'FallbackProductInformation'} />;
-        default:
-          return null;
-        }
-    }
+
+    return (
+      <div className="row mt-3">
+        {imageCol}
+        {infoCol}
+      </div>
+    );
   }
 
   function renderProductPageBottomSectionComponents() {
@@ -133,7 +148,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     );
   }
 
-  if (Object?.keys(productDetailData)?.length > 0) {
+  if (productDetailData && Object?.keys(productDetailData)?.length > 0) {
     return (
       <div className={`container-fluid ${styles.detailContainer} w-100 ps-lg-5 pe-lg-4 `}>
         {renderHeaderComponents()}
