@@ -17,8 +17,16 @@ function Layout({ children, componentProps }: LayoutProps) {
   const HeaderRenderer = () => {
     if ('data' in apiResponseOfLayoutData) {
       if ('header_component' in apiResponseOfLayoutData?.data && apiResponseOfLayoutData?.data.header_component !== '') {
-        const Component = require(`./Navbar/${apiResponseOfLayoutData?.data.header_component}/MasterComponent`).default;
-        return <Component key="navbar-component" />;
+        switch (apiResponseOfLayoutData?.data.header_component) {
+          case 'Standard Navbar':
+            const StandardNavbar = require(`./Navbar/${apiResponseOfLayoutData?.data.header_component}/MasterComponent`).default;
+            return <StandardNavbar key="navbar-component" />;
+          case 'Fallback Navbar':
+            const FallbackNavbar = require(`./Navbar/FallbackNavbar/FallbackNavbar`).default;
+            return <FallbackNavbar key="navbar-component" />;
+          default:
+            return null;
+        }
       }
     }
     return null;
@@ -26,8 +34,16 @@ function Layout({ children, componentProps }: LayoutProps) {
   const FooterRenderer = () => {
     if ('data' in apiResponseOfLayoutData) {
       if ('footer_component' in apiResponseOfLayoutData?.data && apiResponseOfLayoutData?.data.footer_component !== '') {
-        const Component = require(`./Footer/${apiResponseOfLayoutData?.data.footer_component}/MasterComponent`).default;
-        return <Component key="footer-component" />;
+        switch (apiResponseOfLayoutData?.data.footer_component) {
+          case 'Standard Footer':
+            const StandardFooter = require(`./Footer/${apiResponseOfLayoutData?.data.footer_component}/MasterComponent`).default;
+            return <StandardFooter key="footer-component" />;
+          case 'Fallback Footer':
+            const FallbackFooter = require(`./Footer/FallbackFooter/FallbackFooter`).default;
+            return <FallbackFooter key="footer-component" />;
+          default:
+            return null;
+        }
       }
     }
     return null;
