@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { InputGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import useLoginHook from '../../hooks/AuthHooks/useLoginHook';
-import logo from '../../public/assets/images/progearhub.png';
-import LoginStyles from '../../styles/components/login.module.scss';
+import useLoginHook from '../../../hooks/AuthHooks/useLoginHook';
+import logo from '../../../public/assets/images/progearhub.png';
+import LoginStyles from '../../../styles/components/login.module.scss';
 
 function LoginComponent() {
   const { passwordHidden, togglePasswordIcon, fetchToken, loginBtnLoader } = useLoginHook();
