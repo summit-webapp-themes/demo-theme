@@ -1,4 +1,7 @@
+import styles from '../../../styles/addon-styles/sidebarFilter.module.scss';
+
 const DefaultLayout = ({ filterComponent, CardsComponent, productsGridData }: any) => {
+  const category = window.location.pathname.split('/').pop();
   const renderFilter = () => {
     let Component: React.ComponentType<any>;
     switch (filterComponent) {
@@ -27,16 +30,34 @@ const DefaultLayout = ({ filterComponent, CardsComponent, productsGridData }: an
         return;
     }
   };
-  return (
-    <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
-      <div className="row">
-        <div className="col-12 col-md-2 web-filter d-none d-sm-block ">{renderFilter()}</div>
-        <div className="container-md col-md-10">
-          <div className=" mt-2 product-listing-row">{renderProducts()}</div>
+  if(filterComponent === "Standard Filters") {
+    return (
+      <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
+        <div className="row">
+          <div className="col-12 col-md-2 web-filter d-none d-sm-block ">{renderFilter()}</div>
+          <div className="container-md col-md-10">
+            <div className=" mt-2 product-listing-row">{renderProducts()}</div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    )
+  }
+  if(filterComponent === "Fallback Filters") {
+    return (
+      <div className={styles.layout}>
+        <div className="row w-100 position-relative m-0">
+          <div className={`col-md-3 col-lg-2 web-filter d-none d-sm-block bg-white ${styles.filterCol}`}>{renderFilter()}</div>
+          <div className={`col-md-9 col-lg-10 ${styles.productCol}`}>
+            <div style={{ padding: '0px 12px'}}>
+              <p className='mb-1 fs-12' style={{ color: '#8C8888'}}>Home / {category}</p>
+              <h2 className="text-black fw-bold mb-3" style={{ fontSize: '18px'}}>{category}</h2>
+            </div>
+            {renderProducts()}
+          </div>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default DefaultLayout;
