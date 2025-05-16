@@ -41,7 +41,7 @@ const DefaultLayout = ({ filterComponent, CardsComponent, productsGridData }: an
       </div>
     )
   }
-  if(filterComponent === "Fallback Filters") {
+  else if(filterComponent === "Fallback Filters") {
     return (
       <div className={styles.layout}>
         <div className="row w-100 position-relative m-0">
@@ -52,6 +52,8 @@ const DefaultLayout = ({ filterComponent, CardsComponent, productsGridData }: an
         </div>
       </div>
     );
+  } else {
+    return null;
   }
 };
 
