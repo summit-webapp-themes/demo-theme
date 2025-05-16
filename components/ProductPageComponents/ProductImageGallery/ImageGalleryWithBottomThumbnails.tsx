@@ -60,9 +60,9 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowI
           <div className={noImageStyles.imgGalleryLgContainer}>
             <Image src={noImg} alt="Ring Image" className=" object-fit-cover" fill />
           </div>
-          <div className="overflow-x-auto" style={{ maxWidth: '750px' }}>
+          <div className="overflow-x-auto" style={{ maxWidth: '100%' }}>
             <div className="d-flex mt-3 gap-3" style={{ width: '100%' }}>
-              {[1, 2, 3].map((i) => (
+              {[1, 2, 3, 4].map((i) => (
                 <div className={noImageStyles.imgGallerySmContainer}>
                   <Image src={noImg} alt="Ring Image" className=" object-fit-cover" fill />
                 </div>
