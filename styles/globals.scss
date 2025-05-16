@@ -159,9 +159,9 @@ body {
 input[type='text'] {
   box-shadow: none !important;
 }
-body::-webkit-scrollbar {
-  scrollbar-width: none;
-}
+// body::-webkit-scrollbar {
+//   scrollbar-width: none;
+// }
 
 // common font sizes
 .fs-12 {
@@ -705,16 +705,36 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
-//hide scrollbar
-.accordion-item {
-  -ms-overflow-style: none; /* Edge, Internet Explorer */
-  scrollbar-width: none; /* Firefox */
-  overflow-y: scroll;
+// //hide scrollbar
+// .accordion-item {
+//   -ms-overflow-style: none; /* Edge, Internet Explorer */
+//   scrollbar-width: none; /* Firefox */
+//   overflow-y: scroll;
+// }
+
+// // hides scrollbars while allowing to scroll
+// .accordion-item::-webkit-scrollbar {
+//   display: none; /* Chrome, Safari, Opera */
+// }
+
+/* width */
+.accordion-item::-webkit-scrollbar {
+  width: 6px;
+  margin-top: 40px;
 }
 
-// hides scrollbars while allowing to scroll
-.accordion-item::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+/* Track */
+.accordion-item::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-top: 40px;
+  // border: 1px solid #dadada;
+}
+
+/* Handle */
+.accordion-item::-webkit-scrollbar-thumb {
+  background: #dddfe0;
+  border-radius: 10px;
 }
 
 .accordion-button {

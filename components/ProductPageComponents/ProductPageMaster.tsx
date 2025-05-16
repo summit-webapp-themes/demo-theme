@@ -7,7 +7,10 @@ import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slic
 import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
 import styles from '../../styles/components/productDetail.module.scss';
+import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss'
 import CartTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
+import ESBreadCrumbs from '../ESBreadCrumbs';
+import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
@@ -61,7 +64,9 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     if (!productDetailData || !productPageComponents) return null;
 
     const imageCol = productPageComponents?.magnified_image_component && (
-      <div className="col-md-7 col-xxl-6 px-4">
+      <div className={`col-md-7 ${esStyles.productImagesContainer}`}>
+        <ESBreadCrumbs />
+        <PageHeaderWithBackBtn href="/" label="Product Details"/>
         <ImageGalleryMaster
           imageGalleryComponent={productPageComponents.magnified_image_component}
           slideShowImages={productDetailData.slide_img ? productDetailData.slide_img : []}
@@ -101,10 +106,12 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
           require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
         infoCol = (
           <>
-            <div className="col-md-5 col-xxl-6 px-4">
+            <div className={`col-md-5 ${esStyles.productInfoContainer}`}>
               <FallbackProductInformation key="FallbackProductInformation" productDetailData={productDetailData} />
             </div>
-            <CartTable itemCode={UId} />
+            <div className={esStyles.productCartTableContainer}>
+              <CartTable itemCode={UId} />
+            </div>
           </>
         );
         break;
@@ -112,7 +119,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     }
 
     return (
-      <div className="row mt-3">
+      <div className="row m-0 p-0">
         {imageCol}
         {infoCol}
       </div>
@@ -150,9 +157,9 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
 
   if (productDetailData && Object?.keys(productDetailData)?.length > 0) {
     return (
-      <div className={`container-fluid ${styles.detailContainer} w-100 ps-lg-5 pe-lg-4 `}>
+      <div className={`${styles.detailContainer} w-100`}>
         {renderHeaderComponents()}
-        <div className="row">
+        <div className="row m-0">
           {renderProductInformationComponents()}
           {renderProductPageBottomSectionComponents()}
         </div>
