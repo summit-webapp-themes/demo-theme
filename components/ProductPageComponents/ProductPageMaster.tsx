@@ -7,7 +7,8 @@ import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slic
 import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
 import styles from '../../styles/components/productDetail.module.scss';
-import CartTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
+import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
+import useCart from '../../hooks/addon-hooks/useCart';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
@@ -29,11 +30,20 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     userEnteredPinCode,
     getPincodesList,
     checkPinCodeExists,
-
     validPinCode,
   } = useProductDetail();
+  const {
+    cartData,
+    btnLoader,
+    error,
+    itemsUpdating,
+    handleMainQuantityChange,
+    handleQuantityChange,
+    handleDeleteItem,
+    quantity,
+    handleAddToCart,
+  } = useCart();
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
-  const cartData = useSelector(selectCart).items;
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
   useEffect(() => {
     if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
@@ -96,15 +106,34 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
         break;
       }
       case 'Fallback Product Information': {
-        const UId: string = `${productDetailData?.OdCoCd}-${productDetailData?.OdTc}-${productDetailData?.OdYy}-${productDetailData?.OdChr}-${productDetailData?.OdNo}-${productDetailData?.OdSr}-${productDetailData?.OdDmCd}`;
+        const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
+        const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
         const FallbackProductInformation =
           require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
         infoCol = (
           <>
             <div className="col-md-5 col-xxl-6 px-4">
-              <FallbackProductInformation key="FallbackProductInformation" productDetailData={productDetailData} />
+              <FallbackProductInformation
+                key="FallbackProductInformation"
+                productDetailData={productDetailData}
+                cartData={cartData}
+                error={error}
+                handleMainQuantityChange={handleMainQuantityChange}
+                quantity={quantity}
+                handleAddToCart={handleAddToCart}
+                btnLoader={btnLoader}
+              />
             </div>
-            <CartTable itemCode={UId} />
+            {matchedCartGroup?.length > 0 &&
+              matchedCartGroup?.map((cartGroup: any, index: number) => (
+                <CartDetailsTable
+                  cartGroup={cartGroup}
+                  itemsUpdating={itemsUpdating}
+                  handleQuantityChange={handleQuantityChange}
+                  handleDeleteItem={handleDeleteItem}
+                />
+              ))}
+            {/* <CartTable itemCode={UId} /> */}
           </>
         );
         break;

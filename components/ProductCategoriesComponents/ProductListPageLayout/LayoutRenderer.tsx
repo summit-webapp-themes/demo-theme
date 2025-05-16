@@ -1,12 +1,20 @@
 import dynamic from 'next/dynamic';
+import { FC } from 'react';
 
-const DefaultLayout = dynamic(() => import('./DefaultLayout'));
-const CollapsibleLayout = dynamic(() => import('./CollapsibleLayout'));
-const TopFiltersLayout = dynamic(() => import('./TopFiltersLayout'));
-const FixedFiltersLayout = dynamic(() => import('./FixedFiltersLayout'));
-const FallbackLayoutComponent = dynamic(() => import('./FallbackLayouts/FallbackLayout'));
+interface LayoutProps {
+  filterComponentInLayout: string;
+  productCardsInLayout: string;
+  productsGridProps?: any;
+  layoutName: string;
+}
 
-const LayoutRenderer = (props: any) => {
+const DefaultLayout = dynamic(() => import('./DefaultLayout'), { ssr: false });
+const CollapsibleLayout = dynamic(() => import('./CollapsibleLayout'), { ssr: false });
+const TopFiltersLayout = dynamic(() => import('./TopFiltersLayout'), { ssr: false });
+const FixedFiltersLayout = dynamic(() => import('./FixedFiltersLayout'), { ssr: false });
+const FallbackLayoutComponent = dynamic(() => import('./FallbackLayouts/FallbackLayout'), { ssr: false });
+
+const LayoutRenderer: FC<LayoutProps> = (props) => {
   const renderLayouts = () => {
     switch (props.layoutName) {
       case 'Default Layout':
@@ -22,7 +30,6 @@ const LayoutRenderer = (props: any) => {
       case 'Top Filters Layout':
         return <TopFiltersLayout />;
       case 'Fixed Filters Layout':
-        // return <FixedFiltersLayout />;
         return <FallbackLayoutComponent />;
       case 'Fallback Layout':
         return <FallbackLayoutComponent />;

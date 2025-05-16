@@ -122,7 +122,6 @@ function ProductListingMaster({ componentsList }: any) {
   if (componentsList?.length === 0) {
     return <p> No components to display product list page.</p>;
   }
-  console.log('componentsList', componentsList);
   return (
     <>
       {renderProductListPageHeaderComponents()}
