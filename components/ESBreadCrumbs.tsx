@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../styles/addon-styles/navbarWithoutCategoriesV2.module.scss';
 
 export default function ESBreadCrumbs() {
-  const breadCrumbData = window.location.pathname.split('/').filter(segment => segment !== '');
+  const breadCrumbData = window.location.pathname.split('/').filter((segment) => segment !== '');
   const formattedBreadCrumbData = breadCrumbData.map((item: string, index: number) => {
     const link = `/${breadCrumbData.slice(0, index + 1).join('/')}`;
     return { name: item, link };
