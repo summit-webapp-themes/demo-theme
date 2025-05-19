@@ -4,6 +4,10 @@
 /cards/addon-cards/*
 /styles/addon-styles/*
 
-# /components/ProductCategoriesComponents/ProductListPageLayout/FallbackLayouts/FallbackLayout.tsx
-# /components/ProductCategoriesComponents/ProductListLayoutComponents/FiltersComponent/FallbackFilters/*
-# /components/Cart/PersonalisedCart/FallbackCartComponent/*
+# Don't track below Fallback components
+/components/Auth/FallbackLogin/FallbackLogin.tsx
+/components/Footer/FallbackFooter/FallbackFooter.tsx
+/components/Navbar/FallbackNavbar/FallbackNavbar.tsx
+/components/ProductCategoriesComponents/ProductListLayoutComponents/FallbackGrid/FallbackGrid.tsx
+/components/ProductCategoriesComponents/ProductListPageLayout/FallbackLayouts/FallbackLayout.tsx
+/components/ProductPageComponents/ProductInformationComponents/FallbackProductInformation/FallbackProductInformation.tsx
