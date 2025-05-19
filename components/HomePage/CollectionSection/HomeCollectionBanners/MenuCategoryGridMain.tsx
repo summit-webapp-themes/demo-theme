@@ -28,7 +28,7 @@ const spanClasses = [
 
 const MenuCategoryGridMain = ({ collectionData }: any) => {
   return (
-    <div className="container">
+    <div className="container py-3">
       <div className={styles.gridContainer}>
         {collectionData?.slice(0, 9)?.map((item: any, index: number) => (
           <div
