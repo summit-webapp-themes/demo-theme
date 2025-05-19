@@ -11,3 +11,4 @@
 /components/ProductCategoriesComponents/ProductListLayoutComponents/FallbackGrid/FallbackGrid.tsx
 /components/ProductCategoriesComponents/ProductListPageLayout/FallbackLayouts/FallbackLayout.tsx
 /components/ProductPageComponents/ProductInformationComponents/FallbackProductInformation/FallbackProductInformation.tsx
+/components/Cart/PersonalisedCart/*
