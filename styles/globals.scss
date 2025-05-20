@@ -702,9 +702,7 @@ input[type='text'] {
   display: flex;
   flex-direction: column;
   background-color: #F2F5F6;
-  padding: 0;
-  max-height: 210px;
-  overflow: auto;
+  padding: 0 0 8px;
   position: relative;
 }
 
@@ -741,9 +739,7 @@ input[type='text'] {
 }
 
 .accordion-button {
-  position: sticky;
-  top: 0;
-  padding: 14px 14px 0 !important;
+  padding: 8px 16px 0 !important;
   background-color: #F2F5F6 !important;
   font-size: 14px;
   color: #3d1d15 !important;
@@ -752,7 +748,7 @@ input[type='text'] {
 }
 
 .accordion-button.collapsed {
-  padding: 14px 14px 14px !important;
+  padding: 8px 16px 0 !important;
   background-color: #F2F5F6;
   border: 0 !important;
 }
@@ -779,9 +775,9 @@ input[type='text'] {
 }
 
 .web-filter .accordion-button:not(.collapsed) {
-  padding: 14px 14px 8px !important;
+  padding: 8px 16px 0 !important;
 }
 
 .accordion-body {
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
