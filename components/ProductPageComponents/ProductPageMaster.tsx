@@ -78,7 +78,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
         <ESBreadCrumbs />
         <ImageGalleryMaster
           imageGalleryComponent={productPageComponents.magnified_image_component}
-          slideShowImages={productDetailData.slide_img ? productDetailData.slide_img : []}
+          slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
         />
       </div>
     );
