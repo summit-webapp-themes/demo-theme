@@ -52,7 +52,9 @@ function Layout({ children, componentProps }: LayoutProps) {
   return (
     <>
       {toShowHeader && <HeaderRenderer />}
-      {children}
+      <div style={{ minHeight: '600px'}}>
+        {children}
+      </div>
       {toShowFooter && <FooterRenderer />}
     </>
   );
