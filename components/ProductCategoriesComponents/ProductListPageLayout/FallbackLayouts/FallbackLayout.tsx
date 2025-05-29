@@ -1,5 +1,5 @@
-const FixedFiltersLayout = () => {
+const FallbackLayout = () => {
   return <div className="row m-0">Fallback layout</div>;
 };
 
-export default FixedFiltersLayout;
+export default FallbackLayout;
