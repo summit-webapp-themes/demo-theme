@@ -1,4 +1,3 @@
-import styles from '../../../styles/addon-styles/sidebarFilter.module.scss';
 import { FC } from 'react';
 
 interface DefaultLayoutProps {
@@ -51,35 +50,16 @@ const DefaultLayout: FC<DefaultLayoutProps> = ({ filterComponent, CardsComponent
     );
   } else if (filterComponent === 'Fallback Filters') {
     return (
-      <div className={styles.layout}>
-        <div className="row w-100 position-relative m-0">
-          <div className={`col-md-3 col-lg-2 web-filter d-none d-sm-block ${styles.filterCol}`}>{renderFilter()}</div>
-          <div className={`col-md-9 col-lg-10 ${styles.productCol}`}>{renderProducts()}</div>
-        </div>
+      <div>
+        {/* <div className="row w-100 position-relative m-0">
+          <div className={`col-md-3 col-lg-2 web-filter d-none d-sm-block`}>{renderFilter()}</div>
+          <div className={`col-md-9 col-lg-10`}>{renderProducts()}</div>
+        </div> */}
       </div>
     );
   } else {
     return null;
   }
-
-  return (
-    <div className={styles.layout}>
-      <div className="row w-100 position-relative m-0">
-        <div className={`col-md-3 col-lg-2 web-filter d-none d-sm-block bg-white ${styles.filterCol}`}>{renderFilter()}</div>
-        <div className={`col-md-9 col-lg-10 ${styles.productCol}`}>
-          <div style={{ padding: '0px 12px' }}>
-            <p className="mb-1 fs-12" style={{ color: '#8C8888' }}>
-              Home / {category}
-            </p>
-            <h2 className="text-black fw-bold mb-3" style={{ fontSize: '18px' }}>
-              {category}
-            </h2>
-          </div>
-          {renderProducts()}
-        </div>
-      </div>
-    </div>
-  );
 };
 
 export default DefaultLayout;
