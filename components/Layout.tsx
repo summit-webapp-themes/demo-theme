@@ -9,10 +9,10 @@ const apiResponseOfLayoutData: any = layoutData;
 function Layout({ children, componentProps }: LayoutProps) {
   const router = useRouter();
   const toShowHeader =
-    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' ? false : true;
+    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || !apiResponseOfLayoutData?.data?.show_header ? false : true;
 
   const toShowFooter =
-    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' ? false : true;
+    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || !apiResponseOfLayoutData?.data?.show_footer ? false : true;
 
   const HeaderRenderer = () => {
     if ('data' in apiResponseOfLayoutData) {
