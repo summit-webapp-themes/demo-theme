@@ -10,7 +10,7 @@ import styles from '../../styles/components/productDetail.module.scss';
 // import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
 // import useCart from '../../hooks/addon-hooks/useCart';
 import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
-import ESBreadCrumbs from '../ESBreadCrumbs';
+// import ESBreadCrumbs from '../ESBreadCrumbs';
 // import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
 
 type ProductPageComponentsTypes = {
@@ -75,7 +75,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
 
     const imageCol = productPageComponents?.magnified_image_component && (
       <div className={`col-md-7 ${esStyles.productImagesContainer}`}>
-        <ESBreadCrumbs />
+        {/* <ESBreadCrumbs /> */}
         <ImageGalleryMaster
           imageGalleryComponent={productPageComponents.magnified_image_component}
           slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
