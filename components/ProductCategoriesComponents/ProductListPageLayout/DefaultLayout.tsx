@@ -37,29 +37,21 @@ const DefaultLayout: FC<DefaultLayoutProps> = ({ filterComponent, CardsComponent
     }
   };
 
-  if (filterComponent === 'Standard Filters') {
-    return (
-      <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
-        <div className="row">
-          <div className="col-12 col-md-2 web-filter d-none d-sm-block ">{renderFilter()}</div>
-          <div className="container-md col-md-10">
-            <div className=" mt-2 product-listing-row">{renderProducts()}</div>
-          </div>
+  if (filterComponent === 'Fallback Filters') {
+    const FallbackLayout = require(`../ProductListPageLayout/FallbackLayouts/FallbackLayout`).default;
+    return <FallbackLayout key={'FallbackLayout'} renderFilter={renderFilter} renderProducts={renderProducts} />;
+  } 
+
+  return ( 
+    <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
+      <div className="row">
+        <div className="col-12 col-md-2 web-filter d-none d-sm-block ">{renderFilter()}</div>
+        <div className="container-md col-md-10">
+          <div className=" mt-2 product-listing-row">{renderProducts()}</div>
         </div>
       </div>
-    );
-  } else if (filterComponent === 'Fallback Filters') {
-    return (
-      <div>
-        <div className="row w-100 position-relative m-0">
-          <div className={`col-md-3 col-lg-2 web-filter d-none d-sm-block`}>{renderFilter()}</div>
-          <div className={`col-md-9 col-lg-10`}>{renderProducts()}</div>
-        </div>
-      </div>
-    );
-  } else {
-    return null;
-  }
+    </div>
+  );
 };
 
 export default DefaultLayout;
