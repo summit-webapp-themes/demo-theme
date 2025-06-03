@@ -17,7 +17,7 @@
 .img_container_column {
   display: flex;
   flex-direction: column; /* Change flex direction to column to stack image and thumbnails */
-  height: 95vh; /* Increase the container's height to make space for the thumbnails below */
+  // height: 95vh; /* Increase the container's height to make space for the thumbnails below */
   gap: 20px; /* Add space between image and thumbnails */
 }
 .thumbnail_bottom {
@@ -59,7 +59,7 @@
   object-fit: contain;
 }
 .active {
-  border: 3px solid #e77600 !important;
+  border: 2px solid var(--es-primary-color) !important;
 }
 
 .magnified_image {
