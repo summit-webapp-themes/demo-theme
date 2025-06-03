@@ -30,9 +30,9 @@ const LayoutRenderer: FC<LayoutProps> = (props) => {
       case 'Top Filters Layout':
         return <TopFiltersLayout />;
       case 'Fixed Filters Layout':
-        return <FallbackLayoutComponent />;
+        return <FixedFiltersLayout />;
       case 'Fallback Layout':
-        return <FallbackLayoutComponent />;
+      // return <FallbackLayoutComponent />;
       default:
         return null;
     }
