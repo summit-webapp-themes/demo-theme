@@ -37,7 +37,7 @@ export default function OrderDetails() {
         sub_total: 400.00
       },
     ],
-    grandTotal: 350.00
+    grandTotal: 800.00
   }
   const router = useRouter();
 
@@ -46,7 +46,7 @@ export default function OrderDetails() {
       <div className={styles.cartContainer}>
         {/* Header Section */}
         <div className='d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2'>
-          <div className='d-flex justify-content-start align-items-center flex-wrap gap-1 gap-md-2'>
+          <div className='d-flex justify-content-start align-items-center flex-wrap'>
             {/* Replace with Page Header With back Button in ES */}
             <div style={{ width: 'fit-content'}} className="d-flex align-items-center">
               <button
@@ -58,7 +58,7 @@ export default function OrderDetails() {
               </button>
               <h5 className="fw-bold mb-0" style={{ fontSize: '18px', marginTop: '2px'}}>{order.id}</h5>
             </div>
-            <div className="vr"></div>
+            <div className="vr mx-2"></div>
             <p style={{ width: 'fit-content', color: '#3D1D1566'}} className='fs-14 mb-0'>
               {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>

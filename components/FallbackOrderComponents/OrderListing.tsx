@@ -48,6 +48,7 @@ export default function OrderListing() {
                         </button>
                         <button
                           className={` btn btn-sm ${styles.viewDetailsButton}`}
+                          onClick={() => router.push('/order-detail/SAL-ORD-2025-001')}
                         >
                           View Details
                         </button>
