@@ -36,7 +36,7 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
             className={`${styles.gridItem} ${spanClasses[index] || ''}`}
             style={{ backgroundColor: pastelColors[index % pastelColors.length] }}
           >
-            <Link href={`product-category/${item.DpCd}?page=1&currency=INR`} className={styles.cardLink} aria-label={item?.DpCd}>
+            <Link href={`product-category/${item.DpCd}?page=1&currency=USD`} className={styles.cardLink} aria-label={item?.DpCd}>
               <div className={styles.pastelCard}>
                 <span className={styles.cardText}>{item?.DpCd}</span>
               </div>
