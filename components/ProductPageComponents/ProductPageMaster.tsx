@@ -38,6 +38,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   const {
     cartData,
     btnLoader,
+    setError,
     error,
     itemsUpdating,
     handleMainQuantityChange,
@@ -121,6 +122,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 key="FallbackProductInformation"
                 productDetailData={productDetailData}
                 cartData={cartData}
+                setError={setError}
                 error={error}
                 handleMainQuantityChange={handleMainQuantityChange}
                 quantity={quantity}
