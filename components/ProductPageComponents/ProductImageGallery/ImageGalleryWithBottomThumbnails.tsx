@@ -55,7 +55,10 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowI
                   enlargedImagePosition: 'beside',
                   enlargedImageContainerStyle: {
                     backgroundColor: '#fff',
-                  }
+                  },
+                  enlargedImageStyle: {
+                    objectFit: 'contain',
+                  },
                 }}
               />
             </div>
