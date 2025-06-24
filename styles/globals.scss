@@ -781,3 +781,7 @@ input[type='text'] {
 .accordion-body {
   margin-bottom: 0;
 }
+
+body.modal-open {
+  padding-right: 0 !important;
+}
