@@ -8,8 +8,9 @@ import imageStyle from '../../../styles/components/productImgMagnify.module.scss
 import noImageStyles from '../../../styles/addon-styles/productPageV2Components.module.scss';
 
 const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowImages) => {
+  const { API_BASE_URL } = CONSTANTS;
   const { enlargeImg, activeImgIndex, handleSelectedImage } = useImageGallery({ slideShowImages });
-  const baseImgURL = 'https://emr-euro-shine.8848digitalerp.com';
+  const baseImgURL = `${API_BASE_URL}`;
   const isEMR = process.env.NEXT_PUBLIC_ENGINE_NAME === 'EMR';
 
   const getImageURL = (imgPath: string) => {
@@ -64,17 +65,19 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowI
             </div>
 
             {/* Thumbnails */}
-            {slideShowImages.length > 1 && <div className={imageStyle.thumbnail_bottom}>
-              {slideShowImages.map((image: string, i: number) => (
-                <div
-                  className={`${imageStyle.img_wrap} ${i === activeImgIndex ? imageStyle.active : ''}`}
-                  key={i}
-                  onClick={() => handleSelectedImage(image, i)}
-                >
-                  <Image src={getImageURL(image)} alt={`Thumbnail image ${i + 1}`} width={100} height={100} />
-                </div>
-              ))}
-            </div>}
+            {slideShowImages.length > 1 && (
+              <div className={imageStyle.thumbnail_bottom}>
+                {slideShowImages.map((image: string, i: number) => (
+                  <div
+                    className={`${imageStyle.img_wrap} ${i === activeImgIndex ? imageStyle.active : ''}`}
+                    key={i}
+                    onClick={() => handleSelectedImage(image, i)}
+                  >
+                    <Image src={getImageURL(image)} alt={`Thumbnail image ${i + 1}`} width={100} height={100} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       ) : (
