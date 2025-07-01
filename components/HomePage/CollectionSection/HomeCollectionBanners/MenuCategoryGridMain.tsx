@@ -31,10 +31,16 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
   const imageLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
+  const collectionDataWithImage = collectionData?.map((item: any) => {
+    return {
+      ...item,
+      imgUrl: `/assets/images/${item.DpCd}.jpg`
+    };
+  });
   return (
     <div className="container py-3" >
       <div className={styles.gridContainer}>
-        {collectionData?.slice(0, 9)?.map((item: any, index: number) => (
+        {collectionDataWithImage?.slice(0, 9)?.map((item: any, index: number) => (
           <Link
             key={index}
             href={`product-category/${item.DpCd}?page=1&currency=USD`}
