@@ -20,6 +20,9 @@
   font-weight: 800;
   text-align: center;
   font-size: 32px;
+  position: relative;
+  border: 1px solid #cfcfcf;
+  overflow: hidden;
 }
 
 .pastelCard {
@@ -29,10 +32,16 @@
   background-color: none; // default fallback
   // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
+  width: fit-content !important;
+  min-width: fit-content !important;
 }
 
 .pastelCard:hover {
   transform: scale(1.05);
+}
+
+.cardLink {
+  position: absolute;
 }
 
 .cardText {
