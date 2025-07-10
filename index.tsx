@@ -70,7 +70,7 @@ export const getStaticProps = async () => {
   };
 };
 const Home = ({ homePageComponents, bannerData, translationsList, metaTagsData }: any) => {
-  console.log('componnets', homePageComponents);
+  console.log('metaTagsData', metaTagsData);
   const dispatch = useDispatch();
   const { sendPageViewToGA } = useGoogleAnalyticsOperationsHandler();
   useEffect(() => {

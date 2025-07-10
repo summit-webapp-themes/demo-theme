@@ -2,9 +2,10 @@ import Head from 'next/head';
 
 const PageMetaData = ({ meta_data }: any) => {
   let isDealer: any;
-  if (typeof window !== 'undefined') {
-    isDealer = localStorage.getItem('isDealer');
-  }
+  // if (typeof window !== 'undefined') {
+  //   isDealer = localStorage.getItem('isDealer');
+  // }
+  console.log({meta_data})
   return (
     <Head>
       <title>
@@ -43,8 +44,16 @@ const PageMetaData = ({ meta_data }: any) => {
       <meta property="og:type" content="website" />
       <meta property="og:url" content={``} />
       <link rel="canonical" href="$OG_URL" />
-      <meta name="description" content="Summit E-Commerce - A Comprehensive E-Commerce Solution" />
-      <link rel="icon" href="/favicon.ico" />
+      <meta name="description" content={
+          meta_data && Object?.keys(meta_data)?.length > 0
+            ? meta_data?.description
+            : 'Summit E-Commerce - A Comprehensive E-Commerce Solution'
+        } />
+      <link rel="icon" href={meta_data && Object?.keys(meta_data)?.length > 0  ? meta_data?.favicon : '/favicon.ico'} />
+      <link rel="icon" type="image/png" sizes="32x32" href={meta_data && Object?.keys(meta_data)?.length > 0  ? meta_data?.favicon : "/favicon-32x32.png"} />
+      <link rel="icon" type="image/png" sizes="16x16" href={meta_data && Object?.keys(meta_data)?.length > 0  ? meta_data?.favicon : "/favicon-16x16.png"} />
+      <link rel="apple-touch-icon" sizes="180x180" href={meta_data && Object?.keys(meta_data)?.length > 0  ? meta_data?.favicon : "/apple-touch-icon.png"} />
+
     </Head>
   );
 };
