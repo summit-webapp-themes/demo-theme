@@ -7,11 +7,11 @@ import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slic
 import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
 import styles from '../../styles/components/productDetail.module.scss';
-import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
-import useCart from '../../hooks/addon-hooks/useCart';
-import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
-import ESBreadCrumbs from '../ESBreadCrumbs';
-import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
+// import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
+// import useCart from '../../hooks/addon-hooks/useCart';
+// import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
+// import ESBreadCrumbs from '../ESBreadCrumbs';
+// import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
@@ -35,18 +35,18 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     checkPinCodeExists,
     validPinCode,
   } = useProductDetail();
-  const {
-    cartData,
-    btnLoader,
-    setError,
-    error,
-    itemsUpdating,
-    handleMainQuantityChange,
-    handleQuantityChange,
-    handleDeleteItem,
-    quantity,
-    handleAddToCart,
-  } = useCart();
+  // const {
+  //   cartData,
+  //   btnLoader,
+  //   setError,
+  //   error,
+  //   itemsUpdating,
+  //   handleMainQuantityChange,
+  //   handleQuantityChange,
+  //   handleDeleteItem,
+  //   quantity,
+  //   handleAddToCart,
+  // } = useCart();
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
   useEffect(() => {
@@ -74,15 +74,15 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   function renderProductInformationComponents() {
     if (!productDetailData || !productPageComponents) return null;
 
-    const imageCol = productPageComponents?.magnified_image_component && (
-      <div className={`col-md-7 ${esStyles.productImagesContainer}`}>
-        <ESBreadCrumbs />
-        <ImageGalleryMaster
-          imageGalleryComponent={productPageComponents.magnified_image_component}
-          slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
-        />
-      </div>
-    );
+    // const imageCol = productPageComponents?.magnified_image_component && (
+    //   <div className={`col-md-7 ${esStyles.productImagesContainer}`}>
+    //     {/* <ESBreadCrumbs /> */}
+    //     <ImageGalleryMaster
+    //       imageGalleryComponent={productPageComponents.magnified_image_component}
+    //       slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
+    //     />
+    //   </div>
+    // );
 
     let infoCol = null;
     switch (productPageComponents.product_information_component) {
@@ -105,51 +105,51 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
             handleMultipleQtyChange={handleMultipleQtyChange}
             qty={qty}
             selectedMultiLangData={selectedMultiLangData}
-            cartData={cartData}
+            // cartData={cartData}
           />
         );
         break;
       }
-      case 'Fallback Product Information': {
-        const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
-        const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
-        const FallbackProductInformation =
-          require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
-        infoCol = (
-          <>
-            <div className={`col-md-5 ${esStyles.productInfoContainer}`}>
-              <FallbackProductInformation
-                key="FallbackProductInformation"
-                productDetailData={productDetailData}
-                cartData={cartData}
-                setError={setError}
-                error={error}
-                handleMainQuantityChange={handleMainQuantityChange}
-                quantity={quantity}
-                handleAddToCart={handleAddToCart}
-                btnLoader={btnLoader}
-              />
-            </div>
-            {matchedCartGroup?.length > 0 &&
-              matchedCartGroup?.map((cartGroup: any, index: number) => (
-                <div className={esStyles.productCartTableContainer}>
-                  <CartDetailsTable
-                    cartGroup={cartGroup}
-                    itemsUpdating={itemsUpdating}
-                    handleQuantityChange={handleQuantityChange}
-                    handleDeleteItem={handleDeleteItem}
-                  />
-                </div>
-              ))}
-          </>
-        );
-        break;
-      }
+      // case 'Fallback Product Information': {
+      //   const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
+      //   const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
+      //   const FallbackProductInformation =
+      //     require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
+      //   infoCol = (
+      //     <>
+      //       <div className={`col-md-5 ${esStyles.productInfoContainer}`}>
+      //         <FallbackProductInformation
+      //           key="FallbackProductInformation"
+      //           productDetailData={productDetailData}
+      //           cartData={cartData}
+      //           setError={setError}
+      //           error={error}
+      //           handleMainQuantityChange={handleMainQuantityChange}
+      //           quantity={quantity}
+      //           handleAddToCart={handleAddToCart}
+      //           btnLoader={btnLoader}
+      //         />
+      //       </div>
+      //       {matchedCartGroup?.length > 0 &&
+      //         matchedCartGroup?.map((cartGroup: any, index: number) => (
+      //           <div className={esStyles.productCartTableContainer}>
+      //             <CartDetailsTable
+      //               cartGroup={cartGroup}
+      //               itemsUpdating={itemsUpdating}
+      //               handleQuantityChange={handleQuantityChange}
+      //               handleDeleteItem={handleDeleteItem}
+      //             />
+      //           </div>
+      //         ))}
+      //     </>
+      //   );
+      //   break;
+      // }
     }
 
     return (
       <div className="row m-0 p-0">
-        {imageCol}
+        {/* {imageCol} */}
         {infoCol}
       </div>
     );
