@@ -24,7 +24,7 @@ const PageMetaData = ({ meta_data }: any) => {
         }
       />
       <meta name="robots" content={meta_data && Object?.keys(meta_data)?.length > 0 ? meta_data?.robot_name : 'index'} />
-      <meta property="og:image" content="" />
+      <meta property="og:image" content={meta_data && Object?.keys(meta_data)?.length > 0 ? meta_data?.og_image : ''}  />
       <meta
         property="og:title"
         content={
