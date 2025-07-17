@@ -11,7 +11,6 @@ import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/Car
 import useCart from '../../hooks/addon-hooks/useCart';
 import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
 import ESBreadCrumbs from '../ESBreadCrumbs';
-import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
@@ -55,6 +54,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     }
   }, [SelectedLangDataFromStore]);
 
+  console.log('product page comp from details page', productDetailData, productPageComponents)
   function renderHeaderComponents() {
     if (productPageComponents?.top_section_component?.length === 0) return;
 
@@ -134,6 +134,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
               matchedCartGroup?.map((cartGroup: any, index: number) => (
                 <div className={esStyles.productCartTableContainer}>
                   <CartDetailsTable
+                    pageType='Cart'
                     cartGroup={cartGroup}
                     itemsUpdating={itemsUpdating}
                     handleQuantityChange={handleQuantityChange}
