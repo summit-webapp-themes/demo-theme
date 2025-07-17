@@ -24,7 +24,6 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowI
   };
 
   const largeImgURL = getImageURL(enlargeImg);
-  console.log('🔍 Large Image URL:', largeImgURL);
 
   return (
     <div>
