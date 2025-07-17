@@ -11,7 +11,6 @@ type ProductSlideshowComponentTypes = {
   slideShowImages: ProductSlideshowImages[];
 };
 const ImageGalleryMaster = ({ imageGalleryComponent, slideShowImages }: any) => {
-  console.log('imageGalleryComponent', imageGalleryComponent);
   const renderImageGallery = () => {
     switch (imageGalleryComponent) {
       case 'Image Thumbnails on the Left':
