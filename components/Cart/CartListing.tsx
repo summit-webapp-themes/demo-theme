@@ -8,10 +8,12 @@ import { get_access_token } from '../../store/slices/auth/token-login-slice';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import NoDataFound from '../NoRecordFound';
 import ListViewCard from './ListViewCard';
+import { useTranslation } from 'react-i18next';
 
 function CartListing() {
   const { cartListingItems, setCartListingItems, isLoading, errorMessage } = useFetchCartItems();
   const { addToCartItem, cLearCartAPIFunc, RemoveItemCartAPIFunc }: any = useAddToCartHook();
+  const { t } = useTranslation('common');
   const TokenFromStore: any = useSelector(get_access_token);
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
   const [clearCartLoader, setClearCartLoader] = useState(false);
@@ -79,7 +81,7 @@ function CartListing() {
       );
     }
     if (!isLoading && Object.keys(cartListingItems)?.length === 0) {
-      return <NoDataFound title={'Your cart is empty !!'} message={'Items added to your cart will show up here'} />;
+      return <NoDataFound title={t('cart_empty')} message={t('cart_empty_message')} />;
     }
   };
   return <>{handleDataRendering()}</>;

@@ -4,6 +4,7 @@ import useAddToCartHook from '../../hooks/CartPageHook/useAddToCart';
 import useWishlist from '../../hooks/WishlistHooks/useWishlistHook';
 import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import ProductCardVariantColour from '../../cards/ProductCardVariantColour';
+import { useTranslation } from 'react-i18next';
 const NoDataFound = dynamic(() => import('../NoRecordFound'));
 const ProductCard = dynamic(() => import('../../cards/ProductCard'));
 const ProductCardSkeleton = dynamic(() => import('../../cards/ProductCardSkeleton'));
@@ -11,6 +12,7 @@ const ProductCardSkeleton = dynamic(() => import('../../cards/ProductCardSkeleto
 const WishlistMaster = () => {
   const { wishlistData, isLoading } = useWishlist();
   const { addToCartItem, getPartyName } = useAddToCartHook();
+  const { t } = useTranslation('common');
   const cartData = useSelector(selectCart)?.items;
   const handleDataRendering = () => {
     if (isLoading) {
@@ -55,14 +57,14 @@ const WishlistMaster = () => {
       );
     }
     if (wishlistData?.length === 0) {
-      return <NoDataFound title="Wishlist list is empty !!" message="Add Items to wishlist to view wishlist list." />;
+      return <NoDataFound title={t('wishlist_list_is_empty')} message={t('add_items_to_wishlist')} />;
     }
   };
   return (
     <div>
       <div className="text-center py-4 bg-blue text-light mb-5">
-        <h4 className="m-0">Wishlist</h4>
-        <p className="m-0">View your wishlist products</p>
+        <h4 className="m-0">{t('wishlist')}</h4>
+        <p className="m-0">{t('view_your_wishlist_products')}</p>
       </div>
       <div className="container">{handleDataRendering()}</div>
     </div>

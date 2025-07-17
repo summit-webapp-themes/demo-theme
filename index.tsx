@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react';
-import { CONSTANTS } from '../services/config/app-config';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import MetaTag from '../services/api/general-apis/meta-tag-api';
-import useGoogleAnalyticsOperationsHandler from '../hooks/GoogleAnalytics/useGoogleAnalyticsOperationsHandler';
 import HomePageMaster from '../components/HomePage/HomePageMaster';
-import { setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
-import MultiLangApi from '../services/api/general-apis/multilanguage-api';
-import getBannerAPI from '../services/api/home-page-apis/banner-api';
-import getComponentsList from '../services/api/home-page-apis/get-components-list';
 import PageMetaData from '../components/PageMetaData';
 import TranslationsList from '../components/TranslationsList';
-import { getProductsList } from '../services/addon-services/api/emr-api\'s/product-api\'s/get-product-list-api';
+import useGoogleAnalyticsOperationsHandler from '../hooks/GoogleAnalytics/useGoogleAnalyticsOperationsHandler';
+import MetaTag from '../services/api/general-apis/meta-tag-api';
+import getBannerAPI from '../services/api/home-page-apis/banner-api';
+import getComponentsList from '../services/api/home-page-apis/get-components-list';
+import { CONSTANTS } from '../services/config/app-config';
+import { setMultiLingualData } from '../store/slices/general_slices/multilang-slice';
 
 type BannerDataTypes = {
   img: string;
@@ -24,7 +22,7 @@ type BannerArrayTypes = {
   data: BannerDataTypes[];
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
   let componentsList: any;
   const requestParams = { page_type: 'Home Page' };

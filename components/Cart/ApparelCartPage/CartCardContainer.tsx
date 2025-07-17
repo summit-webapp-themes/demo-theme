@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import CartCard from '../../../cards/CartCard';
+import { useTranslation } from 'react-i18next';
 
 interface CartCardContainerPropTypes {
   cartListingItems: any;
@@ -10,6 +11,7 @@ interface CartCardContainerPropTypes {
 
 const CartCardContainer = ({ cartListingItems, RemoveItemCartAPIFunc, setCartListingItems, addToCartItem }: CartCardContainerPropTypes) => {
   const allOrders = cartListingItems?.categories?.flatMap((category: any) => category?.orders);
+  const { t } = useTranslation('common');
 
   const handleUpdateCart = useCallback((updatedList: any) => {
     const params = {
@@ -64,10 +66,10 @@ const CartCardContainer = ({ cartListingItems, RemoveItemCartAPIFunc, setCartLis
   return (
     <div className=" mt-5 w-100">
       <div className="row text-uppercase d-none d-xl-flex fw-bold">
-        <div className="col-xl-5">product</div>
-        <div className="col-xl-2 text-start">price</div>
-        <div className="col-xl-3 text-center">quantity</div>
-        <div className="col-xl-2 text-end">total</div>
+        <div className="col-xl-5">{t('product')}</div>
+        <div className="col-xl-2 text-start">{t('price')}</div>
+        <div className="col-xl-3 text-center">{t('quantity')}</div>
+        <div className="col-xl-2 text-end">{t('total')}</div>
       </div>
       <hr className="m-0 my-xl-3 d-none d-xl-block" />
       <div>

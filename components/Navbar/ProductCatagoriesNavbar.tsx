@@ -3,8 +3,10 @@ import Link from 'next/link';
 import { Overlay, Placeholder, Popover } from 'react-bootstrap';
 import stylesHeader from '../../styles/components/header.module.scss';
 import LinguisticsAndForex from './LinguisticsAndForex';
+import { useTranslation } from 'react-i18next';
 
 function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLanguagesData, selectedLang, handleLanguageChange }: any) {
+  const { t } = useTranslation('common');
   const [showPopoverIndex, setShowPopoverIndex] = useState<number | null>(null);
   const [target, setTarget] = useState<HTMLElement | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -64,7 +66,7 @@ function ProductCatagoriesNavbar({ navbarData, isLoading, errorMessage, multiLan
   );
   const handleDataRendering = () => {
     if (isLoading) {
-      return <h4>Loading</h4>;
+      return <h4>{t('loading')}</h4>;
     }
     if (navbarData?.length > 0) {
       return (
