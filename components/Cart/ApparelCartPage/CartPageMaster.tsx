@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import useAddToCartHook from '../../../hooks/CartPageHook/useAddToCart';
 import useFetchCartItems from '../../../hooks/CartPageHook/useFetchCartItems';
 import NoDataFound from '../../NoRecordFound';
@@ -7,6 +8,7 @@ import CartSubtotal from './CartSubtotal';
 const CartPageMaster = () => {
   const { cartListingItems, setCartListingItems, isLoading, errorMessage } = useFetchCartItems();
   const { addToCartItem, cLearCartAPIFunc, RemoveItemCartAPIFunc }: any = useAddToCartHook();
+  const { t } = useTranslation('common');
 
   const message = `
     Before proceeding to checkout, you must add some products to your shopping cart.
@@ -39,7 +41,7 @@ const CartPageMaster = () => {
       );
     }
     if (!isLoading && Object.keys(cartListingItems)?.length === 0) {
-      return <NoDataFound title={'YOUR CART IS EMPTY.'} const message={message} />;
+      return <NoDataFound title={t('cart_empty')} const message={message} />;
     }
   };
   return <>{handleDataRendering()}</>;

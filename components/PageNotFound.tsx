@@ -3,9 +3,11 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import image from '../public/assets/images/404-page.svg';
 import pageNotFoundStyles from '../styles/components/errorboundary.module.scss';
+import { useTranslation } from 'react-i18next';
 
 function PageNotFound() {
   const router = useRouter();
+  const { t } = useTranslation('common');
 
   return (
     <>
@@ -18,14 +20,14 @@ function PageNotFound() {
 
           {/* Error Content (Right - Centered) */}
           <div className={` ${pageNotFoundStyles.error_content} `} style={{ flex: 1, textAlign: 'start' }}>
-            <h4 className="fw-bold text-start font-poppins">Page not Found!</h4>
+            <h4 className="fw-bold text-start font-poppins">{t('page_not_found')}!</h4>
             <p className="text-muted  text-start font-poppins">
-              Sorry, we're having trouble processing your request right now.
+              {t('request_error_message')}
               <br />
-              <p className="font-poppins">Please try again later.</p>
+              <p className="font-poppins">{t('try_again_later')}</p>
             </p>
             <button className={` ${pageNotFoundStyles.error_button} `} onClick={() => router.push('/')}>
-              <div className={`${pageNotFoundStyles.error_button_text} font-poppins`}>Back to Home</div>
+              <div className={`${pageNotFoundStyles.error_button_text} font-poppins`}>{t('back_to_home')}</div>
             </button>
           </div>
         </div>

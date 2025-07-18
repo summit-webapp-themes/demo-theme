@@ -1,7 +1,8 @@
+import '../i18n/i18n';
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import summitSettings from '../summit-settings.json'; // Import the settings file
-import { createFontImport } from '../utils/fontUtils'; // Helper function to dynamically import fonts
+import summitSettings from '../summit-settings.json';
+import { createFontImport } from '../utils/fontUtils';
 import dynamic from 'next/dynamic';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -10,50 +11,60 @@ import { CONSTANTS } from '../services/config/app-config';
 import { persistor, store } from '../store/store';
 import useInitializeGoogleAnalytics from '../hooks/GoogleAnalytics/useInitializeGoogleAnalytics';
 import ErrorBoundary from '../components/ErrorBoundary';
+import useLanguageHandler from '../hooks/GeneralHooks/LanguageHandler';
 const Layout = dynamic(() => import('../components/Layout'));
 const ProtectedRoute = dynamic(() => import('../routes/ProtectedRoute'));
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
 
 const summitSettingsData: any = summitSettings;
-// Dynamically import font based on settings
-const fontFamily = summitSettingsData?.data?.font_family || 'Nunito'; // Default to Nunito
-const dynamicFont = createFontImport(fontFamily); // Import font dynamically
+const fontFamily = summitSettingsData?.data?.font_family || 'Nunito';
+const dynamicFont = createFontImport(fontFamily);
 
-// Specify Google Tracking Code for Google Analytics
+function InnerApp({ Component, pageProps }: AppProps) {
+  useLanguageHandler(); // ✅ Now inside Redux Provider context
+  const { ENABLE_GOOGLE_ANALYTICS, ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION } = CONSTANTS;
 
-function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    if (CONSTANTS.ENABLE_GOOGLE_ANALYTICS) {
+    if (ENABLE_GOOGLE_ANALYTICS) {
       useInitializeGoogleAnalytics();
     }
   }, []);
+
+  return (
+    <>
+      <ToastContainer
+        position="top-right"
+        className="toast-container-below-navbar"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        draggable={false}
+        closeOnClick
+        pauseOnHover
+      />
+      <Layout>
+        {ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION ? (
+          <Component {...pageProps} />
+        ) : (
+          <ProtectedRoute>
+            <Component {...pageProps} />
+          </ProtectedRoute>
+        )}
+      </Layout>
+    </>
+  );
+}
+
+function MyApp(props: AppProps) {
   return (
     <div className={dynamicFont.className}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ErrorBoundary>
-            <Layout>
-              <ToastContainer
-                position="top-right"
-                className="toast-container-below-navbar"
-                autoClose={3000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                draggable={false}
-                closeOnClick
-                pauseOnHover
-              />
-              {/* Below condition is to check whether give complete access of site to guest user or user can access site only after authentication */}
-              {CONSTANTS.ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION ? (
-                <Component {...pageProps} />
-              ) : (
-                <ProtectedRoute>
-                  <Component {...pageProps} />
-                </ProtectedRoute>
-              )}
-            </Layout>
+            <InnerApp {...props} />
           </ErrorBoundary>
         </PersistGate>
       </Provider>

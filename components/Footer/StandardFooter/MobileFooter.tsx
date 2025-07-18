@@ -7,12 +7,15 @@ import { FooterData } from '../../../interfaces/footer-interface';
 import securityLogo from '../../../public/assets/images/security_image.png';
 import ProGearHub from '../../../public/assets/images/logo.png';
 import style from '../../../styles/components/footer.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface MobileFooterProps {
   footerData: FooterData;
 }
 
 const MobileFooter: React.FC<MobileFooterProps> = ({ footerData }) => {
+  const { t } = useTranslation('footer');
+
   return (
     <footer className={`bg-light text-dark mobile_footer_container ${style.footer_container}`}>
       <div className={`${style.footer_list_container}`}>
@@ -21,7 +24,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ footerData }) => {
             {/* Company Info */}
             <Accordion alwaysOpen>
               <Accordion.Item eventKey="0">
-                <Accordion.Header>Get in Touch</Accordion.Header>
+                <Accordion.Header>{t('get_in_touch')}</Accordion.Header>
                 <Accordion.Body>
                   <div className="col-xl-3 col-md-6 col-lg-6 mb-4">
                     <div className="mb-4">
@@ -51,7 +54,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ footerData }) => {
               </Accordion.Item>
               {/* Categories */}
               <Accordion.Item eventKey="1">
-                <Accordion.Header>Categories</Accordion.Header>
+                <Accordion.Header>{t('categories')}</Accordion.Header>
                 <Accordion.Body>
                   <div className="col-xl-2 col-md-6 col-lg-6 mb-4">
                     <ul className="list-unstyled text-secondary">
@@ -85,7 +88,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ footerData }) => {
               </Accordion.Item>
               {/* Useful Links */}
               <Accordion.Item eventKey="3">
-                <Accordion.Header>Useful Links</Accordion.Header>
+                <Accordion.Header>{t('useful_links')}</Accordion.Header>
                 <Accordion.Body>
                   <div className="col-xl-2 col-md-6 col-lg-6 mb-4">
                     <ul className="list-unstyled text-secondary">
@@ -102,14 +105,15 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ footerData }) => {
               </Accordion.Item>
               {/* Newsletter Signup */}
               <Accordion.Item eventKey="4">
-                <Accordion.Header>Newsletter Signup</Accordion.Header>
+                <Accordion.Header>{t('newsletter_signup')}</Accordion.Header>
                 <Accordion.Body>
                   <div className="col-xl-3 col-md-6 col-lg-6 mb-4">
-                    <p>Subscribe to our newsletter and get 10% off your first purchase</p>
+                    {/* <p>Subscribe to our newsletter and get 10% off your first purchase</p> */}
+                    <p>{t('newsletter_para')}</p>
                     <div className="input-group mb-3">
                       <input type="email" className="form-control" placeholder="Your email address" />
                       <button className={`btn btn-dark ${style.subscribe_btn}`} type="button">
-                        Subscribe
+                        {t('subscribe')}
                       </button>
                     </div>
                     <div className="d-flex">
@@ -129,8 +133,9 @@ const MobileFooter: React.FC<MobileFooterProps> = ({ footerData }) => {
       <div className={`py-3 text-center ${style.footer_bottom}`}>
         <div className={`d-flex justify-content-center align-items-center flex-wrap mx-auto px-3`} style={{ maxWidth: '1200px' }}>
           <p className="mb-0">
-            <span className="text-secondary">All Mobile Rights Reserved © 2025</span>
-            <span className="fw-bold text-danger"> ProGearHub</span> store - Developed by
+            <span className="text-secondary">{t('reserved_p')}</span>
+            {/* <span className="text-secondary">All Mobile Rights Reserved © 2025</span> */}
+            <span className="fw-bold text-danger">{t('progearhub')} </span> {t('store_developed')}
             <span style={{ fontWeight: '600' }}> The4</span>
           </p>
           {/* links  */}

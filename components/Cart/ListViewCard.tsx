@@ -5,9 +5,11 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import NoImage from '../../public/assets/images/no_image.png';
 import cartStyles from '../../styles/components/cartlist.module.scss';
+import { useTranslation } from 'react-i18next';
 
 function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, RemoveItemCartAPIFunc, selectedMultiLangData }: any) {
   const router = useRouter();
+  const { t } = useTranslation('common');
   const [currencySymbol, setCurrencySymbol] = useState('');
   const [updatedCartList, setUpdatedCartList]: any = useState([]);
 
@@ -162,7 +164,7 @@ function ListViewCard({ cartListingItems, setCartListingItems, addToCartItem, Re
                             className="w-100 text-center border"
                             onChange={(e) => handleQtyChange(item?.item_code, e.target.value)}
                           />
-                          {item?.qty === 0 && <p style={{ color: 'red', fontSize: '10px', whiteSpace: 'nowrap' }}>Minimum QTY Is 1</p>}
+                          {item?.qty === 0 && <p style={{ color: 'red', fontSize: '10px', whiteSpace: 'nowrap' }}>{t('min_qty_is_1')}</p>}
                         </div>
                         <div className="col-lg-1 col-md-12">
                           {item?.currency_symbol}

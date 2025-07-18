@@ -6,12 +6,15 @@ import { FooterData } from '../../../interfaces/footer-interface';
 import securityLogo from '../../../public/assets/images/security_image.png';
 import ProGearHub from '../../../public/assets/images/logo.png';
 import style from '../../../styles/components/footer.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface WebFooterProps {
   footerData: FooterData;
 }
 
 const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
+  const { t } = useTranslation('footer');
+
   return (
     <footer className={`bg-light text-dark web_footer_container ${style.footer_container}`}>
       <div className={`${style.footer_list_container}`}>
@@ -45,7 +48,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Categories */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className={`mb-4 ${style.footer_list_heading}`}>Categories</h5>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>{t('categories')}</h5>
               <ul className="list-unstyled text-secondary">
                 {footerData.categories.map((item, index) => (
                   <Link href="#" className="text-decoration-none text-secondary">
@@ -59,7 +62,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Information */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className={`mb-4 ${style.footer_list_heading}`}>Information</h5>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>{t('information')}</h5>
               <ul className="list-unstyled text-secondary">
                 {footerData.information.map((item, index) => (
                   <Link href="#" className="text-decoration-none text-secondary">
@@ -73,7 +76,7 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Useful Links */}
             <div className="col-xl-2 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className={`mb-4 ${style.footer_list_heading}`}>Useful Links</h5>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>{t('useful_links')}</h5>
               <ul className="list-unstyled text-secondary">
                 {footerData.usefulLinks.map((item, index) => (
                   <Link href="#" className="text-decoration-none text-secondary">
@@ -87,12 +90,13 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
 
             {/* Newsletter Signup */}
             <div className="col-xl-3 col-md-6 col-lg-6 mb-4 pt-2">
-              <h5 className={`mb-4 ${style.footer_list_heading}`}>Newsletter Signup</h5>
-              <p>Subscribe to our newsletter and get 10% off your first purchase</p>
+              <h5 className={`mb-4 ${style.footer_list_heading}`}>{t('newsletter_signup')}</h5>
+              {/* <p>Subscribe to our newsletter and get 10% off your first purchase</p> */}
+              <p>{t('newsletter_para')}</p>
               <div className="input-group mb-3">
                 <input type="email" className="form-control" placeholder="Your email address" />
                 <button className={`btn btn-dark ${style.subscribe_btn}`} type="button">
-                  Subscribe
+                  {t('subscribe')}
                 </button>
               </div>
               <div className="d-flex">
@@ -109,8 +113,8 @@ const WebFooter: React.FC<WebFooterProps> = ({ footerData }) => {
       <div className={`py-3 text-center ${style.footer_bottom}`}>
         <div className={`d-flex justify-content-between align-items-center mx-auto`} style={{ maxWidth: '1200px' }}>
           <p className="mb-0 ps-md-5 ps-xl-0">
-            <span className="text-secondary">All Rights Reserved © 2025</span> <span className="fw-bold text-danger">ProGearHub</span>{' '}
-            store - Developed by <span style={{ fontWeight: '600' }}>8848 Digital</span>
+            <span className="text-secondary">{t('reserved_p')}</span> <span className="fw-bold text-danger">{t('progearhub')}</span>{' '}
+            {t('store_developed')} <span style={{ fontWeight: '600' }}>8848 Digital</span>
           </p>
           {/* links  */}
           <div className="pe-md-5 pe-xl-0">

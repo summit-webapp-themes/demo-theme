@@ -40,9 +40,9 @@ const DefaultLayout: FC<DefaultLayoutProps> = ({ filterComponent, CardsComponent
   if (filterComponent === 'Fallback Filters') {
     const FallbackLayout = require(`../ProductListPageLayout/FallbackLayouts/FallbackLayout`).default;
     return <FallbackLayout key={'FallbackLayout'} renderFilter={renderFilter} renderProducts={renderProducts} />;
-  } 
+  }
 
-  return ( 
+  return (
     <div className="ps-lg-5 pe-lg-4 px-md-3 px-3">
       <div className="row">
         <div className="col-12 col-md-2 web-filter d-none d-sm-block ">{renderFilter()}</div>

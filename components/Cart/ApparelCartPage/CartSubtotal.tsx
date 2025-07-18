@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../../../styles/components/cartlist.module.scss';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 interface CartSubtotalPropsTypes {
   cartListingItems: any;
@@ -8,6 +9,8 @@ interface CartSubtotalPropsTypes {
 
 const CartSubtotal = ({ cartListingItems }: CartSubtotalPropsTypes) => {
   const router = useRouter();
+  const { t } = useTranslation('common');
+
   const handleCartDisable = () => {
     let qtyError: any = [];
     cartListingItems?.categories?.map((category: any, idx: number) =>
@@ -25,8 +28,8 @@ const CartSubtotal = ({ cartListingItems }: CartSubtotalPropsTypes) => {
       <div className="col-md-6">
         <div className="row">
           <div className="col-7">
-            <span className="fw-bold text-uppercase">subtotal</span>
-            <span>(including tax) </span>
+            <span className="fw-bold text-uppercase">{t('subtotal')}</span>
+            <span>({t('including_tax')}) </span>
           </div>
           <div className="col-4">: ₹{cartListingItems?.grand_total_including_tax}</div>
         </div>
@@ -34,14 +37,14 @@ const CartSubtotal = ({ cartListingItems }: CartSubtotalPropsTypes) => {
       <div className="col-md-6">
         <div className="row">
           <div className="col-7">
-            <span className="fw-bold text-uppercase">subtotal</span>
-            <span>(excluding tax) </span>
+            <span className="fw-bold text-uppercase">{t('subtotal')}</span>
+            <span>({t('excluding_tax')}) </span>
           </div>
           <div className="col-4">: ₹{cartListingItems?.grand_total_excluding_tax}</div>
         </div>
       </div>
       <button className={`mt-3 ${styles.checkout_btn}`} disabled={handleCartDisable()} onClick={() => goToCheckout()}>
-        Check out
+        {t('check_out')}
       </button>
     </div>
   );
