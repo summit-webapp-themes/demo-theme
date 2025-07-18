@@ -135,14 +135,14 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 matchedCartGroup?.map((cartGroup: any, index: number) => (
                   <CartDetailsTable
                     key={`cart-${index}`}
-                    pageType='Cart'
+                    pageType='Product Details'
                     cartGroup={cartGroup}
                     itemsUpdating={itemsUpdating}
                     handleQuantityChange={handleQuantityChange}
                     handleDeleteItem={handleDeleteItem}
                   />
                 ))}
-                {/* <FallbackProductDetails productDetailData={productDetailData} /> */}
+                <FallbackProductDetails productDetailData={productDetailData} />
             </div>
           </>
         );
