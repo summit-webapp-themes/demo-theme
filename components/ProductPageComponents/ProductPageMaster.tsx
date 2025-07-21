@@ -7,11 +7,12 @@ import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slic
 import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
 import styles from '../../styles/components/productDetail.module.scss';
-// import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
-// import useCart from '../../hooks/addon-hooks/useCart';
-// import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
-// import ESBreadCrumbs from '../ESBreadCrumbs';
-// import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
+// // import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
+// // import useCart from '../../hooks/addon-hooks/useCart';
+// // import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
+// // import ESBreadCrumbs from '../ESBreadCrumbs';
+// // import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
+// import FallbackProductDetails from './ProductInformationComponents/FallbackProductDetails/FallbackProductDetails';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
@@ -76,7 +77,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
 
     // const imageCol = productPageComponents?.magnified_image_component && (
     //   <div className={`col-md-7 ${esStyles.productImagesContainer}`}>
-    //     {/* <ESBreadCrumbs /> */}
+    //     <ESBreadCrumbs />
     //     <ImageGalleryMaster
     //       imageGalleryComponent={productPageComponents.magnified_image_component}
     //       slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
@@ -130,17 +131,20 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
       //           btnLoader={btnLoader}
       //         />
       //       </div>
-      //       {matchedCartGroup?.length > 0 &&
-      //         matchedCartGroup?.map((cartGroup: any, index: number) => (
-      //           <div className={esStyles.productCartTableContainer}>
+      //       <div className={esStyles.productCartTableContainer}>
+      //         {matchedCartGroup?.length > 0 &&
+      //           matchedCartGroup?.map((cartGroup: any, index: number) => (
       //             <CartDetailsTable
+      //               key={`cart-${index}`}
+      //               pageType='Product Details'
       //               cartGroup={cartGroup}
       //               itemsUpdating={itemsUpdating}
       //               handleQuantityChange={handleQuantityChange}
       //               handleDeleteItem={handleDeleteItem}
       //             />
-      //           </div>
-      //         ))}
+      //           ))}
+      //           <FallbackProductDetails productDetailData={productDetailData} />
+      //       </div>
       //     </>
       //   );
       //   break;
