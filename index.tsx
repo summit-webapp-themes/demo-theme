@@ -24,7 +24,7 @@ type BannerArrayTypes = {
   data: BannerDataTypes[];
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }: { locale: string }) => {
   const { SUMMIT_APP_CONFIG } = CONSTANTS;
   let componentsList: any;
   const requestParams = { page_type: 'Home Page' };

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { currency_selector_state } from '../../../../store/slices/general_slices/multi-currency-slice';
+import { useTranslation } from 'react-i18next';
 
 const pastelColors = [
   '#FADADD', // pink
@@ -31,6 +32,7 @@ const spanClasses = [
 
 const MenuCategoryGridMain = ({ collectionData }: any) => {
   const currencyState = useSelector(currency_selector_state);
+  const { t } = useTranslation('common');
   const imageLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
@@ -53,7 +55,7 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
             <Image src={item?.imgUrl} alt="Product Image" fill style={{ objectFit: 'cover' }} loader={imageLoader} />
             <Link href={`product-category/${item.DpCd}?page=1&currency=${currencyState.selected_currency_value}`} className={styles.cardLink} aria-label={item?.DpCd}>
               <div className={styles.pastelCard}>
-                <span className={styles.cardText}>{item?.DpCd}</span>
+                <span className={styles.cardText}>{t(item?.DpCd)}</span>
               </div>
             </Link>
           </Link>

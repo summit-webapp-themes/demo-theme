@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap';
 import { IoWarningOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_access_token, setShowSessionExpiredModalFalse } from '../store/slices/auth/token-login-slice';
+import { useTranslation } from 'react-i18next';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ function Layout({ children, componentProps }: LayoutProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { showSessionExpiredModal } = useSelector(get_access_token);
+  const { t } = useTranslation('common');
   const toShowHeader =
     router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || !apiResponseOfLayoutData?.data?.show_header ? false : true;
 
@@ -66,7 +68,7 @@ function Layout({ children, componentProps }: LayoutProps) {
         <Modal.Body className="d-flex flex-column gap-3 align-items-center pb-0 m-3">
           <IoWarningOutline className=' text-danger' size={32} />
           <p className="h6 m-0 fw-medium text-center" style={{ color: '#2B2B2B' }}>
-            Your Session has expired. Please login to continue.
+            {t('your_session_has_expired_login_to_continue')}
           </p>
           <button
             style={{ width: 'fit-content'}}
@@ -76,7 +78,7 @@ function Layout({ children, componentProps }: LayoutProps) {
               dispatch(setShowSessionExpiredModalFalse());
             }}
           >
-            Go to Login
+            {t('go_to_login')}
           </button>
         </Modal.Body>
       </Modal>
