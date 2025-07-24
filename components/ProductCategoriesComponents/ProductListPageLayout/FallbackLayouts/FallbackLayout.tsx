@@ -1,5 +1,291 @@
-const FallbackLayout = () => {
-  return <div className="row m-0">Fallback layout</div>;
+import { Button, ButtonGroup } from 'react-bootstrap';
+import { HiOutlineMenu } from 'react-icons/hi';
+import { FiGrid } from 'react-icons/fi';
+import FixedSidebar from '../../../addon-components/TwoLevelSidebar/Sidebar/SidebarMaster';
+import KCTopNavbar from '../../../addon-components/KCTopNavbar/KCTopNavbar';
+import KCTopFilterSection from '../../../addon-components/KCTopFilterSection/KCTopFilterSection';
+import KCGridCard from '../../../../cards/addon-cards/KCGridCard';
+import KCListCard from '../../../../cards/addon-cards/KCListCard';
+import useKCLayoutHandler from '../../../../hooks/addon-hooks/kc-hooks/useKCLayoutHandler';
+import { IoWarningOutline } from 'react-icons/io5';
+import useFiltersHook from '../../../../hooks/addon-hooks/kc-hooks/useTwoLevelSidebar';
+import KCCartGridCard from '../../../../cards/addon-cards/KCCartGridCard';
+import KCProductListing from '../../../addon-components/KCProductListing';
+
+const FixedFiltersLayout = () => {
+  const {
+    isLoading,
+    productsData,
+    cartProductsData,
+    voucherProductsData,
+    error,
+    setError,
+    cartError,
+    setCartError,
+    getProductsData,
+    getCartData,
+    getVoucherData,
+    deleteCs,
+    updatedProductsDataWithNewPrice,
+    selectedProducts,
+    setSelectedProducts,
+    toggleProductView,
+    setToggleProductView,
+    actionBtnLoader,
+    createVoucherAPI,
+    handleQuantityChange,
+    handleDeleteItems,
+    createOrderAPI,
+  } = useKCLayoutHandler();
+
+  const {
+    activeScope,
+    sessionTypeState,
+    applyFilterBtnLoader,
+    sessionLoader,
+    isSidebarVisible,
+    selectedFilter,
+    targetTags,
+    setTargetTags,
+    collectionTags,
+    setCollectionTags,
+    inspirationTags,
+    setInspirationTags,
+    verticalTags,
+    setVerticalTags,
+    filters,
+    openSidebar,
+    closeSidebar,
+    handleAcceptIndivisualFilter,
+    customerCodeList,
+    selectedCustomerCode,
+    setSelectedCustomerCode,
+    sourceTypeList,
+    selectedSourceType,
+    setSelectedSourceType,
+    centerStone,
+    setCenterStone,
+    colorStone,
+    setColorStone,
+    selectedMetalCol,
+    setSelectedMetalCol,
+    selectedCatalog,
+    setSelectedCatalog,
+    selectedStockType,
+    setSelectedStockType,
+    selectedInStockType,
+    setSelectedInStockType,
+    selectedLiveType,
+    setSelectedLiveType,
+    statusTags,
+    setStatusTags,
+    originTags,
+    setOriginTags,
+    typeTags,
+    setTypeTags,
+    statusList,
+    originList,
+    typeList,
+    inStockTypeList,
+    liveTypeList,
+    metalColList,
+    sourceCatalogueList,
+    salesCategoryList,
+    designCategoryList,
+    designTags,
+    salesTags,
+    setDesignTags,
+    setSalesTags,
+    displayQualityTags,
+    sortByList,
+    displayQualityList,
+    sortByTags,
+    styleCodeList,
+    styleCodeTags,
+    bagNoList,
+    bagNumberTags,
+    designColorList,
+    designColourTags,
+    priceRange,
+    diamondCtsRange,
+    grossWtRange,
+    metalWtRange,
+    colorStoneWtRange,
+    centerPointerWtRange,
+    setDesignColourTags,
+    setBagNumberTags,
+    setStyleCodeTags,
+    setSortByTags,
+    setDisplayQualityTags,
+    setDesignColorList,
+    setGrossWtRange,
+    setMetalWtRange,
+    setColorStoneWtRange,
+    setCenterPointerWtRange,
+    setDiamondCtsRange,
+    setPriceRange,
+    selectedColorStone,
+    setSelectedColorStone,
+    inspirationList,
+    collectionList,
+    verticalList,
+    workScopeList,
+    voucherTypeList,
+    selectedScope,
+    setSelectedScope,
+    selectedVoucherType,
+    setselectedVoucherType,
+    voucherNo,
+    setVoucherNo,
+    targetShowList,
+    showFilters,
+    handleApplyFilters,
+    setFromDmCd,
+    setToDmCd,
+    confirmationOptions,
+    designCodeRange,
+    setDesignCodeRange
+  }: any = useFiltersHook(getProductsData, getCartData, getVoucherData);
+  
+  return (
+    <div className="row m-0" style={{backgroundColor: '#F9FAFB', minHeight: '100vh', height: 'fit-content' }}>
+      <div className="col-2">
+        <FixedSidebar
+          workScopeList={workScopeList}
+          voucherTypeList={voucherTypeList}
+          selectedScope={selectedScope}
+          setSelectedScope={setSelectedScope}
+          selectedVoucherType={selectedVoucherType}
+          setselectedVoucherType={setselectedVoucherType}
+          voucherNo={voucherNo}
+          setVoucherNo={setVoucherNo}
+          visible={isSidebarVisible}
+          selectedFilter={selectedFilter}
+          selectedCustomerCode={selectedCustomerCode}
+          setSelectedCustomerCode={setSelectedCustomerCode}
+          customerCodeList={customerCodeList}
+          statusList={statusList}
+          originList={originList}
+          typeList={typeList}
+          inStockTypeList={ inStockTypeList}
+          liveTypeList={liveTypeList}
+          metalColList={metalColList}
+          sourceCatalogueList={sourceCatalogueList}
+          inspirationList={inspirationList}
+          targetShowList={targetShowList}
+          collectionList={collectionList}
+          verticalList={verticalList}
+          salesCategoryList={salesCategoryList}
+          designCategoryList={designCategoryList}
+          displayQualityList={displayQualityList}
+          sortByList={sortByList}
+          styleCodeList={styleCodeList}
+          bagNoList={bagNoList}
+          designColorList={designColorList}
+          selectedSourceType={selectedSourceType}
+          setSelectedSourceType={setSelectedSourceType}
+          sourceTypeList={sourceTypeList}
+          centerStone={centerStone}
+          setCenterStone={setCenterStone}
+          colorStone={colorStone}
+          setColorStone={setColorStone}
+          selectedMetalCol={selectedMetalCol}
+          setSelectedMetalCol={setSelectedMetalCol}
+          selectedCatalog={selectedCatalog}
+          setSelectedCatalog={setSelectedCatalog}
+          selectedStockType={selectedStockType}
+          setSelectedStockType={setSelectedStockType}
+          selectedInStockType={selectedInStockType}
+          setSelectedInStockType={setSelectedInStockType}
+          selectedLiveType={selectedLiveType}
+          setSelectedLiveType={setSelectedLiveType}
+          handleAcceptIndivisualFilter={handleAcceptIndivisualFilter}
+          closeSidebar={closeSidebar}
+          selectedColorStone={selectedColorStone}
+          setSelectedColorStone={setSelectedColorStone}
+          designTags={designTags}
+          setDesignTags={setDesignTags}
+          salesTags={salesTags}
+          setSalesTags={setSalesTags}
+          displayQualityTags={displayQualityTags}
+          setDisplayQualityTags={setDisplayQualityTags}
+          setDesignColorList={setDesignColorList}
+          sortByTags={sortByTags}
+          setSortByTags={setSortByTags}
+          styleCodeTags={styleCodeTags}
+          setStyleCodeTags={setStyleCodeTags}
+          bagNumberTags={bagNumberTags}
+          setBagNumberTags={setBagNumberTags}
+          designColourTags={designColourTags}
+          setDesignColourTags={setDesignColourTags}
+          statusTags={statusTags}
+          setStatusTags={setStatusTags}
+          originTags={originTags}
+          setOriginTags={setOriginTags}
+          typeTags={typeTags}
+          targetTags={targetTags}
+          setTargetTags={setTargetTags}
+          collectionTags={collectionTags}
+          setCollectionTags={setCollectionTags}
+          inspirationTags={inspirationTags}
+          setInspirationTags={setInspirationTags}
+          verticalTags={verticalTags}
+          setVerticalTags={setVerticalTags}
+          setTypeTags={setTypeTags}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+          diamondCtsRange={diamondCtsRange}
+          setDiamondCtsRange={setDiamondCtsRange}
+          grossWtRange={grossWtRange}
+          setGrossWtRange={setGrossWtRange}
+          metalWtRange={metalWtRange}
+          setMetalWtRange={setMetalWtRange}
+          colorStoneWtRange={colorStoneWtRange}
+          setColorStoneWtRange={setColorStoneWtRange}
+          centerPointerWtRange={centerPointerWtRange}
+          setCenterPointerWtRange={setCenterPointerWtRange}
+          setFromDmCd={setFromDmCd}
+          setToDmCd={setToDmCd}
+          filters={filters}
+          showFilters={showFilters}
+          applyFilterBtnLoader={applyFilterBtnLoader}
+          sessionLoader={sessionLoader}
+          isSidebarVisible={isSidebarVisible}
+          openSidebar={openSidebar}
+          handleApplyFilters={handleApplyFilters}
+          sessionTypeState={sessionTypeState}
+          confirmationOptions={confirmationOptions}
+          deleteCs={deleteCs}
+          designCodeRange={designCodeRange}
+          setDesignCodeRange={setDesignCodeRange}
+        />
+      </div>
+      <KCProductListing 
+        activeScope={activeScope}
+        isLoading={isLoading} 
+        error={error} 
+        setError={setError} 
+        cartError={cartError}
+        setCartError={setCartError}
+        toggleProductView={toggleProductView} 
+        setToggleProductView={setToggleProductView}
+        productsData={productsData}
+        cartProductsData={cartProductsData}
+        voucherProductsData={voucherProductsData}
+        deleteCs={deleteCs}
+        selectedCustomerCode={selectedCustomerCode}
+        actionBtnLoader={actionBtnLoader}
+        createVoucherAPI={createVoucherAPI}
+        selectedProducts={selectedProducts}
+        updatedProductsDataWithNewPrice={updatedProductsDataWithNewPrice}
+        setSelectedProducts={setSelectedProducts}
+        handleQuantityChange={handleQuantityChange} 
+        handleDeleteItems={handleDeleteItems}
+        createOrderAPI={createOrderAPI}
+        voucherTypeList={voucherTypeList}
+      />
+    </div>
+  );
 };
 
-export default FallbackLayout;
+export default FixedFiltersLayout;
