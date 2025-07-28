@@ -21,6 +21,7 @@ type ProductPageComponentsTypes = {
 function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes) {
   const {
     productDetailData,
+    setProductDetailData,
     productVariantData,
     isLoading,
     errorMessage,
@@ -122,6 +123,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
               <FallbackProductInformation
                 key="FallbackProductInformation"
                 productDetailData={productDetailData}
+                setProductDetailData={setProductDetailData}
                 cartData={cartData}
                 setError={setError}
                 error={error}
