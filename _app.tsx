@@ -33,8 +33,8 @@ function InnerApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const storedCurrency = localStorage.getItem('selected_currency');
     const storedLanguage = localStorage.getItem('selected_language');
-    const currency = currencyDisplayOptions.find((opt: Option) => storedCurrency && opt?.value === JSON?.parse(storedCurrency));
-    const language = languageDisplayOptions.find((opt: Option) => storedLanguage && opt?.label === JSON?.parse(storedLanguage));
+    const currency = currencyDisplayOptions.find((opt: Option) => storedCurrency && opt?.value === storedCurrency);
+    const language = languageDisplayOptions.find((opt: Option) => storedLanguage && opt?.label === storedLanguage);
     
     if (storedCurrency && currency) {
       handleCurrencyShallowUpdate(currency);
