@@ -25,7 +25,7 @@ import useCurrencyLanguageHandler from '../hooks/GeneralHooks/LanguageHandler';
 
 const summitSettingsData: any = summitSettings;
 const fontFamily = summitSettingsData?.data?.font_family || 'Nunito';
-const dynamicFont = createFontImport(fontFamily);
+// const dynamicFont = createFontImport(fontFamily);
 function InnerApp({ Component, pageProps }: AppProps) {
   const { ENABLE_GOOGLE_ANALYTICS, ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION } = CONSTANTS;
   const { handleLanguageShallowUpdate, handleCurrencyShallowUpdate } = useCurrencyLanguageHandler();
@@ -74,7 +74,7 @@ function InnerApp({ Component, pageProps }: AppProps) {
 }
 function MyApp(props: AppProps) {
   return (
-    <div className={dynamicFont.className}>
+    <div className={fontFamily}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ErrorBoundary>
