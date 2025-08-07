@@ -5,6 +5,7 @@ import { IoWarningOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_access_token, setShowSessionExpiredModalFalse } from '../store/slices/auth/token-login-slice';
 import { useTranslation } from 'react-i18next';
+import FallbackLayout from './ProductCategoriesComponents/ProductListPageLayout/FallbackLayouts/FallbackLayout';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,6 +23,9 @@ function Layout({ children, componentProps }: LayoutProps) {
   const toShowFooter =
     router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || !apiResponseOfLayoutData?.data?.show_footer ? false : true;
 
+  const toShowFallbackLayout = 
+    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || router.pathname === '/product-category';
+  
   const HeaderRenderer = () => {
     if ('data' in apiResponseOfLayoutData) {
       if ('header_component' in apiResponseOfLayoutData?.data && apiResponseOfLayoutData?.data.header_component !== '') {
@@ -61,7 +65,13 @@ function Layout({ children, componentProps }: LayoutProps) {
     <>
       {toShowHeader && <HeaderRenderer />}
       <div style={{ minHeight: '600px'}}>
-        {children}
+        {toShowFallbackLayout ? (
+          children
+        ) : (
+          <FallbackLayout page='other'>
+            {children}
+          </FallbackLayout>
+        )}
       </div>
       {toShowFooter && <FooterRenderer />}
       <Modal show={showSessionExpiredModal} centered>
