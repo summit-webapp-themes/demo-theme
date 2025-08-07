@@ -99,18 +99,18 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   function renderProductInformationComponents() {
     if (!productDetailData || !productPageComponents) return null;
 
-    const imageCol = productPageComponents?.magnified_image_component && (
-      <div className={`col-md-6 ${esStyles.productImagesContainer}`}>
-        <div className={esStyles.productImagesWrapper}>
-          <ImageGalleryMaster
-            imageGalleryComponent={productPageComponents.magnified_image_component}
-            slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
-            selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
-            setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
-          />
-        </div>
-      </div>
-    );
+    // const imageCol = productPageComponents?.magnified_image_component && (
+    //   <div className={`col-md-6 ${esStyles.productImagesContainer}`}>
+    //     <div className={esStyles.productImagesWrapper}>
+      //     <ImageGalleryMaster
+      //       imageGalleryComponent={productPageComponents.magnified_image_component}
+      //       slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
+            // selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
+            // setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
+      //     />
+        // </div>
+    //   </div>
+    // );
     
     let infoCol = null;
     switch (productPageComponents.product_information_component) {
@@ -138,46 +138,46 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
         );
         break;
       }
-      case 'Fallback Product Information': {
-        const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
-        const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
-        const FallbackProductInformation =
-          require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
-        infoCol = (
-          <>
-            <div className={`col-md-6 ${esStyles.productInfoContainer}`}>
-              <FallbackProductInformation
-                key="FallbackProductInformation"
-                productDetailData={productDetailData}
-                setProductDetailData={setProductDetailData}
-                cartData={cartData}
-                setError={setError}
-                error={error}
-                handleMainQuantityChange={handleMainQuantityChange}
-                quantity={quantity}
-                handleAddToCart={handleAddToCart}
-                btnLoader={btnLoader}
-                getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
-              />
-            </div>
-            <div className={esStyles.productCartTableContainer}>
-              {matchedCartGroup?.length > 0 &&
-                matchedCartGroup?.map((cartGroup: any, index: number) => (
-                  <CartDetailsTable
-                    key={`cart-${index}`}
-                    pageType='Product Details'
-                    cartGroup={cartGroup}
-                    itemsUpdating={itemsUpdating}
-                    handleQuantityChange={handleQuantityChange}
-                    handleDeleteItem={handleDeleteItem}
-                  />
-                ))}
-                <FallbackProductDetails productDetailData={productDetailData} />
-            </div>
-          </>
-        );
-        break;
-      }
+      // case 'Fallback Product Information': {
+      //   const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
+      //   const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
+      //   const FallbackProductInformation =
+      //     require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
+      //   infoCol = (
+      //     <>
+      //       <div className={`col-md-6 ${esStyles.productInfoContainer}`}>
+      //         <FallbackProductInformation
+      //           key="FallbackProductInformation"
+      //           productDetailData={productDetailData}
+      //           setProductDetailData={setProductDetailData}
+      //           cartData={cartData}
+      //           setError={setError}
+      //           error={error}
+      //           handleMainQuantityChange={handleMainQuantityChange}
+      //           quantity={quantity}
+      //           handleAddToCart={handleAddToCart}
+      //           btnLoader={btnLoader}
+                // getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
+      //         />
+      //       </div>
+      //       <div className={esStyles.productCartTableContainer}>
+      //         {matchedCartGroup?.length > 0 &&
+      //           matchedCartGroup?.map((cartGroup: any, index: number) => (
+      //             <CartDetailsTable
+      //               key={`cart-${index}`}
+      //               pageType='Product Details'
+      //               cartGroup={cartGroup}
+      //               itemsUpdating={itemsUpdating}
+      //               handleQuantityChange={handleQuantityChange}
+      //               handleDeleteItem={handleDeleteItem}
+      //             />
+      //           ))}
+      //           <FallbackProductDetails productDetailData={productDetailData} />
+      //       </div>
+      //     </>
+      //   );
+      //   break;
+      // }
     }
 
     return (
@@ -186,7 +186,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
           <ESBreadCrumbs />
         </div>
         <div className="row m-0 p-0">
-          {imageCol}
+          {/* {imageCol} */}
           {infoCol}
         </div>
       </div>
