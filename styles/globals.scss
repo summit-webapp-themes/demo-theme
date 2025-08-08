@@ -792,3 +792,98 @@ body.modal-open {
   font-weight: 400 !important;
   -webkit-font-smoothing: antialiased !important;
 }
+
+.productDetailsAccordian {
+  .accordion {
+    --bs-accordion-border-color: none !important;
+  }
+  
+  .accordion-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    padding: 0 0 8px;
+    position: relative;
+  }
+  
+  // //hide scrollbar
+  // .accordion-item {
+  //   -ms-overflow-style: none; /* Edge, Internet Explorer */
+  //   scrollbar-width: none; /* Firefox */
+  //   overflow-y: scroll;
+  // }
+  
+  // // hides scrollbars while allowing to scroll
+  // .accordion-item::-webkit-scrollbar {
+  //   display: none; /* Chrome, Safari, Opera */
+  // }
+  
+  /* width */
+  .accordion-item::-webkit-scrollbar {
+    width: 6px;
+    margin-top: 40px;
+  }
+  
+  /* Track */
+  .accordion-item::-webkit-scrollbar-track {
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-top: 40px;
+    // border: 1px solid #dadada;
+  }
+  
+  /* Handle */
+  .accordion-item::-webkit-scrollbar-thumb {
+    background: #dddfe0;
+    border-radius: 10px;
+  }
+  
+  .accordion-button {
+    padding: 12px 0 !important;
+    background-color: #FFF !important;
+    font-size: 16px;
+    color: #646464 !important;
+    font-weight: 600 !important;
+    border: 0 !important;
+    border-bottom: 1px solid #DADADA !important;
+  }
+  
+  .accordion-button.collapsed {
+    padding: 12px 0 !important;
+    background-color: #FFF;
+    border: 0 !important;
+    border-bottom: 1px solid #DADADA !important;
+  }
+  
+  .accordion-button:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='m2 5 6 6 6-6'/%3E%3C/svg%3E") !important;
+  }
+  
+  .accordion-button:not(.collapsed):after {
+    rotate: 180deg;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='m2 5 6 6 6-6'/%3E%3C/svg%3E") !important;
+  }
+  
+  .accordion-button.show {
+    border: 0 !important;
+    border-bottom: 1px solid #DADADA !important;
+  }
+  
+  .accordion-button:focus {
+    box-shadow: none;
+  }
+  
+  .accordion-collapse .accordion-body {
+    padding: 12px 0 !important;
+    color: #000000 !important;
+    font-size: 16px;
+  }
+  
+  .web-filter .accordion-button:not(.collapsed) {
+    padding: 12px 0 !important;
+  }
+  
+  .accordion-body {
+    margin-bottom: 0;
+  }
+}
