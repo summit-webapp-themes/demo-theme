@@ -7,7 +7,7 @@ import noImg from '../../../public/assets/images/no_image.png';
 import imageStyle from '../../../styles/components/productImgMagnify.module.scss';
 import noImageStyles from '../../../styles/addon-styles/productPageV2Components.module.scss';
 
-const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowImages) => {
+const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone }: ProductSlideshowImages) => {
   const { API_BASE_URL } = CONSTANTS;
   const { enlargeImg, activeImgIndex, handleSelectedImage } = useImageGallery({ slideShowImages });
   const baseImgURL = `${API_BASE_URL}`;
@@ -23,8 +23,9 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowI
     return `${url} 600w, ${url} 1200w, ${url} 1800w`;
   };
 
-  const largeImgURL = getImageURL(enlargeImg);
+  const largeImgURL = getImageURL(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg);
 
+  console.log(selectedImageBasedOnSelectedTone);
   return (
     <div>
       {slideShowImages?.length > 0 ? (
@@ -39,15 +40,15 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowI
                     isFluidWidth: true,
                     width: 400,
                     height: 400,
-                    src: getImageURL(enlargeImg),
+                    src: getImageURL(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
                     // src: `${baseImgURL}${enlargeImg}`,
-                    srcSet: generateSrcSet(enlargeImg),
+                    srcSet: generateSrcSet(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
                     sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 10vw, 10vw`,
                   },
                   largeImage: {
                     // src: `${baseImgURL}${enlargeImg}`,
-                    src: getImageURL(enlargeImg),
-                    srcSet: generateSrcSet(enlargeImg),
+                    src: getImageURL(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                    srcSet: generateSrcSet(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
                     sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 30vw`,
                     width: 1200,
                     height: 1200,
@@ -70,7 +71,10 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages }: ProductSlideshowI
                   <div
                     className={`${imageStyle.img_wrap} ${i === activeImgIndex ? imageStyle.active : ''}`}
                     key={i}
-                    onClick={() => handleSelectedImage(image, i)}
+                    onClick={() => {
+                      handleSelectedImage(image, i);
+                      setSelectedImageBasedOnSelectedTone && setSelectedImageBasedOnSelectedTone(i);
+                    }}
                   >
                     <Image src={getImageURL(image)} alt={`Thumbnail image ${i + 1}`} width={100} height={100} />
                   </div>
