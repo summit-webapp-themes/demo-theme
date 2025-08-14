@@ -69,7 +69,7 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
               <div className={imageStyle.thumbnail_bottom}>
                 {slideShowImages.map((image: string, i: number) => (
                   <div
-                    className={`${imageStyle.img_wrap} ${i === activeImgIndex ? imageStyle.active : ''}`}
+                    className={`${imageStyle.img_wrap} ${selectedImageBasedOnSelectedTone !== undefined && i === selectedImageBasedOnSelectedTone ? imageStyle.active : ''}`}
                     key={i}
                     onClick={() => {
                       handleSelectedImage(image, i);
