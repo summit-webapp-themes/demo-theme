@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { currency_selector_state } from '../../../../store/slices/general_slices/multi-currency-slice';
 import { useTranslation } from 'react-i18next';
+import { CONSTANTS } from '../../../../services/config/app-config';
 
 const pastelColors = [
   '#FADADD', // pink
@@ -34,18 +35,13 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
   const currencyState = useSelector(currency_selector_state);
   const { t } = useTranslation('common');
   const imageLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
+    return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
   };
-  const collectionDataWithImage = collectionData?.map((item: any) => {
-    return {
-      ...item,
-      imgUrl: `/assets/images/${item.DpCd}.jpg`
-    };
-  });
+
   return (
     <div className="container py-3" >
       <div className={styles.gridContainer}>
-        {collectionDataWithImage?.slice(0, 9)?.map((item: any, index: number) => (
+        {collectionData?.slice(0, 9)?.map((item: any, index: number) => (
           <Link
             key={index}
             href={`product-category/${item.DpCd}?page=1&currency=${currencyState.selected_currency_value}`}
