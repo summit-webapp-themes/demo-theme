@@ -50,12 +50,29 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     handleAddToCart,
   } = useCart();
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
+  const [selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone] = useState<number>(0);
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
+
+  function getImageUrlBasedOnSelectedTone(selectedTone: string) {
+    const imgs = productDetailData?.imgUrl || [];
+  
+    const toneSuffixArray: any[] = imgs.map((img: string) => {
+      const imgPath = img.split('.webp')[0]
+      return imgPath.charAt(imgPath.length - 1);
+    })
+    const matchedImageIndex = toneSuffixArray.findIndex((s: string) => s === selectedTone);
+    setSelectedImageBasedOnSelectedTone(matchedImageIndex);
+  }
+
   useEffect(() => {
     if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
     }
   }, [SelectedLangDataFromStore]);
+
+  useEffect(() => {
+    getImageUrlBasedOnSelectedTone(productDetailData?.OdDmCol)
+  }, [productDetailData]);
 
   function renderHeaderComponents() {
     if (productPageComponents?.top_section_component?.length === 0) return;
@@ -82,10 +99,12 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
         <ImageGalleryMaster
           imageGalleryComponent={productPageComponents.magnified_image_component}
           slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
+          selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
+          setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
         />
       </div>
     );
-
+    
     let infoCol = null;
     switch (productPageComponents.product_information_component) {
       case 'Standard Product Information': {
@@ -131,6 +150,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 quantity={quantity}
                 handleAddToCart={handleAddToCart}
                 btnLoader={btnLoader}
+                getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
               />
             </div>
             <div className={esStyles.productCartTableContainer}>

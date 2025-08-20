@@ -9,8 +9,9 @@ import styles from '../../../styles/addon-styles/productPageV2Components.module.
 type ProductSlideshowComponentTypes = {
   imageGalleryComponent: string;
   slideShowImages: ProductSlideshowImages[];
+  selectedImageBasedOnSelectedTone: string;
 };
-const ImageGalleryMaster = ({ imageGalleryComponent, slideShowImages }: any) => {
+const ImageGalleryMaster = ({ imageGalleryComponent, slideShowImages, selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone }: any) => {
   const renderImageGallery = () => {
     switch (imageGalleryComponent) {
       case 'Image Thumbnails on the Left':
@@ -18,7 +19,7 @@ const ImageGalleryMaster = ({ imageGalleryComponent, slideShowImages }: any) => 
       case 'Image Thumbnails on the Right':
         return <ImageGalleryWithRightThumbnails slideShowImages={slideShowImages} />;
       case 'Image Thumbnails at the Bottom':
-        return <ImageGalleryWithBottomThumbnails slideShowImages={slideShowImages} />;
+        return <ImageGalleryWithBottomThumbnails slideShowImages={slideShowImages} selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone} setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone} />;
 
       default:
         return null; // or a fallback component
