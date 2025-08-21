@@ -104,7 +104,7 @@ function ProductListingMaster({ componentsList }: any) {
   }
 
   function renderProductListPageLayoutComponents() {
-    if (!componentsList?.product_category_page_layout && !componentsList.filters_component && !componentsList.product_card_components)
+    if (!componentsList?.product_category_page_layout && !componentsList?.filters_component && !componentsList?.product_card_components)
       return <p>No layout components to display.</p>;
     else {
       return (

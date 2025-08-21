@@ -94,14 +94,15 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     if (!productDetailData || !productPageComponents) return null;
 
     const imageCol = productPageComponents?.magnified_image_component && (
-      <div className={`col-md-7 ${esStyles.productImagesContainer}`}>
-        <ESBreadCrumbs />
-        <ImageGalleryMaster
-          imageGalleryComponent={productPageComponents.magnified_image_component}
-          slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
-          selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
-          setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
-        />
+      <div className={`col-md-6 ${esStyles.productImagesContainer}`}>
+        <div className={esStyles.productImagesWrapper}>
+          <ImageGalleryMaster
+            imageGalleryComponent={productPageComponents.magnified_image_component}
+            slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
+            selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
+            setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
+          />
+        </div>
       </div>
     );
     
@@ -138,7 +139,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
           require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
         infoCol = (
           <>
-            <div className={`col-md-5 ${esStyles.productInfoContainer}`}>
+            <div className={`col-md-6 ${esStyles.productInfoContainer}`}>
               <FallbackProductInformation
                 key="FallbackProductInformation"
                 productDetailData={productDetailData}
@@ -174,9 +175,14 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     }
 
     return (
-      <div className="row m-0 p-0">
-        {imageCol}
-        {infoCol}
+      <div className='m-0 p-0'>
+        <div className={esStyles.breadcrumbSection}>
+          <ESBreadCrumbs />
+        </div>
+        <div className="row m-0 p-0">
+          {imageCol}
+          {infoCol}
+        </div>
       </div>
     );
   }
