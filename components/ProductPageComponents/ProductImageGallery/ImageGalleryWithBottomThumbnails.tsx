@@ -6,6 +6,7 @@ import { ProductSlideshowImages } from '../../../interfaces/product-slideshow-im
 import noImg from '../../../public/assets/images/no_image.png';
 import imageStyle from '../../../styles/components/productImgMagnify.module.scss';
 import noImageStyles from '../../../styles/addon-styles/productPageV2Components.module.scss';
+import { useEffect } from 'react';
 
 const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone }: ProductSlideshowImages) => {
   const { API_BASE_URL } = CONSTANTS;
