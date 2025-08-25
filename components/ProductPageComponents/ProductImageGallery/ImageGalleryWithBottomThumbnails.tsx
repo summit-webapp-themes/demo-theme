@@ -23,7 +23,7 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
     return `${url} 600w, ${url} 1200w, ${url} 1800w`;
   };
 
-  const largeImgURL = getImageURL(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg);
+  const largeImgURL = getImageURL(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg);
 
   console.log(selectedImageBasedOnSelectedTone);
   return (
@@ -40,15 +40,15 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
                     isFluidWidth: true,
                     width: 400,
                     height: 400,
-                    src: getImageURL(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                    src: getImageURL(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
                     // src: `${baseImgURL}${enlargeImg}`,
-                    srcSet: generateSrcSet(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                    srcSet: generateSrcSet(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
                     sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 10vw, 10vw`,
                   },
                   largeImage: {
                     // src: `${baseImgURL}${enlargeImg}`,
-                    src: getImageURL(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
-                    srcSet: generateSrcSet(selectedImageBasedOnSelectedTone && selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                    src: getImageURL(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                    srcSet: generateSrcSet(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
                     sizes: `(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 30vw`,
                     width: 1200,
                     height: 1200,
