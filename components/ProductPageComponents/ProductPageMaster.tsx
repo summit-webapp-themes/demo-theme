@@ -56,11 +56,17 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   function getImageUrlBasedOnSelectedTone(selectedTone: string) {
     const imgs = productDetailData?.imgUrl || [];
   
-    const toneSuffixArray: any[] = imgs.map((img: string) => {
-      const imgPath = img.split('.webp')[0]
+    const toneSuffixArray: string[] = imgs.map((img: string) => {
+      const dotIndex = img.lastIndexOf(".");
+      const imgPath = dotIndex !== -1 ? img.substring(0, dotIndex) : img;
+  
       return imgPath.charAt(imgPath.length - 1);
-    })
-    const matchedImageIndex = toneSuffixArray.findIndex((s: string) => s === selectedTone);
+    });
+  
+    const matchedImageIndex = toneSuffixArray.findIndex(
+      (s: string) => s === selectedTone
+    );
+  
     setSelectedImageBasedOnSelectedTone(matchedImageIndex);
   }
 
