@@ -6,6 +6,7 @@ import { ProductSlideshowImages } from '../../../interfaces/product-slideshow-im
 import noImg from '../../../public/assets/images/no_image.png';
 import imageStyle from '../../../styles/components/productImgMagnify.module.scss';
 import noImageStyles from '../../../styles/addon-styles/productPageV2Components.module.scss';
+import { useEffect } from 'react';
 
 const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone }: ProductSlideshowImages) => {
   const { API_BASE_URL } = CONSTANTS;
@@ -25,7 +26,6 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
 
   const largeImgURL = getImageURL(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg);
 
-  console.log(selectedImageBasedOnSelectedTone);
   return (
     <div>
       {slideShowImages?.length > 0 ? (
@@ -56,6 +56,7 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
                   enlargedImagePosition: 'beside',
                   enlargedImageContainerStyle: {
                     backgroundColor: '#fff',
+                    zIndex: 9,
                   },
                   enlargedImageStyle: {
                     objectFit: 'contain',
@@ -88,7 +89,7 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
           <div className={noImageStyles.imgGalleryLgContainer}>
             <Image src={noImg} alt="Ring Image" className=" object-fit-cover" fill />
           </div>
-          <div className="overflow-x-auto" style={{ maxWidth: '100%' }}>
+          {/* <div className="overflow-x-auto" style={{ maxWidth: '100%' }}>
             <div className="d-flex mt-3 gap-3" style={{ width: '100%' }}>
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className={noImageStyles.imgGallerySmContainer}>
@@ -96,7 +97,7 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
