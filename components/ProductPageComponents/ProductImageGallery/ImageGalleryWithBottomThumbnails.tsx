@@ -26,7 +26,6 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
 
   const largeImgURL = getImageURL(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg);
 
-  console.log(selectedImageBasedOnSelectedTone);
   return (
     <div>
       {slideShowImages?.length > 0 ? (
