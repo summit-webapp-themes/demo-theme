@@ -87,7 +87,7 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
       ) : (
         <div className="w-100">
           <div className={noImageStyles.imgGalleryLgContainer}>
-            <Image src={noImg} alt="Ring Image" className=" object-fit-cover" fill />
+            <Image src={noImg} alt="Ring Image" className=" object-fit-contain" fill />
           </div>
           {/* <div className="overflow-x-auto" style={{ maxWidth: '100%' }}>
             <div className="d-flex mt-3 gap-3" style={{ width: '100%' }}>
