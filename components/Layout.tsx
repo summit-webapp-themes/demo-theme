@@ -23,7 +23,7 @@ function Layout({ children, componentProps }: LayoutProps) {
   const toShowFooter =
     router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || !apiResponseOfLayoutData?.data?.show_footer ? false : true;
 
-  const toShowFallbackLayout = 
+  const toHideFallbackLayout = 
     router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || router.pathname === '/product-category';
   
   const HeaderRenderer = () => {
@@ -65,7 +65,9 @@ function Layout({ children, componentProps }: LayoutProps) {
     <>
       {toShowHeader && <HeaderRenderer />}
       <div style={{ minHeight: '600px'}}>
-        {toShowFallbackLayout ? (
+        {toShowFooter && toShowHeader ? (
+          children
+        ) : toHideFallbackLayout ? (
           children
         ) : (
           <FallbackLayout page='other'>
