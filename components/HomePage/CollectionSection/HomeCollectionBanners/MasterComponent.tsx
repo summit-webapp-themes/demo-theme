@@ -12,7 +12,7 @@ const MasterComponent = ({ componentProperties }: any) => {
     return <div>{errorMessage}</div>;
   }
   return (
-    <div style={{ backgroundColor: '#FCFCFC'}}>
+    <div style={{ backgroundColor: '#F9FAFB'}}>
       <MenuCategoryGridMain collectionData={collectionData} />
     </div>
   );

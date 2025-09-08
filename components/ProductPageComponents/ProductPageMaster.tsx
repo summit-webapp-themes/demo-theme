@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { WebsiteInterfaceTypes } from '../../interfaces/website-interface-types';
 import useProductDetail from '../../hooks/ProductDetailPageHooks/useProductDetail';
+import { selectCart } from '../../store/slices/cart-slices/cart-local-slice';
 import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slices/selected-multilanguage-slice';
 import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
 import styles from '../../styles/components/productDetail.module.scss';
-import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
-import useCart from '../../hooks/addon-hooks/useCart';
-import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
-import KCBreadCrumbs from '../KCBreadCrumbs';
-import useHandleProductData from '../../hooks/addon-hooks/kc-hooks/useHandleProductData';
+// import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
+// import useCart from '../../hooks/addon-hooks/useCart';
+// import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
+// import ESBreadCrumbs from '../ESBreadCrumbs';
 // import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
 // import FallbackProductDetails from './ProductInformationComponents/FallbackProductDetails/FallbackProductDetails';
 
@@ -37,33 +37,18 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     checkPinCodeExists,
     validPinCode,
   } = useProductDetail();
-  const {
-    cartData,
-    btnLoader,
-    stockBtnLoader,
-    setError,
-    error,
-    itemsUpdating,
-    handleMainQuantityChange,
-    handleQuantityChange,
-    handleDeleteItem,
-    quantity,
-    handleAddToCart,
-  } = useCart();
-  const {
-    selectedMetal,
-    selectedPurity,
-    selectedTone,
-    selectedDiamond,
-    selectedSize,
-    stmpInst,
-    dmPrdInst,
-    szInst,
-    spcRem,
-    subRem,
-    setClearSelectedState,
-    setProductState,
-  } = useHandleProductData(productDetailData, setError);
+  // const {
+  //   cartData,
+  //   btnLoader,
+  //   setError,
+  //   error,
+  //   itemsUpdating,
+  //   handleMainQuantityChange,
+  //   handleQuantityChange,
+  //   handleDeleteItem,
+  //   quantity,
+  //   handleAddToCart,
+  // } = useCart();
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const [selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone] = useState<number>(0);
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
@@ -84,7 +69,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   
     setSelectedImageBasedOnSelectedTone(matchedImageIndex);
   }
-  
+
   useEffect(() => {
     if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
@@ -114,19 +99,19 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   function renderProductInformationComponents() {
     if (!productDetailData || !productPageComponents) return null;
 
-    const imageCol = productPageComponents?.magnified_image_component && (
-      <div className={`col-md-6 ${esStyles.productImagesContainer}`}>
-        <div className={esStyles.productImagesWrapper}>
-          <ImageGalleryMaster
-            imageGalleryComponent={productPageComponents.magnified_image_component}
-            slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
-            selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
-            setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
-          />
-        </div>
-      </div>
-    );
-
+    // const imageCol = productPageComponents?.magnified_image_component && (
+    //   <div className={`col-md-6 ${esStyles.productImagesContainer}`}>
+    //     <div className={esStyles.productImagesWrapper}>
+      //     <ImageGalleryMaster
+      //       imageGalleryComponent={productPageComponents.magnified_image_component}
+      //       slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
+            // selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
+            // setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
+      //     />
+        // </div>
+    //   </div>
+    // );
+    
     let infoCol = null;
     switch (productPageComponents.product_information_component) {
       case 'Standard Product Information': {
@@ -148,91 +133,60 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
             handleMultipleQtyChange={handleMultipleQtyChange}
             qty={qty}
             selectedMultiLangData={selectedMultiLangData}
-            cartData={cartData}
+            // cartData={cartData}
           />
         );
         break;
       }
-      case 'Fallback Product Information': {
-        const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
-        const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
-        const FallbackProductInformation =
-          require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
-        const FallbackProductDetails = require('./ProductInformationComponents/FallbackProductDetails/FallbackProductDetail').default;
-        infoCol = (
-          <>
-            <div className={`col-md-6 ${esStyles.productInfoContainer}`}> 
-              <FallbackProductInformation
-                key="FallbackProductInformation"
-                productDetailData={productDetailData}
-                setProductDetailData={setProductDetailData}
-                cartData={cartData}
-                setError={setError}
-                error={error}
-                handleMainQuantityChange={handleMainQuantityChange}
-                quantity={quantity}
-                handleAddToCart={handleAddToCart}
-                btnLoader={btnLoader}
-                stockBtnLoader={stockBtnLoader}
-                getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
-                selectedMetal={selectedMetal}
-                selectedPurity={selectedPurity}
-                selectedTone={selectedTone}
-                selectedDiamond={selectedDiamond}
-                selectedSize={selectedSize}
-                stmpInst={stmpInst}
-                dmPrdInst={dmPrdInst}
-                szInst={szInst}
-                spcRem={spcRem}
-                subRem={subRem}
-                setProductState={setProductState}
-                setClearSelectedState={setClearSelectedState}
-              />
-              
-            </div>
-            {matchedCartGroup?.length > 0 && (
-              <div className={esStyles.productCartTableContainer}>
-                <div className={esStyles.productCartTableWrapper}>
-                  {matchedCartGroup?.map((cartGroup: any, index: number) => (
-                    <CartDetailsTable
-                      key={`cart-${index}`}
-                      pageType='Product Details'
-                      cartGroup={cartGroup}
-                      itemsUpdating={itemsUpdating}
-                      handleQuantityChange={handleQuantityChange}
-                      handleDeleteItem={handleDeleteItem}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-            <div className={` pb-3 ${esStyles.productCartTableContainer}`}>
-              <div className={esStyles.productCartTableWrapper}>
-                <FallbackProductDetails 
-                  productDetailData={productDetailData}
-                  stmpInst={stmpInst}
-                  dmPrdInst={dmPrdInst}
-                  szInst={szInst}
-                  spcRem={spcRem}
-                  subRem={subRem}
-                  setProductState={setProductState}
-                  setClearSelectedState={setClearSelectedState}
-                />
-              </div>
-            </div>
-          </>
-        );
-        break;
-      }
+      // case 'Fallback Product Information': {
+      //   const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
+      //   const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
+      //   const FallbackProductInformation =
+      //     require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
+      //   infoCol = (
+      //     <>
+      //       <div className={`col-md-6 ${esStyles.productInfoContainer}`}>
+      //         <FallbackProductInformation
+      //           key="FallbackProductInformation"
+      //           productDetailData={productDetailData}
+      //           setProductDetailData={setProductDetailData}
+      //           cartData={cartData}
+      //           setError={setError}
+      //           error={error}
+      //           handleMainQuantityChange={handleMainQuantityChange}
+      //           quantity={quantity}
+      //           handleAddToCart={handleAddToCart}
+      //           btnLoader={btnLoader}
+                // getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
+      //         />
+      //       </div>
+      //       <div className={esStyles.productCartTableContainer}>
+      //         {matchedCartGroup?.length > 0 &&
+      //           matchedCartGroup?.map((cartGroup: any, index: number) => (
+      //             <CartDetailsTable
+      //               key={`cart-${index}`}
+      //               pageType='Product Details'
+      //               cartGroup={cartGroup}
+      //               itemsUpdating={itemsUpdating}
+      //               handleQuantityChange={handleQuantityChange}
+      //               handleDeleteItem={handleDeleteItem}
+      //             />
+      //           ))}
+      //           <FallbackProductDetails productDetailData={productDetailData} />
+      //       </div>
+      //     </>
+      //   );
+      //   break;
+      // }
     }
 
     return (
       <div className='m-0 p-0'>
         <div className={esStyles.breadcrumbSection}>
-          <KCBreadCrumbs />
+          <ESBreadCrumbs />
         </div>
         <div className="row m-0 p-0">
-          {imageCol}
+          {/* {imageCol} */}
           {infoCol}
         </div>
       </div>
