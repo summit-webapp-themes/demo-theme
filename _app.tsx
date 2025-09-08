@@ -24,7 +24,8 @@ import { Option } from '../store/slices/general_slices/multilingual-slice';
 import useCurrencyLanguageHandler from '../hooks/GeneralHooks/LanguageHandler';
 
 const summitSettingsData: any = summitSettings;
-const fontFamily = summitSettingsData?.data?.font_family || 'Nunito';
+// const fontFamily = summitSettingsData?.data?.font_family || 'Nunito';
+const fontFamily = 'DMSans';
 // const dynamicFont = createFontImport(fontFamily);
 function InnerApp({ Component, pageProps }: AppProps) {
   const { ENABLE_GOOGLE_ANALYTICS, ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION } = CONSTANTS;
