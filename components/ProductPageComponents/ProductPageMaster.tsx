@@ -53,14 +53,20 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   const [selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone] = useState<number>(0);
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
 
-  function getImageUrlBasedOnSelectedTone(selectedTone: string) {
+ function getImageUrlBasedOnSelectedTone(selectedTone: string) {
     const imgs = productDetailData?.imgUrl || [];
   
-    const toneSuffixArray: any[] = imgs.map((img: string) => {
-      const imgPath = img.split('.webp')[0]
+    const toneSuffixArray: string[] = imgs.map((img: string) => {
+      const dotIndex = img.lastIndexOf(".");
+      const imgPath = dotIndex !== -1 ? img.substring(0, dotIndex) : img;
+  
       return imgPath.charAt(imgPath.length - 1);
-    })
-    const matchedImageIndex = toneSuffixArray.findIndex((s: string) => s === selectedTone);
+    });
+  
+    const matchedImageIndex = toneSuffixArray.findIndex(
+      (s: string) => s === selectedTone
+    );
+  
     setSelectedImageBasedOnSelectedTone(matchedImageIndex);
   }
 
@@ -154,19 +160,26 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
               />
             </div>
-            <div className={esStyles.productCartTableContainer}>
-              {matchedCartGroup?.length > 0 &&
-                matchedCartGroup?.map((cartGroup: any, index: number) => (
-                  <CartDetailsTable
-                    key={`cart-${index}`}
-                    pageType='Product Details'
-                    cartGroup={cartGroup}
-                    itemsUpdating={itemsUpdating}
-                    handleQuantityChange={handleQuantityChange}
-                    handleDeleteItem={handleDeleteItem}
-                  />
-                ))}
+            {matchedCartGroup?.length > 0 && (
+              <div className={esStyles.productCartTableContainer}>
+                <div className={esStyles.productCartTableWrapper}>
+                  {matchedCartGroup?.map((cartGroup: any, index: number) => (
+                    <CartDetailsTable
+                      key={`cart-${index}`}
+                      pageType='Product Details'
+                      cartGroup={cartGroup}
+                      itemsUpdating={itemsUpdating}
+                      handleQuantityChange={handleQuantityChange}
+                      handleDeleteItem={handleDeleteItem}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className={` pb-3 ${esStyles.productCartTableContainer}`}>
+              <div className={esStyles.productCartTableWrapper}>
                 <FallbackProductDetails productDetailData={productDetailData} />
+              </div>
             </div>
           </>
         );
