@@ -56,7 +56,7 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
                   enlargedImagePosition: 'beside',
                   enlargedImageContainerStyle: {
                     backgroundColor: '#fff',
-                    zIndex: 2,
+                    zIndex: 9,
                   },
                   enlargedImageStyle: {
                     objectFit: 'contain',
