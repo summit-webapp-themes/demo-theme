@@ -13,6 +13,7 @@ import esStyles from '../../styles/addon-styles/productPageV2Components.module.s
 import ESBreadCrumbs from '../ESBreadCrumbs';
 import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
 import FallbackProductDetails from './ProductInformationComponents/FallbackProductDetails/FallbackProductDetails';
+import useHandleProductData from '../../hooks/addon-hooks/useHandleProductData';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
@@ -49,6 +50,20 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     quantity,
     handleAddToCart,
   } = useCart();
+  const {
+    selectedMetal,
+    selectedPurity,
+    selectedTone,
+    selectedDiamond,
+    selectedSize,
+    stmpInst,
+    dmPrdInst,
+    szInst,
+    spcRem,
+    subRem,
+    setClearSelectedState,
+    setProductState,
+  } = useHandleProductData(productDetailData, setError);
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const [selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone] = useState<number>(0);
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
@@ -178,7 +193,16 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
             )}
             <div className={` pb-3 ${esStyles.productCartTableContainer}`}>
               <div className={esStyles.productCartTableWrapper}>
-                <FallbackProductDetails productDetailData={productDetailData} />
+                <FallbackProductDetails 
+                  productDetailData={productDetailData}
+                  stmpInst={stmpInst}
+                  dmPrdInst={dmPrdInst}
+                  szInst={szInst}
+                  spcRem={spcRem}
+                  subRem={subRem}
+                  setProductState={setProductState}
+                  setClearSelectedState={setClearSelectedState} 
+                />
               </div>
             </div>
           </>
