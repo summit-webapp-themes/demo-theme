@@ -173,6 +173,18 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 handleAddToCart={handleAddToCart}
                 btnLoader={btnLoader}
                 getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
+                selectedMetal={selectedMetal}
+                selectedPurity={selectedPurity}
+                selectedTone={selectedTone}
+                selectedDiamond={selectedDiamond}
+                selectedSize={selectedSize}
+                stmpInst={stmpInst}
+                dmPrdInst={dmPrdInst}
+                szInst={szInst}
+                spcRem={spcRem}
+                subRem={subRem}
+                setProductState={setProductState}
+                setClearSelectedState={setClearSelectedState}
               />
             </div>
             {matchedCartGroup?.length > 0 && (
