@@ -7,12 +7,14 @@ import { SelectedFilterLangDataFromStore } from '../../store/slices/general_slic
 import ImageGalleryMaster from './ProductImageGallery/ImageGalleryMaster';
 import ProductDetailSkeleton from './ProductDetailSkeleton';
 import styles from '../../styles/components/productDetail.module.scss';
-// import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
-// import useCart from '../../hooks/addon-hooks/useCart';
-// import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
-// import ESBreadCrumbs from '../ESBreadCrumbs';
-// import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
-// import FallbackProductDetails from './ProductInformationComponents/FallbackProductDetails/FallbackProductDetails';
+import CartDetailsTable from '../Cart/PersonalisedCart/FallbackCartComponent/CartTable';
+import useCart from '../../hooks/addon-hooks/useCart';
+import esStyles from '../../styles/addon-styles/productPageV2Components.module.scss';
+import ESBreadCrumbs from '../ESBreadCrumbs';
+import PageHeaderWithBackBtn from '../Cart/PersonalisedCart/FallbackCartComponent/PageHeaderWithBackBtn';
+import FallbackProductDetails from './ProductInformationComponents/FallbackProductDetails/FallbackProductDetails';
+import useHandleProductData from '../../hooks/addon-hooks/useHandleProductData';
+import ProductCard from '../../cards/addon-cards/EuroShineCard';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
@@ -37,18 +39,32 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     checkPinCodeExists,
     validPinCode,
   } = useProductDetail();
-  // const {
-  //   cartData,
-  //   btnLoader,
-  //   setError,
-  //   error,
-  //   itemsUpdating,
-  //   handleMainQuantityChange,
-  //   handleQuantityChange,
-  //   handleDeleteItem,
-  //   quantity,
-  //   handleAddToCart,
-  // } = useCart();
+  const {
+    cartData,
+    btnLoader,
+    setError,
+    error,
+    itemsUpdating,
+    handleMainQuantityChange,
+    handleQuantityChange,
+    handleDeleteItem,
+    quantity,
+    handleAddToCart,
+  } = useCart();
+  const {
+    selectedMetal,
+    selectedPurity,
+    selectedTone,
+    selectedDiamond,
+    selectedSize,
+    stmpInst,
+    dmPrdInst,
+    szInst,
+    spcRem,
+    subRem,
+    setClearSelectedState,
+    setProductState,
+  } = useHandleProductData(productDetailData, setError);
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const [selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone] = useState<number>(0);
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
@@ -69,6 +85,121 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   
     setSelectedImageBasedOnSelectedTone(matchedImageIndex);
   }
+
+  const products = [
+    {
+      OdDmCd: 'Gold Ring',
+      OdCoCd: 'C123',
+      OdTc: 'T001',
+      OdYy: '2025',
+      OdChr: 'CHR01',
+      OdNo: '1001',
+      OdSr: 'S1',
+      OdSalPrc: 1250.5,
+      imgUrl: '',
+      OdSfx: 'Luxury|Exclusive',
+      GrWt: '10.5',
+      DiaWt: '1.25',
+    },
+    {
+      OdDmCd: 'Silver Necklace',
+      OdCoCd: 'C124',
+      OdTc: 'T002',
+      OdYy: '2024',
+      OdChr: 'CHR02',
+      OdNo: '1002',
+      OdSr: 'S2',
+      OdSalPrc: 750.0,
+      imgUrl: '', // will use placeholder image
+      OdSfx: 'Elegant|Stylish',
+      GrWt: '0',
+      DiaWt: '0',
+    },
+    {
+      OdDmCd: 'Diamond Bracelet',
+      OdCoCd: 'C125',
+      OdTc: 'T003',
+      OdYy: '2025',
+      OdChr: 'CHR03',
+      OdNo: '1003',
+      OdSr: 'S3',
+      OdSalPrc: 3150.75,
+      imgUrl: '',
+      OdSfx: 'Premium|Brilliant Cut',
+      GrWt: '15.3',
+      DiaWt: '2.75',
+    },
+    {
+      OdDmCd: 'Platinum Earrings',
+      OdCoCd: 'C126',
+      OdTc: 'T004',
+      OdYy: '2023',
+      OdChr: 'CHR04',
+      OdNo: '1004',
+      OdSr: 'S4',
+      OdSalPrc: 2899.99,
+      imgUrl: '',
+      OdSfx: 'Limited Edition',
+      GrWt: '8.6',
+      DiaWt: '0.85',
+    },
+    {
+      OdDmCd: 'Ruby Pendant',
+      OdCoCd: 'C127',
+      OdTc: 'T005',
+      OdYy: '2024',
+      OdChr: 'CHR05',
+      OdNo: '1005',
+      OdSr: 'S5',
+      OdSalPrc: 1599.0,
+      imgUrl: '',
+      OdSfx: 'Classic|Red Ruby',
+      GrWt: '6.8',
+      DiaWt: '0',
+    },
+    {
+      OdDmCd: 'Pearl Anklet',
+      OdCoCd: 'C128',
+      OdTc: 'T006',
+      OdYy: '2025',
+      OdChr: 'CHR06',
+      OdNo: '1006',
+      OdSr: 'S6',
+      OdSalPrc: 980.45,
+      imgUrl: '', // missing image
+      OdSfx: 'Traditional|Handcrafted',
+      GrWt: '12.0',
+      DiaWt: '0',
+    },
+    {
+      OdDmCd: 'Ruby Pendant',
+      OdCoCd: 'C127',
+      OdTc: 'T005',
+      OdYy: '2024',
+      OdChr: 'CHR05',
+      OdNo: '1005',
+      OdSr: 'S5',
+      OdSalPrc: 1599.0,
+      imgUrl: '',
+      OdSfx: 'Classic|Red Ruby',
+      GrWt: '6.8',
+      DiaWt: '0',
+    },
+    {
+      OdDmCd: 'Pearl Anklet',
+      OdCoCd: 'C128',
+      OdTc: 'T006',
+      OdYy: '2025',
+      OdChr: 'CHR06',
+      OdNo: '1006',
+      OdSr: 'S6',
+      OdSalPrc: 980.45,
+      imgUrl: '', // missing image
+      OdSfx: 'Traditional|Handcrafted',
+      GrWt: '12.0',
+      DiaWt: '0',
+    },
+  ];
 
   useEffect(() => {
     if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
@@ -99,18 +230,18 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   function renderProductInformationComponents() {
     if (!productDetailData || !productPageComponents) return null;
 
-    // const imageCol = productPageComponents?.magnified_image_component && (
-    //   <div className={`col-md-6 ${esStyles.productImagesContainer}`}>
-    //     <div className={esStyles.productImagesWrapper}>
-      //     <ImageGalleryMaster
-      //       imageGalleryComponent={productPageComponents.magnified_image_component}
-      //       slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
-            // selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
-            // setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
-      //     />
-        // </div>
-    //   </div>
-    // );
+    const imageCol = productPageComponents?.magnified_image_component && (
+      <div className={`col-md-6 ${esStyles.productImagesContainer}`}>
+        <div className={esStyles.productImagesWrapper}>
+          <ImageGalleryMaster
+            imageGalleryComponent={productPageComponents.magnified_image_component}
+            slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
+            selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
+            setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
+          />
+        </div>
+      </div>
+    );
     
     let infoCol = null;
     switch (productPageComponents.product_information_component) {
@@ -133,51 +264,87 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
             handleMultipleQtyChange={handleMultipleQtyChange}
             qty={qty}
             selectedMultiLangData={selectedMultiLangData}
-            // cartData={cartData}
+            cartData={cartData}
           />
         );
         break;
       }
-      // case 'Fallback Product Information': {
-      //   const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
-      //   const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
-      //   const FallbackProductInformation =
-      //     require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
-      //   infoCol = (
-      //     <>
-      //       <div className={`col-md-6 ${esStyles.productInfoContainer}`}>
-      //         <FallbackProductInformation
-      //           key="FallbackProductInformation"
-      //           productDetailData={productDetailData}
-      //           setProductDetailData={setProductDetailData}
-      //           cartData={cartData}
-      //           setError={setError}
-      //           error={error}
-      //           handleMainQuantityChange={handleMainQuantityChange}
-      //           quantity={quantity}
-      //           handleAddToCart={handleAddToCart}
-      //           btnLoader={btnLoader}
-                // getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
-      //         />
-      //       </div>
-      //       <div className={esStyles.productCartTableContainer}>
-      //         {matchedCartGroup?.length > 0 &&
-      //           matchedCartGroup?.map((cartGroup: any, index: number) => (
-      //             <CartDetailsTable
-      //               key={`cart-${index}`}
-      //               pageType='Product Details'
-      //               cartGroup={cartGroup}
-      //               itemsUpdating={itemsUpdating}
-      //               handleQuantityChange={handleQuantityChange}
-      //               handleDeleteItem={handleDeleteItem}
-      //             />
-      //           ))}
-      //           <FallbackProductDetails productDetailData={productDetailData} />
-      //       </div>
-      //     </>
-      //   );
-      //   break;
-      // }
+      case 'Fallback Product Information': {
+        const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
+        const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
+        const FallbackProductInformation =
+          require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
+        infoCol = (
+          <>
+            <div className={`col-md-6 ${esStyles.productInfoContainer}`}>
+              <FallbackProductInformation
+                key="FallbackProductInformation"
+                productDetailData={productDetailData}
+                setProductDetailData={setProductDetailData}
+                cartData={cartData}
+                setError={setError}
+                error={error}
+                handleMainQuantityChange={handleMainQuantityChange}
+                quantity={quantity}
+                handleAddToCart={handleAddToCart}
+                btnLoader={btnLoader}
+                getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
+                selectedMetal={selectedMetal}
+                selectedPurity={selectedPurity}
+                selectedTone={selectedTone}
+                selectedDiamond={selectedDiamond}
+                selectedSize={selectedSize}
+                stmpInst={stmpInst}
+                dmPrdInst={dmPrdInst}
+                szInst={szInst}
+                spcRem={spcRem}
+                subRem={subRem}
+                setProductState={setProductState}
+                setClearSelectedState={setClearSelectedState}
+              />
+            </div>
+            {/* <div className={`row m-0 gap-2 ${esStyles.productCartTableContainer}`}>
+              <p className={`m-0 p-0 fw-semibold`} style={{ color: '#000000', fontSize: '16px', lineHeight: '16px'}}>Suggested Products</p>
+              <div className={`row m-0 p-0 overflow-x-scroll flex-nowrap ${esStyles.hideScrollbar}`}>
+                {products.map((product: any) => (
+                  <ProductCard data={product} style={{ maxWidth: '220px', minWidth: '200px', padding: '0 12px 0 0'}} />
+                ))}
+              </div>
+            </div> */}
+            {matchedCartGroup?.length > 0 && (
+              <div className={esStyles.productCartTableContainer}>
+                <div className={esStyles.productCartTableWrapper}>
+                  {matchedCartGroup?.map((cartGroup: any, index: number) => (
+                    <CartDetailsTable
+                      key={`cart-${index}`}
+                      pageType='Product Details'
+                      cartGroup={cartGroup}
+                      itemsUpdating={itemsUpdating}
+                      handleQuantityChange={handleQuantityChange}
+                      handleDeleteItem={handleDeleteItem}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className={` pb-3 ${esStyles.productCartTableContainer}`}>
+              <div className={esStyles.productCartTableWrapper}>
+                <FallbackProductDetails 
+                  productDetailData={productDetailData}
+                  stmpInst={stmpInst}
+                  dmPrdInst={dmPrdInst}
+                  szInst={szInst}
+                  spcRem={spcRem}
+                  subRem={subRem}
+                  setProductState={setProductState}
+                  setClearSelectedState={setClearSelectedState} 
+                />
+              </div>
+            </div>
+          </>
+        );
+        break;
+      }
     }
 
     return (
@@ -186,7 +353,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
           <ESBreadCrumbs />
         </div>
         <div className="row m-0 p-0">
-          {/* {imageCol} */}
+          {imageCol}
           {infoCol}
         </div>
       </div>

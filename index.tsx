@@ -54,7 +54,7 @@ export const getStaticProps = async ({ locale }: { locale: string }) => {
     const entity = 'seo';
     const params = `?version=${version}&method=${method}&entity=${entity}`;
     let metaData: any = await MetaTag('GET', method, params);
-    if (metaData.status === 200 && metaData?.data?.message?.msg === 'success' && metaData?.data?.message?.data !== 'null') {
+    if (metaData?.status === 200 && metaData?.data?.message?.msg === 'success' && metaData?.data?.message?.data !== 'null') {
       metaTagsData = metaData?.data?.message?.data;
     } else {
       metaTagsData = {};
