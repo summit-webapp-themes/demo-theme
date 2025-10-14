@@ -126,7 +126,7 @@ function ProductListingMaster({ componentsList }: any) {
     <>
       {renderProductListPageHeaderComponents()}
       {renderProductListPageLayoutComponents()}
-      <div className="sticky_filter_btn w-100  d-block d-sm-none">
+      {/* <div className="sticky_filter_btn w-100  d-block d-sm-none">
         <div className="row">
           <div className="col-6 p-0 border">
             <FloatingFilterBtn handleShow={handleShowFilterModal} selectedMultiLangData={selectedMultiLangData} />
@@ -135,7 +135,7 @@ function ProductListingMaster({ componentsList }: any) {
             <FloatingSortbyBtn handleShow={handleShowSortbyModal} selectedMultiLangData={selectedMultiLangData} />
           </div>
         </div>
-      </div>
+      </div> */}
       <FilterModal show={showFilterModal} handleClose={handleCloseFilterModal} title={selectedMultiLangData?.filter} />
       <SortbyModal show={showSortbyModal} handleClose={handleCloseSortbyModal} sortBy={sortBy} handleSortBy={handleSortBy} />
       <AddToCatalogModal
