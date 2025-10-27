@@ -71,122 +71,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   
     setSelectedImageBasedOnSelectedTone(matchedImageIndex);
   }
-
-  const products = [
-    {
-      OdDmCd: 'Gold Ring',
-      OdCoCd: 'C123',
-      OdTc: 'T001',
-      OdYy: '2025',
-      OdChr: 'CHR01',
-      OdNo: '1001',
-      OdSr: 'S1',
-      OdSalPrc: 1250.5,
-      imgUrl: '',
-      OdSfx: 'Luxury|Exclusive',
-      GrWt: '10.5',
-      DiaWt: '1.25',
-    },
-    {
-      OdDmCd: 'Silver Necklace',
-      OdCoCd: 'C124',
-      OdTc: 'T002',
-      OdYy: '2024',
-      OdChr: 'CHR02',
-      OdNo: '1002',
-      OdSr: 'S2',
-      OdSalPrc: 750.0,
-      imgUrl: '', // will use placeholder image
-      OdSfx: 'Elegant|Stylish',
-      GrWt: '0',
-      DiaWt: '0',
-    },
-    {
-      OdDmCd: 'Diamond Bracelet',
-      OdCoCd: 'C125',
-      OdTc: 'T003',
-      OdYy: '2025',
-      OdChr: 'CHR03',
-      OdNo: '1003',
-      OdSr: 'S3',
-      OdSalPrc: 3150.75,
-      imgUrl: '',
-      OdSfx: 'Premium|Brilliant Cut',
-      GrWt: '15.3',
-      DiaWt: '2.75',
-    },
-    {
-      OdDmCd: 'Platinum Earrings',
-      OdCoCd: 'C126',
-      OdTc: 'T004',
-      OdYy: '2023',
-      OdChr: 'CHR04',
-      OdNo: '1004',
-      OdSr: 'S4',
-      OdSalPrc: 2899.99,
-      imgUrl: '',
-      OdSfx: 'Limited Edition',
-      GrWt: '8.6',
-      DiaWt: '0.85',
-    },
-    {
-      OdDmCd: 'Ruby Pendant',
-      OdCoCd: 'C127',
-      OdTc: 'T005',
-      OdYy: '2024',
-      OdChr: 'CHR05',
-      OdNo: '1005',
-      OdSr: 'S5',
-      OdSalPrc: 1599.0,
-      imgUrl: '',
-      OdSfx: 'Classic|Red Ruby',
-      GrWt: '6.8',
-      DiaWt: '0',
-    },
-    {
-      OdDmCd: 'Pearl Anklet',
-      OdCoCd: 'C128',
-      OdTc: 'T006',
-      OdYy: '2025',
-      OdChr: 'CHR06',
-      OdNo: '1006',
-      OdSr: 'S6',
-      OdSalPrc: 980.45,
-      imgUrl: '', // missing image
-      OdSfx: 'Traditional|Handcrafted',
-      GrWt: '12.0',
-      DiaWt: '0',
-    },
-    {
-      OdDmCd: 'Ruby Pendant',
-      OdCoCd: 'C127',
-      OdTc: 'T005',
-      OdYy: '2024',
-      OdChr: 'CHR05',
-      OdNo: '1005',
-      OdSr: 'S5',
-      OdSalPrc: 1599.0,
-      imgUrl: '',
-      OdSfx: 'Classic|Red Ruby',
-      GrWt: '6.8',
-      DiaWt: '0',
-    },
-    {
-      OdDmCd: 'Pearl Anklet',
-      OdCoCd: 'C128',
-      OdTc: 'T006',
-      OdYy: '2025',
-      OdChr: 'CHR06',
-      OdNo: '1006',
-      OdSr: 'S6',
-      OdSalPrc: 980.45,
-      imgUrl: '', // missing image
-      OdSfx: 'Traditional|Handcrafted',
-      GrWt: '12.0',
-      DiaWt: '0',
-    },
-  ];
-
+  
   useEffect(() => {
     if (Object.keys(SelectedLangDataFromStore?.selectedLanguageData)?.length > 0) {
       setSelectedMultiLangData(SelectedLangDataFromStore?.selectedLanguageData);
@@ -249,7 +134,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
         break;
       }
       case 'Fallback Product Information': {
-        const foundCartGroup = cartData?.cart.find((group: any) => group.item_name === productDetailData?.OdDmCd);
+        const foundCartGroup = cartData?.cart?.find((group: any) => group.item_name === productDetailData?.OdDmCd);
         const matchedCartGroup = foundCartGroup ? [foundCartGroup] : [];
         const FallbackProductInformation =
           require('./ProductInformationComponents/FallbackProductInformation/FallbackProductInformation').default;
@@ -269,14 +154,16 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 btnLoader={btnLoader}
               />
             </div>
-            {/* <div className={`row m-0 gap-2 ${esStyles.productCartTableContainer}`}>
-              <p className={`m-0 p-0 fw-semibold`} style={{ color: '#000000', fontSize: '16px', lineHeight: '16px'}}>Suggested Products</p>
-              <div className={`row m-0 p-0 overflow-x-scroll flex-nowrap ${esStyles.hideScrollbar}`}>
-                {products.map((product: any) => (
-                  <ProductCard data={product} style={{ maxWidth: '220px', minWidth: '200px', padding: '0 12px 0 0'}} />
-                ))}
+            {productDetailData?.similarDesigns?.length > 0 && (
+              <div className={`row m-0 gap-2 ${esStyles.productCartTableContainer}`}>
+                <p className={`m-0 p-0 fw-semibold`} style={{ color: '#000000', fontSize: '16px', lineHeight: '16px'}}>Suggested Products</p>
+                <div className={`row m-0 p-0 overflow-x-scroll flex-nowrap ${esStyles.hideScrollbar}`}>
+                  {productDetailData?.similarDesigns.map((product: any, i: number) => (
+                    <ProductCard key={i} data={product} classNames='mb-0' style={{ maxWidth: '220px', minWidth: '200px', padding: '0 12px 0 0'}} />
+                  ))}
+                </div>
               </div>
-            </div> */}
+            )}
             {matchedCartGroup?.length > 0 && (
               <div className={esStyles.productCartTableContainer}>
                 <div className={esStyles.productCartTableWrapper}>
