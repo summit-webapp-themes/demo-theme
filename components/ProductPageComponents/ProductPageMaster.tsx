@@ -51,6 +51,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     quantity,
     handleAddToCart,
   } = useCart();
+
   const [selectedMultiLangData, setSelectedMultiLangData] = useState<any>();
   const [selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone] = useState<number>(0);
   const SelectedLangDataFromStore: any = useSelector(SelectedFilterLangDataFromStore);
@@ -180,7 +181,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 </div>
               </div>
             )}
-            <div className={` pb-3 ${esStyles.productCartTableContainer}`}>
+            {/* <div className={` pb-3 ${esStyles.productCartTableContainer}`}>
               <div className={esStyles.productCartTableWrapper}>
                 <FallbackProductDetails 
                   productDetailData={productDetailData}
@@ -193,7 +194,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                   setClearSelectedState={setClearSelectedState} 
                 />
               </div>
-            </div>
+            </div> */}
           </>
         );
         break;
