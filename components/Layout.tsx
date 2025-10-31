@@ -17,10 +17,10 @@ function Layout({ children, componentProps }: LayoutProps) {
   const { showSessionExpiredModal } = useSelector(get_access_token);
   const { t } = useTranslation('common');
   const toShowHeader =
-    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || !apiResponseOfLayoutData?.data?.show_header ? false : true;
+    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || router.pathname === '/update_password' || router.pathname === '/admin/customer-activation' || !apiResponseOfLayoutData?.data?.show_header ? false : true;
 
   const toShowFooter =
-    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || !apiResponseOfLayoutData?.data?.show_footer ? false : true;
+    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || router.pathname === '/update_password' || router.pathname === '/admin/customer-activation' || !apiResponseOfLayoutData?.data?.show_footer ? false : true;
 
   const HeaderRenderer = () => {
     if ('data' in apiResponseOfLayoutData) {
