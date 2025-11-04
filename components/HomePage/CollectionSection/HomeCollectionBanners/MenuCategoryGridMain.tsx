@@ -39,7 +39,7 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
   const collectionDataWithImage = collectionData?.map((item: any) => {
     return {
       ...item,
-      imgUrl: `/assets/images/${item.DpCd}.jpg`
+      imgUrl: `/assets/images/${item.DpCd}.webp`
     };
   });
   return (

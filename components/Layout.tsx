@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import layoutData from '../summit-settings.json';
 import { Modal } from 'react-bootstrap';
@@ -5,6 +6,7 @@ import { IoWarningOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_access_token, setShowSessionExpiredModalFalse } from '../store/slices/auth/token-login-slice';
 import { useTranslation } from 'react-i18next';
+import TermsConditionModal from './Auth/FallbackRegister/TermsConditionModal';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,11 +18,14 @@ function Layout({ children, componentProps }: LayoutProps) {
   const dispatch = useDispatch();
   const { showSessionExpiredModal } = useSelector(get_access_token);
   const { t } = useTranslation('common');
+  const [showModal, setShowModal] = useState(false);
+  const [activeModal, setActiveModal] = useState<'terms' | 'privacy' | null>(null);
+  
   const toShowHeader =
-    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || router.pathname === '/update_password' || router.pathname === '/admin/customer-activation' || !apiResponseOfLayoutData?.data?.show_header ? false : true;
+    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || router.pathname === '/update_password' || router.pathname === '/admin/customer-activation'  || !apiResponseOfLayoutData?.data?.show_header ? false : true;
 
   const toShowFooter =
-    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || router.pathname === '/update_password' || router.pathname === '/admin/customer-activation' || !apiResponseOfLayoutData?.data?.show_footer ? false : true;
+    router.pathname === '/login' || router.pathname === '/register' || router.pathname === '/forgot_password' || router.pathname === '/update_password' || router.pathname === '/admin/customer-activation'  || !apiResponseOfLayoutData?.data?.show_footer ? false : true;
 
   const HeaderRenderer = () => {
     if ('data' in apiResponseOfLayoutData) {
@@ -48,7 +53,7 @@ function Layout({ children, componentProps }: LayoutProps) {
             return <StandardFooter key="footer-component" />;
           case 'Fallback Footer':
             const FallbackFooter = require(`./Footer/FallbackFooter/FallbackFooter`).default;
-            return <FallbackFooter key="footer-component" />;
+            return <FallbackFooter key="footer-component" showModal={showModal} setShowModal={setShowModal} activeModal={activeModal} setActiveModal={setActiveModal} />;
           default:
             return null;
         }
@@ -82,6 +87,7 @@ function Layout({ children, componentProps }: LayoutProps) {
           </button>
         </Modal.Body>
       </Modal>
+      <TermsConditionModal show={showModal} activeModal={activeModal} onClose={() => setShowModal(!showModal)} showBtns={false} />
     </>
   );
 }
