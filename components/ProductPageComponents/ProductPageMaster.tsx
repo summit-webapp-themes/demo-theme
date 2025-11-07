@@ -100,7 +100,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
 
     const imageCol = productPageComponents?.magnified_image_component && (
       <div className={`col-md-7 ${esStyles.productImagesContainer}`}>
-        <ESBreadCrumbs />
+        <ESBreadCrumbs classNames='mb-1' />
         <ImageGalleryMaster
           imageGalleryComponent={productPageComponents.magnified_image_component}
           slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
