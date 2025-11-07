@@ -727,17 +727,6 @@ input[type='text'] {
   position: relative;
 }
 
-// //hide scrollbar
-// .accordion-item {
-//   -ms-overflow-style: none; /* Edge, Internet Explorer */
-//   scrollbar-width: none; /* Firefox */
-//   overflow-y: scroll;
-// }
-
-// // hides scrollbars while allowing to scroll
-// .accordion-item::-webkit-scrollbar {
-//   display: none; /* Chrome, Safari, Opera */
-// }
 
 /* width */
 .accordion-item::-webkit-scrollbar {
@@ -831,6 +820,17 @@ body.modal-open {
   width: 340px !important;
 }
 
+.hideScrollbar {
+  -ms-overflow-style: none; /* Edge, Internet Explorer */
+  scrollbar-width: none; /* Firefox */
+  overflow-y: scroll;
+}
+
+// hides scrollbars while allowing to scroll
+.hideScrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 .terms-accordion {
   .accordion {
     --bs-accordion-border-color: none !important;
@@ -843,18 +843,6 @@ body.modal-open {
     padding: 0;
     position: relative;
   }
-  
-  // //hide scrollbar
-  // .accordion-item {
-  //   -ms-overflow-style: none; /* Edge, Internet Explorer */
-  //   scrollbar-width: none; /* Firefox */
-  //   overflow-y: scroll;
-  // }
-  
-  // // hides scrollbars while allowing to scroll
-  // .accordion-item::-webkit-scrollbar {
-  //   display: none; /* Chrome, Safari, Opera */
-  // }
   
   /* width */
   .accordion-item::-webkit-scrollbar {
@@ -1038,19 +1026,7 @@ body.modal-open {
     padding: 0;
     position: relative;
   }
-  
-  // //hide scrollbar
-  // .accordion-item {
-  //   -ms-overflow-style: none; /* Edge, Internet Explorer */
-  //   scrollbar-width: none; /* Firefox */
-  //   overflow-y: scroll;
-  // }
-  
-  // // hides scrollbars while allowing to scroll
-  // .accordion-item::-webkit-scrollbar {
-  //   display: none; /* Chrome, Safari, Opera */
-  // }
-  
+
   /* width */
   .accordion-item::-webkit-scrollbar {
     width: 6px;
