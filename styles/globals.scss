@@ -856,6 +856,7 @@ body.modal-open {
     border-radius: 10px;
     margin-top: 40px;
     border: 1px solid #dadada;
+    border-radius: 12px;
   }
   
   /* Handle */
@@ -865,36 +866,49 @@ body.modal-open {
   }
   
   .accordion-button {
-    padding: 8px 0 !important;
+    padding: 16px 16px !important;
     background-color: #FFF !important;
-    font-size: 14px;
-    color: #000 !important;
-    font-weight: 600 !important;
-    border: 0 !important;
-    border-bottom: 1px solid transparent !important;
+    font-size: 16px;
+    color: #2B2B2B !important;
+    font-weight: 500 !important;
+    // border: 0 !important;
+    border: 1px solid #dadada !important;
+    border-radius: 12px !important;
   }
   
   .accordion-button.collapsed {
-    padding: 8px 0 !important;
+    padding: 16px 16px !important;
     background-color: #FFF;
-    border: 0 !important;
-    border-bottom: 1px solid #DADADA !important;
+    // border: 0 !important;
+    border-radius: 12px;
+    border: 1px solid #DADADA !important;
+    padding: 8px;
   }
   
-  .accordion-button:after {
-    background-size: 16px 16px !important;
-    transform: rotate(0deg);
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='m2 5 6 6 6-6'/%3E%3C/svg%3E") !important;
+ .accordion-button::after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "";
+    height: 24px !important;
+    width: 24px !important;
+    border-radius: 50%;
+    background-color: #C4D8E1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px 14px !important;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' stroke='%2321272A' stroke-width='2' stroke-linecap='round' viewBox='0 0 16 16'%3E%3Cline x1='8' y1='3' x2='8' y2='13'/%3E%3Cline x1='3' y1='8' x2='13' y2='8'/%3E%3C/svg%3E") !important;
   }
-  
-  .accordion-button:not(.collapsed):after {
-    background-size: 16px 16px !important;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16' transform='rotate(180)'%3E%3Cpath d='m2 5 6 6 6-6' transform='rotate(180 8 8)'/%3E%3C/svg%3E") !important;
+
+  .accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' stroke='%2321272A' stroke-width='2' stroke-linecap='round' viewBox='0 0 16 16'%3E%3Cline x1='3' y1='8' x2='13' y2='8'/%3E%3C/svg%3E") !important;
   }
-  
+
   .accordion-button.show {
-    border: 0 !important;
-    border-bottom: 1px solid #DADADA !important;
+    // border: 0 !important;
+    padding: 16px 16px !important;
+    border-radius: 12px !important;
+    border: 1px solid #DADADA !important;
   }
   
   .accordion-button:focus {
@@ -902,14 +916,16 @@ body.modal-open {
   }
   
   .accordion-collapse .accordion-body {
-    padding: 0 0 8px !important;
-    color: #000000 !important;
+    padding: 16px 16px !important;
+    color: #2B2B2B !important;
     font-size: 16px;
-    border-bottom: 1px solid #DADADA !important;
+    border: 1px solid #DADADA !important;
+    border-radius: 12px !important;
+    margin-top: 8px !important;
   }
   
   .web-filter .accordion-button:not(.collapsed) {
-    padding: 8px 0 !important;
+    padding: 16px 16px !important;
   }
   
   .accordion-body {
