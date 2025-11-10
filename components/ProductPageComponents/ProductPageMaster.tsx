@@ -79,6 +79,10 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     }
   }, [SelectedLangDataFromStore]);
 
+  useEffect(() => {
+    getImageUrlBasedOnSelectedTone(productDetailData?.OdDmCol)
+  }, [productDetailData]);
+
   function renderHeaderComponents() {
     if (productPageComponents?.top_section_component?.length === 0) return;
 
@@ -104,6 +108,8 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
         <ImageGalleryMaster
           imageGalleryComponent={productPageComponents.magnified_image_component}
           slideShowImages={productDetailData.imgUrl ? productDetailData.imgUrl : []}
+          selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone}
+          setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone}
         />
       </div>
     );
@@ -153,6 +159,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 quantity={quantity}
                 handleAddToCart={handleAddToCart}
                 btnLoader={btnLoader}
+                getImageUrlBasedOnSelectedTone={getImageUrlBasedOnSelectedTone}
               />
             </div>
             {productDetailData?.similarDesigns?.length > 0 && (
@@ -181,20 +188,20 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 </div>
               </div>
             )}
-            {/* <div className={` pb-3 ${esStyles.productCartTableContainer}`}>
+            <div className={` pb-3 ${esStyles.productCartTableContainer}`}>
               <div className={esStyles.productCartTableWrapper}>
                 <FallbackProductDetails 
                   productDetailData={productDetailData}
-                  stmpInst={stmpInst}
-                  dmPrdInst={dmPrdInst}
-                  szInst={szInst}
-                  spcRem={spcRem}
-                  subRem={subRem}
-                  setProductState={setProductState}
-                  setClearSelectedState={setClearSelectedState} 
+                  // stmpInst={stmpInst}
+                  // dmPrdInst={dmPrdInst}
+                  // szInst={szInst}
+                  // spcRem={spcRem}
+                  // subRem={subRem}
+                  // setProductState={setProductState}
+                  // setClearSelectedState={setClearSelectedState} 
                 />
               </div>
-            </div> */}
+            </div>
           </>
         );
         break;

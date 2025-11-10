@@ -9,16 +9,18 @@ import styles from '../../../styles/addon-styles/productPageV2Components.module.
 type ProductSlideshowComponentTypes = {
   imageGalleryComponent: string;
   slideShowImages: ProductSlideshowImages[];
+  selectedImageBasedOnSelectedTone: number;
+  setSelectedImageBasedOnSelectedTone: (index: number) => void;
 };
-const ImageGalleryMaster = ({ imageGalleryComponent, slideShowImages }: any) => {
+const ImageGalleryMaster = ({ imageGalleryComponent, slideShowImages,  selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone }: any) => {
   const renderImageGallery = () => {
     switch (imageGalleryComponent) {
       case 'Image Thumbnails on the Left':
-        return <ImageGalleryWithLeftThumbnails slideShowImages={slideShowImages} />;
+        return <ImageGalleryWithLeftThumbnails slideShowImages={slideShowImages} selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone} setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone} />;
       case 'Image Thumbnails on the Right':
-        return <ImageGalleryWithRightThumbnails slideShowImages={slideShowImages} />;
+        return <ImageGalleryWithRightThumbnails slideShowImages={slideShowImages} selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone} setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone} />;
       case 'Image Thumbnails at the Bottom':
-        return <ImageGalleryWithBottomThumbnails slideShowImages={slideShowImages} />;
+        return <ImageGalleryWithBottomThumbnails slideShowImages={slideShowImages} selectedImageBasedOnSelectedTone={selectedImageBasedOnSelectedTone} setSelectedImageBasedOnSelectedTone={setSelectedImageBasedOnSelectedTone} />;
 
       default:
         return null; // or a fallback component
