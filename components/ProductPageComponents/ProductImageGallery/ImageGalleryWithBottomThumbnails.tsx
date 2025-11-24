@@ -3,7 +3,7 @@ import Image from 'next/image';
 import useImageGallery from '../../../hooks/ProductImageGalleryHandler/useImageGallery';
 import { CONSTANTS } from '../../../services/config/app-config';
 import { ProductSlideshowImages } from '../../../interfaces/product-slideshow-images';
-import noImg from '../../../public/assets/images/no_image.png';
+import noImg from '../../../public/assets/images/no_image.webp';
 import imageStyle from '../../../styles/components/productImgMagnify.module.scss';
 import noImageStyles from '../../../styles/addon-styles/productPageV2Components.module.scss';
 
