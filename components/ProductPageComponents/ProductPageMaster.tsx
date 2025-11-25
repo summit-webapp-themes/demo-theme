@@ -167,7 +167,7 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
                 <p className={`m-0 p-0 fw-semibold`} style={{ color: '#000000', fontSize: '16px', lineHeight: '16px'}}>Suggested Products</p>
                 <div className={`row m-0 p-0 overflow-x-scroll flex-nowrap ${esStyles.hideScrollbar}`}>
                   {productDetailData?.similarDesigns.map((product: any, i: number) => (
-                    <ProductCard key={i} data={product} classNames='mb-0' style={{ maxWidth: '220px', minWidth: '200px', padding: '0 12px 0 0'}} />
+                    <ProductCard key={i} data={product} classNames={styles.similarDesignsCard} />
                   ))}
                 </div>
               </div>
