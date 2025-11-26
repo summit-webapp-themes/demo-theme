@@ -77,3 +77,22 @@
   border-radius: 8px;
   padding: 10px;
 }
+
+@media (max-width: 760px) {
+  .fullSpan,
+  .span2fr,
+  .span3fr,
+  .span3frAlt,
+  .span2frAlt {
+    grid-column: 1 / -1 !important;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .gridItem {
+    min-height: 130px;
+  }
+}
