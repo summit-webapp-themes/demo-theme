@@ -6,12 +6,15 @@ import { ProductSlideshowImages } from '../../../interfaces/product-slideshow-im
 import noImg from '../../../public/assets/images/no_image.png';
 import imageStyle from '../../../styles/components/productImgMagnify.module.scss';
 import noImageStyles from '../../../styles/addon-styles/productPageV2Components.module.scss';
+import { IoImageOutline } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
 
 const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedOnSelectedTone, setSelectedImageBasedOnSelectedTone }: ProductSlideshowImages) => {
   const { API_BASE_URL } = CONSTANTS;
   const { enlargeImg, activeImgIndex, handleSelectedImage } = useImageGallery({ slideShowImages });
   const baseImgURL = `${API_BASE_URL}`;
   const isEMR = process.env.NEXT_PUBLIC_ENGINE_NAME === 'EMR';
+  const { t } = useTranslation('common');
 
   const getImageURL = (imgPath: string) => {
     const sanitizedPath = imgPath.startsWith('/') ? imgPath.slice(1) : imgPath;
@@ -86,7 +89,16 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
       ) : (
         <div className="w-100">
           <div className={noImageStyles.imgGalleryLgContainer}>
-            <Image src={noImg} alt="Ring Image" className=" object-fit-contain" fill />
+            <div 
+              className='d-flex w-100 flex-column justify-content-center align-items-center'
+              style={{
+                backgroundColor: '#EAEAEA',
+                minHeight: '100%' 
+              }}
+            >
+              <IoImageOutline size={24} color={'#C0C0C0'} />
+              <span className='fs-14' style={{ color: '#C0C0C0'}}>{t('No Image Found')}</span>
+            </div>
           </div>
           {/* <div className="overflow-x-auto" style={{ maxWidth: '100%' }}>
             <div className="d-flex mt-3 gap-3" style={{ width: '100%' }}>

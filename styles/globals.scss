@@ -650,27 +650,32 @@ input[type='text'] {
 }
 
 .an-simple-multiselect__option.an-simple-multiselect__option--is-focused:hover {
-  background-color: lightgray !important;
-  color: black !important;
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
 }
 
 .an-simple-multiselect__option:hover {
-  background-color: lightgray !important;
-  color: black !important;
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
 }
 
 .an-simple-multiselect__option.an-simple-multiselect__option--is-focused {
-  background-color: transparent !important;
-  color: black !important;
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
 }
 
 .an-simple-multiselect__option.an-simple-multiselect__option--is-selected {
-  background-color: transparent !important;
-  color: black !important;
+  color: #A69476 !important;
+  background-color: #FFF3E190;
+  font-weight: 600;
 }
 
 .an-simple-multiselect__option {
   font-size: 14px !important;
+  padding: 4px 12px !important;
 }
 
 .an-simple-multiselect__control--is-focused {
@@ -680,28 +685,83 @@ input[type='text'] {
   font-size: 14px;
 }
 
+.an-simple-multiselect__control {
+  min-height: 30px !important;
+  height: 30px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.an-simple-multiselect__value-container, .an-simple-multiselect__indicators, .an-simple-multiselect__input-container {
+  min-height: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: #000 !important;
+}
+
+.an-simple-multiselect__value-container {
+  padding: 0 8px !important;
+}
+
+.an-simple-multiselect__menu-list {
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 4px;
+}
+
 .an-simple-select__option.an-simple-select__option--is-focused:hover {
-  background-color: lightgray !important;
-  color: black !important;
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
 }
 
 .an-simple-select__option:hover {
-  background-color: lightgray !important;
-  color: black !important;
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
 }
 
 .an-simple-select__option.an-simple-select__option--is-focused {
-  background-color: transparent !important;
-  color: black !important;
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
 }
 
 .an-simple-select__option.an-simple-select__option--is-selected {
-  background-color: transparent !important;
-  color: black !important;
+  color: #A69476 !important;
+  background-color: #FFF3E190;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.an-simple-select__menu-list {
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 4px;
 }
 
 .an-simple-select__option {
   font-size: 14px !important;
+  padding: 4px 12px !important;
+}
+
+.an-simple-select__control {
+  min-height: 30px !important;
+  height: 30px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.an-simple-select__value-container, .an-simple-select__indicators, .an-simple-select__input-container {
+  min-height: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.an-simple-select__value-container {
+  padding: 0 8px !important;
 }
 
 .an-simple-select__control--is-focused {
@@ -1044,4 +1104,115 @@ body.modal-open {
 /* Optional hover effect */
 .customAccordion input[type='radio']:hover {
   border-color: #FAA721;
+}
+
+
+.an-simple-select__option.an-simple-select__option--is-focused:hover {
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
+}
+
+.an-simple-select__option:hover {
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
+}
+
+.an-simple-select__option.an-simple-select__option--is-focused {
+  color: #000 !important;
+  background-color: #FFF3E170;
+  font-weight: 500;
+}
+.an-simple-select-with-icon__container {
+  width: fit-content !important;
+  min-width: 60px !important;
+}
+
+/* Control (outer input box) */
+.an-simple-select-with-icon__control {
+  border-radius: 6px !important;
+  border: 1px solid #A69476 !important;
+  background-color: #FFFFFF;
+  min-height: 30px !important;
+  height: 30px !important;
+  padding-left: 20px !important;
+  box-shadow: none !important;
+}
+
+.an-simple-select-with-icon__control--is-focused {
+  border-color: #A69476 !important;
+  box-shadow: none !important;
+}
+
+/* Value container inside the select */
+.an-simple-select-with-icon__value-container {
+  padding: 2px 0 2px 6px !important;
+  height: fit-content !important;
+}
+
+/* Placeholder */
+.an-simple-select-with-icon__placeholder {
+  font-size: 14px !important;
+  font-weight: 500;
+  color: #9E9FA4 !important;
+}
+
+/* The selected single value */
+.an-simple-select-with-icon__single-value {
+  font-size: 12px !important;
+  color: #A69476 !important;
+  margin-right: 6px !important;
+  text-align: center;
+}
+
+/* Indicators (arrow + clear button) */
+.an-simple-select-with-icon__indicators {
+  margin-right: 6px !important;
+}
+
+/* Remove separator */
+.an-simple-select-with-icon__indicator-separator {
+  display: none !important;
+}
+
+/* Menu (dropdown) */
+.an-simple-select-with-icon__menu {
+  border-radius: 6px !important;
+  border: 1px solid #DADADA !important;
+  margin: 0 !important;
+  overflow: hidden;
+  min-width: 70px;
+  width: fit-content;
+}
+
+/* Menu list */
+.an-simple-select-with-icon__menu-list {
+  font-size: 12px !important;
+  border-radius: 0px;
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 4px;
+}
+
+/* Option base styles */
+.an-simple-select-with-icon__option {
+  font-size: 14px !important;
+  padding: 4px 12px !important;
+  cursor: pointer;
+  font-weight: 400;
+  color: #2B2B2B !important;
+}
+
+/* Selected option */
+.an-simple-select-with-icon__option--is-selected {
+  background-color: #FFF3E190 !important;
+  color: #A69476 !important;
+  font-weight: 600 !important;
+}
+
+/* Hovered option */
+.an-simple-select-with-icon__option--is-focused {
+  background-color: #FFF3E1 !important;
+  color: #000 !important;
 }
