@@ -90,6 +90,7 @@
   .gridContainer {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    grid-auto-rows: 130px;
   }
 
   .gridItem {
