@@ -119,7 +119,7 @@
   .img_wrap img {
     max-width: 100% !important; /* Thumbnail inner image size */
     max-height: 100% !important; /* Thumbnail inner image size */
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .magnified_image {
@@ -133,6 +133,24 @@
     width: 100%;
     max-width: 100%;
     height: auto;
+  }
+
+  .thumbnail_bottom {
+    display: flex;
+    // margin-top: -90px;
+    z-index: 3;
+    margin-bottom: 0px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .img_container_column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Change flex direction to column to stack image and thumbnails */
+    // height: 95vh; /* Increase the container's height to make space for the thumbnails below */
+    gap: 20px; /* Add space between image and thumbnails */
   }
 }
 @media (min-width: 992px) {
