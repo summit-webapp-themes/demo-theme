@@ -29,6 +29,10 @@
   --es-primary-color: #E69E17;
   --es-light-gray: #F2F5F6;
   --es-text-color: #3d1d15;
+  --kc-primary-brown: #A06400;
+  --kc-border-brown: #F6EAD7;
+  --kc-orange: #FC9159;
+  --kc-black: #2b2b2b;
 }
 body {
   font-family: Arial, Helvetica, sans-serif, 'DM Sans';
@@ -47,6 +51,25 @@ body {
 /* Background color Classes */
 .bg-brown {
   background-color: var(--brown-color) !important;
+}
+
+.text-kc-primary-brown {
+  color: var(--kc-primary-brown) !important;
+}
+
+.text-kc-border-brown {
+  color: var(--kc-border-brown) !important;
+}
+
+.text-kc-orange {
+  color: var(--kc-orange) !important;
+}
+
+.text-kc-black {
+  color: var(--kc-black) !important;
+}
+.border-kc-light-brown {
+  border-color: #E1DCD5 !important;
 }
 /* Spacing */
 .h-2rem {
@@ -1346,4 +1369,50 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.kc-toggle-switch {
+  .form-check-input {
+    width: 40px !important;
+    height: 26px !important;
+    border-radius: 999px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e7dfd2 !important;
+    position: relative;
+    cursor: pointer;
+    box-shadow: none;
+    transition: all 0.3s ease;
+    margin: 0 !important;
+
+    // remove default bootstrap switch bg image
+    background-image: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2px !important;
+      left: 2px !important;
+      bottom: 2px !important;
+      right: 2px !important;
+      width: 20px !important;
+      height: 20px !important;
+      border-radius: 50px;
+      background-color: #e7dfd2;
+      transition: all 0.3s ease;
+    }
+
+    &:checked {
+      background-color: #a66a00 !important;
+      border-color: #a66a00 !important;
+
+      &::before {
+        transform: translateX(14px) !important;
+        background-color: #fbf2e3 !important;
+      }
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
 }
