@@ -36,16 +36,11 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
   const imageLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
-  const collectionDataWithImage = collectionData?.map((item: any) => {
-    return {
-      ...item,
-      imgUrl: `/assets/images/${item.DpCd}.webp`
-    };
-  });
+
   return (
     <div className="container py-3" >
       <div className={styles.gridContainer}>
-        {collectionDataWithImage?.map((item: any, index: number) => (
+        {collectionData?.map((item: any, index: number) => (
           <Link
             key={index}
             href={`product-category/${item.DpCd}?page=1&currency=${currencyState.selected_currency_value}`}
@@ -54,9 +49,10 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
           >
             <Image
               src={item?.imgUrl}
-              alt="Product Image"
+              alt={`${t(item?.DpCd)} Product Image`}
               fill
               style={{ objectFit: 'cover' }}
+              className='fs-14'
               loader={imageLoader}
             />
 
