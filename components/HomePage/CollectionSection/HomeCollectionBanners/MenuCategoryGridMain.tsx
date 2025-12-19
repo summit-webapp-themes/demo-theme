@@ -34,7 +34,7 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
   const currencyState = useSelector(currency_selector_state);
   const { t } = useTranslation('common');
   const imageLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
+    return `${process.env.NEXT_PUBLIC_API_URL}${src}?w=${width}&q=${quality || 75}`;
   };
 
   return (
