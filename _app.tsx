@@ -2,23 +2,22 @@ import '../i18n/i18n';
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import summitSettings from '../summit-settings.json';
-import { createFontImport } from '../utils/fontUtils';
 import dynamic from 'next/dynamic';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 import { PersistGate } from 'redux-persist/integration/react';
 import { CONSTANTS } from '../services/config/app-config';
 import { persistor, store } from '../store/store';
 import useInitializeGoogleAnalytics from '../hooks/GoogleAnalytics/useInitializeGoogleAnalytics';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { queryClient } from '../lib/query-client';
 const Layout = dynamic(() => import('../components/Layout'));
 const ProtectedRoute = dynamic(() => import('../routes/ProtectedRoute'));
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.scss';
-import { setCurrencyValue } from '../store/slices/general_slices/multi-currency-slice';
-import { setLanguage } from '../store/slices/general_slices/multilingual-slice';
-import { currencyDisplayOptions, currencyOptions } from '../utils/addon-utils/currency-map';
+import { currencyDisplayOptions } from '../utils/addon-utils/currency-map';
 import { languageDisplayOptions } from '../utils/addon-utils/language-options';
 import { Option } from '../store/slices/general_slices/multilingual-slice';
 import useCurrencyLanguageHandler from '../hooks/GeneralHooks/LanguageHandler';
@@ -77,11 +76,13 @@ function MyApp(props: AppProps) {
   return (
     <div className={fontFamily}>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <ErrorBoundary>
-            <InnerApp {...props} />
-          </ErrorBoundary>
-        </PersistGate>
+        <QueryClientProvider client={queryClient}>
+          <PersistGate loading={null} persistor={persistor}>
+            <ErrorBoundary>
+              <InnerApp {...props} />
+            </ErrorBoundary>
+          </PersistGate>
+        </QueryClientProvider>
       </Provider>
     </div>
   );
