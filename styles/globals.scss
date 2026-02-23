@@ -1064,7 +1064,7 @@ body.modal-open {
   }
   
   .accordion-button {
-    padding: 8px 0 !important;
+    padding: 12px 0 !important;
     background-color: #FFF !important;
     font-size: 16px;
     line-height: 24px;
@@ -1101,7 +1101,7 @@ body.modal-open {
   }
   
   .accordion-collapse .accordion-body {
-    padding: 8px 0 !important;
+    padding: 12px 0 !important;
     color: #2B2B2B !important;
     font-weight: 500;
     font-size: 14px;
@@ -1138,4 +1138,125 @@ body.modal-open {
 /* Optional hover effect */
 .customAccordion input[type='radio']:hover {
   border-color: #FAA721;
+}
+
+.cartTableAccordian {
+  border: 1px solid #DADADA !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  
+  .accordion {
+    --bs-accordion-border-color: none !important;
+  }
+  
+  .accordion-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    padding: 0;
+    position: relative;
+  }
+  
+  // //hide scrollbar
+  // .accordion-item {
+  //   -ms-overflow-style: none; /* Edge, Internet Explorer */
+  //   scrollbar-width: none; /* Firefox */
+  //   overflow-y: scroll;
+  // }
+  
+  // // hides scrollbars while allowing to scroll
+  // .accordion-item::-webkit-scrollbar {
+  //   display: none; /* Chrome, Safari, Opera */
+  // }
+  
+  /* width */
+  .accordion-item::-webkit-scrollbar {
+    width: 6px;
+    margin-top: 40px;
+  }
+  
+  /* Track */
+  .accordion-item::-webkit-scrollbar-track {
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-top: 40px;
+    border: 1px solid #dadada;
+  }
+  
+  /* Handle */
+  .accordion-item::-webkit-scrollbar-thumb {
+    background: #dddfe0;
+    border-radius: 8px;
+  }
+  
+  .accordion-button {
+    padding: 8px 16px !important;
+    background-color: #FFF !important;
+    font-size: 12px;
+    color: #000 !important;
+    font-weight: 600 !important;
+    border: 0 !important;
+    border-bottom: 1px solid transparent !important;
+    min-height: 42px !important;
+  }
+  
+  .accordion-button.collapsed {
+    padding: 8px 16px !important;
+    background-color: #FFF;
+    border: 0 !important;
+    border-bottom: 1px solid #DADADA !important;
+  }
+  
+  .accordion-item:last-child .accordion-button {
+    border-bottom: none !important;
+  }
+
+  .accordion-button:after {
+    background-size: 16px 16px !important;
+    transform: rotate(0deg);
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16'%3E%3Cpath d='m2 5 6 6 6-6'/%3E%3C/svg%3E") !important;
+  }
+  
+  .accordion-button:not(.collapsed):after {
+    background-size: 16px 16px !important;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000000' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 16 16' transform='rotate(180)'%3E%3Cpath d='m2 5 6 6 6-6' transform='rotate(180 8 8)'/%3E%3C/svg%3E") !important;
+  }
+  
+  .accordion-button.show {
+    border: 0 !important;
+    border-bottom: 1px solid #DADADA !important;
+  }
+  
+  .accordion-button:focus {
+    box-shadow: none;
+  }
+  
+  .accordion-collapse .accordion-body {
+    padding: 8px 16px 0 !important;
+    color: #000000 !important;
+    font-size: 16px;
+    border-bottom: 1px solid #dadada !important;
+  }
+
+  .accordion-item:last-child .accordion-collapse .accordion-body {
+    border-bottom: none !important;
+  }
+  
+  .web-filter .accordion-button:not(.collapsed) {
+    padding: 8px 16px !important;
+  }
+  
+  .accordion-body {
+    margin-bottom: 0 !important;
+  }
+
+  .accordion-item:last-of-type>.accordion-header .accordion-button.collapsed {
+    border-radius: 0 !important;
+  }
+}
+
+@media (min-width: 760.1px) {
+  .cartTableAccordian {
+    display: none !important;
+  }
 }

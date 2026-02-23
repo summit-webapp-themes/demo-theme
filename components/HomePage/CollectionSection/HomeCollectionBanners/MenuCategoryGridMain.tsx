@@ -35,21 +35,33 @@ const MenuCategoryGridMain = ({ collectionData }: any) => {
   const currencyState = useSelector(currency_selector_state);
   const { t } = useTranslation('common');
   const imageLoader = ({ src, width, quality }: { src: string; width: number; quality?: number }) => {
-    return `${CONSTANTS.API_BASE_URL}${src}?w=${width}&q=${quality || 75}`;
+    return `${process.env.NEXT_PUBLIC_API_URL}${src}?w=${width}&q=${quality || 75}`;
   };
 
   return (
     <div className="container py-3" >
       <div className={styles.gridContainer}>
-        {collectionData?.slice(0, 9)?.map((item: any, index: number) => (
+        {collectionData?.map((item: any, index: number) => (
           <Link
             key={index}
             href={`product-category/${item.DpCd}?page=1&currency=${currencyState.selected_currency_value}`}
-            className={`${styles.gridItem} ${spanClasses[index] || ''}`}
+            className={`${styles.gridItem} ${spanClasses[index % spanClasses.length]}`}
             style={{ backgroundColor: pastelColors[index % pastelColors.length] }}
           >
-            <Image src={item?.imgUrl} alt="Product Image" fill style={{ objectFit: 'cover' }} loader={imageLoader} />
-            <Link href={`product-category/${item.DpCd}?page=1&currency=${currencyState.selected_currency_value}`} className={styles.cardLink} aria-label={item?.DpCd}>
+            <Image
+              src={item?.imgUrl}
+              alt={`${t(item?.DpCd)} Product Image`}
+              fill
+              style={{ objectFit: 'cover' }}
+              className='fs-14'
+              loader={imageLoader}
+            />
+
+            <Link
+              href={`product-category/${item.DpCd}?page=1&currency=${currencyState.selected_currency_value}`}
+              className={styles.cardLink}
+              aria-label={item?.DpCd}
+            >
               <div className={styles.pastelCard}>
                 <span className={styles.cardText}>{t(item?.DpCd)}</span>
               </div>

@@ -61,6 +61,27 @@ const ImageGalleryWithBottomThumbnails = ({ slideShowImages, selectedImageBasedO
                     objectFit: 'contain',
                   },
                 }}
+                className='d-none d-md-block'
+              />
+              <ReactImageMagnify
+                {...{
+                  smallImage: {
+                    alt: 'Product image',
+                    isFluidWidth: true,
+                    src: getImageURL(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                    // src: `${baseImgURL}${enlargeImg}`,
+                    srcSet: generateSrcSet(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                  },
+                  largeImage: {
+                    src: getImageURL(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                    srcSet: generateSrcSet(selectedImageBasedOnSelectedTone >= 0 ? slideShowImages[selectedImageBasedOnSelectedTone] : enlargeImg),
+                    width: 1600,
+                    height: 1600,
+                  },
+                  enlargedImageClassName: 'magnified-image',
+                }}
+                enlargedImagePosition="over"
+                className='mobile-img-magnify d-block d-md-none'
               />
             </div>
 
