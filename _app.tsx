@@ -12,6 +12,8 @@ import { persistor, store } from '../store/store';
 import useInitializeGoogleAnalytics from '../hooks/GoogleAnalytics/useInitializeGoogleAnalytics';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
+import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
 const Layout = dynamic(() => import('../components/Layout'));
 const ProtectedRoute = dynamic(() => import('../routes/ProtectedRoute'));
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,6 +41,11 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+const localStoragePersister =
+  typeof window !== 'undefined'
+    ? createAsyncStoragePersister({ storage: window.localStorage })
+    : undefined;
 
 function InnerApp({ Component, pageProps }: AppProps) {
   const { ENABLE_GOOGLE_ANALYTICS, ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION } = CONSTANTS;
@@ -91,11 +98,25 @@ function MyApp(props: AppProps) {
     <div className={fontFamily}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <QueryClientProvider client={queryClient}>
-            <ErrorBoundary>
-              <InnerApp {...props} />
-            </ErrorBoundary>
-          </QueryClientProvider>
+          {localStoragePersister ? (
+            <PersistQueryClientProvider
+              client={queryClient}
+              persistOptions={{
+                persister: localStoragePersister,
+                maxAge: 24 * 60 * 60 * 1000, // keep cached queries up to 1 day
+              }}
+            >
+              <ErrorBoundary>
+                <InnerApp {...props} />
+              </ErrorBoundary>
+            </PersistQueryClientProvider>
+          ) : (
+            <QueryClientProvider client={queryClient}>
+              <ErrorBoundary>
+                <InnerApp {...props} />
+              </ErrorBoundary>
+            </QueryClientProvider>
+          )}
         </PersistGate>
       </Provider>
     </div>
