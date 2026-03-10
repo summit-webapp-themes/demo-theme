@@ -1,0 +1,6 @@
+{
+  "$schema": "./schema/registry-schema.json",
+  "name": "summit-ui",
+  "homepage": "https://github.com/summit-webapp-themes/demo-theme",
+  "items": []
+}
