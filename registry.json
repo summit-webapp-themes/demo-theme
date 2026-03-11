@@ -1,6 +1,37 @@
 {
   "$schema": "./schema/registry-schema.json",
-  "name": "summit-ui",
+  "name": "summit-ui-lib",
   "homepage": "https://github.com/summit-webapp-themes/demo-theme",
-  "items": []
+  "items": [
+    {
+      "name": "button",
+      "section": "primitives",
+      "variant": null,
+      "title": "Button",
+      "description": "Reusable button primitive with primary, secondary, tertiary, ghost and danger variants",
+      "files": [
+        {
+          "path": "registry/components/primitives/button/button.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": ["class-variance-authority", "@radix-ui/react-slot"],
+      "registryDependencies": []
+    },
+    {
+      "name": "hero-1",
+      "section": "hero",
+      "variant": 1,
+      "title": "Hero — Carousel with side panels",
+      "description": "70/30 split hero with Embla carousel on left and two stacked panels on right",
+      "files": [
+        {
+          "path": "registry/components/hero/hero_1/hero_1.tsx",
+          "type": "component"
+        }
+      ],
+      "dependencies": ["embla-carousel-react"],
+      "registryDependencies": ["button"]
+    }
+  ]
 }

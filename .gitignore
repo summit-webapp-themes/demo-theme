@@ -42,3 +42,7 @@ next-env.d.ts
 
 # Registry build output — auto-generated, do not edit manually
 public/r/
+
+# Summit UI CLI
+packages/summit-ui-cli/dist
+packages/summit-ui-cli/node_modules

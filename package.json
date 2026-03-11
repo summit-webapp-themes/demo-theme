@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3005",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -11,6 +11,9 @@
     "registry:watch": "node --watch scripts/build-registry.mjs"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "class-variance-authority": "^0.7.1",
+    "embla-carousel-react": "^8.5.2",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"

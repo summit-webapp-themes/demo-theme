@@ -24,6 +24,7 @@ for (const item of registry.items) {
     description: item.description,
     dependencies: item.dependencies ?? [],
     devDependencies: item.devDependencies ?? [],
+    registryDependencies: item.registryDependencies ?? [], // ← added
     files,
   };
 
