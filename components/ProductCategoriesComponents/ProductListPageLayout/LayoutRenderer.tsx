@@ -32,7 +32,7 @@ const LayoutRenderer: FC<LayoutProps> = (props) => {
       case 'Fixed Filters Layout':
         return <FixedFiltersLayout />;
       case 'Fallback Layout':
-        return <FallbackLayoutComponent page="product-listing" />;                                                                                                                                   
+        // return <FallbackLayoutComponent page="product-listing" />;                                                                                                                                   
       default:
         return null;
     }
