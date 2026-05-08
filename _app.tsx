@@ -74,7 +74,7 @@ function InnerApp({ Component, pageProps }: AppProps) {
       <ToastContainer
         position="top-right"
         className="toast-container-below-navbar"
-        autoClose={3000}
+        autoClose={7000}
         hideProgressBar={false}
         newestOnTop={false}
         draggable={false}
