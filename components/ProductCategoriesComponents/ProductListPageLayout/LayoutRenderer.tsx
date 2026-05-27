@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { FC } from 'react';
+import FallbackLayoutComponent from './FallbackLayouts/FallbackLayout';
 
 interface LayoutProps {
   filterComponentInLayout: string;
@@ -12,7 +13,6 @@ const DefaultLayout = dynamic(() => import('./DefaultLayout'), { ssr: false });
 const CollapsibleLayout = dynamic(() => import('./CollapsibleLayout'), { ssr: false });
 const TopFiltersLayout = dynamic(() => import('./TopFiltersLayout'), { ssr: false });
 const FixedFiltersLayout = dynamic(() => import('./FixedFiltersLayout'), { ssr: false });
-const FallbackLayoutComponent = dynamic(() => import('./FallbackLayouts/FallbackLayout'), { ssr: false });
 
 const LayoutRenderer: FC<LayoutProps> = (props) => {
   const renderLayouts = () => {
