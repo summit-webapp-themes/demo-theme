@@ -118,7 +118,7 @@ body {
   display: flex;
   // flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   background-color: #ffffff;
   gap: 0.5rem;
@@ -140,6 +140,7 @@ body {
 /* Variant for product listing */
 .top-filtersection.product-listing {
   padding: 6px 24px 6px 42px;
+  justify-content: space-between;
 }
 
 /* Custom Search select dropdown */
