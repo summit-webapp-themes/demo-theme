@@ -17,9 +17,12 @@ import { KCFromStore } from '../../store/slices/general_slices/kc-slice';
 
 type ProductPageComponentsTypes = {
   productPageComponents: WebsiteInterfaceTypes;
+  setMoveToFromPage: React.Dispatch<React.SetStateAction<'detail' | 'listing'>>
+  moveToSelectedProducts?: any[];
+  setMoveToSelectedProducts: React.Dispatch<React.SetStateAction<any[]>>
 };
 
-function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes) {
+function ProductPageMaster({ productPageComponents, setMoveToFromPage, moveToSelectedProducts, setMoveToSelectedProducts }: ProductPageComponentsTypes) {
   const {
     productDetailData,
     setProductDetailData,
@@ -145,6 +148,13 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
   useEffect(() => {
     getImageUrlBasedOnSelectedTone(productDetailData?.OdDmCol)
   }, [productDetailData]);
+
+  useEffect(() => {
+    setMoveToFromPage('detail');
+    if (productDetailData) {
+      setMoveToSelectedProducts([productDetailData]);
+    }
+  }, [productDetailData, setMoveToSelectedProducts]);
 
   function renderHeaderComponents() {
     if (productPageComponents?.top_section_component?.length === 0) return;
@@ -310,9 +320,9 @@ function ProductPageMaster({ productPageComponents }: ProductPageComponentsTypes
     return (
       <div className='m-0 p-0'>
         <div className={esStyles.breadcrumbSection}>
-          <KCBreadCrumbs />
+          {/* <KCBreadCrumbs /> */}
         </div>
-        <div className="row m-0 p-0">
+        <div className="row m-0 mt-1 p-0">
           {imageCol}
           {infoCol}
         </div>
