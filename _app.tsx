@@ -2,7 +2,6 @@ import '../i18n/i18n';
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import summitSettings from '../summit-settings.json';
-import { createFontImport } from '../utils/fontUtils';
 import dynamic from 'next/dynamic';
 import { Provider, useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -11,7 +10,10 @@ import { CONSTANTS } from '../services/config/app-config';
 import { persistor, store } from '../store/store';
 import useInitializeGoogleAnalytics from '../hooks/GoogleAnalytics/useInitializeGoogleAnalytics';
 import ErrorBoundary from '../components/ErrorBoundary';
-const Layout = dynamic(() => import('../components/Layout'));
+import Layout from '../components/Layout';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
+import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
 const ProtectedRoute = dynamic(() => import('../routes/ProtectedRoute'));
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,6 +29,23 @@ const summitSettingsData: any = summitSettings;
 // const fontFamily = summitSettingsData?.data?.font_family || 'Nunito';
 const fontFamily = 'DMSans';
 // const dynamicFont = createFontImport(fontFamily);
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes (garbage collection time)
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+const localStoragePersister =
+  typeof window !== 'undefined'
+    ? createAsyncStoragePersister({ storage: window.localStorage })
+    : undefined;
+
 function InnerApp({ Component, pageProps }: AppProps) {
   const { ENABLE_GOOGLE_ANALYTICS, ALLOW_GUEST_TO_ACCESS_SITE_EVEN_WITHOUT_AUTHENTICATION } = CONSTANTS;
   const { handleLanguageShallowUpdate, handleCurrencyShallowUpdate } = useCurrencyLanguageHandler();
@@ -54,7 +73,7 @@ function InnerApp({ Component, pageProps }: AppProps) {
       <ToastContainer
         position="top-right"
         className="toast-container-below-navbar"
-        autoClose={3000}
+        autoClose={7000}
         hideProgressBar={false}
         newestOnTop={false}
         draggable={false}
@@ -78,9 +97,25 @@ function MyApp(props: AppProps) {
     <div className={fontFamily}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <ErrorBoundary>
-            <InnerApp {...props} />
-          </ErrorBoundary>
+          {localStoragePersister ? (
+            <PersistQueryClientProvider
+              client={queryClient}
+              persistOptions={{
+                persister: localStoragePersister,
+                maxAge: 24 * 60 * 60 * 1000, // keep cached queries up to 1 day
+              }}
+            >
+              <ErrorBoundary>
+                <InnerApp {...props} />
+              </ErrorBoundary>
+            </PersistQueryClientProvider>
+          ) : (
+            <QueryClientProvider client={queryClient}>
+              <ErrorBoundary>
+                <InnerApp {...props} />
+              </ErrorBoundary>
+            </QueryClientProvider>
+          )}
         </PersistGate>
       </Provider>
     </div>
