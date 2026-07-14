@@ -479,6 +479,39 @@ input[type='text'] {
   width: 99% !important;
 }
 
+// Scrollable thumbnail strip — left-positioned thumbnails scroll when they overflow
+.productDetailImageSlider {
+  .image-gallery-thumbnails-wrapper {
+    &.left,
+    &.right {
+      max-height: 500px;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      // Thin custom scrollbar
+      scrollbar-width: thin;
+      scrollbar-color: #d4b896 transparent;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #d4b896;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .image-gallery-thumbnails {
+    // Allow the inner thumbnails list to be taller than the container
+    overflow: visible;
+    padding: 0;
+  }
+}
+
 //
 .link-tag-without-default-styles {
   text-decoration: none;
@@ -1014,7 +1047,7 @@ body.modal-open {
 }
 
 .offcanvas {
-  width: 440px !important;
+  width: 480px !important;
 }
 
 .productDetailsAccordian {
